@@ -1,0 +1,20 @@
+Package: spHelper
+Type: Package
+Title: spHelper - VARIOUS FUNCTIONS
+Version: 0.1
+Date: 2016-01-27
+Author: Vilmantas Gegzna
+Maintainer: Vilmantas <GegeznaV@gmail.com>
+Description: Functions to make life easier
+License: GPL-3
+LazyData: TRUE
+RoxygenNote: 5.0.1
+Depends:
+    ggplot2,
+    hyperSpec
+Imports:
+    lattice,
+    reshape2,
+    pander,
+    tidyr,
+    dplyr
