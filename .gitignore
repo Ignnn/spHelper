@@ -1,4 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
+<<<<<<< HEAD
 packrat/lib*/
+=======
+>>>>>>> origin/master
