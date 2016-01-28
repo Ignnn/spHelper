@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+#'
+#'
 #' spHelper: Various functions by V. Gegzna, et al.
 #'
 #'
@@ -84,36 +85,11 @@ NULL
 
 makeFirstCapital <- function(x)
 {
-=======
-# colCode <- unclass(ObjectName$Dziov)
-# colCode[is.na(colCode)] <- max(unclass(ObjectName$Dziov),na.rm = TRUE)+1;
-# UsedColors <- c("tomato2","skyblue","orange","tan","darkgreen","green")
-# colorList  <- UsedColors[colCode]
-#
-# plotspc(ObjectName,
-#         title.args=list(main = FileName_base),
-#         spc.nmax = 4e3,
-#         col = colorList, # 1:nrow(ObjectName),
-#         stacked = ObjectName$HibridGr)
-#
-# legend("topright",   levels(ObjectName$Dziov), lty = 1,  col = UsedColors)
-# # plotc(ObjectName[,,500],model = spc~Integration_time)
-
-
-# library(devtools)
-# install('D:\\Data\\R\\spHelper')
-
-# Padaryti pirmą raidę didžiąja -------------------------------------------
-
-
-makeFirstCapital <- function(x) {
->>>>>>> origin/master
     s <- strsplit(x, " ")[[1]]
     paste(toupper(substring(s, 1, 1)), substring(s, 2),
           sep = "", collapse = " ")
 }
 
-<<<<<<< HEAD
 
 # Komponentų spektrai grupėmis (kartu) ---------------------------------------
 
@@ -152,24 +128,6 @@ plot_kSp <- function(loadings,
     limMIN <- ifelse(min(l$spc)>=0, 0, min(l$spc)*1.03)
     limMAX <- ifelse(max(l$spc)<=0, 0, max(l$spc)*1.03)
 # Plot
-=======
-# Paruošiama braižyt komponenus -------------------------------------------
-
-
-
-# Komponentų spektrai grupėmis (kartu) ---------------------------------------
-plot_kSp <- function(loadingsNMF,
-                     Title = "MNF komponentai (kartu)",
-                     ylab = "I, sant.vnt")
-{
-    hyperSpec::chk.hy(loadingsNMF)
-    l <- loadingsNMF
-    l$rows = as.numeric(rownames(l))
-    l <- l[,c('spc','kNames','rows')]
-
-    l <- as.long.df(l)
-
->>>>>>> origin/master
     ggplot(l, aes (x = .wavelength,
                    y = spc,
                    group = rows,
@@ -182,25 +140,16 @@ plot_kSp <- function(loadingsNMF,
         theme(legend.title=element_blank()) +
         scale_x_continuous(expand = c(0,0)) +
         scale_y_continuous(expand = c(0,0),
-<<<<<<< HEAD
                            limits = c(limMIN, limMAX)
                            # limits = c(0, max(l$spc)*1.03)
                           # , breaks = round(seq(0, max(l$spc),length.out = 3))
                                           ) +
         ggtitle(Title) +
         xlab(labels(loadings, ".wavelength")) +
-=======
-                           limits = c(0, max(l$spc)*1.03)
-                          # , breaks = round(seq(0, max(l$spc),length.out = 3))
-                                          ) +
-        ggtitle(Title) +
-        xlab(labels(loadingsNMF, ".wavelength")) +
->>>>>>> origin/master
         ylab(label = ylab)
 }
 
 # Komponentų spektrai grupėmis (atskirai) ---------------------------------
-<<<<<<< HEAD
 
 #' Plots spectra of components (a.k.a loadings) in separate graphs
 #'
@@ -270,41 +219,14 @@ plot_kAmp <- function(scores, Title = "Komponentų amplitudžių skirstiniai gru
 
     kNames <- colnames(scores$spc)
     sc     <- scores
-=======
-plot_kSpFacets <- function(loadingsNMF, Title = "MNF komponentai (atskirai)",
-                           ylab = "I (normuotas)")
-{   loadingsNMF_norm <- sweep(loadingsNMF, 1, max, `/`)
-    plot_kSp(loadingsNMF = loadingsNMF_norm,
-             Title = Title,
-             ylab = ylab) +
-        facet_grid(kNames ~., scales = "free")
-}
-
-# Komponentų amplitudės ---------------------------------------------------
-plot_kAmp <- function(scoresNMF)
-{
-    hyperSpec::chk.hy(scoresNMF)
-
-    library(dplyr)
-    library(tidyr)
-
-    kNames <- colnames(scoresNMF$spc)
-    sc     <- scoresNMF
->>>>>>> origin/master
     AMP2   <- as.data.frame(sc$spc)
     names(AMP2) <- kNames # paste0("Komp_", names(AMP2))
 
     sc <-AMP2   %>%
         cbind(sc$..["gr"])   %>%
-<<<<<<< HEAD
         dplyr::mutate(row = row_number())  %>%
         tidyr::gather(Komponentas,Amplitude, -gr,  -row) %>%
         dplyr::mutate(Komponentas = factor(Komponentas,sort(kNames),sort(kNames)))
-=======
-        mutate(row = row_number())  %>%
-        gather(Komponentas,Amplitude, -gr,  -row) %>%
-        mutate(Komponentas = factor(Komponentas,sort(kNames),sort(kNames)))
->>>>>>> origin/master
 
     # Braižomas paveikslas
     ggplot(sc, aes(y = Amplitude, x = Komponentas, fill = gr), size = 1)+
@@ -314,13 +236,8 @@ plot_kAmp <- function(scoresNMF)
         geom_boxplot(alpha=.6,
                      position = position_dodge(width = 0.9))     +
         facet_grid( ~ Komponentas, scales="free") +
-<<<<<<< HEAD
         # labs(x="Komponento numeris")+
         ggtitle(Title) +
-=======
-        labs(x="Komponento numeris")+
-        ggtitle("NMF komponentų amplitudžių skirstiniai grupėmis") +
->>>>>>> origin/master
         theme(axis.text.x=element_blank(),
               legend.title=element_blank()) +
         geom_hline(yintercept = 0, size = .5,linetype=2, alpha = .5)
@@ -328,7 +245,6 @@ plot_kAmp <- function(scoresNMF)
 
 
 # Sukurti sluoksniuotus k-folds -------------------------------------------
-<<<<<<< HEAD
 
 #' Creates folds for k-fold cross-validation stratified by levels in "gr"
 #'
@@ -358,21 +274,6 @@ plot_kAmp <- function(scoresNMF)
 
 createFolds_strat <- function(df_all, k = 5, returnTrain=TRUE)
 {
-=======
-createFolds_strat <- function(df_all, k = 5, returnTrain=TRUE)
-{    # names(df_all)
-    ##   [1] "ID" "gr"
-    #
-    # k - number of folds
-
-    # example:
-    # # # Inputs
-    # df_all <- Object$..[,c("ID","gr")]
-    # nFolds  = 5
-    # createFolds_strat(df_all, nFolds)
-
-
->>>>>>> origin/master
     nFolds <- k
 
     # get only unique values
@@ -421,7 +322,6 @@ createFolds_strat <- function(df_all, k = 5, returnTrain=TRUE)
     }
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-<<<<<<< HEAD
 
 #' Wraper of the function \code{\link{createFolds_strat}}
 #'
@@ -436,9 +336,6 @@ createFolds_strat <- function(df_all, k = 5, returnTrain=TRUE)
 
 createFolds_stratified <- function(ID = NULL, groups = NULL, k = 5, returnTrain=TRUE)
 {
-=======
-createFolds_stratified <- function(ID, groups, k = 5, returnTrain=TRUE){
->>>>>>> origin/master
     # df_all <- data.frame(ID = AMP_obj2$ID, gr = AMP_obj2$gr)
     df_all <- data.frame(ID = ID, gr = groups)
     createFolds_strat(df_all, k = k, returnTrain = returnTrain)
@@ -447,11 +344,7 @@ createFolds_stratified <- function(ID, groups, k = 5, returnTrain=TRUE){
 
 
 
-<<<<<<< HEAD
 # # Plot confusion matrix TMP ---------------------------------------------------
-=======
-# # Plot confusion matrix ---------------------------------------------------
->>>>>>> origin/master
 #
 # library(ggplot2)
 # library(plyr) # might be not needed here anyway it is a must-have package I think in R
@@ -488,7 +381,6 @@ createFolds_stratified <- function(ID, groups, k = 5, returnTrain=TRUE){
 
 
 # Plot confusion matrix ---------------------------------------------------
-<<<<<<< HEAD
 
 #' Plots a confusion matrix, \code{PlotConfusion}
 #'
@@ -521,34 +413,13 @@ PlotConfusion <- function(conf)
     names(conf.m)[1:2] <- c("Actual","Predicted")
     conf.m$Actual <- factor(conf.m$Actual, levels = rev(levels(conf.m$Actual)))
 
-=======
-PlotConfusion <- function(conf){
-    #
-    # PlotConfusion(prop.table(conf,1))
-    # PlotConfusion(conf)
-    library(ggplot2)
-    library(dplyr) # might be not needed here anyway it is a must-have package I think in R
-    library(reshape2) # to "melt" your dataset
-
-
-    conf <- round(conf,2)
-
-    conf.m <- melt(conf)
-    names(conf.m)[1:2] <- c("Actual","Predicted")
-    conf.m$Actual <- factor(conf.m$Actual, levels = rev(levels(conf.m$Actual)))
->>>>>>> origin/master
     # Spalvinam įstrižainę ****************************************
     nRows <- nrow(conf.m)
     nCols <- length(unique(conf.m[,2]))
     ind <- seq(1,nRows,nCols+1)
 
-<<<<<<< HEAD
     #     conf.m$ColValue      <- conf.m$value*(-1)
     #     conf.m$ColValue[ind] <- conf.m$ColValue[ind]*(-1)
-=======
-#     conf.m$ColValue      <- conf.m$value*(-1)
-#     conf.m$ColValue[ind] <- conf.m$ColValue[ind]*(-1)
->>>>>>> origin/master
 
     conf.m$ColValue      <- -1
     conf.m$ColValue[ind] <- 1
@@ -564,7 +435,6 @@ PlotConfusion <- function(conf){
     return(p)
 }
 
-<<<<<<< HEAD
 
 # Komponenų amplitudės matricų daugybos būdu ------------------------------
 
@@ -825,7 +695,7 @@ addLabels_TD2009 <- function(sp)
 #' explain = pk;
 #'
 #' @export
-#' @importFrom  lattice xyplot
+#' @importFrom lattice xyplot
 
 info_dim <- function(y, makePlot = FALSE)
 {
@@ -865,5 +735,5 @@ info_dim <- function(y, makePlot = FALSE)
       return(output)
 }
 
-=======
->>>>>>> origin/master
+
+

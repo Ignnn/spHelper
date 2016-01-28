@@ -1,5 +1,28 @@
+#' regcapturedmatches.R: extracts captured matches by names
+#'
+#' regcapturedmatches.R: extracts captured matches from match data obtained
+#'  by regexpr, gregexpr or regexec
+#' @param x - (a list of) strings.
+#' @param m - ParsedData, aresult from a regular expression function.
+#'
+#' @return ....
+#'
+#' @export
+#' @author  Daniel Marcelino
+#' \url{https://gist.github.com/danielmarcelino/8209cfdf2cd993eeb1b3}[github.com/danielmarcelino]
+#' \url{https://gist.github.com/MrFlick/10413321}
+#' \url{http://stackoverflow.com/questions/33288075/from-matlab-to-r-capture-named-fields-with-regular-expressions-to-a-dataframe}
+#' @examples
+#' # usage
+#' x <- c("larry:35,M","alison:22,F","dave","lily:55,F")
+#' m <- regexpr("(.*):(\\\\d+),([MF])", x, perl=T)
+#'D
+#' regcapturedmatches(x,m)
+#'
+#'
+
 regcapturedmatches<-function(x,m) {
-    
+
   if (length(x) != length(m))
     stop(gettextf("%s and %s must have the same length",
       sQuote("x"), sQuote("m")), domain = NA)
@@ -47,7 +70,7 @@ regcapturedmatches<-function(x,m) {
       return(character())
     } else {
       x <- t(
-        mapply(function(x,st,ln) substring(x,st,st+ln-1), 
+        mapply(function(x,st,ln) substring(x,st,st+ln-1),
 	      x, data.frame(t(starts)), data.frame(t(lens)),
 	      USE.NAMES=F)
       )
