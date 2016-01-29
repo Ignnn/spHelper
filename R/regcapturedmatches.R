@@ -1,7 +1,8 @@
-#' regcapturedmatches.R: extracts captured matches by names
+#' Extract regular expression matches captured by names
 #'
 #' regcapturedmatches.R: extracts captured matches from match data obtained
-#'  by regexpr, gregexpr or regexec
+#'  by regexpr, gregexpr or regexec.
+#'
 #' @param x - (a list of) strings.
 #' @param m - ParsedData, aresult from a regular expression function.
 #'
