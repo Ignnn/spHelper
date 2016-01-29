@@ -1,22 +1,45 @@
 
-#' spHelper: Various functions by V. Gegzna, et al.
+#' Various functions by V. Gegzna, et al.
+#'
+#' Functions in spHelper by topic
+#'
+#' @section Cross-validation:
+#'
+#' \code{\link{createFolds_strat}} \cr
+#' \code{\link{createFolds_stratified}} \cr
+#'
+#' @section Component analysis / Spectroscopy:
+#'
+#' \code{\link{GaussAmp}} \cr
+#' \code{\link{getScores}} \cr
+#' \code{\link{InfoDim}} \cr
+#' \code{\link{InfoDim_plot}} \cr
 #'
 #'
-#' @section Functions in spHelper:
-#' addLabels_TD2009
-#' createFolds_strat
-#' createFolds_stratified
-#' getScores
-#' hy2mat
-#' info_dim
-#' makeFirstCapital
-#' plot_kAmp
-#' plot_kSp
-#' plot_kSpFacets
-#' PlotConfusion
-#' read3csv2hy
-#' regcapturedmatches
+#' @section Spectroscopy / \code{\link{hyperSpec}}:
 #'
+#' \code{\link{hy2mat}} \cr
+#' \code{\link{read3csv2hy}} \cr
+#' \code{\link{addLabels_TD2009}} \cr
+#'
+#'
+#' @section Plotting:
+#'
+#' \code{\link{plot_kAmp}} \cr
+#' \code{\link{plot_kSp}} \cr
+#' \code{\link{plot_kSpFacets}} \cr
+#' \code{\link{PlotConfusion}} \cr
+#'
+#'
+#' @section Regular expressions:
+#'
+#' \code{\link{regcapturedmatches}} \cr
+#' \code{\link{regexpr2df}} \cr
+#'
+#'
+#' @section Various:
+#'
+#' \code{\link{makeFirstCapital}} \cr
 #'
 #' @examples
 #' # List all functions in package:

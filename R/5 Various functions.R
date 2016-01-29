@@ -180,7 +180,7 @@ getScores <- function(y, k_sp)
     return(k_amp)
 }
 
-# GaussAmp -------------------
+# GaussAmp ------------------------------------------------------------------
 #
 # Funkcija GaussAmp skirta vienai ar kelioms gausinėms kreivėms braižyti.
 #
@@ -256,3 +256,127 @@ GaussAmp <- function(x, xc = 0, w = 1, A = 1, y0 = 0){
     return(y)
 }
 
+# Regular expression (named tokens) ------------------------------------------------------------------
+#' Capture substrings to dataframe (regular expression)
+#'
+#' Capture substrings that match regular expression's named tokens
+#' and convert the result to a data frame.
+#'
+#'
+#' @param strings - strings to be parsed.
+#' @param pattern - Perl-like regular expression.
+#'
+#' @return A data frame.
+#'
+#' @details The syntax how to use named tokens is: \cr
+#' '\emph{...}\bold{(?<}\emph{...}>\emph{...})\emph{...}' \cr
+#' '\emph{expr1}\bold{(?<}\emph{Name}\bold{>}\emph{expr-to-capture}\bold{)}\emph{expr2}'
+#'
+#' \itemize{
+#'   \item \bold{Name} - the name of token. Any spaces or other special symbols,
+#'   inappropriate for variable names, are not allowed and will result in error.
+#'   \item \bold{expr-to-capture} - regular expression to be captured as a value of a variable.
+#'   \item \bold{expr1, expr2} - (optional) expressions, that must match, but that are
+#'   not captured.
+#' }
+#'
+#' @export
+#'
+#' @seealso \code{\link{gregexpr}},
+#'          \code{\link{regcapturedmatches}},
+#'          \code{\link{\%>\%}}
+#'
+#' @examples
+#' strings1 <- c("A_111  B_aaa",
+#'               "A_222  B_bbb",
+#'               "A_333  B_ccc",
+#'               "A_444  B_ddd",
+#'               "A_555  B_eee")
+#'
+#' pattern1 <- 'A_(?<Part_A>.*)  B_(?<Part_B>.*)'
+#'
+#' regexpr2df(strings1, pattern1)
+#'
+#' ##     Part_A Part_B
+#' ## 1    111    aaa
+#' ## 2    222    bbb
+#' ## 3    333    ccc
+#' ## 4    444    ddd
+#' ## 5    555    eee
+#'
+#' #----------------------------------------------------------
+#' # Wrong. There must NOT be any SPACES in token's name:
+#'
+#' pattern2 <- 'A (?<Part A>.*)  B (?<Part B>.*)'
+#' regexpr2df(strings1, pattern2)
+#'
+#' ## Error ...
+#'
+#' #----------------------------------------------------------
+#' strings3 <- c("sn555 ID_O20-5-684_N52_2_Subt2_01.",
+#'               "sn555 ID_O20-5-984_S52_8_Subt10_11.")
+#'
+#' pattern3 <- paste0('sn(?<serial_number>.*) ID_(?<ID>.*)_(?<Class>[NS])',
+#'                    '(?<Sector>.*)_(?<Point>.*)_[Ss]ubt.*\\.');
+#'
+#' regexpr2df(strings3, pattern3)
+#'
+#' ##   serial_number    ID       Class Sector Point
+#' ## 1      555      O20-5-684     N     52     2
+#' ## 2      555      O20-5-984     S     52     8
+#'
+#' #----------------------------------------------------------
+#' # List all .R files in your working directory:
+#'
+#' regexpr2df(dir(),'(?<R_file>.*\\.[rR]$)')
+#'
+#'
+#' # Do the same by using chaining operator %>%:
+#'
+#' dir() %>% regexpr2df('(?<R_file>\\.*[rR]$)')
+#'
+#' #----------------------------------------------------------
+#' # Capture several types of files:
+#'
+#' expr <- paste0('(?<R_file>.*\\.[rR]$)|',
+#'                '(?<Rmd_file>.*\\.[rR]md$)|',
+#'                '(?<CSV_file>.*\\.[cC][sS][vV]$)')
+#' dir() %>% regexpr2df(expr)
+#'
+#' @importFrom tidyr %>%
+#'
+#'
+regexpr2df <- function(strings, pattern)
+{
+    ParsedData <- gregexpr(pattern,strings, perl = TRUE);
+    as_a_list  <- regcapturedmatches(strings,ParsedData)
+    df <- do.call(rbind.data.frame, as_a_list)
+    return(df)
+}
+# list.functions -------------------------------------------------------
+#' List all functions in a package.
+#'
+#' List all functions in a package.
+#'
+#' @param Package - name of package. Default \code{Package = "spHelper"}
+#' @param print.table - print the result as a table using \code{\link{Pander}}.
+#' Default is true.
+#'
+#' @return A list of functions in a package.
+#' @export
+#'
+#' @importFrom pander pander
+#' @examples
+#'
+#' list.functions()
+#' list.functions(Package = "tidyr", print.table = F)
+#'
+list.functions <- function(Package = "spHelper", print.table = TRUE)
+{
+    FunctionList <- unclass(lsf.str(envir = asNamespace(Package),
+                                    all = TRUE))
+    if (print.table){
+        pander::pander(as.data.frame(FunctionList))
+        invisible(FunctionList)
+    } else return(FunctionList)
+}
