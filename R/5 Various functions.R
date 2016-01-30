@@ -3,7 +3,7 @@
 
 # Padaryti pirmą raidę didžiąja -------------------------------------------
 
-#' Convert the first letter to capital.
+#' [!] Convert the first letter to capital.
 #'
 #' @param x - a string
 #'
@@ -125,139 +125,8 @@ createFolds_stratified <- function(ID = NULL, groups = NULL, k = 5, returnTrain=
 }
 
 
-
-
-# Apskaičiuoti Komponenų amplitudes matricų daugybos būdu ------------------------------
-#
-#' Calculate component amplitudes (a.k.a scores) by matrix multiplication
-#'
-#' @details
-#'  \deqn{k_amp = y * k_sp * inv(k_sp' * k_sp)}
-#'
-#'  formula is taken  and adapted from [1]
-#' @references [1] M. Brydegaard et al. IEEE Photonics J 2011:3(3);406-21.
-#'
-#' @param y - matrix with experimental spectra
-#' @param k_sp - matrix with components' spectra
-#'
-#' @return k_amp - amplitudes of the components
-#' @examples
-#' # e.g.:
-#'     y = Object
-#'     k_sp = loadings
-#'
-#' getScores(y, k_sp)
-#'
-#' @export
-#'
-#' @import hyperSpec
-#'
-getScores <- function(y, k_sp)
-{
-    y2 <- hy2mat(y)
-    k_sp2 <- hy2mat(k_sp)
-
-    if (dim(y2)[2] == dim(k_sp2)[2])   k_sp2 <- t(k_sp2)
-
-    k_amp <- y2 %*% (k_sp2 %*% solve(crossprod(k_sp2)))
-
-    if (class(y) == "hyperSpec"){
-        # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        # Komponentų amplitudes (išrikiuotas) paverčiam į "HyperSpec"" objektą
-
-        k_amp <- decomposition(y, k_amp,
-                               label.wavelength = "Komponentai",
-                               label.spc = "Amplitudė, a.u.")
-        # Suteikiam pavadinimus
-        if("kNames" %in% colnames(k_sp)){
-            kNames <- gsub("max: ","k_", k_sp$kNames)
-        }else {kNames <- paste0("Nr", 1:min(dim(k_sp2)))}
-
-
-        colnames(k_amp$spc) <- kNames
-    }
-    # ======================================================================
-    return(k_amp)
-}
-
-# GaussAmp ------------------------------------------------------------------
-#
-# Funkcija GaussAmp skirta vienai ar kelioms gausinėms kreivėms braižyti.
-#
-# *PARAMETRAI:*
-# x  - x ašies reikšmių vektorius;
-# xc - vektorius su centro padėtimis;
-# w  - vektorius su vidutiniais kvadratiniais nuokrypiais, sigma;
-# A  - vektorius su amplitudėmis;
-# y0 - kreivės pagrindo aukštis virš x ašies (konstanta, vienoda visoms
-#      kreivėms).
-#
-# *IŠVESTIS:*
-# k_sp - matrica su kreivių reikšmėmis ties atitinkamais x.
-#
-# *SINTAKSĖ:*
-#        GaussAmp; # Funkcijos demonstracija
-# k_sp = GaussAmp(x,xc,w,A)
-# k_sp = GaussAmp(x,xc,w,A,y0)
-#
-#
-# Autorius Ignas Čiplys       2014-10-28
-# Modifikavo Vilmantas Gėgžna 2014-12-03
-
-#' Generate Gausian curve(s) (GaussAmp)
-#'
-#' @param x vector of x values
-#' @param xc vector with centers of Gaussian curves
-#' @param w  vector with parameter w, which determines the width of Gaussian curves
-#' @param A  vector with Amplitudes of Gaussian curves
-#' @param y0 vector with offsets on y axis
-#'
-#' @note The number of curves is determined by maximal length of any of 4
-#' Gausian curve parameters' (xc, w, A, y0) vector. Other parameters are
-#' recycled as shown in example 2 (parameter "A")
-#'
-#' @return y values of Gaussian curve
-#' @export
-#'
-#' @examples
-#' # Example 1
-#' x <- seq(-9.9, 10, 0.2)
-#' y <- GaussAmp(x)
-#'
-#' plot(x,y, type = "l", col = "green3"); grid()
-#'
-#' # Example 2
-#'
-#' require(hyperSpec)
-#'
-#' # Make 7 lines
-#' y <- GaussAmp(x, xc = 1:7,A = c(1,2))
-#'
-#' dim(y)
-#' ##[1]   7 100
-#'
-#' Obj <- new("hyperSpec",spc = y,    wavelength = x,
-#'          label = list (spc = "y", .wavelength = "x"))
-#' plot(Obj, col = 1:nrow(Obj)); grid()
-#'
-GaussAmp <- function(x, xc = 0, w = 1, A = 1, y0 = 0){
-    P <- max(length(xc),length(w),length(A),length(y0))
-
-    xc <- rep_len(xc, P)
-    w  <- rep_len(w,  P)
-    A  <- rep_len(A,  P)
-    y0 <- rep_len(y0, P)
-    # Prealocate y
-    y = matrix(NA ,P,length(x))
-    # Generate the curves
-    for (i in 1:P){ y[i,] <- y0[i]+A[i]*exp(-(((x-xc[i])^2)/(2*w[i]^2)))}
-
-    ## Output
-    return(y)
-}
-
 # Regular expression (named tokens) ------------------------------------------------------------------
-#' Capture substrings to dataframe (regular expression)
+#' [!] Capture substrings to dataframe (regular expression)
 #'
 #' Capture substrings that match regular expression's named tokens
 #' and convert the result to a data frame.
@@ -354,11 +223,11 @@ regexpr2df <- function(strings, pattern)
     return(df)
 }
 # list.functions -------------------------------------------------------
-#' List all functions in a package.
+#' [!] List all functions in a package.
 #'
 #' List all functions in a package.
 #'
-#' @param Package - name of package. Default \code{Package = "spHelper"}
+#' @param Package - name of package. Default \code{Package = "spHelper"}.
 #' @param print.table - print the result as a table using \code{\link{Pander}}.
 #' Default is true.
 #'
