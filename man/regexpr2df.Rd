@@ -2,7 +2,7 @@
 % Please edit documentation in R/5 Various functions.R
 \name{regexpr2df}
 \alias{regexpr2df}
-\title{Capture substrings to dataframe (regular expression)}
+\title{[!] Capture substrings to dataframe (regular expression)}
 \usage{
 regexpr2df(strings, pattern)
 }

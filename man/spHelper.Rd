@@ -18,10 +18,11 @@ Functions in spHelper by topic
 \section{Component analysis / Spectroscopy}{
 
 
-\code{\link{GaussAmp}} \cr
+\code{\link{sortLoadings}} \cr
 \code{\link{getScores}} \cr
 \code{\link{InfoDim}} \cr
 \code{\link{InfoDim_plot}} \cr
+\code{\link{GaussAmp}} \cr
 }
 
 \section{Spectroscopy / \code{\link{hyperSpec}}}{

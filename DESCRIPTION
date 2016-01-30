@@ -1,8 +1,8 @@
 Package: spHelper
 Type: Package
 Title: spHelper - Various functions
-Version: 0.1.004
-Date: 2016-01-27
+Version: 0.1.005
+Date: 2016-01-30
 Author: Vilmantas Gegzna
 Maintainer: Vilmantas <GegeznaV@gmail.com>
 Description: Various functions for spectroscopy, etc.

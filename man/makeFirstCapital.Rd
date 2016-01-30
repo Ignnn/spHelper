@@ -2,7 +2,7 @@
 % Please edit documentation in R/5 Various functions.R
 \name{makeFirstCapital}
 \alias{makeFirstCapital}
-\title{Convert the first letter to capital.}
+\title{[!] Convert the first letter to capital.}
 \usage{
 makeFirstCapital(x)
 }
@@ -13,7 +13,7 @@ makeFirstCapital(x)
 The same string with all words starting with capital letter.
 }
 \description{
-Convert the first letter to capital.
+[!] Convert the first letter to capital.
 }
 \examples{
 

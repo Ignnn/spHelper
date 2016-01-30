@@ -2,12 +2,12 @@
 % Please edit documentation in R/5 Various functions.R
 \name{list.functions}
 \alias{list.functions}
-\title{List all functions in a package.}
+\title{[!] List all functions in a package.}
 \usage{
 list.functions(Package = "spHelper", print.table = TRUE)
 }
 \arguments{
-\item{Package}{- name of package. Default \code{Package = "spHelper"}}
+\item{Package}{- name of package. Default \code{Package = "spHelper"}.}
 
 \item{print.table}{- print the result as a table using \code{\link{Pander}}.
 Default is true.}
