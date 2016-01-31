@@ -146,10 +146,11 @@ plot_kAmp <- function(scores, Title = "Komponentų amplitudžių skirstiniai gru
         geom_boxplot(alpha=.6,
                      position = position_dodge(width = 0.9))     +
         facet_grid( ~ Komponentas, scales="free") +
-        # labs(x="Komponento numeris")+
+
         ggtitle(Title) +
-        xlab(labels(LoadingsPCAv,'spc'))+
-        ylab(labels(LoadingsPCAv,'.wavelength'))+
+        xlab(labels(scores,'.wavelength'))+
+        ylab(labels(scores,'spc'))+
+
         theme(axis.text.x=element_blank(),
               legend.title=element_blank()) +
         geom_hline(yintercept = 0, size = .5,linetype=2, alpha = .5)
