@@ -7,7 +7,8 @@
 hy2mat(Object)
 }
 \arguments{
-\item{Object}{- object of classes either  \code{\link{hyperSpec}} or  \code{\link{matrix}}}
+\item{Object}{- object of classes either \code{\link[hyperSpec]{hyperSpec}}
+or \code{\link[base]{matrix}}}
 }
 \value{
 A matrix or an error if it's impossible to extract a matrix.

@@ -2,18 +2,33 @@
 % Please edit documentation in R/2 Fun Plotting Sp.R
 \name{plot_kAmp}
 \alias{plot_kAmp}
-\title{Plot component amlitudes (a.k.a scores)}
+\title{[!] Plot component amlitudes (a.k.a scores)}
 \usage{
-plot_kAmp(scores, Title = "Komponentø amplitudþiø skirstiniai grupëmis")
+plot_kAmp(scores, Title = "Component amplitudes", subTitle = NULL,
+  xLabel = labels(scores, ".wavelength"), yLabel = labels(scores, "spc"))
 }
 \arguments{
-\item{scores}{- object of class \code{\link{hyperSpec}} with scores after factorisation/decomposition}
+\item{scores}{- object of class \code{\link[hyperSpec]{hyperSpec}} with
+scores after factorisation/decomposition}
+
+\item{Title}{- Title}
+
+\item{subTitle}{- Second line of title}
+
+\item{xLabel}{- label of x axis}
+
+\item{yLabel}{- label of y axis}
 }
 \value{
 object of class "ggplot"
 }
 \description{
-Plot component amlitudes (a.k.a scores)
+Plot component amlitudes (a.k.a scores).
+}
+\note{
+May be incorrect, if cals is not hyperSpec \cr
+       xLabel = labels(scores, ".wavelength") \cr
+       yLabel
 }
 \examples{
 plot_kAmp(scores)

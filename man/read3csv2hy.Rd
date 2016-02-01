@@ -10,7 +10,7 @@ read3csv2hy(FileName_base)
 \item{FileName_base}{- base of file name (a string). See more in section "Details"}
 }
 \value{
-Object of class \code{\link{hyperSpec}}
+Object of class \code{\link[hyperSpec]{hyperSpec}}
 }
 \description{
 These fileas are usually exported from Matlab.

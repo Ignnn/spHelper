@@ -2,6 +2,8 @@
 #
 #' [!] Calculate component amplitudes (a.k.a scores) by matrix multiplication
 #'
+#' [!] Calculate component amplitudes (a.k.a scores) by matrix multiplication
+#'
 #' @details
 #'  \deqn{k_amp = y * k_sp * inv(k_sp' * k_sp)}
 #'
@@ -342,13 +344,14 @@ unipeak <- function(y){uniPeak(y)}
 # Sort component spectra =======================================================================
 #' [!] Sort component spectra (a.k.a. Loadings) by possition of top peak
 #'
-#' [!] = [INCOMPLETE DESCRIPTION] Sort component spectra (a.k.a. Loadings) by possition of top peak and
-#' return
+#' [!] = [INCOMPLETE DESCRIPTION] Sort component spectra (a.k.a. Loadings) by
+#'  possition of top peak and return
 #'
 #' @param loadings - matrix of loadings (components).
-#' @param Sp - spectra (object of class \code{\link{hyperSpec}}) which will
-#' be used to convert sorted loadings into \code{\link{hyperSpec}} object.
-#' More information at \code{\link{hyperSpec::decomposition}}
+#' @param Sp - spectra (object of class \code{\link[hyperSpec]{hyperSpec}})
+#' which will be used to convert sorted loadings into
+#' \code{\link[hyperSpec]{hyperSpec}} object.
+#' More information at \code{\link[hyperSpec]{decomposition}}
 #' @param PCA - if TRUE, some components are flipped. ... Set to TRUE if PCA loadings are used.
 #'               Default \code{PCA = FALSE}
 #'

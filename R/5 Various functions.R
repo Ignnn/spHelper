@@ -27,35 +27,51 @@ makeFirstCapital <- function(x)
 
 # Sukurti sluoksniuotus k-folds -------------------------------------------
 #
-#' Create stratified and blocked folds for k-fold cross-validation
+#' @name stratifiedFolds
+#' @aliases stratifiedFolds
+#' @aliases createFolds_stratified
+#'
+#' @title [!] Create stratified and blocked folds for k-fold cross-validation
+#'
 #'
 #' Create folds that are stratified by levels in variable "gr" in which
 #' observations are blocked by "ID" (i.e. observations with the same "ID"
-#' are treated as one observation and are always in the same fold).
+#' are treated as one observation and are always in the same fold). \cr
 #'
 #' Folds are used for for k-fold cross-validation.
 #'
-#' \code{\link{createFolds_strat}}
 #'
-#'
-#' @param df_all - a data frame, that contains variables "ID"  and "gr"
-#'
-#' names(df_all)
-#' ##   [1] "ID" "gr"
-#'
-#' @param k - number of folds, default k = 5
 #' @param returnTrain - returnTrain=TRUE
-#' @return Result is the same as produced by function \code{\link{caret::createFolds}}
+#' @return Result is a list of folds. In each fold indices observations are
+#'  listed (). (i.e. the structure of outpus is the same as if it was created by
+#'  \code{\link[caret]{createFolds}})
+#'
+#'
+#' @param df_all - a data frame, that contains variables "ID"  and "gr" \cr
+#' \cr
+#' names(df_all) \cr
+#' ##   [1] "ID" "gr"
+#' @param ID - vector
+#' @param groups - vector
+#' @param k - number of folds, default k = 5
+#' @param returnTrain - ....returnTrain=TRUE
 #' @examples
 #'
+#' # Make data with 20 different ID's and 4 different groups:
+#'    df <- data.frame(ID = gl(n = 20, k = 2),
+#'                     gr = gl(n = 4, labels = LETTERS[1:4], k = 10)
+#'                     )
 #'
-#'    df_all <- Object$..[,c("ID","gr")]
-#'    nFolds  = 5
-#'    createFolds_strat(df_all, nFolds)
+#'   df
+#'
+#'    nFolds = 5
+#'
+#'    Folds1 <- createFolds_stratified(df, nFolds)
+#'    Folds2 <- stratifiedFolds(df$ID, df$groups, nFolds)
 #'
 #'    @export
 #'
-createFolds_strat <- function(df_all, k = 5, returnTrain=TRUE)
+stratifiedFolds <- function(df_all, k = 5, returnTrain=TRUE)
 {
     nFolds <- k
 
@@ -106,15 +122,7 @@ createFolds_strat <- function(df_all, k = 5, returnTrain=TRUE)
 }
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-#' Wraper of the function \code{\link{createFolds_strat}}
-#'
-#' @param ID - vector
-#' @param groups - vector
-#' @param k - number of folds k = 5
-#' @param returnTrain - returnTrain=TRUE
-#' @return Result is the same as produced by function \code{\link{createFolds}}
-#' @examples createFolds_stratified
-#'
+#' @rdname stratifiedFolds
 #' @export
 
 createFolds_stratified <- function(ID = NULL, groups = NULL, k = 5, returnTrain=TRUE)
@@ -228,7 +236,8 @@ regexpr2df <- function(strings, pattern)
 #' List all functions in a package.
 #'
 #' @param Package - name of package. Default \code{Package = "spHelper"}.
-#' @param print.table - print the result as a table using \code{\link{Pander}}.
+#' @param print.table - print the result as a table using
+#' \code{\link[Pander]{Pander}}.
 #' Default is true.
 #'
 #' @return A list of functions in a package.

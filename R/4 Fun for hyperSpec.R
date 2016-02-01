@@ -8,7 +8,8 @@
 #'
 #' hy2mat
 #'
-#' @param Object - object of classes either  \code{\link{hyperSpec}} or  \code{\link{matrix}}
+#' @param Object - object of classes either \code{\link[hyperSpec]{hyperSpec}}
+#' or \code{\link[base]{matrix}}
 #' @return A matrix or an error if it's impossible to extract a matrix.
 #' @examples
 #' hy2mat(Object)
@@ -33,7 +34,7 @@ hy2mat <- function(Object)
 #'
 #' @param FileName_base - base of file name (a string). See more in section "Details"
 #'
-#' @return Object of class \code{\link{hyperSpec}}
+#' @return Object of class \code{\link[hyperSpec]{hyperSpec}}
 #'
 #' @details
 #' If base name is "TD_2009", then CSV files must be:
@@ -94,10 +95,10 @@ read3csv2hy <- function(FileName_base){
 #' Function is designed for data from investigation, called "TD_2009".
 #'
 #' Select data columns, that are not removed, and add labels to
-#'  \code{\link{hyperSpec}} object of "TD_2009" data.
+#'  \code{\link[hyperSpec]{hyperSpec}} object of "TD_2009" data.
 #'
 #'
-#' @param sp - \code{\link{hyperSpec}} object of TD_2009 data, created by using
+#' @param sp - \code{\link[hyperSpec]{hyperSpec}} object of TD_2009 data, created by using
 #'              function \code{\link{read3csv2hy}}
 #'
 #' @return labeled object with reduced number of data columns

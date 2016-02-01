@@ -2,22 +2,25 @@
 % Please edit documentation in R/2 Fun Plotting Sp.R
 \name{plot_kSp}
 \alias{plot_kSp}
-\title{Plots spectra of components (a.k.a loadings) on one plot.}
+\title{[!] Plot spectra of components (a.k.a loadings) on one plot.}
 \usage{
-plot_kSp(loadings, Title = "Komponentai (kartu)", ylab = "I, sant.vnt")
+plot_kSp(loadings, Title = "Components", xLabel = labels(loadings, "spc"),
+  yLabel = labels(loadings, ".wavelength"))
 }
 \arguments{
 \item{loadings}{- \code{\link{hyperSpec}} object}
 
 \item{Title}{- the title of graph}
 
-\item{ylab}{- label of ordinate axis}
+\item{xLabel}{- label of x axis}
+
+\item{yLabel}{- label of ordinate axis}
 }
 \value{
 ggplot2 object
 }
 \description{
-Plots spectra of components (a.k.a loadings) on one plot.
+Plot spectra of components (a.k.a loadings) on one plot.
 }
 \examples{
 plot_kSp(loadings)

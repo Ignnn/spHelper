@@ -3,11 +3,14 @@
 
 # ***** Komponentų spektrai (kartu) ***** ---------------------------------------
 
-#' Plots spectra of components (a.k.a loadings) on one plot.
+#' [!] Plot spectra of components (a.k.a loadings) on one plot.
+#'
+#' Plot spectra of components (a.k.a loadings) on one plot.
 #'
 #' @param loadings - \code{\link{hyperSpec}} object
 #' @param Title    - the title of graph
-#' @param ylab     - label of ordinate axis
+#' @param yLabel     - label of ordinate axis
+#' @param xLabel     - label of x axis
 #'
 #' @return ggplot2 object
 #' @examples
@@ -20,14 +23,15 @@
 
 
 plot_kSp <- function(loadings,
-                     Title = "Komponentai (kartu)",
-                      ylab = "I, sant.vnt")
+                     Title = "Components",
+                     xLabel = labels(loadings, "spc"),
+                     yLabel = labels(loadings, ".wavelength"))
 {
     hyperSpec::chk.hy(loadings)
 
     l <- loadings
 # Create names of components, if they do not exist
-    if (!('kNames' %in% colnames(l))) l$kNames = rownames(l)
+    if (!('kNames' %in% colnames(l))) l[,'kNames'] = rownames(l)
 
     l$rows = 1:nrow(l)               # Create variable with row numbers
     l <- l[,c('spc','kNames','rows')]# Rename variables
@@ -55,8 +59,8 @@ plot_kSp <- function(loadings,
                           # , breaks = round(seq(0, max(l$spc),length.out = 3))
                                           ) +
         ggtitle(Title) +
-        xlab(labels(loadings, ".wavelength")) +
-        ylab(label = ylab)
+        xlab(xLabel) +
+        ylab(yLabel)
 }
 
 # Komponentų spektrai (atskirai) ---------------------------------
@@ -66,7 +70,8 @@ plot_kSp <- function(loadings,
 #'
 #' @param loadings - \code{\link{hyperSpec}} object
 #' @param Title    - the title of graph
-#' @param ylab     - label of ordinate axis
+#' @param yLabel     - label of ordinate axis
+#' @param xLabel     - label of ordinate axis
 #' @param normalize - flag if plot normalized components
 #' default: normalize, if needed:
 #'   Below0 <- any(loadings$spc < 0)
@@ -86,12 +91,12 @@ plot_kSp <- function(loadings,
 #' @import hyperSpec
 
 plot_kSpFacets <- function(loadings,
-                           Title = "Komponentai (atskirai)",
-                            ylab = "I, sant.vnt.",
-                       normalize = any(loadings$spc>0)-any(loadings$spc<0)
-                       )
+                            Title = "Components (stacked)",
+                           xLabel = labels(loadings, "spc"),
+                           yLabel = labels(loadings, ".wavelength"),
+                        normalize = any(loadings$spc>0)-any(loadings$spc<0))
 {
-
+    hyperSpec::chk.hy(loadings)
 
     loadings_norm <- switch(as.character(as.numeric(normalize)),
          `0` =  loadings,
@@ -100,17 +105,84 @@ plot_kSpFacets <- function(loadings,
          stop("'normalize' is incorrect. Must be either -1, 0 or 1.")
         )
 
-    # plot
-    plot_kSp(loadings = loadings_norm,
-             Title = Title,
-             ylab  = ylab) +
+    # Plot: !!! pass all necessary variables
+    plot_kSp(loadings = loadings_norm,  xLabel = xLabel, yLabel = yLabel) +
          facet_grid(kNames ~., scales = "free")
 }
 
+
+# SubTitle ----------------------------------------------------------------
+
+#' @name withSubTitle
+#' @aliases withSubTitle
+#' @aliases subt
+#'
+#' @title Make title with subtitle
+#'
+#' Make title with second line as subtitle. Function
+#' uses \code{\link[base]{bquote}} and \code{\link[grDevices]{atop}}.
+#'
+#' @param Title - the first line of title, which will be in bold.
+#' @param subTitle - the second line of title, which will have smaller
+#' font size and will be in italic.
+#'
+#' @return Formated title
+#' @export
+#'
+#' @examples
+#'
+#' identical(subt("Cars"), withSubTitle("Cars"))
+#' ## TRUE#'
+#'
+#' plot(cars[,1:2], main = "Cars")
+#' plot(cars[,1:2], main = withSubTitle("Cars"))
+#' plot(cars[,1:2], main = subt("Cars")) # the same as previous line
+#' plot(cars[,1:2], main = withSubTitle("Cars","Distance vs. speed"))
+#' plot(cars[,1:2], main = withSubTitle(subTitle = "Distance vs. speed"))
+#'
+#'
+#' library(ggplot2)
+#' qplot(mpg, wt, data=mtcars) + ggtitle("Cars") # non-bold title
+#' qplot(mpg, wt, data=mtcars) + ggtitle(withSubTitle("Cars")) # bold title
+#' qplot(mpg, wt, data=mtcars) + ggtitle(subt("Cars")) # bold title
+#' qplot(mpg, wt, data=mtcars) + ggtitle(subt("Cars","Distance vs. speed"))
+#' qplot(mpg, wt, data=mtcars) + ggtitle(subt(subTitle = "Distance vs. speed"))
+#'
+withSubTitle <- function(Title = NULL, subTitle = NULL)
+    {
+    # Format Title
+    if (is.null(subTitle)) {#If subtitle is not provided, use only main title
+        Title <- bquote(bold(.(Title)))
+    } else {# otherwise add the subtitle
+        Title <- bquote(atop(bold(.(Title)), atop(italic(.(subTitle)))))}
+
+    return(Title)
+    }
+
+#' @rdname withSubTitle
+#' @export
+subt <- function(Title = NULL, subTitle = NULL) {
+    withSubTitle(Title = Title, subTitle = subTitle)
+    }
+
 # ***** Komponentų amplitudės ***** ---------------------------------------------------
 
-#' Plot component amlitudes (a.k.a scores)
-#' @param scores - object of class \code{\link{hyperSpec}} with scores after factorisation/decomposition
+#' [!] Plot component amlitudes (a.k.a scores)
+#'
+#' Plot component amlitudes (a.k.a scores).
+#'
+#' @note May be incorrect, if cals is not hyperSpec \cr
+#'        xLabel = labels(scores, ".wavelength") \cr
+#'        yLabel
+#'
+#' @param Title      - Title
+#' @param subTitle   - Second line of title
+#' @param scores - object of class \code{\link[hyperSpec]{hyperSpec}} with
+#' scores after factorisation/decomposition
+#' @param xLabel - label of x axis
+#' @param yLabel - label of y axis
+#'
+#'
 #' @return object of class "ggplot"
 #' @examples plot_kAmp(scores)
 #' @export
@@ -120,13 +192,21 @@ plot_kSpFacets <- function(loadings,
 #' @importFrom tidyr gather
 #' @import ggplot2
 
-plot_kAmp <- function(scores, Title = "Komponentų amplitudžių skirstiniai grupėmis")
+plot_kAmp <- function(scores,
+                       Title = "Component amplitudes",
+                    subTitle = NULL,
+                      xLabel = labels(scores, ".wavelength"),
+                      yLabel = labels(scores, "spc"))
 {
     hyperSpec::chk.hy(scores)
 
-#     library(dplyr)
-#     library(tidyr)
+#     # Use subtitle when it is provided
+#     Title <- ifelse(is.null(subTitle),
+#                     Title,
+#                     bquote(atop(bold(.(Title)), atop(italic(.(subTitle)))))
+#                     )
 
+    # Prepare data
     kNames <- colnames(scores$spc)
     sc     <- scores
     AMP2   <- as.data.frame(sc$spc)
@@ -138,7 +218,7 @@ plot_kAmp <- function(scores, Title = "Komponentų amplitudžių skirstiniai gru
         tidyr::gather(Komponentas,Amplitude, -gr,  -row) %>%
         dplyr::mutate(Komponentas = factor(Komponentas,sort(kNames),sort(kNames)))
 
-    # Braižomas paveikslas
+    # Plot
     ggplot(sc, aes(y = Amplitude, x = Komponentas, fill = gr), size = 1)+
         geom_violin(alpha=.2)  +
         #geom_point(alpha=.05,size = 2,
@@ -147,13 +227,14 @@ plot_kAmp <- function(scores, Title = "Komponentų amplitudžių skirstiniai gru
                      position = position_dodge(width = 0.9))     +
         facet_grid( ~ Komponentas, scales="free") +
 
-        ggtitle(Title) +
-        xlab(labels(scores,'.wavelength'))+
-        ylab(labels(scores,'spc'))+
+        ggtitle(Title) + xlab(xLabel) + ylab(yLabel) +
 
         theme(axis.text.x=element_blank(),
               legend.title=element_blank()) +
         geom_hline(yintercept = 0, size = .5,linetype=2, alpha = .5)
+
+
+
 }
 
 
@@ -162,7 +243,7 @@ plot_kAmp <- function(scores, Title = "Komponentų amplitudžių skirstiniai gru
 #' Plot a confusion matrix, \code{PlotConfusion}
 #'
 #' @param conf - a table, a square matrix
-#' @return ...
+#' @return Plot of confusion matrix. ...
 #' @examples
 #' Prediction <- sample(c("A","B","C"),1000, replace = T)
 #' Reference  <- sample(c("A","B","C"),1000, replace = T)

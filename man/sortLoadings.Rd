@@ -9,9 +9,10 @@ sortLoadings(loadings, Sp = NULL, PCA = FALSE)
 \arguments{
 \item{loadings}{- matrix of loadings (components).}
 
-\item{Sp}{- spectra (object of class \code{\link{hyperSpec}}) which will
-be used to convert sorted loadings into \code{\link{hyperSpec}} object.
-More information at \code{\link{hyperSpec::decomposition}}}
+\item{Sp}{- spectra (object of class \code{\link[hyperSpec]{hyperSpec}})
+which will be used to convert sorted loadings into
+\code{\link[hyperSpec]{hyperSpec}} object.
+More information at \code{\link[hyperSpec]{decomposition}}}
 
 \item{PCA}{- if TRUE, some components are flipped. ... Set to TRUE if PCA loadings are used.
 Default \code{PCA = FALSE}}
@@ -21,8 +22,8 @@ Either matrix (if \code{Sp} is not provided) or hyperSpec object with sorted loa
 In case of hyperSpec object, 3 additional columns (PeakAt, order.of.rows, kNames) are added.
 }
 \description{
-[!] = [INCOMPLETE DESCRIPTION] Sort component spectra (a.k.a. Loadings) by possition of top peak and
-return
+[!] = [INCOMPLETE DESCRIPTION] Sort component spectra (a.k.a. Loadings) by
+ possition of top peak and return
 }
 \examples{
 

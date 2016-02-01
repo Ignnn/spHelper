@@ -7,7 +7,7 @@
 addLabels_TD2009(sp)
 }
 \arguments{
-\item{sp}{- \code{\link{hyperSpec}} object of TD_2009 data, created by using
+\item{sp}{- \code{\link[hyperSpec]{hyperSpec}} object of TD_2009 data, created by using
 function \code{\link{read3csv2hy}}}
 }
 \value{
@@ -18,7 +18,7 @@ Function is designed for data from investigation, called "TD_2009".
 }
 \details{
 Select data columns, that are not removed, and add labels to
- \code{\link{hyperSpec}} object of "TD_2009" data.
+ \code{\link[hyperSpec]{hyperSpec}} object of "TD_2009" data.
 }
 \examples{
 addLabels_TD2009(sp)

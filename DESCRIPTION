@@ -1,11 +1,12 @@
 Package: spHelper
 Type: Package
 Title: spHelper - Various functions
-Version: 0.1.006
-Date: 2016-01-30
-Author: Vilmantas Gegzna
-Maintainer: Vilmantas <GegeznaV@gmail.com>
-Description: Various functions for spectroscopy, etc.
+Version: 0.1.007
+Date: 2016-01-31
+Encoding: UTF-8
+Author: Vilmantas Gėgžna, et al.
+Maintainer:Vilmantas Gėgžna Vilmantas <GegeznaV@gmail.com>
+Description: Various convenience functions for spectroscopy, etc.
 License: GPL-3
 LazyData: TRUE
 RoxygenNote: 5.0.1

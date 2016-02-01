@@ -9,7 +9,8 @@ list.functions(Package = "spHelper", print.table = TRUE)
 \arguments{
 \item{Package}{- name of package. Default \code{Package = "spHelper"}.}
 
-\item{print.table}{- print the result as a table using \code{\link{Pander}}.
+\item{print.table}{- print the result as a table using
+\code{\link[Pander]{Pander}}.
 Default is true.}
 }
 \value{

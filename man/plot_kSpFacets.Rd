@@ -4,16 +4,18 @@
 \alias{plot_kSpFacets}
 \title{Plots spectra of components (a.k.a loadings) on separate graphs}
 \usage{
-plot_kSpFacets(loadings, Title = "Komponentai (atskirai)",
-  ylab = "I, sant.vnt.", normalize = any(loadings$spc > 0) -
-  any(loadings$spc < 0))
+plot_kSpFacets(loadings, Title = "Components (stacked)",
+  xLabel = labels(loadings, "spc"), yLabel = labels(loadings,
+  ".wavelength"), normalize = any(loadings$spc > 0) - any(loadings$spc < 0))
 }
 \arguments{
 \item{loadings}{- \code{\link{hyperSpec}} object}
 
 \item{Title}{- the title of graph}
 
-\item{ylab}{- label of ordinate axis}
+\item{xLabel}{- label of ordinate axis}
+
+\item{yLabel}{- label of ordinate axis}
 
 \item{normalize}{- flag if plot normalized components
 default: normalize, if needed:

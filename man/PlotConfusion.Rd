@@ -10,7 +10,7 @@ PlotConfusion(conf)
 \item{conf}{- a table, a square matrix}
 }
 \value{
-...
+Plot of confusion matrix. ...
 }
 \description{
 Plot a confusion matrix, \code{PlotConfusion}
