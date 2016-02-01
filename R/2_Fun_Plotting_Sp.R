@@ -177,7 +177,7 @@ subt <- function(Title = NULL, subTitle = NULL) {
 #'
 #' @param Title      - Title
 #' @param subTitle   - Second line of title
-#' @param scores - object of class \code{\link[hyperSpec]{hyperSpec}} with
+#' @param scores - object of class \code{\link[=hyperSpec-class]{hyperSpec}} with
 #' scores after factorisation/decomposition
 #' @param xLabel - label of x axis
 #' @param yLabel - label of y axis

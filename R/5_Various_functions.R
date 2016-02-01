@@ -237,7 +237,7 @@ regexpr2df <- function(strings, pattern)
 #'
 #' @param Package - name of package. Default \code{Package = "spHelper"}.
 #' @param print.table - print the result as a table using
-#' \code{\link[Pander]{Pander}}.
+#' \code{\link[pander]{pander}}.
 #' Default is true.
 #'
 #' @return A list of functions in a package.

@@ -348,10 +348,10 @@ unipeak <- function(y){uniPeak(y)}
 #'  possition of top peak and return
 #'
 #' @param loadings - matrix of loadings (components).
-#' @param Sp - spectra (object of class \code{\link[hyperSpec]{hyperSpec}})
+#' @param Sp - spectra (object of class \code{\link[=hyperSpec-class]{hyperSpec}})
 #' which will be used to convert sorted loadings into
-#' \code{\link[hyperSpec]{hyperSpec}} object.
-#' More information at \code{\link[hyperSpec]{decomposition}}
+#' \code{\link[=hyperSpec-class]{hyperSpec}} object.
+#' More information at \code{\link[=hyperSpec-class]{decomposition}}
 #' @param PCA - if TRUE, some components are flipped. ... Set to TRUE if PCA loadings are used.
 #'               Default \code{PCA = FALSE}
 #'
