@@ -152,9 +152,10 @@ createFolds_stratified <- function(ID = NULL, groups = NULL, k = 5, returnTrain=
 #' \itemize{
 #'   \item \bold{Name} - the name of token. Any spaces or other special symbols,
 #'   inappropriate for variable names, are not allowed and will result in error.
-#'   \item \bold{expr-to-capture} - regular expression to be captured as a value of a variable.
-#'   \item \bold{expr1, expr2} - (optional) expressions, that must match, but that are
-#'   not captured.
+#'   \item \bold{expr-to-capture} - regular expression to be captured as a
+#'   value of a variable.
+#'   \item \bold{expr1, expr2} - (optional) expressions, that must match, but
+#'   that are not captured.
 #' }
 #'
 #' @export
@@ -220,8 +221,7 @@ createFolds_stratified <- function(ID = NULL, groups = NULL, k = 5, returnTrain=
 #'                '(?<CSV_file>.*\\.[cC][sS][vV]$)')
 #' dir() %>% regexpr2df(expr)
 #'
-#' @importFrom tidyr %>%
-#'
+#' @import dplyr
 #'
 regexpr2df <- function(strings, pattern)
 {

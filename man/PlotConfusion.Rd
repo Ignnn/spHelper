@@ -7,7 +7,11 @@
 PlotConfusion(conf)
 }
 \arguments{
-\item{conf}{- a table, a square matrix}
+\item{conf}{- a table, a square matrix.}
+
+\item{Title}{Title.}
+
+\item{subTitle}{Subtitle.}
 }
 \value{
 Plot of confusion matrix. ...
@@ -19,7 +23,6 @@ Plot a confusion matrix, \code{PlotConfusion}
 Prediction <- sample(c("A","B","C"),1000, replace = T)
 Reference  <- sample(c("A","B","C"),1000, replace = T)
 conf <- table(Prediction,Reference)
-
 
 PlotConfusion(conf)
 PlotConfusion(prop.table(conf,1))

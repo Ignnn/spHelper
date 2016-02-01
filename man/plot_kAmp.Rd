@@ -2,14 +2,14 @@
 % Please edit documentation in R/2_Fun_Plotting_Sp.R
 \name{plot_kAmp}
 \alias{plot_kAmp}
-\title{[!] Plot component amlitudes (a.k.a scores)}
+\title{[!] Plot component amplitudes (a.k.a scores)}
 \usage{
 plot_kAmp(scores, Title = "Component amplitudes", subTitle = NULL,
   xLabel = labels(scores, ".wavelength"), yLabel = labels(scores, "spc"))
 }
 \arguments{
-\item{scores}{- object of class \code{\link[=hyperSpec-class]{hyperSpec}} with
-scores after factorisation/decomposition}
+\item{scores}{- object of class \code{\link[=hyperSpec-class]{hyperSpec}}
+with scores after factorisation/decomposition.}
 
 \item{Title}{- Title}
 
@@ -23,7 +23,7 @@ scores after factorisation/decomposition}
 object of class "ggplot"
 }
 \description{
-Plot component amlitudes (a.k.a scores).
+Plot component amplitudes (a.k.a scores).
 }
 \note{
 May be incorrect, if cals is not hyperSpec \cr

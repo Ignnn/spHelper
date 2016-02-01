@@ -58,7 +58,7 @@ plot_kSp <- function(loadings,
                            # limits = c(0, max(l$spc)*1.03)
                           # , breaks = round(seq(0, max(l$spc),length.out = 3))
                                           ) +
-        ggtitle(Title) +
+        ggtitle(subt(Title)) +
         xlab(xLabel) +
         ylab(yLabel)
 }
@@ -69,9 +69,9 @@ plot_kSp <- function(loadings,
 #'
 #'
 #' @param loadings - \code{\link{hyperSpec}} object
-#' @param Title    - the title of graph
-#' @param yLabel     - label of ordinate axis
-#' @param xLabel     - label of ordinate axis
+#' @param Title     - the title of graph
+#' @param yLabel    - label of ordinate axis
+#' @param xLabel    - label of ordinate axis
 #' @param normalize - flag if plot normalized components
 #' default: normalize, if needed:
 #'   Below0 <- any(loadings$spc < 0)
@@ -111,7 +111,7 @@ plot_kSpFacets <- function(loadings,
 }
 
 
-# SubTitle ----------------------------------------------------------------
+# Add title with SubTitle ----------------------------------------------------------------
 
 #' @name withSubTitle
 #' @aliases withSubTitle
@@ -167,9 +167,9 @@ subt <- function(Title = NULL, subTitle = NULL) {
 
 # ***** Komponentų amplitudės ***** ---------------------------------------------------
 
-#' [!] Plot component amlitudes (a.k.a scores)
+#' [!] Plot component amplitudes (a.k.a scores)
 #'
-#' Plot component amlitudes (a.k.a scores).
+#' Plot component amplitudes (a.k.a scores).
 #'
 #' @note May be incorrect, if cals is not hyperSpec \cr
 #'        xLabel = labels(scores, ".wavelength") \cr
@@ -177,8 +177,8 @@ subt <- function(Title = NULL, subTitle = NULL) {
 #'
 #' @param Title      - Title
 #' @param subTitle   - Second line of title
-#' @param scores - object of class \code{\link[=hyperSpec-class]{hyperSpec}} with
-#' scores after factorisation/decomposition
+#' @param scores - object of class \code{\link[=hyperSpec-class]{hyperSpec}}
+#' with scores after factorisation/decomposition.
 #' @param xLabel - label of x axis
 #' @param yLabel - label of y axis
 #'
@@ -188,8 +188,6 @@ subt <- function(Title = NULL, subTitle = NULL) {
 #' @export
 #'
 #' @import hyperSpec
-#' @importFrom dplyr mutate
-#' @importFrom tidyr gather
 #' @import ggplot2
 
 plot_kAmp <- function(scores,
@@ -200,13 +198,6 @@ plot_kAmp <- function(scores,
 {
     hyperSpec::chk.hy(scores)
 
-#     # Use subtitle when it is provided
-#     Title <- ifelse(is.null(subTitle),
-#                     Title,
-#                     bquote(atop(bold(.(Title)), atop(italic(.(subTitle)))))
-#                     )
-
-    # Prepare data
     kNames <- colnames(scores$spc)
     sc     <- scores
     AMP2   <- as.data.frame(sc$spc)
@@ -227,7 +218,7 @@ plot_kAmp <- function(scores,
                      position = position_dodge(width = 0.9))     +
         facet_grid( ~ Komponentas, scales="free") +
 
-        ggtitle(Title) + xlab(xLabel) + ylab(yLabel) +
+        ggtitle(subt(Title,subTitle)) + xlab(xLabel) + ylab(yLabel) +
 
         theme(axis.text.x=element_blank(),
               legend.title=element_blank()) +
@@ -242,13 +233,16 @@ plot_kAmp <- function(scores,
 #
 #' Plot a confusion matrix, \code{PlotConfusion}
 #'
-#' @param conf - a table, a square matrix
+#' @param conf - a table, a square matrix.
+#' @param Title Title.
+#' @param subTitle Subtitle.
+#'
+#'
 #' @return Plot of confusion matrix. ...
 #' @examples
 #' Prediction <- sample(c("A","B","C"),1000, replace = T)
 #' Reference  <- sample(c("A","B","C"),1000, replace = T)
 #' conf <- table(Prediction,Reference)
-#'
 #'
 #' PlotConfusion(conf)
 #' PlotConfusion(prop.table(conf,1))
@@ -256,7 +250,6 @@ plot_kAmp <- function(scores,
 #'
 #' @export
 #'
-#' @importFrom reshape2 melt
 #' @import ggplot2
 #'
 PlotConfusion <- function(conf)

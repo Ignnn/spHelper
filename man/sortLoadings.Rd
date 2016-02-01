@@ -14,12 +14,14 @@ which will be used to convert sorted loadings into
 \code{\link[=hyperSpec-class]{hyperSpec}} object.
 More information at \code{\link[=hyperSpec-class]{decomposition}}}
 
-\item{PCA}{- if TRUE, some components are flipped. ... Set to TRUE if PCA loadings are used.
-Default \code{PCA = FALSE}}
+\item{PCA}{- if TRUE, some components are flipped. ... Set to TRUE
+if PCA loadings are used. Default \code{PCA = FALSE}}
 }
 \value{
-Either matrix (if \code{Sp} is not provided) or hyperSpec object with sorted loadings.
-In case of hyperSpec object, 3 additional columns (PeakAt, order.of.rows, kNames) are added.
+Either matrix (if \code{Sp} is not provided) or
+hyperSpec object with sorted loadings.
+In case of hyperSpec object, 3 additional columns
+(PeakAt, order.of.rows, kNames) are added.
 }
 \description{
 [!] = [INCOMPLETE DESCRIPTION] Sort component spectra (a.k.a. Loadings) by

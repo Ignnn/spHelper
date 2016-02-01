@@ -352,11 +352,13 @@ unipeak <- function(y){uniPeak(y)}
 #' which will be used to convert sorted loadings into
 #' \code{\link[=hyperSpec-class]{hyperSpec}} object.
 #' More information at \code{\link[=hyperSpec-class]{decomposition}}
-#' @param PCA - if TRUE, some components are flipped. ... Set to TRUE if PCA loadings are used.
-#'               Default \code{PCA = FALSE}
+#' @param PCA - if TRUE, some components are flipped. ... Set to TRUE
+#' if PCA loadings are used. Default \code{PCA = FALSE}
 #'
-#' @return Either matrix (if \code{Sp} is not provided) or hyperSpec object with sorted loadings.
-#' In case of hyperSpec object, 3 additional columns (PeakAt, order.of.rows, kNames) are added.
+#' @return Either matrix (if \code{Sp} is not provided) or
+#' hyperSpec object with sorted loadings.
+#' In case of hyperSpec object, 3 additional columns
+#' (PeakAt, order.of.rows, kNames) are added.
 #' @export
 #'
 #' @import hyperSpec
@@ -429,3 +431,31 @@ sortLoadings <- function(loadings,Sp = NULL,PCA = FALSE){
     #
     # kNames    <- loadings$kNames
 }
+
+# Reconstruct spectra --------------------------------------------------------
+#
+#' [!] Reconstruct spectra from loadings and scores.
+#'
+#' Reconstruct spectra from loadings and scores (i.e. )
+#'
+#' @param loadings ??? loadings
+#' @param scores ??? scores
+#' @param Sp original \code{hyperSpec} object. If \code{Sp} is provided,
+#' the result of this function will be the \code{Sp} in which Sp$spc
+#' will be replaced with \code{reconstructed} spectra.
+#'
+#' @return \code{reconstructed <- scores \%*\% loadings}
+#' @export
+#'
+#' @examples
+#' function(loadings, scores)
+#' function(loadings, scores, Sp)
+#'
+getReconstructed  <-  function(loadings, scores, Sp = NULL)
+{
+    reconstructed <- (hy2mat(scores)) %*% (hy2mat(loadings))
+    if (class(Sp)=="hyperSpec")   {
+        Sp$spc <- reconstructed; return(Sp)} else  return(reconstructed)
+}
+
+#  ------------------------------------------------------------------------
