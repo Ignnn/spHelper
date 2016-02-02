@@ -3,14 +3,7 @@
 \name{stratifiedFolds}
 \alias{createFolds_stratified}
 \alias{stratifiedFolds}
-\title{[!] Create stratified and blocked folds for k-fold cross-validation
-
-
-Create folds that are stratified by levels in variable "gr" in which
-observations are blocked by "ID" (i.e. observations with the same "ID"
-are treated as one observation and are always in the same fold). \cr
-
-Folds are used for for k-fold cross-validation.}
+\title{[!] Create stratified and blocked folds for k-fold cross-validation}
 \usage{
 stratifiedFolds(df_all, k = 5, returnTrain = TRUE)
 
@@ -38,6 +31,13 @@ Result is a list of folds. In each fold indices observations are
  listed (). (i.e. the structure of outpus is the same as if it was created by
  \code{\link[caret]{createFolds}})
 }
+\description{
+Create folds that are stratified by levels in variable "gr" in which
+observations are blocked by "ID" (i.e. observations with the same "ID"
+are treated as one observation and are always in the same fold). \cr
+
+Folds are used for for k-fold cross-validation.
+}
 \examples{
 
 # Make data with 20 different ID's and 4 different groups:
@@ -51,8 +51,6 @@ Result is a list of folds. In each fold indices observations are
 
    Folds1 <- createFolds_stratified(df, nFolds)
    Folds2 <- stratifiedFolds(df$ID, df$groups, nFolds)
-
-   @export
 
 }
 

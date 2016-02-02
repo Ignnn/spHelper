@@ -24,7 +24,7 @@ Formated title
 \examples{
 
 identical(subt("Cars"), withSubTitle("Cars"))
-## TRUE#'
+## TRUE
 
 plot(cars[,1:2], main = "Cars")
 plot(cars[,1:2], main = withSubTitle("Cars"))

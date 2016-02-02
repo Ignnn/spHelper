@@ -1,8 +1,8 @@
 Package: spHelper
 Type: Package
 Title: spHelper - Various functions
-Version: 0.1.009
-Date: 2016-02-01
+Version: 0.1.010
+Date: 2016-02-02
 Encoding: UTF-8
 Author: Vilmantas Gėgžna, et al.
 Maintainer:Vilmantas Gėgžna <GegeznaV@gmail.com>
@@ -18,4 +18,5 @@ Imports:
     reshape2,
     pander,
     dplyr,
-    tidyr
+    tidyr,
+    grDevices

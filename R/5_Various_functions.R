@@ -34,7 +34,7 @@ makeFirstCapital <- function(x)
 #' @title [!] Create stratified and blocked folds for k-fold cross-validation
 #'
 #'
-#' Create folds that are stratified by levels in variable "gr" in which
+#' @description Create folds that are stratified by levels in variable "gr" in which
 #' observations are blocked by "ID" (i.e. observations with the same "ID"
 #' are treated as one observation and are always in the same fold). \cr
 #'
@@ -69,7 +69,7 @@ makeFirstCapital <- function(x)
 #'    Folds1 <- createFolds_stratified(df, nFolds)
 #'    Folds2 <- stratifiedFolds(df$ID, df$groups, nFolds)
 #'
-#'    @export
+#' @export
 #'
 stratifiedFolds <- function(df_all, k = 5, returnTrain=TRUE)
 {

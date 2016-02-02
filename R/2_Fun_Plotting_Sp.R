@@ -42,7 +42,7 @@ plot_kSp <- function(loadings,
     limMIN <- ifelse(min(l$spc)>=0, 0, min(l$spc)*1.03)
     limMAX <- ifelse(max(l$spc)<=0, 0, max(l$spc)*1.03)
 # Plot
-    ggplot(l, aes (x = .wavelength,
+    p <- ggplot(l, aes (x = .wavelength,
                    y = spc,
                    group = rows,
                    color = kNames,
@@ -61,6 +61,8 @@ plot_kSp <- function(loadings,
         ggtitle(subt(Title)) +
         xlab(xLabel) +
         ylab(yLabel)
+
+    return(p)
 }
 
 # Komponentų spektrai (atskirai) ---------------------------------
@@ -106,12 +108,15 @@ plot_kSpFacets <- function(loadings,
         )
 
     # Plot: !!! pass all necessary variables
-    plot_kSp(loadings = loadings_norm,  xLabel = xLabel, yLabel = yLabel) +
+    p <- plot_kSp(loadings = loadings_norm,  xLabel = xLabel, yLabel = yLabel) +
          facet_grid(kNames ~., scales = "free")
+
+
+    return(p)
 }
 
 
-# Add title with SubTitle ----------------------------------------------------------------
+# ***** Add title with SubTitle ***** ------------------------------------------------------
 
 #' @name withSubTitle
 #' @aliases withSubTitle
@@ -128,11 +133,12 @@ plot_kSpFacets <- function(loadings,
 #'
 #' @return Formated title
 #' @export
+#' @import grDevices
 #'
 #' @examples
 #'
 #' identical(subt("Cars"), withSubTitle("Cars"))
-#' ## TRUE#'
+#' ## TRUE
 #'
 #' plot(cars[,1:2], main = "Cars")
 #' plot(cars[,1:2], main = withSubTitle("Cars"))
@@ -149,7 +155,7 @@ plot_kSpFacets <- function(loadings,
 #' qplot(mpg, wt, data=mtcars) + ggtitle(subt(subTitle = "Distance vs. speed"))
 #'
 withSubTitle <- function(Title = NULL, subTitle = NULL)
-    {
+    {library(grDevices)
     # Format Title
     if (is.null(subTitle)) {#If subtitle is not provided, use only main title
         Title <- bquote(bold(.(Title)))
@@ -210,7 +216,10 @@ plot_kAmp <- function(scores,
         dplyr::mutate(Komponentas = factor(Komponentas,sort(kNames),sort(kNames)))
 
     # Plot
-    ggplot(sc, aes(y = Amplitude, x = Komponentas, fill = gr), size = 1)+
+
+
+
+    p <- ggplot(sc, aes(y = Amplitude, x = Komponentas, fill = gr), size = 1)  +
         geom_violin(alpha=.2)  +
         #geom_point(alpha=.05,size = 2,
         #         position = position_jitterdodge(dodge.width=0.9)) +
@@ -224,6 +233,9 @@ plot_kAmp <- function(scores,
               legend.title=element_blank()) +
         geom_hline(yintercept = 0, size = .5,linetype=2, alpha = .5)
 
+    if (length(unique(sc$gr)) == 1) {p <- p + scale_fill_grey()}
+
+    return(p)
 
 
 }
@@ -279,6 +291,42 @@ PlotConfusion <- function(conf)
                              low  = "#cd0000")+
         geom_tile(aes(fill = ColValue),colour = "white") +
         geom_text(aes(label=value),size=6)
+
     return(p)
 }
 
+# ***** ***** -----------------------------------------------------
+#' [!] Plot difference between experimental and reconstructed spectra
+#'
+#' Plot difference between experimental (original) and reconstructed spectra.
+#' Uses function \code{\link{getReconstructed}}, to calculate the reconstructed
+#' spectra and subtracts it from original spectra.
+#'
+#' @param loadings loadings
+#' @param scores scores
+#' @param Spectra Spectra (hyperSpec object)
+#' @param Title Title of the plot.
+#' @param spc.nmax max number of spectra to plot
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#' Plot_SpDiff
+Plot_SpDiff <- function(loadings,scores,Spectra,
+                        Title = 'Difference between experimental and reconstructed spectra',
+                        spc.nmax=2000)
+{
+    SpRE <- getReconstructed(loadings,scores,Spectra)
+
+    if (!"gr" %in% ls(Spectra$..)) Spectra$gr <- "All"
+    if (!"ID" %in% ls(Spectra$..)) Spectra$ID <- "All"
+
+    plot(Spectra - SpRE,
+         spc.nmax=spc.nmax,
+         col = Spectra$gr,
+         stacked = Spectra$ID,
+         title.args = list(main = Title)
+    )
+}
