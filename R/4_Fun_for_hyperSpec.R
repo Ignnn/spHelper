@@ -176,6 +176,47 @@ addLabels_TD2009 <- function(sp)
 
 
 
+# remove empty columns ----------------------------------------------------
+
+#' Remove colums of hyperSpec object with all NA values
+#'
+#' @param Spectra - hyperSpec object
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#'  dropCol(Spectra)
+dropCol <- function(Spectra){
+        NAcols <- colSums(is.na(Spectra$..)) == nrow(Spectra)
+    dropNames  <- names(NAcols)[NAcols]
+       Spectra <- Spectra[,!(colnames(Spectra) %in% dropNames)]
+    return(Spectra)
+}
 
 
+#' [!] Calculate summary statistic by group and for all data
+#'
+#' @param Spectra - hyperSpec object.
+#' @param by -
+#' @param fun - function to apply.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#' spStat(Spectra, by=Spectra$gr, fun = IQR)
+#'
+spStat <- function(Spectra, by, fun = IQR){
+    stat_by_gr  <- aggregate(Spectra, by = by, fun)
+    stat_all    <-     apply(Spectra, 2,       fun)
+    sp <- collapse(stat_by_gr, stat_all)
+
+    grNAMES <- c(levels(sp$.aggregate)[1:nlevels(by)], ".All")
+    sp$.aggregate <- factor(grNAMES,grNAMES)
+    sp <- dropCol(sp)
+    return(sp)
+}
 

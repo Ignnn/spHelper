@@ -27,16 +27,23 @@ names(df_all) \cr
 \item{returnTrain}{- ....returnTrain=TRUE}
 }
 \value{
-Result is a list of folds. In each fold indices observations are
- listed (). (i.e. the structure of outpus is the same as if it was created by
- \code{\link[caret]{createFolds}})
+Result is a list of folds. In each fold indices observations.
+        The structure of outpus is the same as if it was created by
+        \code{\link[caret]{createFolds}}
 }
 \description{
-Create folds that are stratified by levels in variable "gr" in which
-observations are blocked by "ID" (i.e. observations with the same "ID"
+Create folds that are stratified by levels in variable "gr" in
+which observations are blocked by "ID" (i.e. observations with the same "ID"
 are treated as one observation and are always in the same fold). \cr
 
-Folds are used for for k-fold cross-validation.
+Folds are used for for k-fold cross-validation. \cr
+In folds spectra are:
+\enumerate{
+     \item \strong{grouped} by ID (the same ID appears just in one fold) and
+     \item \strong{stratified} by levels of factor variable 'gr' (the
+     proportions of groups with unique IDs belonging to particular class
+     are kept aproximately the same throughout all folds)
+}
 }
 \examples{
 

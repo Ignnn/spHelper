@@ -34,17 +34,23 @@ makeFirstCapital <- function(x)
 #' @title [!] Create stratified and blocked folds for k-fold cross-validation
 #'
 #'
-#' @description Create folds that are stratified by levels in variable "gr" in which
-#' observations are blocked by "ID" (i.e. observations with the same "ID"
+#' @description Create folds that are stratified by levels in variable "gr" in
+#' which observations are blocked by "ID" (i.e. observations with the same "ID"
 #' are treated as one observation and are always in the same fold). \cr
 #'
-#' Folds are used for for k-fold cross-validation.
-#'
+#' Folds are used for for k-fold cross-validation. \cr
+#' In folds spectra are:
+#' \enumerate{
+#'      \item \strong{grouped} by ID (the same ID appears just in one fold) and
+#'      \item \strong{stratified} by levels of factor variable 'gr' (the
+#'      proportions of groups with unique IDs belonging to particular class
+#'      are kept aproximately the same throughout all folds)
+#'}
 #'
 #' @param returnTrain - returnTrain=TRUE
-#' @return Result is a list of folds. In each fold indices observations are
-#'  listed (). (i.e. the structure of outpus is the same as if it was created by
-#'  \code{\link[caret]{createFolds}})
+#' @return Result is a list of folds. In each fold indices observations.
+#'         The structure of outpus is the same as if it was created by
+#'         \code{\link[caret]{createFolds}}
 #'
 #'
 #' @param df_all - a data frame, that contains variables "ID"  and "gr" \cr
@@ -257,4 +263,42 @@ list.functions <- function(Package = "spHelper", print.table = TRUE)
         pander::pander(as.data.frame(FunctionList))
         invisible(FunctionList)
     } else return(FunctionList)
+}
+
+
+#' Print a line made of symbols.
+#'
+#' @param symbol - desired symbol or sequence of symbols. Default is "="
+#' @param len    - length of a line \cr default is 60.
+#' @param after - number of new (empty) lines/rows to be added afterwards.
+#'        \code{0} means that following text continues in the same row.
+#'        Default is \cr\code{if (print==TRUE) 1 else 0}.
+#' @param before - number of peceeding emptyrows. Default is 0.
+#' @param print - if \code{TRUE} (defailt) - print,
+#'                if \code{FALSE} - return as a string
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#' bru
+#' bru("-")
+#' bru("= ")
+#'
+bru <- function(symbol = "=",
+                len = 60,
+                after  = {if (print) 1 else 0},
+                before = 0,
+                print  = TRUE){
+    # Create sequences of symbols
+      nlA <- paste0(rep('\n', after), collapse = "")
+      nlB <- paste0(rep('\n', before),collapse = "")
+    lineC <- paste0(rep(symbol,len),  collapse = "")
+     # Adjust the length
+    lineC <- substr(lineC,1,len)
+    # Join all symbols
+    lineC <- paste0(nlB, lineC, nlA)
+    # Either print or return the result
+    if (print)  cat(lineC) else return(lineC)
 }
