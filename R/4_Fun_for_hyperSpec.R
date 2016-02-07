@@ -199,23 +199,27 @@ dropCol <- function(Spectra){
 #' [!] Calculate summary statistic by group and for all data
 #'
 #' @param Spectra - hyperSpec object.
-#' @param by -
-#' @param fun - function to apply.
+#' @param  by - grouping variable (either variable name of \code{Spectra},
+#'              or vector (factor) of length \code{length(Spectra)}
+#' @param FUN - function to apply.
 #'
 #' @return
 #' @export
 #'
 #' @examples
 #'
-#' spStat(Spectra, by=Spectra$gr, fun = IQR)
+#' spStat(Spectra, by=Spectra$gr, FUN = IQR)
 #'
-spStat <- function(Spectra, by, fun = IQR){
-    stat_by_gr  <- aggregate(Spectra, by = by, fun)
-    stat_all    <-     apply(Spectra, 2,       fun)
+spStat <- function(Spectra, by = gr, FUN = IQR){
+    varName <- as.character(match.call()$by)
+    by <- if (varName %in% colnames(Spectra)) Spectra[[,varName]] else by
+
+
+    stat_by_gr  <- aggregate(Spectra, by = by, FUN)
+    stat_all    <-     apply(Spectra, 2,       FUN)
+    stat_all$.aggregate <- factor(".All")
     sp <- collapse(stat_by_gr, stat_all)
 
-    grNAMES <- c(levels(sp$.aggregate)[1:nlevels(by)], ".All")
-    sp$.aggregate <- factor(grNAMES,grNAMES)
     sp <- dropCol(sp)
     return(sp)
 }

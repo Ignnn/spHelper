@@ -3,9 +3,15 @@
 
 # Padaryti pirmą raidę didžiąja -------------------------------------------
 
-#' [!] Convert the first letter to capital.
+#' @name makeFirstCapital
+#' @aliases makeFirstCapital
+#' @aliases fCap
+#' @title [!] Convert the first letter to capital.
 #'
-#' @param x - a string
+#' @description   [!] Convert the first letter to capital.
+#' @details \code{fCap} is a wrapper of \code{makeFirstCapital}
+#'
+#' @param x - a string or vector of strings
 #'
 #' @return The same string with all words starting with capital letter.
 #'
@@ -23,6 +29,11 @@ makeFirstCapital <- function(x)
     paste(toupper(substring(s, 1, 1)), substring(s, 2),
           sep = "", collapse = " ")
 }
+
+
+#' @rdname makeFirstCapital
+#' @export
+fCap <- function(x){makeFirstCapital(x)}
 
 
 # Sukurti sluoksniuotus k-folds -------------------------------------------
@@ -302,3 +313,31 @@ bru <- function(symbol = "=",
     # Either print or return the result
     if (print)  cat(lineC) else return(lineC)
 }
+
+
+# ***** Parse input of function ***** -------------------------------------
+
+#
+#
+# #' [!] Parse function's arguments: hheck if \code{variable} is inside \code{data} and return values
+# #'
+# #' Parse function's arguments: Check if \code{variable} is inside \code{data}
+# #'  and return values of either \code{data[,"variable"]} (if TRUE) or
+# #'  \code{variable} (if FALSE)
+# #'
+# #' @use Use inside of a function.
+# #'
+# #' @param data
+# #' @param variable
+# #'
+# #' @return
+# #' @export
+# #'
+# #' @examples
+# varValues <-  function(data, variable) {
+#     varName <- as.character(match.call()$variable)
+#     output  <- if (varName %in% ls(data)) data[,varName] else variable
+#     return(output)
+# }
+
+

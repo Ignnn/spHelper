@@ -4,21 +4,22 @@
 \alias{spStat}
 \title{[!] Calculate summary statistic by group and for all data}
 \usage{
-spStat(Spectra, by, fun = IQR)
+spStat(Spectra, by = gr, FUN = IQR)
 }
 \arguments{
 \item{Spectra}{- hyperSpec object.}
 
-\item{by}{-}
+\item{by}{- grouping variable (either variable name of \code{Spectra},
+or vector (factor) of length \code{length(Spectra)}}
 
-\item{fun}{- function to apply.}
+\item{FUN}{- function to apply.}
 }
 \description{
 [!] Calculate summary statistic by group and for all data
 }
 \examples{
 
-spStat(Spectra, by=Spectra$gr, fun = IQR)
+spStat(Spectra, by=Spectra$gr, FUN = IQR)
 
 }
 

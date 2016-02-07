@@ -335,15 +335,6 @@ Plot_SpDiff <- function(loadings,scores,Spectra,
 
 # ***** ggplot LAYERS ***** ------------------------------------------------
 
-StatChull <- ggproto("StatChull", Stat,
-                     compute_group = function(data, scales) {
-                         data[chull(data$x, data$y), , drop = FALSE]
-                     },
-
-                     required_aes = c("x", "y")
-)
-
-
 #' [!] Convex hull layer for ggplot2
 #'
 #' Source: vignette \href {https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html}{Extending ggplot2}
@@ -359,7 +350,7 @@ StatChull <- ggproto("StatChull", Stat,
 #'
 #' @return
 #' @export
-#'
+#' @import ggplot2
 #' @examples
 #'
 #' ggplot(mpg, aes(displ, hwy)) +
@@ -379,9 +370,109 @@ StatChull <- ggproto("StatChull", Stat,
 stat_chull <- function(mapping = NULL, data = NULL, geom = "polygon",
                        position = "identity", na.rm = FALSE, show.legend = NA,
                        inherit.aes = TRUE, ...) {
+
+    StatChull <- ggplot2::ggproto("StatChull", Stat,
+                                  compute_group = function(data, scales) {
+                                      data[chull(data$x, data$y), , drop = FALSE]
+                                  },
+
+                                  required_aes = c("x", "y")
+    )
     layer(
         stat = StatChull, data = data, mapping = mapping, geom = geom,
         position = position, show.legend = show.legend, inherit.aes = inherit.aes,
         params = list(na.rm = na.rm, ...)
     )
+}
+
+# ***** -------------------------------------------------------------------------
+
+#' [!] Plot a statistic of spectra in hyperSpec object by group.
+#'
+#' Plot a statistic of spectra in hyperSpec object by group.
+#'
+#' @param Spectra - ...
+#' @param by by <- as.factor(by)
+#' @param FUN - ...
+#' @param Title - ...
+#' @param All - plot additional statistic of all spectra.
+#' @param fixed.colors - flag if color scheme where ".All" is plotted as
+#'        a black line shpuld be used.
+#' @param All.color - ...
+#' @param gr.color - ...
+#' @param All.linetype - ...
+#' @param gr.linetype - ...
+#' @param All.size - ...
+#' @param gr.size - ...
+#' @param legend.title - ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#'
+#' qplotStat(chondro,clusters,mean)
+#' qplotStat(chondro,clusters,mean,All=FALSE)
+#' qplotStat(chondro,clusters,mean_sd,All=FALSE) + facet_grid(.~clusters)
+#'
+#' qplotStat(chondro,clusters,median,All=FALSE, fixed.colors=FALSE)
+#' qplotStat(chondro,clusters,median, "My Title")
+#'
+#'
+#' # Use .aggregate in make facets, to avoid facet called "NA":
+#'
+#' qplotStat(chondro,clusters,mean_pm_sd) + facet_grid(.~clusters)
+#' qplotStat(chondro,clusters,mean_pm_sd) + facet_grid(.~.aggregate)
+#'
+qplotStat <- function(Spectra,
+                      by =  stop("Argument 'by' is missing."),
+                      FUN = stop("Argument 'FUN' is missing."),
+                      Title = fCap(as.character(match.call()$FUN)),
+                      All = TRUE,
+                      fixed.colors = TRUE,
+                      All.color = "black",
+                       gr.color = RColorBrewer::brewer.pal(8,"Dark2"),
+                      All.linetype = "dashed",
+                       gr.linetype  = "solid",
+                      All.size =  1,
+                       gr.size =  0.6,
+                      legend.title = element_blank()
+                      ){
+
+    varName <- as.character(match.call()$by)
+    by <- if (varName %in% colnames(Spectra)) Spectra[[,varName]] else by
+    # by <- as.factor(by)
+
+    # match.call()$by
+
+    if (All == TRUE) {# All - plot statistic by all spectra?
+            sp <-    spStat(Spectra, by = by, FUN = FUN)
+    } else {sp <- aggregate(Spectra, by = by, FUN = FUN)}
+
+
+    nl.gr  <- sum(levels(sp$.aggregate)!=".All")
+
+    fixedColors <- if (fixed.colors){
+        colors    <- c(gr.color[1:nl.gr], All.color)
+        scale_color_manual(values = colors)
+        } else NULL
+
+
+    p <- qplotspc(sp, spc.nmax = 1000,
+                  mapping = aes(x = .wavelength,
+                                y = spc,
+                                colour   = .aggregate,
+                                group    = .rownames,
+                                size     = .aggregate,
+                                linetype = .aggregate)) +
+        labs(title= subt(Title))+
+        scale_size_manual(    values=c(rep(gr.size,     nl.gr), All.size))  +
+        scale_linetype_manual(values=c(rep(gr.linetype, nl.gr), All.linetype),guide=FALSE) +
+        fixedColors +
+        theme_bw() +
+        theme(legend.title = legend.title)
+
+
+    return(p)
 }
