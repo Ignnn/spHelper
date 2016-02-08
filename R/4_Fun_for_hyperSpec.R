@@ -26,9 +26,11 @@ hy2mat <- function(Object)
 
 # Read 3 CSV spectra (from Matlab) to hyperSpec --------------------------------------------
 #
-#' Read spectroscopic data in 3 CSV files ("data", "wavelengths" and "spectra") to hyperSpec object
+#' [!] Read spectroscopic data from 3 CSV files ("data", "wavelengths" and "spectra") to hyperSpec object
 #'
-#' These fileas are usually exported from Matlab.
+#' Read spectroscopic data from 3 CSV files ("data", "wavelengths" and
+#'  "spectra") to hyperSpec object. These fileas are usually exported
+#'  from Matlab.
 #'
 #' @note Data columns, that have unique values are removed.
 #'
@@ -90,7 +92,7 @@ read3csv2hy <- function(FileName_base){
 
 # addLabels_TD2009 --------------------------------------------------------
 #
-#' Add labels to "TD_2009" and transform.
+#' [!] Add labels to "TD_2009" and transform.
 #'
 #' Function is designed for data from investigation, called "TD_2009".
 #'
@@ -100,6 +102,7 @@ read3csv2hy <- function(FileName_base){
 #'
 #' @param sp - \code{\link[=hyperSpec-class]{hyperSpec}} object of TD_2009 data, created by using
 #'              function \code{\link{read3csv2hy}}
+#' @param language - language of labels. Possible \code{EN} and \code{LT}. Default \code{EN}
 #'
 #' @return labeled object with reduced number of data columns
 #'
@@ -129,12 +132,12 @@ read3csv2hy <- function(FileName_base){
 #'
 #' @export
 #'
-addLabels_TD2009 <- function(sp)
+addLabels_TD2009 <- function(sp,language = "EN")
 {
     # require(hyperSpec)
-    data = sp$..
-    # Pasirenkami tik reikalingi stulpeliai (Pašalinami nereikalingi stulpeliai):
+    data         = sp$..
 
+    # Pasirenkami tik reikalingi stulpeliai (Pašalinami nereikalingi stulpeliai):
     data <- data %>%
         dplyr::mutate(fileName = file_name_with_path) %>%
         dplyr::select(ID,
@@ -153,24 +156,56 @@ addLabels_TD2009 <- function(sp)
 
     # add Labels ------------------------------------------------------------
     Var.Names <- colnames(Object)
-    Var.Labels <- c("Spektro ID",
-                    "Mėginio ID" ,
-                    "Taško numeris mėginy"    ,
-                    "Bylos pavadinimas"       ,
-                    "Grupavimas (S, P, D)"    ,
-                    "Boos index"              ,
-                    "Safranin index"          ,
-                    "Collagen 1, %"           ,
-                    "collagen 2, % "          ,
-                    "Other collagens, %"      ,
+    Var.LabelsLT <- c("Spektro ID",
+                    "Mėginio ID",
+                    "Taško numeris mėginy",
+                    "Bylos pavadinimas",
+                    "Grupavimas (S, P, D)",
+                    "Boos indeksas",
+                    "Safranin0 indeksas",
+                    "Kolageno 1 kiekis, %",
+                    "Kolageno 2 kiekis, % ",
+                    "Kitų kolagenų kiekis, %",
                     "I, sant.vnt."
     )
-    labels(Object)[Var.Names] <- Var.Labels
+
+    Var.LabelsEN <- c("Spectrum ID",
+                      "Specimen ID" ,
+                      "Point number in a specimen",
+                      "File name",
+                      "Groups (S, P, D)",
+                      "Boos index",
+                      "Safranin index",
+                      "Collagen 1, %",
+                      "collagen 2, % ",
+                      "Other collagens, %",
+                      "I, units"
+    )
+
+    labels(Object)[Var.Names] <- switch(language,
+                                            LT = Var.LabelsLT,
+                                            EN = Var.LabelsEN,
+                                            NULL)
 
     # Labels, specific to Fluorescence spectra
     labels(Object, ".wavelength") <- expression(paste(lambda, ", ", nm))
 
     # ----------------------------------------------------------------------
+
+
+    # Define colors ------------------------------------------------------
+    UsedColors <- c("#377EB8","#4DAF4A","#984EA3")# RColorBrewer::brewer.pal(8,"Dark2")
+                                                  # trellis.par.get("superpose.symbol")$col
+
+    ColorNumbers <- unclass(Object$gr); # ColorNumbers[is.na(ColorNumbers)] <- nlevels(Object$gr) + 1;
+
+    colorList  <- UsedColors[ColorNumbers]
+    # Add column for colors
+    Object$.color  <- colorList
+
+    # Labels is vector with color names
+    labels(Object, ".color") <- UsedColors
+    # ---------------------------------------------------------------------
     return(Object)
 }
 
@@ -222,5 +257,50 @@ spStat <- function(Spectra, by = gr, FUN = IQR){
 
     sp <- dropCol(sp)
     return(sp)
+}
+
+# ***** calculate spectra and specimens by group ***** ------------------------------------------
+#' [!] Calculate number and percentage of specimens and their spectra.
+#'
+#' Calculate number and percentage of specimens and their spectra.
+#'
+#' @param data - a data frame with variables, that names are denoted by \code{ID} and \code{gr}
+#' @param ID -...
+#' @param gr -...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+nID_nSp <- function(data, ID, gr){
+
+    # Function to calculate numbers and percentages specimens and their spectra
+    #
+    # data - a data frame with variables denoted by \code{ID} and \code{gr}
+    # ID, gr   - varable names in \code{data} with variables, tad contain IDs and group names (factor levels) respectively.
+    #
+    #
+    #
+    # @examples
+    #
+    # nID_nSp(data, ID, gr)
+    # pander::pander(nID_nSp(data, ID, gr))
+    #
+    # # For hyperSpec object
+    # nID_nSp(Spectra$.., ID, gr)
+
+    percents <- function(TABLE) {paste0(round(prop.table(TABLE),3)*100,"%")}
+
+    nID <- table(unique(data[,c("ID", "gr")])[ ,"gr"]) # Number of unique medical samples per grpup
+    nSp <- table(data[ ,"gr"]) # Number of spectra per group
+
+
+    tbl <- rbind(nID, percents(nID),  nSp, percents(nSp))
+
+    rownames(tbl) <- c("Number of medical specimens",
+                       "Percentage of medical specimens",
+                       "Number of spectra",
+                       "Percentage of spectra")
+    return(tbl)
 }
 

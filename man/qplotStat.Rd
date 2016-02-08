@@ -9,7 +9,7 @@ qplotStat(Spectra, by = stop("Argument 'by' is missing."),
   Title = fCap(as.character(match.call()$FUN)), All = TRUE,
   fixed.colors = TRUE, All.color = "black",
   gr.color = RColorBrewer::brewer.pal(8, "Dark2"), All.linetype = "dashed",
-  gr.linetype = "solid", All.size = 1, gr.size = 0.6,
+  gr.linetype = "solid", All.size = 1.1, gr.size = 0.8,
   legend.title = element_blank())
 }
 \arguments{

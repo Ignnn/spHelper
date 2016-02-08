@@ -2,7 +2,7 @@
 % Please edit documentation in R/4_Fun_for_hyperSpec.R
 \name{read3csv2hy}
 \alias{read3csv2hy}
-\title{Read spectroscopic data in 3 CSV files ("data", "wavelengths" and "spectra") to hyperSpec object}
+\title{[!] Read spectroscopic data from 3 CSV files ("data", "wavelengths" and "spectra") to hyperSpec object}
 \usage{
 read3csv2hy(FileName_base)
 }
@@ -13,7 +13,9 @@ read3csv2hy(FileName_base)
 Object of class \code{\link[=hyperSpec-class]{hyperSpec}}
 }
 \description{
-These fileas are usually exported from Matlab.
+Read spectroscopic data from 3 CSV files ("data", "wavelengths" and
+ "spectra") to hyperSpec object. These fileas are usually exported
+ from Matlab.
 }
 \details{
 If base name is "TD_2009", then CSV files must be:
