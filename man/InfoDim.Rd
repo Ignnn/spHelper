@@ -25,8 +25,8 @@ The function calculates a measure, called "information dimension".
 }
 \note{
 Prie�<U+FFFD> pradedant vykdyti operaciją, svarbus žingsnis pasirinkti tinkamą
-normavimo buda. To nepadarius gausime klaidingą atsakymą.
-y=sp_normuok(y,x,'1',495);
+normavimo buda. To nepadarius gausime klaidingą atsakymą. \cr
+sp = sp_normuok(sp,x,'1',495);
 
 Taip pat labai svarbus ir triuk�<U+FFFD>mo lygis. Didėjant triuk�<U+FFFD>mui atitinkamai
 padidinamas maksimalus dimensijų skaičius.

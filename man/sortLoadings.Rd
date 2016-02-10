@@ -2,36 +2,59 @@
 % Please edit documentation in R/3_Fun_Component_Analysis.R
 \name{sortLoadings}
 \alias{sortLoadings}
-\title{[!] Sort component spectra (a.k.a. Loadings) by possition of top peak}
+\title{[!] Sort component spectra (a.k.a. loadings) by possition of top peak}
 \usage{
-sortLoadings(loadings, Sp = NULL, PCA = FALSE)
+sortLoadings(loadings, sp = NULL, PCA = FALSE, sort = TRUE)
 }
 \arguments{
-\item{loadings}{- matrix of loadings (components).}
+\item{loadings}{- loadings / components' spectra (either a matrix or \code{\link[=hyperSpec-class]{hyperSpec}} object).}
 
-\item{Sp}{- spectra (object of class \code{\link[=hyperSpec-class]{hyperSpec}})
-which will be used to convert sorted loadings into
-\code{\link[=hyperSpec-class]{hyperSpec}} object.
-More information at \code{\link[=hyperSpec-class]{decomposition}}}
+\item{sp}{- spectroscopic data
+(either a \code{\link[=hyperSpec-class]{hyperSpec}} object or a matrix).}
 
 \item{PCA}{- if TRUE, some components are flipped. ... Set to TRUE
 if PCA loadings are used. Default \code{PCA = FALSE}}
+
+\item{sort}{- flag to indicate if returned componenst must be sorted.
+If \code{FALSE}, only additional tasks are performed.
+Default is \code{TRUE}.}
 }
 \value{
-Either matrix (if \code{Sp} is not provided) or
+Either matrix (if \code{sp} is not provided) or
 hyperSpec object with sorted loadings.
 In case of hyperSpec object, 3 additional columns
 (PeakAt, order.of.rows, kNames) are added.
 }
 \description{
-[!] = [INCOMPLETE DESCRIPTION] Sort component spectra (a.k.a. Loadings) by
- possition of top peak and return
+[!] = [INCOMPLETE DESCRIPTION] \cr
+
+ Sort component spectra (a.k.a. loadings) by
+ possition of top peak and do additional tasks:
+ \enumerate {
+
+     \item {1. }{If \code{sp} is provided, convert resulting matrix to corresponding
+         \code{\link[=hyperSpec-class]{hyperSpec}} object by using function
+         \code{\link[hyperSpec]{decomposition}}.}
+
+
+     \item {2. }{If \code{PCA = TRUE} and \code{sp} is provided, flips component's spectrum
+         if mean of its scores is negative: (\code{sign(mean(Scores_of_component_i)) < 0})
+         \code{loadings} and \code{sp} are used to calculate the scores.}
+ }
+}
+\note{
+spectra (object of class \code{\link[=hyperSpec-class]{hyperSpec}})
+         which will be used to convert sorted loadings into
+         \code{\link[=hyperSpec-class]{hyperSpec}} object.
 }
 \examples{
 
 sortLoadings(loadings)        # returns a matrix
 
-sortLoadings(loadings,Sp)     # returns a hyperSpec object
+sortLoadings(loadings,sp)     # returns a hyperSpec object
 
+}
+\seealso{
+More information at \code{\link[hyperSpec]{decomposition}}
 }
 

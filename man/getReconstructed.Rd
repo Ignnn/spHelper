@@ -4,15 +4,15 @@
 \alias{getReconstructed}
 \title{[!] Reconstruct spectra from loadings and scores.}
 \usage{
-getReconstructed(loadings, scores, Sp = NULL)
+getReconstructed(loadings, scores, sp = NULL)
 }
 \arguments{
 \item{loadings}{??? loadings}
 
 \item{scores}{??? scores}
 
-\item{Sp}{original \code{hyperSpec} object. If \code{Sp} is provided,
-the result of this function will be the \code{Sp} in which Sp$spc
+\item{sp}{original \code{hyperSpec} object. If \code{sp} is provided,
+the result of this function will be the \code{sp} in which sp$spc
 will be replaced with \code{reconstructed} spectra.}
 }
 \value{
@@ -23,7 +23,7 @@ Reconstruct spectra from loadings and scores (i.e. )
 }
 \examples{
 function(loadings, scores)
-function(loadings, scores, Sp)
+function(loadings, scores, sp)
 
 }
 

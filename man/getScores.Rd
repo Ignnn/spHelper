@@ -4,32 +4,32 @@
 \alias{getScores}
 \title{[!] Calculate component amplitudes (a.k.a scores) by matrix multiplication}
 \usage{
-getScores(y, k_sp, xLabel = "Component", yLabel = "Amplitude")
+getScores(sp, loadings, xLabel = "Component", yLabel = "Amplitude")
 }
 \arguments{
-\item{y}{- matrix with experimental spectra}
+\item{sp}{- matrix with experimental spectra}
 
-\item{k_sp}{- matrix with components' spectra}
+\item{loadings}{- matrix with components' spectra}
 
-\item{label}{- label for components for plotting ???}
+\item{xLabel}{- label for loadings for plotting ???}
 }
 \value{
-k_amp - amplitudes of the components
+scores - amplitudes of the components
 }
 \description{
 [!] Calculate component amplitudes (a.k.a scores) by matrix multiplication
 }
 \details{
-\deqn{k_amp = y * k_sp * inv(k_sp' * k_sp)}
+\deqn{scores = sp * loadings * inv(loadings' * loadings)}
 
  formula is taken  and adapted from [1]
 }
 \examples{
 # e.g.:
-    y = Object
-    k_sp = loadings
+    sp = Object
+    loadings = loadings
 
-getScores(y, k_sp)
+getScores(sp, loadings)
 
 }
 \references{

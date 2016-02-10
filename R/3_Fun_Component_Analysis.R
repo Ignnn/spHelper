@@ -5,55 +5,55 @@
 #' [!] Calculate component amplitudes (a.k.a scores) by matrix multiplication
 #'
 #' @details
-#'  \deqn{k_amp = y * k_sp * inv(k_sp' * k_sp)}
+#'  \deqn{scores = sp * loadings * inv(loadings' * loadings)}
 #'
 #'  formula is taken  and adapted from [1]
 #' @references [1] M. Brydegaard et al. IEEE Photonics J 2011:3(3);406-21.
 #'
-#' @param y - matrix with experimental spectra
-#' @param k_sp - matrix with components' spectra
-#' @param label - label for components for plotting ???
+#' @param sp - matrix with experimental spectra
+#' @param loadings - matrix with components' spectra
+#' @param xLabel - label for loadings for plotting ???
 #'
-#' @return k_amp - amplitudes of the components
+#' @return scores - amplitudes of the components
 #' @examples
 #' # e.g.:
-#'     y = Object
-#'     k_sp = loadings
+#'     sp = Object
+#'     loadings = loadings
 #'
-#' getScores(y, k_sp)
+#' getScores(sp, loadings)
 #'
 #' @export
 #'
 #' @import hyperSpec
 #'
-getScores <- function(y, k_sp, xLabel = "Component", yLabel = "Amplitude")
+getScores <- function(sp, loadings, xLabel = "Component", yLabel = "Amplitude")
 {
-    y2 <- hy2mat(y)
-    k_sp2 <- hy2mat(k_sp)
+    y2 <- hy2mat(sp)
+    loadings2 <- hy2mat(loadings)
 
-    if (dim(y2)[2] == dim(k_sp2)[2])   k_sp2 <- t(k_sp2)
+    if (dim(y2)[2] == dim(loadings2)[2])   loadings2 <- t(loadings2)
 
-    k_amp <- y2 %*% (k_sp2 %*% solve(crossprod(k_sp2)))
+    scores <- y2 %*% (loadings2 %*% solve(crossprod(loadings2)))
 
-    if (class(y) == "hyperSpec"){
+    if (class(sp) == "hyperSpec"){
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         # Komponentų amplitudes (išrikiuotas) paverčiam į "HyperSpec"" objektą
 
-        k_amp <- decomposition(y, k_amp,
+        scores <- decomposition(sp, scores,
                                label.wavelength = "Komponentai",
                                label.spc = "Amplitudė, a.u.")
         # Suteikiam pavadinimus
-        if("kNames" %in% colnames(k_sp)){
-            kNames <- gsub("max: ","k_", k_sp$kNames)
-        }else {kNames <- paste0("Nr", 1:min(dim(k_sp2)))}
+        if("kNames" %in% colnames(loadings)){
+            kNames <- gsub("max: ","k_", loadings$kNames)
+        }else {kNames <- paste0("Nr", 1:min(dim(loadings2)))}
 
-        colnames(k_amp$spc) <- kNames
+        colnames(scores$spc) <- kNames
 
-        labels(k_amp,".wavelength") <- xLabel
-        labels(k_amp,"spc")         <- yLabel
+        labels(scores,".wavelength") <- xLabel
+        labels(scores,"spc")         <- yLabel
     }
     # ======================================================================
-    return(k_amp)
+    return(scores)
 }
 
 # ****** Komp: informacijos dimensija ******* -----------------------------------
@@ -81,8 +81,8 @@ getScores <- function(y, k_sp, xLabel = "Component", yLabel = "Amplitude")
 #'
 #' @note
 #' Prieš pradedant vykdyti operaciją, svarbus žingsnis pasirinkti tinkamą
-#' normavimo buda. To nepadarius gausime klaidingą atsakymą.
-#' y=sp_normuok(y,x,'1',495);
+#' normavimo buda. To nepadarius gausime klaidingą atsakymą. \cr
+#' sp = sp_normuok(sp,x,'1',495);
 #'
 #' Taip pat labai svarbus ir triukšmo lygis. Didėjant triukšmui atitinkamai
 #' padidinamas maksimalus dimensijų skaičius.
@@ -216,12 +216,12 @@ InfoDim_plot <- function(Object, n.comp.SHOW = 20, selected = NULL,
 #      kreivėms).
 #
 # *IŠVESTIS:*
-# k_sp - matrica su kreivių reikšmėmis ties atitinkamais x.
+# loadings - matrica su kreivių reikšmėmis ties atitinkamais x.
 #
 # *SINTAKSĖ:*
 #        GaussAmp; # Funkcijos demonstracija
-# k_sp = GaussAmp(x,xc,w,A)
-# k_sp = GaussAmp(x,xc,w,A,y0)
+# loadings = GaussAmp(x,xc,w,A)
+# loadings = GaussAmp(x,xc,w,A,y0)
 #
 #
 # Autorius Ignas Čiplys       2014-10-28
@@ -335,26 +335,27 @@ GaussAmp <- function(x, xc = 0, w = 1, A = 1, y0 = 0){
 #' matlines(x,yNEW, type = "l", lty = 1,lwd = 3);
 #' abline(h=0)
 #'
-uniPeak <- function(y)
-{     y <- as.vector(y)
-i <- seq_along(y)
-len <- length(y)
+uniPeak <- function(y)  {
 
-di <- c(diff(as.numeric(y<=0)),0)
-imax <- which.max(y)
+    y   <- as.vector(y)
+    i   <- seq_along(y)
+    len <- length(y)
 
-# Indices of part to keep
-iBegin <- which(di==-1 & i<(i[imax]))
-iBegin <- tail(iBegin, n=1)[1]
+    di   <- c(diff(as.numeric(y<=0)),0)
+    imax <- which.max(y)
 
-iEnd  <- which(di==1 & i>(i[imax]))[1]
-# Corrections of Indices
-if (is.na(iBegin)) iBegin <- 1 else iBegin <- iBegin + 1
-if (is.na(iEnd))     iEnd <- len
-# New y
-yNEW <- rep_len(0, len)
-yNEW[iBegin:iEnd] <- y[iBegin:iEnd]
-return(yNEW)
+    # Indices of part to keep
+    iBegin <- which(di==-1 & i<(i[imax]))
+    iBegin <- tail(iBegin, n=1)[1]
+
+    iEnd  <- which(di==1 & i>(i[imax]))[1]
+    # Corrections of Indices
+    if (is.na(iBegin)) iBegin <- 1 else iBegin <- iBegin + 1
+    if (is.na(iEnd))     iEnd <- len
+    # New y
+    yNEW <- rep_len(0, len)
+    yNEW[iBegin:iEnd] <- y[iBegin:iEnd]
+    return(yNEW)
 }
 
 #' @rdname uniPeak
@@ -363,78 +364,109 @@ unipeak <- function(y){uniPeak(y)}
 
 
 # Sort component spectra =======================================================================
-#' [!] Sort component spectra (a.k.a. Loadings) by possition of top peak
+#' [!] Sort component spectra (a.k.a. loadings) by possition of top peak
 #'
-#' [!] = [INCOMPLETE DESCRIPTION] Sort component spectra (a.k.a. Loadings) by
-#'  possition of top peak and return
+#' @description [!] = [INCOMPLETE DESCRIPTION] \cr
 #'
-#' @param loadings - matrix of loadings (components).
-#' @param Sp - spectra (object of class \code{\link[=hyperSpec-class]{hyperSpec}})
-#' which will be used to convert sorted loadings into
-#' \code{\link[=hyperSpec-class]{hyperSpec}} object.
-#' More information at \code{\link[=hyperSpec-class]{decomposition}}
+#'  Sort component spectra (a.k.a. loadings) by
+#'  possition of top peak and do additional tasks:
+#'  \enumerate {
+#'
+#'      \item {1. }{If \code{sp} is provided, convert resulting matrix to corresponding
+#'          \code{\link[=hyperSpec-class]{hyperSpec}} object by using function
+#'          \code{\link[hyperSpec]{decomposition}}.}
+#'
+#'
+#'      \item {2. }{If \code{PCA = TRUE} and \code{sp} is provided, flips component's spectrum
+#'          if mean of its scores is negative: (\code{sign(mean(Scores_of_component_i)) < 0})
+#'          \code{loadings} and \code{sp} are used to calculate the scores.}
+#'  }
+#'
+#' @template loadings
+#'
+#' @template sp
+#'
 #' @param PCA - if TRUE, some components are flipped. ... Set to TRUE
 #' if PCA loadings are used. Default \code{PCA = FALSE}
 #'
-#' @return Either matrix (if \code{Sp} is not provided) or
+#' @param sort - flag to indicate if returned componenst must be sorted.
+#'       If \code{FALSE}, only additional tasks are performed.
+#'       Default is \code{TRUE}.
+#'
+#' @return Either matrix (if \code{sp} is not provided) or
 #' hyperSpec object with sorted loadings.
 #' In case of hyperSpec object, 3 additional columns
 #' (PeakAt, order.of.rows, kNames) are added.
-#' @export
+#'
+#' @note spectra (object of class \code{\link[=hyperSpec-class]{hyperSpec}})
+#'          which will be used to convert sorted loadings into
+#'          \code{\link[=hyperSpec-class]{hyperSpec}} object.
+#'
+#'
+#'
+#'
+#' @seealso More information at \code{\link[hyperSpec]{decomposition}}
 #'
 #' @import hyperSpec
+#' @export
 #' @examples
 #'
 #' sortLoadings(loadings)        # returns a matrix
 #'
-#' sortLoadings(loadings,Sp)     # returns a hyperSpec object
+#' sortLoadings(loadings,sp)     # returns a hyperSpec object
 #'
-sortLoadings <- function(loadings,Sp = NULL,PCA = FALSE){
+sortLoadings <- function(loadings, sp = NULL, PCA = FALSE, sort = TRUE){
 
-    if (PCA & !is.null(Sp)){
-        ScoresTMP  <- getScores(hy2mat(Sp), loadings)
+    if (PCA & !is.null(sp)){ # flip
+        ScoresTMP  <- getScores(hy2mat(sp), loadings)
         # ----------------------------------------------------------------------
         # Apverčiama, jei amplitudžių vidurkis neigiamas
-        meanSign     <- function(x){sign(mean(x))}
-        signCoefs    <- apply(ScoresTMP, MARGIN= 2, meanSign)
-        loadings     <- sweep(loadings,  MARGIN= 1, signCoefs,`*`)
+#         meanSign     <- function(x){sign(mean(x))}
+#         signCoefs    <- apply(ScoresTMP, MARGIN= 2, meanSign)
+
+        signCoefs    <- sign(rowMeans(ScoresTMP))
+        loadings     <- sweep(loadings, MARGIN= 1, signCoefs,`*`)
+
         # Normuojama
         maxSpInt     <- apply(loadings, MARGIN= 1, max)
         PCAvarimax2  <- sweep(loadings, MARGIN= 1, maxSpInt,`/`)
 
         # ======================================================================
     }
-    # Rikiuojam iš eilės pagal matrcos eilučių maksimumo (y_max) vietą x ašy
-    index.of.max <- apply(loadings, 1, which.max)
-    OrderOfRows <- order(index.of.max)
 
-    # Viršūnių padėtis
-    index.of.max <- index.of.max[OrderOfRows]
+    if (sort == TRUE){
+        # Rikiuojam iš eilės pagal matrcos eilučių maksimumo (y_max) vietą x ašy
+        index.of.max <- apply(loadings, 1, which.max)
+        OrderOfRows  <- order(index.of.max)
 
-    # Matrix with Sorted components
-    loadingsSorted <- loadings[OrderOfRows,]
+        # Viršūnių padėtis
+        index.of.max <- index.of.max[OrderOfRows]
 
-    if (is.null(Sp)) {return(loadingsSorted)} else {
+        # Matrix with Sorted components
+        loadings <- loadings[OrderOfRows,]
+        }
 
-        # Komponentus (išrikiuotas) paverčiam į "HyperSpec"" objektą
-        loadingsOUT <- decomposition(Sp, loadingsSorted,
+    if (is.null(sp)) {return(loadings)} else {
+
+        # Komponentus (išrikiuotas) paverčiam į "hyperSpec"" objektą
+        loadings <- decomposition(sp, loadings,
                                      scores = FALSE,
-                                     label.spc = "Komp. spektras",
+                                     label.spc = "Comp. spektrum",
                                      retain.columns = F)
 
 
         # Suteikiam pavadinimus komponantams
-        PeakAt    <- make.unique(paste0(round(wl(loadingsOUT)[index.of.max]),
+        PeakAt    <- make.unique(paste0(round(wl(loadings)[index.of.max]),
                                         "nm"),"_")
 
         # WARNING is needed, if variables with names are already present
-        loadingsOUT$PeakAt       <- PeakAt
-        loadingsOUT$kNames       <- paste0("max: ", PeakAt)
-        loadingsOUT$order.of.rows<- OrderOfRows
+        loadings$PeakAt        <- PeakAt
+        loadings$kNames        <- paste0("max: ", PeakAt)
+        loadings$order.of.rows <- OrderOfRows
 
-        labels(loadingsOUT,'spc') <- labels(Sp,'spc')
+        labels(loadings,'spc') <- labels(sp,'spc')
 
-        return(loadingsOUT)
+        return(loadings)
     }
 
 
@@ -461,8 +493,8 @@ sortLoadings <- function(loadings,Sp = NULL,PCA = FALSE){
 #'
 #' @param loadings ??? loadings
 #' @param scores ??? scores
-#' @param Sp original \code{hyperSpec} object. If \code{Sp} is provided,
-#' the result of this function will be the \code{Sp} in which Sp$spc
+#' @param sp original \code{hyperSpec} object. If \code{sp} is provided,
+#' the result of this function will be the \code{sp} in which sp$spc
 #' will be replaced with \code{reconstructed} spectra.
 #'
 #' @return \code{reconstructed <- scores \%*\% loadings}
@@ -470,13 +502,13 @@ sortLoadings <- function(loadings,Sp = NULL,PCA = FALSE){
 #'
 #' @examples
 #' function(loadings, scores)
-#' function(loadings, scores, Sp)
+#' function(loadings, scores, sp)
 #'
-getReconstructed  <-  function(loadings, scores, Sp = NULL)
+getReconstructed  <-  function(loadings, scores, sp = NULL)
 {
     reconstructed <- (hy2mat(scores)) %*% (hy2mat(loadings))
-    if (class(Sp)=="hyperSpec")   {
-        Sp$spc <- reconstructed; return(Sp)} else  return(reconstructed)
+    if (class(sp)=="hyperSpec")   {
+        sp$spc <- reconstructed; return(sp)} else  return(reconstructed)
 }
 
 #  ------------------------------------------------------------------------
