@@ -7,8 +7,8 @@
 sortLoadings(loadings, sp = NULL, PCA = FALSE, sort = TRUE)
 }
 \arguments{
-\item{loadings}{-  components' spectra / loadings (either a matrix or
-\code{\link[=hyperSpec-class]{hyperSpec}} object).}
+\item{loadings}{Components' spectra (loadings) as either a matrix or a
+\code{\link[=hyperSpec-class]{hyperSpec}} object.}
 
 \item{sp}{Spectroscopic data
 (either a \code{\link[=hyperSpec-class]{hyperSpec}} object or a matrix).}

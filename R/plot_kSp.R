@@ -55,7 +55,7 @@
 #'           are plotted on one facet.
 #'   }
 #'
-#' @param filled A logical flag. If \code{TRUE}, colored fill is used.  If {\code{FALSE}, no fill is used.
+#' @param filled A logical flag. If \code{TRUE}, colored fill is used. If \code{FALSE}, no fill is used.
 #'      (Fill is an area between ordinate axis and the curve.)
 #'
 #'

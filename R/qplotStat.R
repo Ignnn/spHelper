@@ -21,7 +21,7 @@
 #'
 #' @seealso \code{\link{spStat}}
 #'
-#' @return
+#' @template ggplot
 #' @export
 #'
 #' @examples

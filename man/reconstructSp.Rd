@@ -3,18 +3,18 @@
 \name{reconstructSp}
 \alias{getReconstructed}
 \alias{reconstructSp}
-\title{[!] Reconstruct spectra from loadings and scores.
-
-Reconstruct spectra from loadings and scores (i.e. )}
+\title{[!] Reconstruct spectra from loadings and scores.}
 \usage{
 reconstructSp(loadings, scores, sp = NULL)
 
 getReconstructed(...)
 }
 \arguments{
-\item{loadings}{??? loadings}
+\item{loadings}{Components' spectra (loadings) as either a matrix or a
+\code{\link[=hyperSpec-class]{hyperSpec}} object.}
 
-\item{scores}{??? scores}
+\item{scores}{Components' amplitudes (scores) as either a matrix or a
+\code{\link[=hyperSpec-class]{hyperSpec}} object.}
 
 \item{sp}{original \code{hyperSpec} object. If \code{sp} is provided,
 the result of this function will be the \code{sp} in which sp$spc
@@ -23,9 +23,18 @@ will be replaced with \code{reconstructed} spectra.}
 \value{
 \code{reconstructed <- scores \%*\% loadings}
 }
+\description{
+Reconstruct spectra from loadings and scores (i.e. )
+}
 \examples{
 function(loadings, scores)
 function(loadings, scores, sp)
 
+}
+\seealso{
+\code{\link[ChemometricsWithR]{reconstruct}} in \pkg{ChemometricsWithR}, \cr
+         \code{\link[ChemometricsWithR]{project}} in \pkg{ChemometricsWithR},\cr
+         \code{\link[Rssa]{reconstruct}} in \pkg{Rssa},\cr
+         \code{\link[wmtsa]{reconstruct}} in \pkg{wmtsa}\cr
 }
 

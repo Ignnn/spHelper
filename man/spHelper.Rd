@@ -5,7 +5,7 @@
 \alias{spHelper}
 \alias{spHelper-package}
 \title{Various functions by V. Gegzna, et al.}
-\details{
+\description{
 [+] - function is well described. \cr
 
 [!] - a description is incomplete and needs revision.\cr\cr

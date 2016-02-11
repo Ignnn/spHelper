@@ -3,6 +3,7 @@
 #'
 #'
 #'
+#' @description
 #' [+] - function is well described. \cr
 #'
 #' [!] - a description is incomplete and needs revision.\cr\cr

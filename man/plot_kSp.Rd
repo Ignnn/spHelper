@@ -32,6 +32,9 @@ Default is \code{names = 'kNames'}}
 \item {}{manual input of the name.}
 }}
 
+\item{filled}{A logical flag. If \code{TRUE}, colored fill is used. If \code{FALSE}, no fill is used.
+(Fill is an area between ordinate axis and the curve.)}
+
 \item{normalize}{A flag that indicates whether components should be normalized before plotting.
 Possible selections: \enumerate{
 \item {\code{FALSE}, \code{0}}{ - do not normalize;}

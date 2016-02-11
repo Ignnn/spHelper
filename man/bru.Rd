@@ -2,7 +2,7 @@
 % Please edit documentation in R/bru.R
 \name{bru}
 \alias{bru}
-\title{Print a line of symbols. Useful for highlighting results.}
+\title{Print a string of repeated symbols. Useful for highlighting results.}
 \usage{
 bru(symbol = "=", len = 60, after = {     if (print)          1     else 0
   }, before = 0, print = TRUE)
@@ -21,8 +21,11 @@ Default is \cr\code{if (print==TRUE) 1 else 0}.}
 \item{print}{- if \code{TRUE} (defailt) - print,
 if \code{FALSE} - return as a string}
 }
+\value{
+String of repeated symbols
+}
 \description{
-Print a line of symbols. Useful for r Markdown (.rmd) files and console output
+String of repeated symbols. Useful for r Markdown (.rmd) files and console output
 to highlight results.
 }
 \examples{

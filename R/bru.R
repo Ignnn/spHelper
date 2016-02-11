@@ -1,6 +1,6 @@
-#' Print a line of symbols. Useful for highlighting results.
+#' Print a string of repeated symbols. Useful for highlighting results.
 #'
-#' Print a line of symbols. Useful for r Markdown (.rmd) files and console output
+#' String of repeated symbols. Useful for r Markdown (.rmd) files and console output
 #' to highlight results.
 #'
 #' @param symbol - desired symbol or sequence of symbols. Default is "="
@@ -12,7 +12,7 @@
 #' @param print - if \code{TRUE} (defailt) - print,
 #'                if \code{FALSE} - return as a string
 #'
-#' @return
+#' @return String of repeated symbols
 #' @export
 #'
 #' @examples

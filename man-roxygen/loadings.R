@@ -1,2 +1,2 @@
-#' @param loadings -  components' spectra / loadings (either a matrix or
-#'                    \code{\link[=hyperSpec-class]{hyperSpec}} object).
+#' @param loadings Components' spectra (loadings) as either a matrix or a
+#'                    \code{\link[=hyperSpec-class]{hyperSpec}} object.

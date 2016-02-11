@@ -4,17 +4,21 @@
 \alias{dropCol}
 \title{[!] Remove colums of hyperSpec object with all NA values}
 \usage{
-dropCol(Spectra)
+dropCol(sp)
 }
 \arguments{
-\item{Spectra}{- hyperSpec object}
+\item{sp}{Spectroscopic data
+(either a \code{\link[=hyperSpec-class]{hyperSpec}} object or a matrix).}
+}
+\value{
+Object without columns that contain all NA values.
 }
 \description{
 [!] Remove colums of hyperSpec object with all NA values
 }
 \examples{
 
- dropCol(Spectra)
+ dropCol(sp)
 
 }
 

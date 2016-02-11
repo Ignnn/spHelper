@@ -2,18 +2,18 @@
 
 #' [!] Remove colums of hyperSpec object with all NA values
 #'
-#' @param Spectra - hyperSpec object
+#' @template sp
 #'
-#' @return
+#' @return Object without columns that contain all NA values.
 #' @export
 #'
 #' @examples
 #'
-#'  dropCol(Spectra)
+#'  dropCol(sp)
 #'
-dropCol <- function(Spectra){
-    NAcols <- colSums(is.na(Spectra$..)) == nrow(Spectra)
+dropCol <- function(sp){
+    NAcols <- colSums(is.na(sp$..)) == nrow(sp)
     dropNames  <- names(NAcols)[NAcols]
-    Spectra <- Spectra[,!(colnames(Spectra) %in% dropNames)]
-    return(Spectra)
+    sp <- sp[,!(colnames(sp) %in% dropNames)]
+    return(sp)
 }
