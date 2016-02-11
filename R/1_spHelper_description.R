@@ -1,6 +1,12 @@
 
 #' Various functions by V. Gegzna, et al.
 #'
+#'
+#'
+#' [+] - function is well described. \cr
+#'
+#' [!] - a description is incomplete and needs revision.\cr\cr
+#'
 #' Functions in spHelper by topic
 #'
 #' @section Cross-validation:
@@ -22,6 +28,7 @@
 #'
 #' \code{\link{hy2mat}} \cr
 #' \code{\link{read3csv2hy}} \cr
+#'
 #' \code{\link{addLabels_TD2009}} \cr
 #'
 #'

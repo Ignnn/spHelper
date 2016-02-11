@@ -3,10 +3,7 @@
 \name{withSubTitle}
 \alias{subt}
 \alias{withSubTitle}
-\title{Make title with subtitle
-
-Make title with second line as subtitle. Function
-uses \code{\link[base]{bquote}} and \code{\link[grDevices]{atop}}.}
+\title{Make title with subtitle}
 \usage{
 withSubTitle(Title = NULL, subTitle = NULL)
 
@@ -20,6 +17,10 @@ font size and will be in italic.}
 }
 \value{
 Formated title
+}
+\description{
+Make title with second line as subtitle. Function
+              uses \code{\link[base]{bquote}} and \code{\link[grDevices]{atop}}.
 }
 \examples{
 

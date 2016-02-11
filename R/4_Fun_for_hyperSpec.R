@@ -94,17 +94,18 @@ read3csv2hy <- function(FileName_base){
 #
 #' [!] Add labels to "TD_2009" and transform.
 #'
-#' Function is designed for data from investigation, called "TD_2009".
+#' Function is designed to label data collected during investigation called "TD_2009".
 #'
 #' Select data columns, that are not removed, and add labels to
 #'  \code{\link[=hyperSpec-class]{hyperSpec}} object of "TD_2009" data.
 #'
 #'
-#' @param sp - \code{\link[=hyperSpec-class]{hyperSpec}} object of TD_2009 data, created by using
-#'              function \code{\link{read3csv2hy}}
-#' @param language - language of labels. Possible \code{EN} and \code{LT}. Default \code{EN}
+#' @param sp A \code{\link[=hyperSpec-class]{hyperSpec}} object of TD_2009 data, created by
+#'             function \code{\link{read3csv2hy}}
+#' @param language A string, indicating a language of labels. Possible entries are
+#' \code{EN} - English and \code{LT} - Lithuanian. Default is \code{EN}.
 #'
-#' @return labeled object with reduced number of data columns
+#' @return A labeled object with reduced number of data columns.
 #'
 #' @examples
 #' addLabels_TD2009(sp)
@@ -134,6 +135,8 @@ read3csv2hy <- function(FileName_base){
 #'
 addLabels_TD2009 <- function(sp,language = "EN")
 {
+    ColsInitial <- colnames(sp)
+
     # require(hyperSpec)
     data         = sp$..
 
@@ -206,6 +209,14 @@ addLabels_TD2009 <- function(sp,language = "EN")
     # Labels is vector with color names
     labels(Object, ".color") <- UsedColors
     # ---------------------------------------------------------------------
+    ColsFinal   <- colnames(Object)
+    ColsREMOVED <- ColsInitial[!(ColsInitial %in% ColsFinal)]
+    if (length(ColsREMOVED) > 0 ){
+        message("These columns were removed from the `hyperSpec` object:")
+        cat(ColsREMOVED,sep='\n')
+        }
+    # ---------------------------------------------------------------------
+
     return(Object)
 }
 

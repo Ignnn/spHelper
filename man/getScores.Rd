@@ -2,7 +2,7 @@
 % Please edit documentation in R/3_Fun_Component_Analysis.R
 \name{getScores}
 \alias{getScores}
-\title{[!] Calculate component amplitudes (a.k.a scores) by matrix multiplication}
+\title{[!] Calculate component amplitudes (a.k.a. scores) by matrix multiplication}
 \usage{
 getScores(sp, loadings, xLabel = "Component", yLabel = "Amplitude")
 }
@@ -12,12 +12,14 @@ getScores(sp, loadings, xLabel = "Component", yLabel = "Amplitude")
 \item{loadings}{- matrix with components' spectra}
 
 \item{xLabel}{- label for loadings for plotting ???}
+
+\item{yLabel}{}
 }
 \value{
 scores - amplitudes of the components
 }
 \description{
-[!] Calculate component amplitudes (a.k.a scores) by matrix multiplication
+[!] Calculate component amplitudes (a.k.a. scores) by matrix multiplication
 }
 \details{
 \deqn{scores = sp * loadings * inv(loadings' * loadings)}

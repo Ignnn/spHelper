@@ -1,8 +1,8 @@
 # Apskaičiuoti Komponenų amplitudes matricų daugybos būdu ------------------------------
 #
-#' [!] Calculate component amplitudes (a.k.a scores) by matrix multiplication
+#' [!] Calculate component amplitudes (a.k.a. scores) by matrix multiplication
 #'
-#' [!] Calculate component amplitudes (a.k.a scores) by matrix multiplication
+#' [!] Calculate component amplitudes (a.k.a. scores) by matrix multiplication
 #'
 #' @details
 #'  \deqn{scores = sp * loadings * inv(loadings' * loadings)}
@@ -13,6 +13,7 @@
 #' @param sp - matrix with experimental spectra
 #' @param loadings - matrix with components' spectra
 #' @param xLabel - label for loadings for plotting ???
+#' @param yLabel
 #'
 #' @return scores - amplitudes of the components
 #' @examples

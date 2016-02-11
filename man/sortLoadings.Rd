@@ -7,9 +7,10 @@
 sortLoadings(loadings, sp = NULL, PCA = FALSE, sort = TRUE)
 }
 \arguments{
-\item{loadings}{- loadings / components' spectra (either a matrix or \code{\link[=hyperSpec-class]{hyperSpec}} object).}
+\item{loadings}{-  components' spectra / loadings (either a matrix or
+\code{\link[=hyperSpec-class]{hyperSpec}} object).}
 
-\item{sp}{- spectroscopic data
+\item{sp}{Spectroscopic data
 (either a \code{\link[=hyperSpec-class]{hyperSpec}} object or a matrix).}
 
 \item{PCA}{- if TRUE, some components are flipped. ... Set to TRUE

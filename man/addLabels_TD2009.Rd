@@ -7,16 +7,17 @@
 addLabels_TD2009(sp, language = "EN")
 }
 \arguments{
-\item{sp}{- \code{\link[=hyperSpec-class]{hyperSpec}} object of TD_2009 data, created by using
+\item{sp}{A \code{\link[=hyperSpec-class]{hyperSpec}} object of TD_2009 data, created by
 function \code{\link{read3csv2hy}}}
 
-\item{language}{- language of labels. Possible \code{EN} and \code{LT}. Default \code{EN}}
+\item{language}{A string, indicating a language of labels. Possible entries are
+\code{EN} - English and \code{LT} - Lithuanian. Default is \code{EN}.}
 }
 \value{
-labeled object with reduced number of data columns
+A labeled object with reduced number of data columns.
 }
 \description{
-Function is designed for data from investigation, called "TD_2009".
+Function is designed to label data collected during investigation called "TD_2009".
 }
 \details{
 Select data columns, that are not removed, and add labels to

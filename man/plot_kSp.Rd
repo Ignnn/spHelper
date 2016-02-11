@@ -2,28 +2,95 @@
 % Please edit documentation in R/2_Fun_Plotting_Sp.R
 \name{plot_kSp}
 \alias{plot_kSp}
-\title{[!] Plot spectra of components (a.k.a loadings) on one plot.}
+\alias{plot_kSpFacets}
+\title{[+] Plot spectral components (a.k.a. loadings)}
 \usage{
 plot_kSp(loadings, Title = "Components", xLabel = labels(loadings, "spc"),
-  yLabel = labels(loadings, ".wavelength"))
+  yLabel = labels(loadings, ".wavelength"), names = "kNames",
+  legendName = TRUE, filled = TRUE, normalize = FALSE, Facets = FALSE)
+
+plot_kSpFacets(..., Title = "Components (stacked)", normalize = "auto",
+  Facets = TRUE)
 }
 \arguments{
-\item{loadings}{- \code{\link{hyperSpec}} object}
+\item{loadings}{Components' spectra (loadings) as a \code{\link[=hyperSpec-class]{hyperSpec}} object.}
 
-\item{Title}{- the title of graph}
+\item{Title}{The main title for the plot.}
 
-\item{xLabel}{- label of x axis}
+\item{xLabel}{A label for abscisa (x) axis.}
 
-\item{yLabel}{- label of ordinate axis}
+\item{yLabel}{A label for ordinate (y) axis.}
+
+\item{names}{A name of variable in \code{loadings} that contains variable names.
+If indicated variable does not exist, row names are used instead.\cr
+Default is \code{names = 'kNames'}}
+
+\item{legendName}{A name of a legend. Possible entries: \enumerate{
+\item {logical \code{FALSE}}{ - a legend without a name;}
+\item {logical \code{TRUE}}{ - a label of a variable \code{name} is used as a name of a legend
+    (\code{legendName <- labels(loadings,name}));}
+\item {}{manual input of the name.}
+}}
+
+\item{normalize}{A flag that indicates whether components should be normalized before plotting.
+Possible selections: \enumerate{
+\item {\code{FALSE}, \code{0}}{ - do not normalize;}
+\item {\code{TRUE}, \code{+1}}{ - normalize to max value;}
+\item {\code{-TRUE}, \code{-1}}{ - normalize to min value [! this choise can give unexpected results];}
+\item {\code{"auto"}}{ - one of the choices above is selected by determining if spectra have any
+     possitive and any negative peaks:\itemize{
+     \item \code{Below0 <- any(loadings$spc < 0);}
+     \item \code{Above0 <- any(loadings$spc > 0);}
+     \item \code{normalize <- (Above0 - Below0)}
+     }
+     }
+}}
+
+\item{Facets}{A logical flag. If \code{TRUE}, spectra are plotted on separate graphs/facets
+       (implemented by function \code{\link[ggplot2]{facet_grid}}). If {\code{FALSE}, all spectra
+        are plotted on one facet.
+}}
 }
 \value{
-ggplot2 object
+A plot.\cr (An object of class \code{\link[=ggplot2-class]{ggplot}} and
+        \code{\link[=ggplot2-class]{gg}}. More details in package \pkg{ggplot2}).
 }
 \description{
-Plot spectra of components (a.k.a loadings) on one plot.
+These functions are designed to plot spectra of spectral components
+            (a.k.a. loadings), extracted in principal component analysis
+            (e.g., \code{\link[stats]{princomp}}), by variaus matrix factorization
+             methods (e.g., \code{\link[NMF]{nmf}})) and some other dimension
+             reduction methods. \cr\cr
+             The functions can plot (experimental) spectra too.
+}
+\details{
+\code{plot_kSp} plots spectra on one graph. \cr\cr
+         \code{plot_kSpFacets} plots spectra on separate graphs (facets).
+}
+\note{
+The matrix of components/loadings must be treated with function
+             \code{\link[hyperSpec]{decomposition}} (or equivalent) which converts
+             to \code{\link[=hyperSpec-class]{hyperSpec}} object. \cr
 }
 \examples{
-plot_kSp(loadings)
+library(hyperSpec)
+
+plot_kSpFacets(flu, Title = "Flu dataset")
+plot_kSpFacets(flu, Title = "Flu dataset", normalize = 1)
+plot_kSpFacets(flu, Title = "Flu dataset", normalize = FALSE)
+plot_kSpFacets(flu, Title = "Flu dataset", normalize = -1)
+
+## Remove fill ---------------------------------------------------------------------
+
+flu$c2 <- as.factor(flu$c)
+plot_kSp(flu, Title = "Flu dataset", names = 'c2', filled = F)
+
+## Name of the legend --------------------------------------------------------------
+
+plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = FALSE)
+plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = TRUE)
+plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = "Concentration")
+
 
 }
 
