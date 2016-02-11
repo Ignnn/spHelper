@@ -58,26 +58,33 @@ Functions in spHelper by topic
 \code{\link{}} \cr
 \code{\link{}} \cr
 \code{\link{}} \cr
+\code{\link{}} \cr
 }
 
 \section{Regular expressions}{
 
 
 \code{\link{regcapturedmatches}} \cr
-\code{\link{regexpr2df}} \cr
+\code{\link{regexp2df}} \cr
 }
 
 \section{Various}{
 
 
+
+\code{\link{bru}} \cr
+\code{\link{fCap}} \cr
 \code{\link{makeFirstCapital}} \cr
 \code{\link{list.functions}} \cr
+\code{\link{dropCol}} \cr
+\code{\link{}} \cr
+\code{\link{}} \cr
+\code{\link{}} \cr
 }
 \examples{
 # List all functions in package:
 
-FunctionList <- unclass(lsf.str(envir = asNamespace("spHelper"), all = T))
-pander::pander(as.data.frame(FunctionList))
+listFunctions()
 
 
 Plot structure of functions inside the package:

@@ -2,8 +2,8 @@ Package: spHelper
 Type: Package
 Title: Convenience Functions Mainly for Spectroscopy
 Description: Various convenience functions for spectroscopy, etc.
-Version: 0.1.015
-Date: 2016-02-11
+Version: 0.1.017
+Date: 2016-02-12
 Encoding: UTF-8
 Author: Vilmantas Gėgžna, et al.
 Maintainer:Vilmantas Gėgžna <GegeznaV@gmail.com>
@@ -21,4 +21,5 @@ Depends:
     tidyr,
     grDevices
 Imports:
-
+    mvbutils,
+    sna
