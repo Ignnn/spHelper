@@ -22,5 +22,7 @@ printDuration <- function(StartAt, Message = "Duration of analysis:"){
                         round(Duration_of_analysis, 1),
                         attributes(Duration_of_analysis)$units
     )
-    cat(AnDuration, sep = "\n")
+
+    pander::pander(AnDuration)
+    # cat(AnDuration, sep = "\n")
 }
