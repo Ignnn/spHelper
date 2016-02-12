@@ -36,4 +36,6 @@ reconstructSp  <-  function(loadings, scores, sp = NULL)     {
 
 #' @rdname reconstructSp
 #' @export
-getReconstructed  <-  function(...) getReconstructed(...)
+getReconstructed  <-  function(a,...) {
+    stop('Use function "reconstructSp" in stead of "getReconstructed".')
+    }

@@ -7,7 +7,7 @@
 \usage{
 reconstructSp(loadings, scores, sp = NULL)
 
-getReconstructed(...)
+getReconstructed(a, ...)
 }
 \arguments{
 \item{loadings}{Components' spectra (loadings) as either a matrix or a

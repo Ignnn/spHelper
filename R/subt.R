@@ -34,10 +34,10 @@ subt <- function(Title = NULL, subTitle = NULL)  {
     # library(grDevices)
     # Format Title
     if (is.null(subTitle)) {#If subtitle is not provided, use only main title
-        Title <- bquote(grDevices::bold(.(Title)))
+        Title <- bquote(bold(.(Title)))
     } else {# otherwise add the subtitle
-        Title <- bquote(grDevices::atop(grDevices::bold(.(Title)),
-                                        grDevices::atop(grDevices::italic(.(subTitle)))))}
+        Title <- bquote(atop(bold(.(Title)),
+                                        atop(italic(.(subTitle)))))}
 
     return(Title)
 }

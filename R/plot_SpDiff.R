@@ -34,7 +34,7 @@ plot_SpDiff <- function(loadings,scores,Spectra,
                         spc.nmax = 2000)
 {
 
-    SpRE <- getReconstructed(loadings,scores,Spectra)
+    SpRE <- reconstructSp(loadings,scores,Spectra)
 
     plot(Spectra - SpRE,
          spc.nmax = spc.nmax,

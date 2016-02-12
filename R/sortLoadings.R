@@ -72,10 +72,9 @@ sortLoadings <- function(loadings, sp = NULL, PCA = FALSE, sort = TRUE){
         ScoresTMP  <- getScores(hy2mat(sp), loadings)
         # ----------------------------------------------------------------------
         # Apverčiama, jei amplitudžių vidurkis neigiamas
-        #         meanSign     <- function(x){sign(mean(x))}
-        #         signCoefs    <- apply(ScoresTMP, MARGIN= 2, meanSign)
-
-        signCoefs    <- sign(rowMeans(ScoresTMP))
+        # signCoefs    <- sign(rowMeans(ScoresTMP))
+        meanSign     <- function(x){sign(mean(x))}
+        signCoefs    <- apply(ScoresTMP, MARGIN= 2, meanSign)
         loadings     <- sweep(loadings, MARGIN= 1, signCoefs,`*`)
 
         # Normuojama
