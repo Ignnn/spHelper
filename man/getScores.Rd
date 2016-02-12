@@ -7,16 +7,20 @@
 getScores(sp, loadings, xLabel = "Component", yLabel = "Amplitude")
 }
 \arguments{
-\item{sp}{- matrix with experimental spectra}
+\item{sp}{Spectroscopic data
+(either a \code{\link[=hyperSpec-class]{hyperSpec}} object or a matrix).}
 
-\item{loadings}{- matrix with components' spectra}
+\item{loadings}{Components' spectra (loadings) as either a matrix or a
+\code{\link[=hyperSpec-class]{hyperSpec}} object.}
 
-\item{xLabel}{- label for loadings for plotting ???}
+\item{xLabel}{- label that will be used for plotting x axis
+\code{labels(scores,".wavelength") <- xLabel}}
 
-\item{yLabel}{}
+\item{yLabel}{- label that will be used for plotting y axis
+\code{labels(scores,"spc") <- yLabel}}
 }
 \value{
-scores - amplitudes of the components
+scores - amplitudes of the components (scores)
 }
 \description{
 [!] Calculate component amplitudes (a.k.a. scores) by matrix multiplication

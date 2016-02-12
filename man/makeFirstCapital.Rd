@@ -24,7 +24,9 @@ The same string with all words starting with capital letter.
 \examples{
 
 makeFirstCapital('laa laa laa')
+##[1] "Laa Laa Laa"
 
+fCap('laa laa laa')
 ##[1] "Laa Laa Laa"
 
 }

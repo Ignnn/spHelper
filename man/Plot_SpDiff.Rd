@@ -24,6 +24,10 @@ plot_SpDiff(loadings, scores, Spectra,
 
 \item{spc.nmax}{max number of spectra to plot}
 }
+\value{
+Plot of calculated difference between expected (original)
+and reconstructed spectra.
+}
 \description{
 Plot difference between experimental and reconstructed spectra \cr \cr
 }

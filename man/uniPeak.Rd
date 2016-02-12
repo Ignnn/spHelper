@@ -12,10 +12,10 @@ uniPeak(y)
 unipeak(y)
 }
 \arguments{
-\item{y}{vector}
+\item{y}{A vector}
 }
 \value{
-Modified y
+Modified \code{y}
 }
 \examples{
 #  Example 1 ------------------------------------------------------------------------

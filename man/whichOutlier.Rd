@@ -7,13 +7,16 @@
 whichOutlier(scores, zScore = 2)
 }
 \arguments{
-\item{scores}{??? a matrix or a hyperSpec object of scores (component amplitudes)
-after decompositions to components.}
+\item{scores}{Components' amplitudes (scores) as either a matrix or a
+\code{\link[=hyperSpec-class]{hyperSpec}} object.}
 
-\item{zScore}{... Default zScore = 2.}
+\item{zScore}{A threshold for standardized values to be treated as outlier.
+If \code{-zScore < scale(scores)} or \code{scale(scores) >zScore}
+it is treated as an outlier.\cr
+Default \code{zScore = 2}.}
 }
 \value{
-Vector of indices indicating rows which contain outliers.
+Vector of indices indicating rows containing outliers.
 }
 \description{
 Find row numbers in scores matrix that contain outliers \cr\cr

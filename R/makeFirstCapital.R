@@ -16,7 +16,9 @@
 #' @examples
 #'
 #' makeFirstCapital('laa laa laa')
+#' ##[1] "Laa Laa Laa"
 #'
+#' fCap('laa laa laa')
 #' ##[1] "Laa Laa Laa"
 #'
 #' @export

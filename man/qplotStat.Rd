@@ -13,7 +13,8 @@ qplotStat(sp, by = stop("Argument 'by' is missing."),
   legend.title = element_blank())
 }
 \arguments{
-\item{sp}{- ...}
+\item{sp}{Spectroscopic data
+(either a \code{\link[=hyperSpec-class]{hyperSpec}} object or a matrix).}
 
 \item{by}{by <- as.factor(by)}
 
@@ -21,7 +22,7 @@ qplotStat(sp, by = stop("Argument 'by' is missing."),
 
 \item{Title}{- ...}
 
-\item{All}{- plot additional statistic of all sp.}
+\item{All}{- plot additional statistic of all spectra}
 
 \item{fixed.colors}{- flag if color scheme where ".All" is plotted as
 a black line shpuld be used.}

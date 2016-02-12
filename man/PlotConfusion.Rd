@@ -9,9 +9,9 @@ PlotConfusion(conf)
 \arguments{
 \item{conf}{- a table, a square matrix.}
 
-\item{Title}{Title.}
+\item{Title}{... /not implemented yet/ Title.}
 
-\item{subTitle}{Subtitle.}
+\item{subTitle}{... /not implemented yet/ Subtitle.}
 }
 \value{
 Plot of confusion matrix. ...

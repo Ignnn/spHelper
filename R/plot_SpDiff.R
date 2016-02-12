@@ -19,7 +19,8 @@
 #' @param color ...
 #' @param stacked ...
 #'
-#' @return
+#' @return Plot of calculated difference between expected (original)
+#' and reconstructed spectra.
 #' @export
 #'
 #' @examples

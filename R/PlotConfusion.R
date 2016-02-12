@@ -3,8 +3,8 @@
 #' Plot a confusion matrix, \code{PlotConfusion}
 #'
 #' @param conf - a table, a square matrix.
-#' @param Title Title.
-#' @param subTitle Subtitle.
+#' @param Title ... /not implemented yet/ Title.
+#' @param subTitle ... /not implemented yet/ Subtitle.
 #'
 #'
 #' @return Plot of confusion matrix. ...

@@ -8,10 +8,10 @@
 #'
 #'
 #' @param data A data frame with variables, that names are denoted by \code{ID} and \code{gr}
-#' @param ID ...
-#' @param gr ...
+#' @param ID Either varable or variable name in \code{data} with vector of speciment IDs.
+#' @param gr Either varable or variable name in \code{data} with vector of speciment groups.
 #'
-#' @return
+#' @return Table (data frame) with count and percentages.
 #' @export
 #'
 #' @examples

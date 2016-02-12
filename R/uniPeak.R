@@ -8,9 +8,9 @@
 #'
 #' Keep only the highest positive peak
 #'
-#' @param y vector
+#' @param y A vector
 #'
-#' @return Modified y
+#' @return Modified \code{y}
 #' @export
 #'
 #' @examples

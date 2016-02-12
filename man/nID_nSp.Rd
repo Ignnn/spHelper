@@ -9,9 +9,12 @@ nID_nSp(data, ID, gr)
 \arguments{
 \item{data}{A data frame with variables, that names are denoted by \code{ID} and \code{gr}}
 
-\item{ID}{...}
+\item{ID}{Either varable or variable name in \code{data} with vector of speciment IDs.}
 
-\item{gr}{...}
+\item{gr}{Either varable or variable name in \code{data} with vector of speciment groups.}
+}
+\value{
+Table (data frame) with count and percentages.
 }
 \description{
 Calculate number and percentage of specimens and their spectra. number(spectra) >= number(specimens)

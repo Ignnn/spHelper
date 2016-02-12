@@ -6,12 +6,14 @@
 #' \href{autoscaled}{http://wiki.eigenvector.com/index.php?title=Advanced_Preprocessing:_Variable_Scaling#Autoscale}
 #' value of that row is outside ±zScore (**grey** lines in figures below);
 #'
-#' @param scores ??? a matrix or a hyperSpec object of scores (component amplitudes)
-#'        after decompositions to components.
+#' @template scores
 #'
-#' @param zScore ... Default zScore = 2.
+#' @param zScore A threshold for standardized values to be treated as outlier.
+#'       If \code{-zScore < scale(scores)} or \code{scale(scores) >zScore}
+#'       it is treated as an outlier.\cr
+#'       Default \code{zScore = 2}.
 #'
-#' @return Vector of indices indicating rows which contain outliers.
+#' @return Vector of indices indicating rows containing outliers.
 #' @export
 #'
 #' @examples

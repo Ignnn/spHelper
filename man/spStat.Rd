@@ -2,25 +2,39 @@
 % Please edit documentation in R/spStat.R
 \name{spStat}
 \alias{spStat}
-\title{[!] Calculate summary statistic by group and for all data}
+\title{[!] Calculate summary statistic of spectroscopic data by group and for all data}
 \usage{
 spStat(sp, by = gr, FUN = mean)
 }
 \arguments{
-\item{sp}{- hyperSpec object.}
+\item{sp}{A hyperSpec object.}
 
-\item{by}{- grouping variable (either variable name of \code{sp},
+\item{by}{A grouping variable (either variable name of \code{sp},
 or vector (factor) of length \code{length(sp)}}
 
-\item{FUN}{- function to apply.}
+\item{FUN}{A function to apply.}
+}
+\value{
+A hyperSpec object that contain summary statistic. Additional
+        column \code{.aggregate} is added. In this column levels of
+        grouping variable are indicated.
 }
 \description{
-[!] Calculate summary statistic by group and for all data
+Calculate summary statistic spectra in hyperSpec object by group and for all data
+}
+\note{
+This function is similar to \code{\link[hyperSpec]{aggregate}},
+just calculates additional statistic for all spectra. This
+statistic is indicated by level \code{.ALL}) in variable
+\code{.aggregate}.
 }
 \examples{
 
 spStat(sp, by=sp$gr, FUN = IQR)
 spStat(sp, by=gr,    FUN = IQR)
 
+}
+\seealso{
+\code{\link[hyperSpec]{aggregate}}
 }
 

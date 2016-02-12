@@ -4,20 +4,29 @@
 \alias{hy2mat}
 \title{Extract matrix from either hyperSpec object or a matrix}
 \usage{
-hy2mat(Object)
+hy2mat(sp)
 }
 \arguments{
-\item{Object}{- object of classes either \code{\link[=hyperSpec-class]{hyperSpec}}
-or \code{\link[base]{matrix}}}
+\item{sp}{Spectroscopic data
+(either a \code{\link[=hyperSpec-class]{hyperSpec}} object or a matrix).}
 }
 \value{
-A matrix or an error if it's impossible to extract a matrix.
+Either a matrix or an error, if it's impossible to extract a matrix.
 }
 \description{
 hy2mat
 }
 \examples{
-hy2mat(Object)
+
+flu
+a <- hy2mat(flu)
+b <- hy2mat(flu$spc)
+
+identical(a,b)
+## [1] TRUE
+
+
+hy2mat(matrix(NA,5,10))
 
 }
 

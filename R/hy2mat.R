@@ -4,18 +4,26 @@
 #'
 #' hy2mat
 #'
-#' @param Object - object of classes either \code{\link[=hyperSpec-class]{hyperSpec}}
-#' or \code{\link[base]{matrix}}
-#' @return A matrix or an error if it's impossible to extract a matrix.
+#' @template sp
+#' @return Either a matrix or an error, if it's impossible to extract a matrix.
 #' @examples
-#' hy2mat(Object)
+#'
+#' flu
+#' a <- hy2mat(flu)
+#' b <- hy2mat(flu$spc)
+#'
+#' identical(a,b)
+#' ## [1] TRUE
+#'
+#'
+#' hy2mat(matrix(NA,5,10))
 #'
 #' @export
 
-hy2mat <- function(Object)
-{    switch(class(Object),
-            "hyperSpec" = Object$spc,
-            "matrix"    = Object,
+hy2mat <- function(sp)
+{    switch(class(sp),
+            "hyperSpec" = sp$spc,
+            "matrix"    = sp,
             stop('The class of the input must be either "hyperSpec" or "matrix"')
             )
 }

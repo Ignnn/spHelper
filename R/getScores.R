@@ -10,12 +10,15 @@
 #'  formula is taken  and adapted from [1]
 #' @references [1] M. Brydegaard et al. IEEE Photonics J 2011:3(3);406-21.
 #'
-#' @param sp - matrix with experimental spectra
-#' @param loadings - matrix with components' spectra
-#' @param xLabel - label for loadings for plotting ???
-#' @param yLabel
+#' @template sp
+#' @template loadings
+#' @param xLabel - label that will be used for plotting x axis
+#'        \code{labels(scores,".wavelength") <- xLabel}
 #'
-#' @return scores - amplitudes of the components
+#' @param yLabel - label that will be used for plotting y axis
+#'        \code{labels(scores,"spc") <- yLabel}
+#'
+#' @return scores - amplitudes of the components (scores)
 #' @examples
 #' # e.g.:
 #'     sp = Object
@@ -27,7 +30,9 @@
 #'
 #' @import hyperSpec
 #'
-getScores <- function(sp, loadings, xLabel = "Component", yLabel = "Amplitude")
+getScores <- function(sp, loadings,
+                      xLabel = "Component",
+                      yLabel = "Amplitude")
 {
     y2 <- hy2mat(sp)
     loadings2 <- hy2mat(loadings)
