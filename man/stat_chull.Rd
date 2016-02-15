@@ -9,27 +9,41 @@ stat_chull(mapping = NULL, data = NULL, geom = "polygon",
   inherit.aes = TRUE, ...)
 }
 \arguments{
-\item{mapping}{...}
+\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2]{aes}}
+or \code{\link[ggplot2]{aes_}}. If specified and \code{inherit.aes = TRUE} (the
+default), it is combined with the default mapping at the top level of the
+plot. You must supply \code{mapping} if there is no plot mapping.}
 
-\item{data}{...}
+\item{data}{A layer specific dataset - only needed if you want to override
+the plot defaults.}
 
-\item{geom}{...}
+\item{geom}{The geometric object to use display the data.}
 
-\item{position}{...}
+\item{position}{The position adjustment to use for overlapping points on
+this layer.}
 
-\item{na.rm}{...}
+\item{na.rm}{If \code{FALSE} (the default), removes missing values with a warning.
+If \code{TRUE} silently removes missing values.}
 
-\item{show.legend}{...}
+\item{show.legend}{logical. Should this layer be included in the legends?
+\code{NA}, the default, includes if any aesthetics are mapped.
+\code{FALSE} never includes, and \code{TRUE} always includes.}
 
-\item{inherit.aes}{...}
+\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
+rather than combining with them. This is most useful for helper functions
+that define both data and aesthetics and shouldn't inherit behaviour from
+the default plot specification, e.g. \code{\link[ggplot2]{borders}}.}
 
-\item{...}{...}
+\item{...}{Other arguments passed on to \code{\link{layer}}. These are
+often aesthetics, used to set an aesthetic to a fixed value, like
+\code{color = "red"} or \code{size = 3}.}
 }
 \value{
-Layer ofconvex hull for ggplot object.
+Layer of convex hull for \pkg{ggplot2} plots.
 }
 \description{
-Source: vignette \href {https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html}{Extending ggplot2}
+Create a layer of convex hull for \pkg{ggplot2} plots.\cr
+Source: vignette \href{https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html}{Extending ggplot2}
 }
 \examples{
 

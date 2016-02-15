@@ -2,18 +2,32 @@
 
 #' [!] Convex hull layer for ggplot2
 #'
-#' Source: vignette \href {https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html}{Extending ggplot2}
+#' Create a layer of convex hull for \pkg{ggplot2} plots.\cr
+#' Source: vignette \href{https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html}{Extending ggplot2}
 #'
-#' @param mapping ...
-#' @param data ...
-#' @param geom ...
-#' @param position ...
-#' @param na.rm ...
-#' @param show.legend ...
-#' @param inherit.aes ...
-#' @param ... ...
+#' @param mapping Set of aesthetic mappings created by \code{\link[ggplot2]{aes}}
+#' or \code{\link[ggplot2]{aes_}}. If specified and \code{inherit.aes = TRUE} (the
+#' default), it is combined with the default mapping at the top level of the
+#'plot. You must supply \code{mapping} if there is no plot mapping.
+#' @param data A layer specific dataset - only needed if you want to override
+#'        the plot defaults.
+#' @param geom The geometric object to use display the data.
+#' @param position The position adjustment to use for overlapping points on
+#'        this layer.
+#' @param na.rm If \code{FALSE} (the default), removes missing values with a warning.
+#'        If \code{TRUE} silently removes missing values.
+#' @param show.legend logical. Should this layer be included in the legends?
+#'       \code{NA}, the default, includes if any aesthetics are mapped.
+#'       \code{FALSE} never includes, and \code{TRUE} always includes.
+#' @param inherit.aes If \code{FALSE}, overrides the default aesthetics,
+#'          rather than combining with them. This is most useful for helper functions
+#'          that define both data and aesthetics and shouldn't inherit behaviour from
+#'          the default plot specification, e.g. \code{\link[ggplot2]{borders}}.
+#' @param ... Other arguments passed on to \code{\link{layer}}. These are
+#'        often aesthetics, used to set an aesthetic to a fixed value, like
+#'        \code{color = "red"} or \code{size = 3}.
 #'
-#' @return Layer ofconvex hull for ggplot object.
+#' @return Layer of convex hull for \pkg{ggplot2} plots.
 #' @export
 #' @import ggplot2
 #' @examples
@@ -28,7 +42,7 @@
 #'              stat_chull(fill = NA)
 #'
 #'
-#'ggplot(mpg, aes(displ, hwy)) +
+#' ggplot(mpg, aes(displ, hwy)) +
 #'              stat_chull(geom = "point", size = 4, colour = "red") +
 #'              geom_point()
 #'

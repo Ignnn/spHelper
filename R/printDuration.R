@@ -1,28 +1,53 @@
-
-
-#' Print duration (difference of time)
+#' [+] Evaluate how much time passed
 #'
-#' @param StartAt Time, when period of time started
-#'       (usually generated with \code{Sys.time()})
-#' @param Message Message before time stamp. Default is
+#' Evaluate and print difference between moment of time at which time
+#' interval began (usually captured by function \code{\link[base]{Sys.time}} some time ago) and
+#' the present (i.e., moment when function \code{printDuration} is called).
+#'
+#'
+#' @param Start Moment of time which is treated as a beggining (object of class
+#' \code{\link[=POSIXct-class]{POSIXct}}).
+#'
+#' @param Message Message before time stamp that describes it. Default is
 #'         \code{"Duration of analysis:"}
+#' @param returnString If \code{TRUE}, returns result as a string.
+#'  If \code{FALSE} (default), function \code{\link[pander]{pander}} prints the
+#'  result.
 #'
-#' @return Text with time duration printed in console.
+#' @return Text indicating how much time has passed (either printed in console or as a string).
 #' @export
-#'
+#' @seealso \code{\link[base]{difftime}}
 #' @examples
-#' StartAt <-  Sys.time()
+#' Start <-  Sys.time()
 #'
-#' printDuration(StartAt)
-#' printDuration(StartAt,"From start till now")
+#' Start
+#' ## [1] "2016-02-12 16:15:09 UTC"
 #'
-printDuration <- function(StartAt, Message = "Duration of analysis:"){
-    Duration_of_analysis <- Sys.time() - StartAt;
+#' class(Start)
+#' ## [1] "POSIXct" "POSIXt"
+#'
+#' printDuration(Start)
+#' ## Duration of analysis: 23.3 secs
+#'
+#' printDuration(Start,"From start till now")
+#' ## From start till now 39.2 secs
+#'
+#' my_duration <- printDuration(Start)
+#' my_duration
+#' ## NULL
+#'
+#' my_duration <- printDuration(Start, returnString = TRUE)
+#' my_duration
+#' ## Duration of analysis: 2.4 mins
+#'
+printDuration <- function(Start,
+                          Message = "Duration of analysis:",
+                          returnString = FALSE){
+    Duration_of_analysis <- Sys.time() - Start;
     AnDuration <- paste(Message,
                         round(Duration_of_analysis, 1),
                         attributes(Duration_of_analysis)$units
     )
 
-    pander::pander(AnDuration)
-    # cat(AnDuration, sep = "\n")
+    if (returnString==T) return(AnDuration) else  pander::pander(AnDuration)
 }

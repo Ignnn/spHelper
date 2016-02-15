@@ -2,29 +2,28 @@
 % Please edit documentation in R/whichOutlier.R
 \name{whichOutlier}
 \alias{whichOutlier}
-\title{[!] Find rows with outlier scores.}
+\title{[+] Find rows with outlier scores}
 \usage{
-whichOutlier(scores, zScore = 2)
+whichOutlier(scores, zLimit = 2)
 }
 \arguments{
 \item{scores}{Components' amplitudes (scores) as either a matrix or a
 \code{\link[=hyperSpec-class]{hyperSpec}} object.}
 
-\item{zScore}{A threshold for standardized values to be treated as outlier.
-If \code{-zScore < scale(scores)} or \code{scale(scores) >zScore}
-it is treated as an outlier.\cr
-Default \code{zScore = 2}.}
+\item{zLimit}{A threshold for standardized (autoscaled) values
+(i.e., \href{https://en.wikipedia.org/wiki/Standard_score}{z-scores})
+ to be treated as an outlier. If \code{(-zLimit) < scale(scores)} or
+       \code{scale(scores) > (+zLimit)} it is treated as an outlier.\cr
+      Default \code{zLimit = 2}.}
 }
 \value{
-Vector of indices indicating rows containing outliers.
+Vector of indices that indicate rows containing outliers.
 }
 \description{
-Find row numbers in scores matrix that contain outliers \cr\cr
-}
-\details{
-A row is treated as having an oultier if any
-\href{autoscaled}{http://wiki.eigenvector.com/index.php?title=Advanced_Preprocessing:_Variable_Scaling#Autoscale}
-value of that row is outside ±zScore (**grey** lines in figures below);
+Return indices of rows in scores matrix that contain outliers. A row is
+treated as having an oultier if any \href{http://wiki.eigenvector.com/
+index.php?title=Advanced_Preprocessing:_Variable_Scaling#Autoscale}{autoscaled}
+score in that row is not between \code{±zLimit}.
 }
 \examples{
 

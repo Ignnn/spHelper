@@ -6,7 +6,7 @@
 #'
 #' @template sp
 #' @param by by <- as.factor(by)
-#' @param FUN - ...
+#' @param FUN - function of summary statistic to apply.
 #' @param Title - ...
 #' @param All - plot additional statistic of all spectra
 #' @param fixed.colors - flag if color scheme where ".All" is plotted as

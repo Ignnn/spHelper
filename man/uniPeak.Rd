@@ -3,19 +3,24 @@
 \name{uniPeak}
 \alias{uniPeak}
 \alias{unipeak}
-\title{[!] Keep only the highest positive peak of a curve.
-
-Keep only the highest positive peak}
+\title{[+] Find and keep only the highest positive part of a curve.}
 \usage{
 uniPeak(y)
 
 unipeak(y)
 }
 \arguments{
-\item{y}{A vector}
+\item{y}{A vector that represents a curve.}
 }
 \value{
 Modified \code{y}
+}
+\description{
+Remove negative parts of a curve then find the highest positive
+part one and, lastly, remove all the remaining smaller ones. \cr\cr
+Can be used to treat loadings of principal componenst before
+using them as initial conditions for MCR-ALS algorythm (e.g.
+\code{\link[ALS]{als}}, \code{\link[alsace]{doALS}}).
 }
 \examples{
 #  Example 1 ------------------------------------------------------------------------

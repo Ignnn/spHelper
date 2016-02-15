@@ -2,7 +2,7 @@
 % Please edit documentation in R/nID_nSp.R
 \name{nID_nSp}
 \alias{nID_nSp}
-\title{[!] Calculate number and percentage of specimens and their spectra.}
+\title{[!] Count number and calculate percentage of specimens and their spectra.}
 \usage{
 nID_nSp(data, ID, gr)
 }

@@ -18,7 +18,7 @@ qplotStat(sp, by = stop("Argument 'by' is missing."),
 
 \item{by}{by <- as.factor(by)}
 
-\item{FUN}{- ...}
+\item{FUN}{- function of summary statistic to apply.}
 
 \item{Title}{- ...}
 

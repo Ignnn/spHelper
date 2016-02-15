@@ -1,5 +1,5 @@
 
-#' [!] Calculate number and percentage of specimens and their spectra.
+#' [!] Count number and calculate percentage of specimens and their spectra.
 #'
 #' Calculate number and percentage of specimens and their spectra. number(spectra) >= number(specimens)
 #'
@@ -30,7 +30,8 @@
 #'
 nID_nSp <- function(data, ID, gr){
 
-
+#     varName <- as.character(match.call()$ID)
+#     ID <- if (varName %in% colnames(data)) data[[,varName]] else ID
 
     percents <- function(TABLE) {paste0(round(prop.table(TABLE),3)*100,"%")}
 

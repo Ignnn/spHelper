@@ -2,31 +2,34 @@
 % Please edit documentation in R/GaussAmp.R
 \name{GaussAmp}
 \alias{GaussAmp}
-\title{Generate Gausian curve(s) (GaussAmp)}
+\title{[+] Generate Gaussian curves (GaussAmp).}
 \usage{
-GaussAmp(x, xc = 0, w = 1, A = 1, y0 = 0)
+GaussAmp(x, c = 0, w = 1, A = 1, y0 = 0)
 }
 \arguments{
-\item{x}{vector of x values}
+\item{x}{Values of an independent variable (a vector).}
 
-\item{xc}{vector with centers of Gaussian curves}
+\item{c}{Center positions on x axis of each Gaussian curve (a scalar or a vector).
+Default is 0.}
 
-\item{w}{vector with parameter w, which determines the width of Gaussian curves}
+\item{w}{Width of each curve (a scalar or a vector). Default is 1.}
 
-\item{A}{vector with Amplitudes of Gaussian curves}
+\item{A}{Amplitude of each curve (a scalar or a vector).
+Default is 1.}
 
-\item{y0}{vector with offsets on y axis}
+\item{y0}{Offsets on y axis (a scalar or a vector). Default is 0.}
 }
 \value{
-y values of Gaussian curve
+y - values of dependent variable of Gaussian curve.
 }
 \description{
-Generate Gausian curve(s) (GaussAmp)
+Generate Gaussian curves, according to the equation:\cr
+\deqn{y = y_0+A\mathrm{e}\frac{-(x-c)^2}{2w^2}}{y = y0 + A*exp(-(((x-c)^2)/(2*w^2)))}
 }
 \note{
-The number of curves is determined by maximal length of any of 4
-Gausian curve parameters' (xc, w, A, y0) vector. Other parameters are
-recycled as shown in example 2 (parameter "A")
+The number of curves is determined by maximal number of elements in
+ any of 4 Gausian curve parameters' (c, w, A, y0) vector. Values in other
+ parameters vectors are recycled as ilustrated in example 2 (see parameter "A").
 }
 \examples{
 # Example 1
@@ -40,7 +43,7 @@ plot(x,y, type = "l", col = "green3"); grid()
 require(hyperSpec)
 
 # Make 7 lines
-y <- GaussAmp(x, xc = 1:7,A = c(1,2))
+y <- GaussAmp(x, c = 1:7,A = c(1,2))
 
 dim(y)
 ##[1]   7 100

@@ -1,25 +1,25 @@
-#' [!] Find rows with outlier scores.
+#' [+] Find rows with outlier scores
 #'
-#' Find row numbers in scores matrix that contain outliers \cr\cr
-#'
-#' A row is treated as having an oultier if any
-#' \href{autoscaled}{http://wiki.eigenvector.com/index.php?title=Advanced_Preprocessing:_Variable_Scaling#Autoscale}
-#' value of that row is outside ±zScore (**grey** lines in figures below);
+#' Return indices of rows in scores matrix that contain outliers. A row is
+#' treated as having an oultier if any \href{http://wiki.eigenvector.com/
+#' index.php?title=Advanced_Preprocessing:_Variable_Scaling#Autoscale}{autoscaled}
+#' score in that row is not between \code{±zLimit}.
 #'
 #' @template scores
 #'
-#' @param zScore A threshold for standardized values to be treated as outlier.
-#'       If \code{-zScore < scale(scores)} or \code{scale(scores) >zScore}
-#'       it is treated as an outlier.\cr
-#'       Default \code{zScore = 2}.
+#' @param zLimit A threshold for standardized (autoscaled) values
+#' (i.e., \href{https://en.wikipedia.org/wiki/Standard_score}{z-scores})
+#'  to be treated as an outlier. If \code{(-zLimit) < scale(scores)} or
+#'        \code{scale(scores) > (+zLimit)} it is treated as an outlier.\cr
+#'       Default \code{zLimit = 2}.
 #'
-#' @return Vector of indices indicating rows containing outliers.
+#' @return Vector of indices that indicate rows containing outliers.
 #' @export
 #'
 #' @examples
 #'
-whichOutlier <- function(scores, zScore = 2) {
+whichOutlier <- function(scores, zLimit = 2) {
     SS <- scale(scores);
-    iOutlier <- which(apply({(SS < -zScore) | (SS > zScore)},1,any))
+    iOutlier <- which(apply({(SS < -zLimit) | (SS > zLimit)},1,any))
     return(iOutlier)
 }

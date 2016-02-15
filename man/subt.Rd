@@ -2,39 +2,72 @@
 % Please edit documentation in R/subt.R
 \name{subt}
 \alias{subt}
-\title{M<ake bold title and subtitle}
+\title{[+] Add bold title and subtitle to a plot}
 \usage{
 subt(Title = NULL, subTitle = NULL)
 }
 \arguments{
 \item{Title}{The first line of title, which will be in bold.}
 
-\item{subTitle}{The second line of title, which will have smaller
-font size and will be in italic.}
+\item{subTitle}{The second line of title, which will be smaller and
+and in italics.}
 }
 \value{
-Formated title
+Formated title.
 }
 \description{
-Make bold title with second line as subtitle. Function
-              uses \code{\link[base]{bquote}} and \code{\link[grDevices]{atop}}.
+Add bold title with second line in smaller font with subtitle.
+              Functions \code{\link[base]{bquote}} and
+               \code{\link[grDevices]{atop}} are used to achieve
+               this effect.
+}
+\section{Warning!}{
+
+
+May not work with plotting functions from package \pkg{hyperSpec}.
 }
 \examples{
 
-identical(subt("Cars"), withSubTitle("Cars"))
-## TRUE
+subt("Cars")
+## bold("Cars")
+
+subt("Cars","Distance vs. speed")
+## atop(bold("Cars"), atop(italic("Distance vs. speed")))
+
+# ----------------------------------------------------------------
 
 plot(cars[,1:2], main = "Cars")
-plot(cars[,1:2], main = subt("Cars")) # the same as previous line
+plot(cars[,1:2], main = subt("Cars")) # the same as in previous line
 plot(cars[,1:2], main = subt("Cars","Distance vs. speed"))
 plot(cars[,1:2], main = subt(subTitle = "Distance vs. speed"))
 
+# ----------------------------------------------------------------
 
 library(ggplot2)
-qplot(mpg, wt, data=mtcars) + ggtitle("Cars") # non-bold title
-qplot(mpg, wt, data=mtcars) + ggtitle(subt("Cars")) # bold title
-qplot(mpg, wt, data=mtcars) + ggtitle(subt("Cars","Distance vs. speed"))
-qplot(mpg, wt, data=mtcars) + ggtitle(subt(subTitle = "Distance vs. speed"))
 
+g <- qplot(mpg, wt, data=mtcars)
+g + ggtitle("Cars") # non-bold title
+g + ggtitle(subt("Cars")) # bold title
+g + ggtitle(subt("Cars","Distance vs. speed"))
+g + ggtitle(subt(subTitle = "Distance vs. speed"))
+
+
+# ----------------------------------------------------------------
+
+library(lattice)
+
+xyplot(eruptions~waiting, data = faithful)
+
+xyplot(eruptions~waiting, data = faithful,
+ main = "Old Faithful Geyser Data")
+
+xyplot(eruptions~waiting, data = faithful,
+ main = subt("Old Faithful Geyser Data"))
+
+xyplot(eruptions~waiting, data = faithful,
+ main = subt("Old Faithful Geyser", "Data"))
+
+xyplot(eruptions~waiting, data = faithful,
+ main = subt(subTitle = "Old Faithful Geyser Data"))
 }
 

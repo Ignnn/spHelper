@@ -4,11 +4,15 @@
 #' @aliases uniPeak
 #' @aliases unipeak
 #'
-#' @title [!] Keep only the highest positive peak of a curve.
+#' @title [+] Find and keep only the highest positive part of a curve.
 #'
-#' Keep only the highest positive peak
+#' @description Remove negative parts of a curve then find the highest positive
+#' part one and, lastly, remove all the remaining smaller ones. \cr\cr
+#' Can be used to treat loadings of principal componenst before
+#' using them as initial conditions for MCR-ALS algorythm (e.g.
+#' \code{\link[ALS]{als}}, \code{\link[alsace]{doALS}}).
 #'
-#' @param y A vector
+#' @param y A vector that represents a curve.
 #'
 #' @return Modified \code{y}
 #' @export

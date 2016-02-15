@@ -2,28 +2,55 @@
 % Please edit documentation in R/printDuration.R
 \name{printDuration}
 \alias{printDuration}
-\title{Print duration (difference of time)}
+\title{[+] Evaluate how much time passed}
 \usage{
-printDuration(StartAt, Message = "Duration of analysis:")
+printDuration(Start, Message = "Duration of analysis:",
+  returnString = FALSE)
 }
 \arguments{
-\item{StartAt}{Time, when period of time started
-(usually generated with \code{Sys.time()})}
+\item{Start}{Moment of time which is treated as a beggining (object of class
+\code{\link[=POSIXct-class]{POSIXct}}).}
 
-\item{Message}{Message before time stamp. Default is
+\item{Message}{Message before time stamp that describes it. Default is
 \code{"Duration of analysis:"}}
+
+\item{returnString}{If \code{TRUE}, returns result as a string.
+If \code{FALSE} (default), function \code{\link[pander]{pander}} prints the
+result.}
 }
 \value{
-Text with time duration printed in console.
+Text indicating how much time has passed (either printed in console or as a string).
 }
 \description{
-Print duration (difference of time)
+Evaluate and print difference between moment of time at which time
+interval began (usually captured by function \code{\link[base]{Sys.time}} some time ago) and
+the present (i.e., moment when function \code{printDuration} is called).
 }
 \examples{
-StartAt <-  Sys.time()
+Start <-  Sys.time()
 
-printDuration(StartAt)
-printDuration(StartAt,"From start till now")
+Start
+## [1] "2016-02-12 16:15:09 UTC"
 
+class(Start)
+## [1] "POSIXct" "POSIXt"
+
+printDuration(Start)
+## Duration of analysis: 23.3 secs
+
+printDuration(Start,"From start till now")
+## From start till now 39.2 secs
+
+my_duration <- printDuration(Start)
+my_duration
+## NULL
+
+my_duration <- printDuration(Start, returnString = TRUE)
+my_duration
+## Duration of analysis: 2.4 mins
+
+}
+\seealso{
+\code{\link[base]{difftime}}
 }
 
