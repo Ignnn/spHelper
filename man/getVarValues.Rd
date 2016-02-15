@@ -4,27 +4,39 @@
 \alias{getVarValues}
 \title{[!] Parse a call of a function and return approriate values for a variable.}
 \usage{
-getVarValues(variable, data, CALL, env = parent.frame())
+getVarValues(VAR, DATA, CALL)
 }
 \arguments{
-\item{variable}{A name of a variable (with or without quotes).}
+\item{VAR}{A name of a variable (with or without quotes).}
 
-\item{data}{A name of a data frame (with or without quotes).}
+\item{DATA}{A name of a data frame (with or without quotes).}
 
 \item{CALL}{(\code{\link[=call-class]{Call}}) to be parsed.}
-
-\item{env}{Envoronmen to search for "free" variables in.}
-}
-\value{
-#' @export
 }
 \description{
-Parse dataframe \code{data}, variable \code{variable} and a call
+Parse dataframe \code{DATA}, variable \code{VAR} and a call
 \code{CALL} of a function and return approriate values of the
-\code{variable}. \cr If possible, return \code{data[,variable]} \cr
-Otherwise return \code{variable}.
+\code{VAR}. \cr If possible, return \code{DATA[,VAR]} \cr
+Otherwise return \code{VAR}.
 }
 \examples{
+# Data
+df       <- mtcars[,c("cyl","gear")]
+variable <- c("???","???")
+#  ------------------------------------------------------------------------
+f1 <- function(data, v1, v2){
+    CALL <- match.call()
+    out  <- getVarValues(v1, data, CALL) # <<< function `getVarValues`
+    return(out)
+}
+
+# Returns values of variable in data frame `df`:
+f1(df, cyl)
+f1(df, gear)
+
+# Returns values of "free" variable
+# (i.e., values of variable in caller function's environment):
+f1(df, variable)
 
 # A Data frame
    df <- data.frame(A = "Values A (DATA.FRAME)",
@@ -35,7 +47,7 @@ Otherwise return \code{variable}.
    B <- "Values of the vector 'B'"
 
 
-# A Call object `CALL`:
+# A call object `CALL`:
 
 fun  <- function(data, gr, ID) match.call()
 CALL <- fun(df, A, B)
@@ -44,21 +56,22 @@ CALL
 
 # Possible outputs -----------------------------------------------------------------------
 
-getVarValues(variable = gr, data = df, CALL = CALL)
+getVarValues(VAR = gr, DATA = df, CALL = CALL)
+## [1] Values A (DATA.FRAME)
+
+getVarValues(gr, df, CALL)
 ## [1] Values A (DATA.FRAME)
 
 getVarValues(A, df, CALL)
-## "Values of the vector 'A'"
+## [1] "Values of the vector 'A'"
 
 getVarValues(B, df, CALL)
-##
+## [1] "Values of the vector 'B'"
 
-getVarValues(gr, df, CALL)
-## Values A (DATA.FRAME)
 
 # UNEXPECTED results -----------------------------------------------------------------------
 
-getVarValues(ID, df, CALL) # `ID` is neither in `df`, nor in environment `env`
+getVarValues(ID, df, CALL) # ??? `ID` found only in function's `fun` definition.
 ## NULL
 
 getVarValues(G, df, CALL) # ERROR, as variable G does not exist.

@@ -4,16 +4,17 @@
 \alias{createFolds_strat}
 \alias{createFolds_stratified}
 \alias{stratifiedFolds}
-\title{[!] Block observations and Create stratified folds for k-fold cross-validation.}
+\title{[~] Block observations and Create stratified folds for k-fold cross-validation.}
 \usage{
-stratifiedFolds(data, gr, ID, k = 5, returnTrain = TRUE)
+stratifiedFolds(data = NULL, gr = NULL, ID = NULL, k = 5,
+  returnTrain = TRUE)
 
 createFolds_stratified(ID = NULL, gr = NULL, k = 5, returnTrain = TRUE)
 
 createFolds_strat(gr = NULL, ID = NULL, k = 5, returnTrain = TRUE)
 }
 \arguments{
-\item{data}{A data frame, that contains variables \code{ID} and \code{gr}.}
+\item{data}{A data frame, that contains variables denoted by \code{ID} and by \code{gr}.}
 
 \item{gr}{A vector or a name of factor variable in {data}, which levels
 will be used for stratification. E.g., vector with medical groups.}
@@ -21,9 +22,9 @@ will be used for stratification. E.g., vector with medical groups.}
 \item{ID}{A vector or a name of variable in {data}, that contains
 identification codes/numbers (ID).}
 
-\item{k}{A number of folds, default k = 5}
+\item{k}{A number of folds, default k = 5.}
 
-\item{returnTrain}{If \code{TRUE}, returns indices of variables in training
+\item{returnTrain}{Logical. If \code{TRUE}, returns indices of variables in training
 set. If \code{FALSE}, returns indices of variables in
 test set.}
 }
@@ -37,7 +38,7 @@ Function devides observations into folds that are used for k-fold cross-validati
 these folds observations are:
 \enumerate{
      \item \bold{blocked} by values in variable \code{ID} (i.e. observations
-       with the same "ID" are treated as one unit and are always in the same fold) and
+       with the same "ID" are treated as one unit and are always in the same fold)
      \item \bold{stratified} by levels of factor variable \code{gr} (the proportions of
      these grouped units of observations per each group (level) are kept aproximately
      constant throughout all folds).
@@ -50,19 +51,43 @@ If \code{k} is such big, that some folds have no observations of a certain group
 }
 \examples{
 
+TestFolds <- function(Folds)lapply(Folds, function(x)table(df[x,"gr"]))
+
+
 # Make data with 20 different ID's and 4 different groups:
-   df <- data.frame(ID = gl(n = 20, k = 2),
-                    gr = gl(n = 4, labels = LETTERS[1:4], k = 10)
-                    )
+   df <- data.frame(gr = gl(n = 4, labels = LETTERS[1:4], k = 10),
+                    ID = gl(n = 20, k = 2))
 
-  df
+   table(df)
+   summary(df)
 
-   nFolds = 5
+   nFolds = 4
 
-   Folds1_a <- stratifiedFolds(df, gr, ID, nFolds)
-   Folds1_b <- stratifiedFolds(gr = df$ID, gr = df$gr, nFolds)
+# If variables of data frame are provided:
+   Folds1_a <- stratifiedFolds(df, gr, ID, nFolds, returnTrain=FALSE)
+   str(Folds1_a)
+   TestFolds(Folds1_a)
+   as.data.frame(TestFolds(Folds1_a)) # <------- this line needs further developement
 
+# If "free" variables are provided:
+   Folds1_b <- stratifiedFolds(gr = df$gr, ID = df$ID, k=nFolds, returnTrain=FALSE)
+   str(Folds1_b)
+   TestFolds(Folds1_b)
+
+# Blocked but not stratified
+   Folds1_c <- stratifiedFolds(ID = df$ID, k=nFolds, returnTrain=FALSE)
+   str(Folds1_c)
+   TestFolds(Folds1_c)
+
+# Not blocked but stratified  ---- ERROR
+   Folds1_d <- stratifiedFolds(gr = df$gr, k=nFolds, returnTrain=FALSE)
+   str(Folds1_d)
+   TestFolds(Folds1_d)
+
+ #  ---- ERROR
    Folds2 <- createFolds_stratified(df$ID, df$gr, nFolds)
+
+ #  ---- ERROR
    Folds3 <- createFolds_strat(df$gr, df$ID, nFolds)
 
 }

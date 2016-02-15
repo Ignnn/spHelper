@@ -5,7 +5,7 @@
 #' @aliases createFolds_stratified
 #' @aliases createFolds_strat
 #'
-#' @title [!] Block observations and Create stratified folds for k-fold cross-validation.
+#' @title [~] Block observations and Create stratified folds for k-fold cross-validation.
 #'
 #'
 #' @description
@@ -13,7 +13,7 @@
 #' these folds observations are:
 #' \enumerate{
 #'      \item \bold{blocked} by values in variable \code{ID} (i.e. observations
-#'        with the same "ID" are treated as one unit and are always in the same fold) and
+#'        with the same "ID" are treated as one unit and are always in the same fold)
 #'      \item \bold{stratified} by levels of factor variable \code{gr} (the proportions of
 #'      these grouped units of observations per each group (level) are kept aproximately
 #'      constant throughout all folds).
@@ -23,7 +23,7 @@
 #'       (i.e. level in \code{gr}), an error is returned. In that case smaller value of
 #'        \code{k} is recommended.
 #'
-#' @param data A data frame, that contains variables \code{ID} and \code{gr}.
+#' @param data A data frame, that contains variables denoted by \code{ID} and by \code{gr}.
 #'
 #' @param gr A vector or a name of factor variable in {data}, which levels
 #'                 will be used for stratification. E.g., vector with medical groups.
@@ -31,9 +31,9 @@
 #' @param ID A vector or a name of variable in {data}, that contains
 #'       identification codes/numbers (ID).
 #'
-#' @param k A number of folds, default k = 5
+#' @param k A number of folds, default k = 5.
 #'
-#' @param returnTrain If \code{TRUE}, returns indices of variables in training
+#' @param returnTrain Logical. If \code{TRUE}, returns indices of variables in training
 #'                    set. If \code{FALSE}, returns indices of variables in
 #'                    test set.
 #'
@@ -45,53 +45,62 @@
 #'
 #' @examples
 #'
+#' TestFolds <- function(Folds)lapply(Folds, function(x)table(df[x,"gr"]))
+#'
+#'
 #' # Make data with 20 different ID's and 4 different groups:
-#'    df <- data.frame(ID = gl(n = 20, k = 2),
-#'                     gr = gl(n = 4, labels = LETTERS[1:4], k = 10)
-#'                     )
+#'    df <- data.frame(gr = gl(n = 4, labels = LETTERS[1:4], k = 10),
+#'                     ID = gl(n = 20, k = 2))
 #'
-#'   df
+#'    table(df)
+#'    summary(df)
 #'
-#'    nFolds = 5
+#'    nFolds = 4
 #'
-#'    Folds1_a <- stratifiedFolds(df, gr, ID, nFolds)
-#'    Folds1_b <- stratifiedFolds(gr = df$ID, gr = df$gr, nFolds)
+#' # If variables of data frame are provided:
+#'    Folds1_a <- stratifiedFolds(df, gr, ID, nFolds, returnTrain=FALSE)
+#'    str(Folds1_a)
+#'    TestFolds(Folds1_a)
+#'    as.data.frame(TestFolds(Folds1_a)) # <------- this line needs further developement
 #'
+#' # If "free" variables are provided:
+#'    Folds1_b <- stratifiedFolds(gr = df$gr, ID = df$ID, k=nFolds, returnTrain=FALSE)
+#'    str(Folds1_b)
+#'    TestFolds(Folds1_b)
+#'
+#' # Blocked but not stratified
+#'    Folds1_c <- stratifiedFolds(ID = df$ID, k=nFolds, returnTrain=FALSE)
+#'    str(Folds1_c)
+#'    TestFolds(Folds1_c)
+#'
+#' # Not blocked but stratified  ---- ERROR
+#'    Folds1_d <- stratifiedFolds(gr = df$gr, k=nFolds, returnTrain=FALSE)
+#'    str(Folds1_d)
+#'    TestFolds(Folds1_d)
+#'
+#'  #  ---- ERROR
 #'    Folds2 <- createFolds_stratified(df$ID, df$gr, nFolds)
+#'
+#'  #  ---- ERROR
 #'    Folds3 <- createFolds_strat(df$gr, df$ID, nFolds)
 #'
 #' @export
 #'
-stratifiedFolds <- function(data, gr, ID, k = 5, returnTrain = TRUE)
+stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TRUE)
 {
     nFolds <- k
-
-    # data <- data[,c("ID","gr")]
     CALL <- match.call()
     if (!is.null(CALL$data)){ # if `data` is provided:
-        # -------------------------------------------------------------
-        varName1 <- CALL$ID
-         if(!is.null(varName1)) {
-            varName1 <- as.character(varName1)
-            ID <- if (varName1 %in% colnames(data)) {data[,varName1]} else ID
-        }
-        # ID <- getVarValues(ID, data, CALL)
-        # -------------------------------------------------------------
-
-        varName2 <- CALL$gr
-        if(!is.null(varName2))  {
-            varName2 <- as.character(varName2)
-            gr <- if (varName2 %in% colnames(data)) data[,varName2] else gr
-        }
-        # gr <- getVarValues(gr, data, CALL)
-        # -------------------------------------------------------------
+        ID <- getVarValues(ID, data, CALL)
+        gr <- getVarValues(gr, data, CALL)
     }
+
+    if (is.null(ID) & length(gr) > 1) ID <- rep(0,length(gr))
+    if (is.null(gr) & length(ID) > 1) gr <- rep(0,length(ID))
+
     if (length(ID)!=length(gr)) stop("Length of `ID` and `gr` must agree.")
-
-
+   # -----------------------------------------------------------------------
     data <- data.frame(ID = ID, gr = gr)
-
-
 
     # get unique values only
     df <- unique(data)
@@ -129,8 +138,7 @@ stratifiedFolds <- function(data, gr, ID, k = 5, returnTrain = TRUE)
 
     Test_ind <- split(data$Test_ind, data$Fold)
 
-    if (returnTrain == FALSE)
-    {
+    if (returnTrain == FALSE){
         return(Test_ind)
     }
     else {
