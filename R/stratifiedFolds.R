@@ -3,10 +3,7 @@
 #' @name stratifiedFolds
 #'
 #' @aliases stratifiedFolds
-#' @aliases createStratFolds
-#'
-#' @aliases createFolds_stratified
-#' @aliases createFolds_strat
+#' @aliases createFolds2
 #'
 #' @title [~] Block observations and Create stratified folds for k-fold cross-validation.
 #'
@@ -24,7 +21,8 @@
 #'
 #' @note If \code{k} is such big, that some folds have no observations of a certain group
 #'       (i.e. level in \code{gr}), an error is returned. In that case smaller value of
-#'        \code{k} is recommended.
+#'        \code{k} is recommended. \cr \cr
+#'         \code{createFolds2} is a wrapper of \code{stratifiedFolds}.
 #'
 #' @param data A data frame, that contains variables denoted by \code{ID} and by \code{gr}.
 #'
@@ -48,56 +46,44 @@
 #' @export
 #' @examples
 #'
-#' TestFolds <- function(Folds, DataSet) {
-#'   fun <- function(x)table(DataSet[x,"gr"])
-#'   l   <- lapply(Folds, fun)
-#'   rez <- do.call("rbind", l)
-#'   bru("*"); cat("Number of observations per class in each fold:\n\n")
-#'   print(rez);bru("*")
-#' }
+#' # Load data
+#' data("DataSet1")
 #'
+#' # Explore data
+#' str(DataSet1)
+#' table(DataSet1[,c("gr","ID")])
+#' summary(DataSet1)
 #'
-#' # Make data with 20 different ID's and 4 different groups:
-#'    DataSet <- data.frame(gr = gl(n = 4, labels = LETTERS[1:4], k = 10),
-#'                          ID = gl(n = 20, k = 2))
-#'
-#'    table(DataSet)
-#'    summary(DataSet)
-#'
-#'    nFolds = 5
+#' # Explore functions
+#' nFolds = 5
 #'
 #' # If variables of data frame are provided:
-#'    Folds1_a <- stratifiedFolds(data = DataSet, gr = gr, ID = ID, nFolds, returnTrain=FALSE)
-#'    str(Folds1_a)
-#'    TestFolds(Folds1_a, DataSet)
+#' Folds1_a <- stratifiedFolds(data = DataSet1, gr = gr, ID = ID, nFolds, returnTrain=FALSE)
+#' # str(Folds1_a)
+#' TestFolds(Folds1_a, DataSet1)
 #'
 #' # If "free" variables are provided:
-#'    Folds1_b <- stratifiedFolds(gr = DataSet$gr, ID = DataSet$ID, k=nFolds, returnTrain=FALSE)
-#'    str(Folds1_b)
-#'    TestFolds(Folds1_b, DataSet)
-#'
-#' # Blocked but not stratified
-#'    Folds1_c <- stratifiedFolds(ID = DataSet$ID, k=nFolds, returnTrain=FALSE)
-#'    str(Folds1_c)
-#'    TestFolds(Folds1_c, DataSet)
+#' Folds1_b <- stratifiedFolds(gr = DataSet1$gr, ID = DataSet1$ID, k=nFolds, returnTrain=FALSE)
+#' # str(Folds1_b)
+#' TestFolds(Folds1_b, DataSet1)
 #'
 #' # Not blocked but stratified
-#'    Folds1_d <- stratifiedFolds(gr = DataSet$gr, k=nFolds, returnTrain=FALSE)
-#'    str(Folds1_d)
-#'    TestFolds(Folds1_d, DataSet)
+#' Folds1_c <- stratifiedFolds(gr = DataSet1$gr, k=nFolds, returnTrain=FALSE)
+#' # str(Folds1_c)
+#' TestFolds(Folds1_c, DataSet1)
 #'
-#'  #  `createFolds_stratified`
-#'    Folds2 <- createFolds_stratified(DataSet$ID, DataSet$gr, nFolds)
 #'
-#'  #  `createFolds_strat`
-#'    Folds3 <- createFolds_strat(DataSet$gr, DataSet$ID, nFolds)
+#' # Blocked but not stratified
+#' Folds1_d <- stratifiedFolds(ID = DataSet1$ID, k=nFolds, returnTrain=FALSE)
+#' # str(Folds1_d)
+#' TestFolds(Folds1_d, DataSet1)
 #'
 #'
 stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TRUE)
 {
     nFolds <- k
 
-    # Prepare data ==========================================================
+    # Parse input and prepare data ===========================================
     CALL <- match.call()
     if (!is.null(CALL$data)){ # if `data` is provided:
         ID <- getVarValues(ID, data, CALL)
@@ -109,7 +95,7 @@ stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TR
     # -----------------------------------------------------------------------
     if (length(ID)!=length(gr)) stop("Length of `ID` and `gr` must agree.")
     # -----------------------------------------------------------------------
-    print(data <- data.frame(ID = ID, gr = gr)) # <<<<<<<<<<<<<<<<<
+    data <- data.frame(ID = ID, gr = gr)
 
     # get unique values only
     df <- unique(data)
@@ -120,10 +106,6 @@ stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TR
 
     df_ByGr      <- split(df, df$gr)
     n_ByGr       <- sapply(df_ByGr, nrow)     # unique IDs per class
-# #     nInFold_ByGr <- ceiling(n_ByGr / nFolds)
-#
-#     modul_ByGr  <- n_ByGr %/% nFolds # modulus In Fold by group (_ByGr)
-#     rem_ByGr    <- n_ByGr %% nFolds  # reminder In Fold by group (_ByGr)
 
     # If Number of observatuions in a group is to small
     if (any(n_ByGr < nFolds)){
@@ -137,9 +119,9 @@ stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TR
     for (gr_i in 1:nGr){
         GrSize     <-  n_ByGr[gr_i]
         TimesEach  <-  GrSize %/% nFolds  # modulus - how many times observations are devided
-                                        #           proportionally to each fold.
+                                          #           proportionally to each fold.
 
-        nRem   <-  GrSize %%  nFolds  # reminder - number of observations, that cannot
+        nRem   <-  GrSize %%  nFolds    # reminder - number of observations, that cannot
                                         # be devided proportionally.
 
         # Separate permutations ensures more proportional distribution when
@@ -153,10 +135,8 @@ stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TR
 
         df_ByGr[[gr_i]]$Fold = paste0("Fold", BelongsToFoldNr)
     }
-    # unsplit the dataframe: NA's removed
-    #
-    print(df_ByGr)  # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+    # unsplit the dataframe: NA's removed
     df <- unsplit(df_ByGr, df$gr[!is.na(df$gr)])
 
     data    <- merge(data, df, sort = FALSE)
@@ -184,21 +164,7 @@ stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TR
 #================================================================================
 #' @rdname stratifiedFolds
 #' @export
-createStratifiedFolds <- function(...,k = 5){
+createFolds2 <- function(...,k = 5){
     stratifiedFolds(..., k = k)
 }
 #================================================================================
-#' @rdname stratifiedFolds
-#' @export
-createFolds_stratified <- function(ID = NULL, gr = NULL, ...){
-    stratifiedFolds(ID = ID, gr = gr, ...)
-}
-#================================================================================
-#' @rdname stratifiedFolds
-#' @export
-createFolds_strat <- function(gr = NULL, ID = NULL, ...){
-    stratifiedFolds(ID = ID, gr = gr, ...)
-}
-#================================================================================
-
-

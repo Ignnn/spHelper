@@ -1,14 +1,23 @@
 
-#' [TMP] Test if data in folds is stratified and blocked.
+#' [+] Evaluate if data in folds is stratified and blocked
 #'
-#' @param FoldsOBJ list with indices in folds.
-#' @param DATA A data set, for wich \code(FoldsOBJ) was created.
+#' Evaluate if data in folds is stratified and blocked.
+#'
+#' @param FoldsOBJ A list with validation/test set indices in folds.
+#' @param DATA A data set, for wich \code{FoldsOBJ} was created.
 #' @param stratBy A name of variable used for stratification.
 #' @param blockBy A name of variable used for blocking.
 #'
-#' @return Print tables to evaluate if data is (A) stratified, (B) blocked.
+#' @return Print tables that help to evaluate if data is \strong{(A)} stratified,
+#'  \strong{(B)} blocked.
+#' @seealso \code{\link{stratifiedFolds}}
 #' @export
-
+#'
+#' @examples
+#' data(DataSet1)
+#' FoldsObj <- stratifiedFolds(data = DataSet1, gr = gr, ID = ID, returnTrain=FALSE)
+#' TestFolds(FoldsObj, DataSet1)
+#'
 TestFolds <- function(FoldsOBJ, DATA, stratBy = "gr", blockBy = "ID") {
     # Calculate:
     funS <- function(x)table(DATA[x, stratBy])

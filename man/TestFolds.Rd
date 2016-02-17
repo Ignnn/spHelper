@@ -2,23 +2,33 @@
 % Please edit documentation in R/TestFolds.R
 \name{TestFolds}
 \alias{TestFolds}
-\title{[TMP] Test if data in folds is stratified and blocked.}
+\title{[+] Evaluate if data in folds is stratified and blocked}
 \usage{
 TestFolds(FoldsOBJ, DATA, stratBy = "gr", blockBy = "ID")
 }
 \arguments{
-\item{FoldsOBJ}{list with indices in folds.}
+\item{FoldsOBJ}{A list with validation/test set indices in folds.}
 
-\item{DATA}{A data set, for wich \code(FoldsOBJ) was created.}
+\item{DATA}{A data set, for wich \code{FoldsOBJ} was created.}
 
 \item{stratBy}{A name of variable used for stratification.}
 
 \item{blockBy}{A name of variable used for blocking.}
 }
 \value{
-Print tables to evaluate if data is (A) stratified, (B) blocked.
+Print tables that help to evaluate if data is \strong{(A)} stratified,
+ \strong{(B)} blocked.
 }
 \description{
-[TMP] Test if data in folds is stratified and blocked.
+Evaluate if data in folds is stratified and blocked.
+}
+\examples{
+data(DataSet1)
+FoldsObj <- stratifiedFolds(data = DataSet1, gr = gr, ID = ID, returnTrain=FALSE)
+TestFolds(FoldsObj, DataSet1)
+
+}
+\seealso{
+\code{\link{stratifiedFolds}}
 }
 
