@@ -20,10 +20,13 @@
 #' @export
 #'
 #' @examples
+#' data(DataSet1)
 #'
 #' nID_nSp(DataSet1, ID, gr)
-#' nID_nObs(DataSet1, ID, gr)
 #' pander::pander(nID_nSp(DataSet1, ID, gr))
+#'
+#' nID_nObs(DataSet1, ID, gr)
+#' pander::pander(nID_nObs(DataSet1, ID, gr))
 #'
 #' # For hyperSpec object
 #' nID_nSp(Spectra$.., ID, gr)
@@ -54,18 +57,21 @@ nID_nSp <- function(data, ID, gr,
 
     tbl <- rbind(nID, percents(nID),  nSp, percents(nSp))
 
-    rownames(tbl) <- c(paste("Number of", ID_name),
-                       paste("Percentage of", ID_name),
+    rownames(tbl) <- c(paste("Number of", ID_text),
+                       paste("Percentage of", ID_text),
                        paste("Number of", observation_text),
                        paste("Percentage of", observation_text)
                        )
     return(tbl)
 }
 
+#  ------------------------------------------------------------------------
+
 #' @rdname nID_nSp
 #' @export
-
-nID_nObs <- function(..., ID_text = "unique ID",
+nID_nObs <- function(data = NULL, ID, gr, ID_text = "unique IDs",
                      observation_text = "observations"){
-    nID_nSp(..., ID_text = ID_text,  observation_text = observation_text)
+    nID_nSp(data = data, ID =ID, gr=gr,
+            ID_text = ID_text,
+            observation_text = observation_text)
 }
