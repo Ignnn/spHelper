@@ -3,15 +3,18 @@
 \name{stratifiedFolds}
 \alias{createFolds_strat}
 \alias{createFolds_stratified}
+\alias{createStratifiedFolds}
 \alias{stratifiedFolds}
 \title{[~] Block observations and Create stratified folds for k-fold cross-validation.}
 \usage{
 stratifiedFolds(data = NULL, gr = NULL, ID = NULL, k = 5,
   returnTrain = TRUE)
 
-createFolds_stratified(ID = NULL, gr = NULL, k = 5, returnTrain = TRUE)
+createStratifiedFolds(..., k = 5)
 
-createFolds_strat(gr = NULL, ID = NULL, k = 5, returnTrain = TRUE)
+createFolds_stratified(ID = NULL, gr = NULL, ...)
+
+createFolds_strat(gr = NULL, ID = NULL, ...)
 }
 \arguments{
 \item{data}{A data frame, that contains variables denoted by \code{ID} and by \code{gr}.}
@@ -51,44 +54,50 @@ If \code{k} is such big, that some folds have no observations of a certain group
 }
 \examples{
 
-TestFolds <- function(Folds)lapply(Folds, function(x)table(df[x,"gr"]))
+TestFolds <- function(Folds, DataSet) {
+  fun <- function(x)table(DataSet[x,"gr"])
+  l   <- lapply(Folds, fun)
+  rez <- do.call("rbind", l)
+  bru("*"); cat("Number of observations per class in each fold:\\n\\n")
+  print(rez);bru("*")
+}
 
 
 # Make data with 20 different ID's and 4 different groups:
-   df <- data.frame(gr = gl(n = 4, labels = LETTERS[1:4], k = 10),
-                    ID = gl(n = 20, k = 2))
+   DataSet <- data.frame(gr = gl(n = 4, labels = LETTERS[1:4], k = 10),
+                         ID = gl(n = 20, k = 2))
 
-   table(df)
-   summary(df)
+   table(DataSet)
+   summary(DataSet)
 
-   nFolds = 4
+   nFolds = 5
 
 # If variables of data frame are provided:
-   Folds1_a <- stratifiedFolds(df, gr, ID, nFolds, returnTrain=FALSE)
+   Folds1_a <- stratifiedFolds(data = DataSet, gr = gr, ID = ID, nFolds, returnTrain=FALSE)
    str(Folds1_a)
-   TestFolds(Folds1_a)
-   as.data.frame(TestFolds(Folds1_a)) # <------- this line needs further developement
+   TestFolds(Folds1_a, DataSet)
 
 # If "free" variables are provided:
-   Folds1_b <- stratifiedFolds(gr = df$gr, ID = df$ID, k=nFolds, returnTrain=FALSE)
+   Folds1_b <- stratifiedFolds(gr = DataSet$gr, ID = DataSet$ID, k=nFolds, returnTrain=FALSE)
    str(Folds1_b)
-   TestFolds(Folds1_b)
+   TestFolds(Folds1_b, DataSet)
 
 # Blocked but not stratified
-   Folds1_c <- stratifiedFolds(ID = df$ID, k=nFolds, returnTrain=FALSE)
+   Folds1_c <- stratifiedFolds(ID = DataSet$ID, k=nFolds, returnTrain=FALSE)
    str(Folds1_c)
-   TestFolds(Folds1_c)
+   TestFolds(Folds1_c, DataSet)
 
-# Not blocked but stratified  ---- ERROR
-   Folds1_d <- stratifiedFolds(gr = df$gr, k=nFolds, returnTrain=FALSE)
+# Not blocked but stratified
+   Folds1_d <- stratifiedFolds(gr = DataSet$gr, k=nFolds, returnTrain=FALSE)
    str(Folds1_d)
-   TestFolds(Folds1_d)
+   TestFolds(Folds1_d, DataSet)
 
- #  ---- ERROR
-   Folds2 <- createFolds_stratified(df$ID, df$gr, nFolds)
+ #  `createFolds_stratified`
+   Folds2 <- createFolds_stratified(DataSet$ID, DataSet$gr, nFolds)
 
- #  ---- ERROR
-   Folds3 <- createFolds_strat(df$gr, df$ID, nFolds)
+ #  `createFolds_strat`
+   Folds3 <- createFolds_strat(DataSet$gr, DataSet$ID, nFolds)
+
 
 }
 
