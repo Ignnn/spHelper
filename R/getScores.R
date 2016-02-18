@@ -18,6 +18,8 @@
 #' @param yLabel - label that will be used for plotting y axis
 #'        \code{labels(scores,"spc") <- yLabel}
 #'
+#' @param  scores Known scores (do not need to calculate.)
+#'
 #' @return scores - amplitudes of the components (scores)
 #' @examples
 #' # e.g.:
@@ -32,26 +34,28 @@
 #'
 getScores <- function(sp, loadings,
                       xLabel = "Component",
-                      yLabel = "Amplitude")
+                      yLabel = "Amplitude",
+                      scores = NULL)
 {
     y2 <- hy2mat(sp)
-    loadings2 <- hy2mat(loadings)
 
+    loadings2 <- hy2mat(loadings)
     if (dim(y2)[2] == dim(loadings2)[2])   loadings2 <- t(loadings2)
 
-    scores <- y2 %*% (loadings2 %*% solve(crossprod(loadings2)))
+
+    if (is.null(scores))  scores <- y2 %*% (loadings2 %*% solve(crossprod(loadings2)))
 
     if (class(sp) == "hyperSpec"){
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        # Komponentų amplitudes (išrikiuotas) paverčiam į "HyperSpec"" objektą
+        # Komponentų amplitudes (išrikiuotas) paverčiam į "hyperSpec"" objektą
 
         scores <- decomposition(sp, scores,
-                                label.wavelength = "Komponentai",
-                                label.spc = "Amplitudė, a.u.")
+                                label.wavelength = "Components",
+                                label.spc = "Amplitude, a.u.")
         # Suteikiam pavadinimus
         if("kNames" %in% colnames(loadings)){
             kNames <- gsub("max: ","k_", loadings$kNames)
-        }else {kNames <- paste0("Nr", 1:min(dim(loadings2)))}
+        }else {kNames <- paste0("No", 1:min(dim(loadings2)))}
 
         colnames(scores$spc) <- kNames
 

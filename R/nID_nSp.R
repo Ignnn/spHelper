@@ -13,8 +13,11 @@
 #' @param ID Either a varable or a variable name in \code{data} with vector of speciment IDs.
 #' @param gr Either a varable or a variable name in \code{data} with vector of speciment groups.
 #'
+#' @param ID_text A title for unique IDs, that apear in the table.
+#' @param observation_text A title for observations, that apear in the table.
+#'
 #' @param decimals A number of maximum decimal places in percentages.
-#'  This parameter is passed to function \code{\link[base]{round}}.
+#'  This parameter is passed to function \code{\link[base]{round}}. Default is 0.
 #'
 #' @return Table (data frame) with count and percentages.
 #' @export

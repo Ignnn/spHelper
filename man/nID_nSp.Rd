@@ -8,7 +8,8 @@
 nID_nSp(data, ID, gr, ID_text = "medical specimens",
   observation_text = "spectra", decimals = 0)
 
-nID_nObs(..., ID_text = "unique ID", observation_text = "observations")
+nID_nObs(data = NULL, ID, gr, ID_text = "unique IDs",
+  observation_text = "observations")
 }
 \arguments{
 \item{data}{A data frame with variables, that names are denoted by \code{ID} and \code{gr}}
@@ -17,8 +18,12 @@ nID_nObs(..., ID_text = "unique ID", observation_text = "observations")
 
 \item{gr}{Either a varable or a variable name in \code{data} with vector of speciment groups.}
 
+\item{ID_text}{A title for unique IDs, that apear in the table.}
+
+\item{observation_text}{A title for observations, that apear in the table.}
+
 \item{decimals}{A number of maximum decimal places in percentages.
-This parameter is passed to function \code{\link[base]{round}}.}
+This parameter is passed to function \code{\link[base]{round}}. Default is 0.}
 }
 \value{
 Table (data frame) with count and percentages.
@@ -29,10 +34,13 @@ Calculate number and percentage of unique IDs and observations.\cr
 number(IDs) >= number(observations)
 }
 \examples{
+data(DataSet1)
 
 nID_nSp(DataSet1, ID, gr)
-nID_nObs(DataSet1, ID, gr)
 pander::pander(nID_nSp(DataSet1, ID, gr))
+
+nID_nObs(DataSet1, ID, gr)
+pander::pander(nID_nObs(DataSet1, ID, gr))
 
 # For hyperSpec object
 nID_nSp(Spectra$.., ID, gr)

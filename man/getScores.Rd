@@ -4,7 +4,8 @@
 \alias{getScores}
 \title{[!] Calculate component amplitudes (a.k.a. scores) by matrix multiplication}
 \usage{
-getScores(sp, loadings, xLabel = "Component", yLabel = "Amplitude")
+getScores(sp, loadings, xLabel = "Component", yLabel = "Amplitude",
+  scores = NULL)
 }
 \arguments{
 \item{sp}{Spectroscopic data
@@ -18,6 +19,8 @@ getScores(sp, loadings, xLabel = "Component", yLabel = "Amplitude")
 
 \item{yLabel}{- label that will be used for plotting y axis
 \code{labels(scores,"spc") <- yLabel}}
+
+\item{scores}{Known scores (do not need to calculate.)}
 }
 \value{
 scores - amplitudes of the components (scores)

@@ -31,10 +31,10 @@ TestFolds <- function(FoldsOBJ, DATA, stratBy = "gr", blockBy = "ID") {
     bru("*");
     cat("Number of observations per class in each fold:\n")
     bru("_");
-    cat("If stratified - proportions in each fold should be similar:\n\n")
+    cat("If stratified, the proportions in each fold should\nbe equal/similar:\n\n")
     print(rezS);
     bru("_");
-    cat("If blocked - same ID appears in one fold:\n\n")
+    cat("If blocked, the same ID appears just in one fold:\n\n")
     print(rezB);
     bru("*")
 }

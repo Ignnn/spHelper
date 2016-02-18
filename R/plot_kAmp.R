@@ -14,10 +14,17 @@
 #' with scores after factorisation/decomposition.
 #' @param xLabel - label of x axis
 #' @param yLabel - label of y axis
+#'  @param by A name of grouping variable.
 #'
 #'
 #' @return object of class "ggplot"
-#' @examples plot_kAmp(scores)
+#' @examples
+#'
+#' data(Scores)
+#' plot_kAmp(Scores)
+#'
+#' data(Scores3)
+#' plot_kAmp(Scores3,by = "class")
 #' @export
 #'
 #' @import hyperSpec
@@ -27,7 +34,8 @@ plot_kAmp <- function(scores,
                       Title = "Component amplitudes",
                       subTitle = NULL,
                       xLabel = labels(scores, ".wavelength"),
-                      yLabel = labels(scores, "spc"))
+                      yLabel = labels(scores, "spc"),
+                      by = "gr")
 {
     hyperSpec::chk.hy(scores)
 
@@ -36,6 +44,8 @@ plot_kAmp <- function(scores,
     AMP2   <- as.data.frame(sc$spc)
     names(AMP2) <- kNames # paste0("Komp_", names(AMP2))
 
+    sc$gr <- sc$..[,by]
+
     sc <-AMP2   %>%
         cbind(sc$..["gr"])   %>%
         dplyr::mutate(row = row_number())  %>%
@@ -43,7 +53,6 @@ plot_kAmp <- function(scores,
         dplyr::mutate(Komponentas = factor(Komponentas,sort(kNames),sort(kNames)))
 
     # Plot
-
 
 
     p <- ggplot(sc, aes(y = Amplitude, x = Komponentas, fill = gr), size = 1)  +

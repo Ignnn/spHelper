@@ -5,7 +5,8 @@
 \title{[!] Plot component amplitudes (a.k.a scores)}
 \usage{
 plot_kAmp(scores, Title = "Component amplitudes", subTitle = NULL,
-  xLabel = labels(scores, ".wavelength"), yLabel = labels(scores, "spc"))
+  xLabel = labels(scores, ".wavelength"), yLabel = labels(scores, "spc"),
+  by = "gr")
 }
 \arguments{
 \item{scores}{- object of class \code{\link[=hyperSpec-class]{hyperSpec}}
@@ -17,7 +18,8 @@ with scores after factorisation/decomposition.}
 
 \item{xLabel}{- label of x axis}
 
-\item{yLabel}{- label of y axis}
+\item{yLabel}{- label of y axis
+@param by A name of grouping variable.}
 }
 \value{
 object of class "ggplot"
@@ -31,6 +33,11 @@ May be incorrect, if cals is not hyperSpec \cr
        yLabel
 }
 \examples{
-plot_kAmp(scores)
+
+data(Scores)
+plot_kAmp(Scores)
+
+data(Scores3)
+plot_kAmp(Scores3,by = "class")
 }
 
