@@ -36,8 +36,10 @@
 #' #  10. coll_oth: Other collagens, % [integer] 20 20 ... 50
 #' #  11. spc: I, sant.vnt. [matrix2048] 15422 17841 ... 211.7
 #'
-#' @import hyperSpec
-#' @import dplyr
+#'
+#' *************************************************************
+#' ...@import hyperSpec
+#' ...@import dplyr
 #'
 #' @export
 #'
@@ -65,8 +67,8 @@ addLabels_TD2009 <- function(sp,language = "EN")  {
 
     # add Labels ------------------------------------------------------------
     Var.Names <- colnames(Object)
-    Var.LabelsLT <- c("Spektro ID",
-                      "Mėginio ID",
+    Var.LabelsLT <- c("Mėginio ID",
+                      "Spektro ID",
                       "Taško numeris mėginy",
                       "Bylos pavadinimas",
                       "Grupavimas (S, P, D)",
@@ -78,8 +80,8 @@ addLabels_TD2009 <- function(sp,language = "EN")  {
                       "I, sant.vnt."
     )
 
-    Var.LabelsEN <- c("Spectrum ID",
-                      "Specimen ID" ,
+    Var.LabelsEN <- c("Specimen ID",
+                      "Spectrum ID" ,
                       "Point number in a specimen",
                       "File name",
                       "Groups (S, P, D)",
