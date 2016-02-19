@@ -24,6 +24,6 @@ nTri2nRow(6)
 
 }
 \seealso{
-\link{nRow2nTri}, \link{simCorrMat}
+\link{nRow2nTri}, \link{simCorrVars}
 }
 

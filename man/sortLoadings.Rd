@@ -13,17 +13,17 @@ sortLoadings(loadings, sp = NULL, PCA = FALSE, sort = TRUE)
 \item{sp}{Spectroscopic data
 (either a \code{\link[=hyperSpec-class]{hyperSpec}} object or a matrix).}
 
-\item{PCA}{- if TRUE, some components are flipped. ... Set to TRUE
+\item{PCA}{logical. If \code{TRUE}, some components are flipped. ... Set to TRUE
 if PCA loadings are used. Default \code{PCA = FALSE}}
 
-\item{sort}{- flag to indicate if returned componenst must be sorted.
+\item{sort}{- logical. Indicates if returned componenst must be sorted.
 If \code{FALSE}, only additional tasks are performed.
 Default is \code{TRUE}.}
 }
 \value{
 Either matrix (if \code{sp} is not provided) or
-hyperSpec object with sorted loadings.
-In case of hyperSpec object, 3 additional columns
+\code{hyperSpec} object with sorted loadings.
+In case of \code{hyperSpec} object, 3 additional columns
 (PeakAt, order.of.rows, kNames) are added.
 }
 \description{
@@ -31,14 +31,11 @@ In case of hyperSpec object, 3 additional columns
 
  Sort component spectra (a.k.a. loadings) by
  possition of top peak and do additional tasks:
- \enumerate {
-
-     \item {1. }{If \code{sp} is provided, convert resulting matrix to corresponding
+ \enumerate{
+     \item{If \code{sp} is provided, convert resulting matrix to corresponding
          \code{\link[=hyperSpec-class]{hyperSpec}} object by using function
          \code{\link[hyperSpec]{decomposition}}.}
-
-
-     \item {2. }{If \code{PCA = TRUE} and \code{sp} is provided, flips component's spectrum
+     \item{If \code{PCA = TRUE} and \code{sp} is provided, flips component's spectrum
          if mean of its scores is negative: (\code{sign(mean(Scores_of_component_i)) < 0})
          \code{loadings} and \code{sp} are used to calculate the scores.}
  }

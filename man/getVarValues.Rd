@@ -13,10 +13,14 @@ getVarValues(VAR, DATA, CALL)
 
 \item{CALL}{(\code{\link[=call-class]{Call}}) to be parsed.}
 }
+\value{
+A vector. If possible, return \code{DATA[,"VAR"]}.
+Otherwise return \code{VAR}.
+}
 \description{
 Parse dataframe \code{DATA}, variable \code{VAR} and a call
 \code{CALL} of a function and return approriate values of the
-\code{VAR}. \cr If possible, return \code{DATA[,VAR]} \cr
+\code{VAR}. \cr If possible, return \code{DATA[,"VAR"]} \cr
 Otherwise return \code{VAR}.
 }
 \examples{

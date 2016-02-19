@@ -2,15 +2,17 @@ Package: spHelper
 Type: Package
 Title: Convenience Functions Mainly for Spectroscopy
 Description: Various convenience functions for spectroscopy, etc.
-Version: 0.1.025
+Version: 0.1.026
 Date: 2016-02-18
 Encoding: UTF-8
 Author: Vilmantas Gėgžna, et al.
-Maintainer:Vilmantas Gėgžna <GegeznaV@gmail.com>
+Maintainer: Vilmantas Gėgžna <GegeznaV@gmail.com>
 License: GPL (>= 3)
 LazyData: TRUE
 RoxygenNote: 5.0.1
+VignetteBuilder: knitr
 Depends:
+    R (>= 3.0),
     ggplot2,
     hyperSpec,
     lattice,
@@ -19,7 +21,15 @@ Depends:
     pander,
     dplyr,
     tidyr,
-    grDevices
+    grDevices,
+    plotly
 Imports:
     mvbutils,
-    sna
+    sna,
+    MASS,
+    devtools
+Suggests:
+    knitr,
+    rmarkdown
+
+

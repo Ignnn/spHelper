@@ -1,4 +1,4 @@
-tmp <- function(){
+simSpectra <- function(){
      x = 300:800
 
      nInGr = c(50,50,50)
@@ -94,6 +94,7 @@ plot(Spectra,spc.nmax=200, col = Spectra$class)
 Spectra4 <- Spectra
 Loadings4 <- Loadings
 Scores4   <- Scores
+
 devtools::use_data(Spectra4, Loadings4, Scores4, overwrite = T)
 
     save.image("simSpectrum4.RData")

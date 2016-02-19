@@ -16,7 +16,7 @@ Functions in spHelper by topic
 
 
 \code{\link{stratifiedFolds}} \cr
-\code{\link{createFolds_stratified}} \cr
+\code{\link{}} \cr
 }
 
 \section{Component analysis / Spectroscopy}{
@@ -30,7 +30,7 @@ Functions in spHelper by topic
 \code{\link{whichOutlier}} \cr
 }
 
-\section{Spectroscopy / \code{\link{hyperSpec}}}{
+\section{Spectroscopy / \code{\link[=hyperSpec-class]{hyperSpec}}}{
 
 
 \code{\link{hy2mat}} \cr
@@ -45,14 +45,14 @@ Functions in spHelper by topic
 \code{\link{plot_kAmp}} \cr
 \code{\link{plot_kSp}} \cr
 \code{\link{plot_kSpFacets}} \cr
-\code{\link{Plot_SpDiff}}    \cr
+\code{\link{plot_SpDiff}}    \cr
 \code{\link{PlotConfusion}}  \cr
-\code{\link{withSubTitle}}  \cr
 \code{\link{subt}}          \cr
 \code{\link{InfoDim_plot}} \cr
 \code{\link{getReconstructed}} \cr
 
 
+\code{\link{}}  \cr
 \code{\link{}} \cr
 \code{\link{}} \cr
 \code{\link{}} \cr
@@ -75,7 +75,7 @@ Functions in spHelper by topic
 \code{\link{bru}} \cr
 \code{\link{fCap}} \cr
 \code{\link{makeFirstCapital}} \cr
-\code{\link{list.functions}} \cr
+\code{\link{listFunctions}} \cr
 \code{\link{dropCol}} \cr
 \code{\link{}} \cr
 \code{\link{}} \cr
@@ -109,6 +109,9 @@ sna::gplot(pkgFW$funmat, g = 9,
 # Other things to remember
 devtools::install('D:/Data/R/spHelper')
 library(spHelper)
+
+ devtools::build_vignettes()
+
 
 
 plotc(ObjectName[,,500],model = spc~Integration_time)

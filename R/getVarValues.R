@@ -2,14 +2,15 @@
 #'
 #' Parse dataframe \code{DATA}, variable \code{VAR} and a call
 #' \code{CALL} of a function and return approriate values of the
-#' \code{VAR}. \cr If possible, return \code{DATA[,VAR]} \cr
+#' \code{VAR}. \cr If possible, return \code{DATA[,"VAR"]} \cr
 #' Otherwise return \code{VAR}.
 #'
 #' @param VAR A name of a variable (with or without quotes).
 #' @param DATA A name of a data frame (with or without quotes).
 #' @param CALL (\code{\link[=call-class]{Call}}) to be parsed.
 #'
-#' @return
+#' @return A vector. If possible, return \code{DATA[,"VAR"]}.
+#' Otherwise return \code{VAR}.
 #' @export
 #'
 #' @examples

@@ -1,7 +1,23 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
 Developement version of `spHelper` package
 ==========================================
-
+  
 **Package is under construction.**
+
 
 Only a few functions are ready to be used.

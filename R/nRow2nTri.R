@@ -13,7 +13,7 @@
 #'
 #' @return A number of elements in a lower/upper triangle of a matrix (excluding the diagonal).
 #' @export
-#' @seealso \link{nTri2nRow}, \link{simCorrMat}
+#' @seealso \link{nTri2nRow}, \link{simCorrVars}
 #' @examples
 #'
 #' nRow2nTri(5)

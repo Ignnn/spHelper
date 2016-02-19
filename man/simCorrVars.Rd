@@ -40,6 +40,6 @@ simCorrVars(corrMat, N = 10)
 
 }
 \seealso{
-\link{simCorrMat}
+\link{corrVec2Mat}, \link[MASS]{mvrnorm}
 }
 
