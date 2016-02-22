@@ -38,10 +38,10 @@
 #'
 #' my_duration <- printDuration(Start, returnString = TRUE)
 #' my_duration
-#' ## Duration of analysis: 2.4 mins
+#' ## Analysis completed in 2.4 mins
 #'
 printDuration <- function(Start,
-                          Message = "Duration of analysis:",
+                          Message = "Analysis completed in",
                           returnString = FALSE){
     Duration_of_analysis <- Sys.time() - Start;
     AnDuration <- paste(Message,

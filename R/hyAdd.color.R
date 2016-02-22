@@ -23,7 +23,7 @@
 #' ## [1] "gr"     "class"  "spc"    ".color"
 #'
 
-hyAdd.color <- function(sp, by,
+hyAdd.color <- function(sp = NULL, by,
                         palette = c("#377EB8","#4DAF4A","#984EA3","#FF7F00",
                                     "#A65628","#F781BF","#999999")
                         ){
@@ -34,6 +34,11 @@ hyAdd.color <- function(sp, by,
     #                 "#A65628","#F781BF","#999999")
     # RColorBrewer::brewer.pal(8,"Dark2")
     # # trellis.par.get("superpose.symbol")$col
+
+
+
+
+
 
     ColorNumbers <- unclass(as.factor(sp[[, by]][,1])); # ColorNumbers[is.na(ColorNumbers)] <- nlevels(sp$gr) + 1;
     nColors <- max(ColorNumbers, na.rm = T)
