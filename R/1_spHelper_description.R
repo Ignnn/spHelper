@@ -45,14 +45,6 @@
 #' \code{\link{getReconstructed}} \cr
 #'
 #'
-#' \code{\link{}}  \cr
-#' \code{\link{}} \cr
-#' \code{\link{}} \cr
-#' \code{\link{}} \cr
-#' \code{\link{}} \cr
-#' \code{\link{}} \cr
-#' \code{\link{}} \cr
-#'
 #' @section Regular expressions:
 #'
 #' \code{\link{regcapturedmatches}} \cr
@@ -67,9 +59,6 @@
 #' \code{\link{makeFirstCapital}} \cr
 #' \code{\link{listFunctions}} \cr
 #' \code{\link{dropCol}} \cr
-#' \code{\link{}} \cr
-#' \code{\link{}} \cr
-#' \code{\link{}} \cr
 #'
 #'
 #'
@@ -78,7 +67,7 @@
 #'
 #' listFunctions()
 #'
-#'
+#' require(sna); require(mvbutils)
 #' Plot structure of functions inside the package:
 #' pkgFW <- mvbutils::foodweb(where="package:spHelper", cex=0.7, charlim=60)
 #' sna::gplot(pkgFW$funmat, g = 9,
@@ -112,3 +101,11 @@
 #' @name spHelper
 NULL
 #> NULL
+
+# \code{\link{}} \cr
+# \code{\link{}} \cr
+# \code{\link{}} \cr
+# \code{\link{}} \cr
+# \code{\link{}} \cr
+# \code{\link{}} \cr
+# \code{\link{}} \cr

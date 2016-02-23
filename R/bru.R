@@ -82,13 +82,16 @@ bru <- function(symbol = "=",
                 print  = TRUE)
 {
     # Create sequences of symbols
-    nlA <- paste0(rep('\n', after), collapse = "")
-    nlB <- paste0(rep('\n', before),collapse = "")
-    lineC <- paste0(rep(symbol,n),  collapse = "")
+    nlA <- paste0(rep('\n', after),  collapse = "")
+    nlB <- paste0(rep('\n', before), collapse = "")
+    lineC <- paste0(rep(symbol,n),   collapse = "")
+
     # Adjust the length
-    lineC <- substr(lineC,1,n)
+    lineC <- substr(lineC, 1, n)
+
     # Join all symbols
     lineC <- paste0(nlB, lineC, nlA)
+
     # Either print or return the result
     if (print)  cat(lineC) else return(lineC)
 }
@@ -98,4 +101,4 @@ bru <- function(symbol = "=",
 #' @rdname bru
 #' @export
 
-bru0 <- function(..., print = FALSE) {bru(...,print=print)}
+bru0 <- function(..., print = FALSE) {bru(..., print = print)}

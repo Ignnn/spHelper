@@ -28,7 +28,7 @@
 #'
 reconstructSp  <-  function(loadings, scores, sp = NULL)     {
     reconstructed <- (hy2mat(scores)) %*% (hy2mat(loadings))
-    if (class(sp)=="hyperSpec")   {
+    if (class(sp) == "hyperSpec")   {
         sp$spc <- reconstructed; return(sp)
         } else  return(reconstructed)
 }

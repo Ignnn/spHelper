@@ -13,10 +13,10 @@ sortLoadings(loadings, sp = NULL, PCA = FALSE, sort = TRUE)
 \item{sp}{Spectroscopic data
 (either a \code{\link[=hyperSpec-class]{hyperSpec}} object or a matrix).}
 
-\item{PCA}{logical. If \code{TRUE}, some components are flipped. ... Set to TRUE
+\item{PCA}{Logical. If \code{TRUE}, some components are flipped. ... Set to TRUE
 if PCA loadings are used. Default \code{PCA = FALSE}}
 
-\item{sort}{- logical. Indicates if returned componenst must be sorted.
+\item{sort}{Logical. Indicates if returned componenst must be sorted.
 If \code{FALSE}, only additional tasks are performed.
 Default is \code{TRUE}.}
 }
@@ -46,27 +46,24 @@ spectra (object of class \code{\link[=hyperSpec-class]{hyperSpec}})
          \code{\link[=hyperSpec-class]{hyperSpec}} object.
 }
 \examples{
-
-sortLoadings(loadings)        # returns a matrix
-
-sortLoadings(loadings,sp)     # returns a hyperSpec object
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Komponentų amplitudes (išrikiuotas) paverčiam į "HyperSpec"" objektą
-scores <- decomposition(Object, t(coef(NMF_data))[,OrderOfRows],
-                           label.wavelength = "Komponentai",
-                           label.spc        = "Amplitudė, a.u.")
-colnames(scores$spc) <- paste0("k_", PeakAt)
 ======================================================================
 
-# Print names of components
-tbl_virsunes <- data.frame(Nr = 1:length(PeakAt), Padetis = PeakAt)
-pander(t(tbl_virsunes), caption = "Komponento auksščiausios viršūnės padėtis")
+sortLoadings(Loadings[c(2,3,5,1,4),,])
 
-kNames    <- loadings$kNames
+======================================================================
+
+loadings <- Loadings[[]] # Exrtract matrix of spectra
+
+L1 <- sortLoadings(loadings)         # returns a matrix
+class(L1)
+## [1] "matrix"
+
+L2 <- sortLoadings(loadings,Spectra) # returns a hyperSpec object
+class(L2)
+## [1] "hyperSpec"
+======================================================================
 }
 \seealso{
-More information at \code{\link[hyperSpec]{decomposition}}
+More information at \code{\link[hyperSpec]{decomposition}}.
 }
 

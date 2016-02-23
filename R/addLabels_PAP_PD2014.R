@@ -72,7 +72,7 @@ addLabels_PAP_PD2014 <- function(sp,language = "EN")  {
                       Boxcar_width
         )
 
-    Object <- new('hyperSpec', spc = sp$spc,  wavelength = wl(sp), data = data)
+    Object <- new('hyperSpec', spc = sp$spc, wavelength = wl(sp), data = data)
 
     # add Labels ------------------------------------------------------------
     Var.Names <- colnames(Object)
@@ -125,9 +125,9 @@ addLabels_PAP_PD2014 <- function(sp,language = "EN")  {
     # ---------------------------------------------------------------------
     ColsFinal   <- colnames(Object)
     ColsREMOVED <- ColsInitial[!(ColsInitial %in% ColsFinal)]
-    if (length(ColsREMOVED) > 0 ){
+    if (length(ColsREMOVED) > 0 ) {
         message("These columns were removed from the `hyperSpec` object:")
-        cat(ColsREMOVED,sep='\n')
+        cat(ColsREMOVED, sep = '\n')
     }
     # ---------------------------------------------------------------------
 

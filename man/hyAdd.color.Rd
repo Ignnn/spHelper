@@ -4,8 +4,8 @@
 \alias{hyAdd.color}
 \title{[!] Add a variable with color names to hyperSpec object}
 \usage{
-hyAdd.color(sp, by, palette = c("#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",
-  "#A65628", "#F781BF", "#999999"))
+hyAdd.color(sp = NULL, by, palette = c("#377EB8", "#4DAF4A", "#984EA3",
+  "#FF7F00", "#A65628", "#F781BF", "#999999"))
 }
 \arguments{
 \item{sp}{Spectroscopic data

@@ -21,8 +21,7 @@
 #'
 #' @import ggplot2
 #'
-PlotConfusion <- function(conf)
-{
+PlotConfusion <- function(conf) {
     conf <- round(conf,2)
 
     conf.m <- reshape2::melt(conf)
@@ -32,7 +31,7 @@ PlotConfusion <- function(conf)
     # Spalvinam įstrižainę ****************************************
     nRows <- nrow(conf.m)
     nCols <- length(unique(conf.m[,2]))
-    ind <- seq(1,nRows,nCols+1)
+    ind   <- seq(1,nRows,nCols + 1)
 
     #     conf.m$ColValue      <- conf.m$value*(-1)
     #     conf.m$ColValue[ind] <- conf.m$ColValue[ind]*(-1)
@@ -41,13 +40,12 @@ PlotConfusion <- function(conf)
     conf.m$ColValue[ind] <- 1
     # *************************************************************
 
-    p <-
-        ggplot(conf.m, aes(Actual, Predicted)) +
-        scale_fill_gradient2(high = "#006400", mid="#f2f6c3",
-                             midpoint=0,
-                             low  = "#cd0000")+
-        geom_tile(aes(fill = ColValue),colour = "white") +
-        geom_text(aes(label=value),size=6)
+    p <- ggplot(conf.m, aes(Actual, Predicted)) +
+         scale_fill_gradient2(high = "#006400", mid = "#f2f6c3",
+                              midpoint = 0,
+                              low  = "#cd0000") +
+         geom_tile(aes(fill = ColValue), colour = "white") +
+         geom_text(aes(label = value), size = 6)
 
     return(p)
 }

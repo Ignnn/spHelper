@@ -4,7 +4,7 @@
 \alias{printDuration}
 \title{[+] Evaluate how much time passed}
 \usage{
-printDuration(Start, Message = "Duration of analysis:",
+printDuration(Start, Message = "Analysis completed in",
   returnString = FALSE)
 }
 \arguments{
@@ -47,7 +47,7 @@ my_duration
 
 my_duration <- printDuration(Start, returnString = TRUE)
 my_duration
-## Duration of analysis: 2.4 mins
+## Analysis completed in 2.4 mins
 
 }
 \seealso{

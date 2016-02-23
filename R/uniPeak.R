@@ -64,14 +64,14 @@ uniPeak <- function(y)  {
     i   <- seq_along(y)
     len <- length(y)
 
-    di   <- c(diff(as.numeric(y<=0)),0)
+    di   <- c(diff(as.numeric(y <= 0)),0)
     imax <- which.max(y)
 
     # Indices of part to keep
-    iBegin <- which(di==-1 & i<(i[imax]))
-    iBegin <- tail(iBegin, n=1)[1]
+    iBegin <- which(di == -1 & i < (i[imax]))
+    iBegin <- tail(iBegin, n = 1)[1]
 
-    iEnd  <- which(di==1 & i>(i[imax]))[1]
+    iEnd  <- which(di == 1 & i > (i[imax]))[1]
     # Corrections of Indices
     if (is.na(iBegin)) iBegin <- 1 else iBegin <- iBegin + 1
     if (is.na(iEnd))     iEnd <- len

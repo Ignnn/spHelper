@@ -85,7 +85,7 @@ stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TR
 
     # Parse input and prepare data ===========================================
     CALL <- match.call()
-    if (!is.null(CALL$data)){ # if `data` is provided:
+    if (!is.null(CALL$data)) { # if `data` is provided:
         ID <- getVarValues(ID, data, CALL)
         gr <- getVarValues(gr, data, CALL)
     }
@@ -93,7 +93,7 @@ stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TR
     if (is.null(ID) & length(gr) > 1) {ID <- 1:length(gr) }      # create unique IDs
     if (is.null(gr) & length(ID) > 1) {gr <- rep(0,length(ID))}  # create one level of `gr`
     # -----------------------------------------------------------------------
-    if (length(ID)!=length(gr)) stop("Length of `ID` and `gr` must agree.")
+    if (length(ID) != length(gr)) stop("Length of `ID` and `gr` must agree.")
     # -----------------------------------------------------------------------
     data <- data.frame(ID = ID, gr = gr)
 
@@ -108,7 +108,7 @@ stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TR
     n_ByGr       <- sapply(df_ByGr, nrow)     # unique IDs per class
 
     # If Number of observatuions in a group is to small
-    if (any(n_ByGr < nFolds)){
+    if (any(n_ByGr < nFolds)) {
         print(sprintf('nFolds = %d', nFolds))
         print(n_ByGr)
         stop("Number of UNIQUE observations in one of the groups is smaller than number of folds.")
@@ -116,7 +116,7 @@ stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TR
 
     # Assign numbers of fold to each row
     # Split to folds in a stratified way by group 'gr'
-    for (gr_i in 1:nGr){
+    for (gr_i in 1:nGr) {
         GrSize     <-  n_ByGr[gr_i]
         TimesEach  <-  GrSize %/% nFolds  # modulus - how many times observations are devided
                                           #           proportionally to each fold.
@@ -128,7 +128,7 @@ stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TR
         # number of observations is small:
         Proportionals <-  rep(1:nFolds, times = TimesEach)   # create a list of proportionally
                                                              # distributed per fold
-        Proportionals <-  sample(Proportionals, GrSize-nRem) # permute the list of proportionally distributed
+        Proportionals <-  sample(Proportionals, GrSize - nRem) # permute the list of proportionally distributed
          Reminders    <-  sample(1:nFolds, nRem)             # permute reminders separately
 
         BelongsToFoldNr <-  c(Proportionals,Reminders) # Merge
@@ -150,7 +150,7 @@ stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TR
 
     Test_ind <- split(data$Test_ind, data$Fold)
 
-    if (returnTrain == FALSE){
+    if (returnTrain == FALSE) {
         return(Test_ind)
     }
     else {

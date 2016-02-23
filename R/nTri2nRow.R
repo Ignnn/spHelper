@@ -10,4 +10,4 @@
 #' nTri2nRow(10)
 #' nTri2nRow(6)
 #'
-nTri2nRow <- function(nTri){n <- (1+sqrt(1+8*nTri))/2; return(n)}
+nTri2nRow <- function(nTri) {n <- (1 + sqrt(1 + 8 * nTri)) / 2; return(n)}

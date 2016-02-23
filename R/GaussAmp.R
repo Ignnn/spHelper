@@ -53,7 +53,8 @@ GaussAmp <- function(x, c = 0, w = 1, A = 1, y0 = 0){
     y = matrix(NA ,P,length(x))
 
     # Generate the curves
-    for (i in 1:P){ y[i,] <- y0[i]+A[i]*exp(-(((x-c[i])^2)/(2*w[i]^2)))}
+    for (i in 1:P) {y[i,] <- y0[i] + A[i] * exp(-(((x - c[i]) ^ 2) /
+                                                    (2 * w[i] ^ 2)))}
 
     ## Output
     return(y)

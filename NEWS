@@ -1,0 +1,8 @@
+spHelper v0.1.029 (2016-02-22)
+==============================
+
+Changes:
+
+- Added functions for data simmulation.
+
+- Functions formated in accordance with [Hadley Wickham’s style guide](http://adv-r.had.co.nz/Style.html).

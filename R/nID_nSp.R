@@ -41,12 +41,12 @@ nID_nSp <- function(data, ID, gr,
 
     # Parse input and prepare data ===========================================
     CALL <- match.call()
-    if (!is.null(CALL$data)){ # if `data` is provided:
+    if (!is.null(CALL$data)) { # if `data` is provided:
         ID <- getVarValues(ID, data, CALL)
         gr <- getVarValues(gr, data, CALL)
     }
     # -----------------------------------------------------------------------
-    if (length(ID)!=length(gr)) stop("Length of `ID` and `gr` must agree.")
+    if (length(ID) != length(gr)) stop("Length of `ID` and `gr` must agree.")
     # -----------------------------------------------------------------------
     data <- data.frame(ID = ID, gr = gr)
 
@@ -73,8 +73,8 @@ nID_nSp <- function(data, ID, gr,
 #' @rdname nID_nSp
 #' @export
 nID_nObs <- function(data = NULL, ID, gr, ID_text = "unique IDs",
-                     observation_text = "observations"){
-    nID_nSp(data = data, ID =ID, gr=gr,
+                     observation_text = "observations") {
+    nID_nSp(data = data, ID = ID, gr = gr,
             ID_text = ID_text,
             observation_text = observation_text)
 }

@@ -45,7 +45,7 @@ getScores <- function(sp, loadings,
 
     if (is.null(scores))  scores <- y2 %*% (loadings2 %*% solve(crossprod(loadings2)))
 
-    if (class(sp) == "hyperSpec"){
+    if (class(sp) == "hyperSpec") {
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         # Komponentų amplitudes (išrikiuotas) paverčiam į "hyperSpec"" objektą
 
@@ -53,7 +53,7 @@ getScores <- function(sp, loadings,
                                 label.wavelength = "Components",
                                 label.spc = "Amplitude, a.u.")
         # Suteikiam pavadinimus
-        if("kNames" %in% colnames(loadings)){
+        if ("kNames" %in% colnames(loadings)) {
             kNames <- gsub("max: ","k_", loadings$kNames)
         }else {kNames <- paste0("No", 1:min(dim(loadings2)))}
 

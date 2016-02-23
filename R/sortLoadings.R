@@ -19,10 +19,10 @@
 #' @template loadings
 #' @template sp
 #'
-#' @param PCA logical. If \code{TRUE}, some components are flipped. ... Set to TRUE
+#' @param PCA Logical. If \code{TRUE}, some components are flipped. ... Set to TRUE
 #' if PCA loadings are used. Default \code{PCA = FALSE}
 #'
-#' @param sort - logical. Indicates if returned componenst must be sorted.
+#' @param sort Logical. Indicates if returned componenst must be sorted.
 #'       If \code{FALSE}, only additional tasks are performed.
 #'       Default is \code{TRUE}.
 #'
@@ -38,46 +38,43 @@
 #'
 #'
 #'
-#' @seealso More information at \code{\link[hyperSpec]{decomposition}}
+#' @seealso More information at \code{\link[hyperSpec]{decomposition}}.
 #'
 #' @import hyperSpec
 #' @export
 #' @examples
-#'
-#' sortLoadings(loadings)        # returns a matrix
-#'
-#' sortLoadings(loadings,sp)     # returns a hyperSpec object
-#'
-#'
-#' ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' # Komponentų amplitudes (išrikiuotas) paverčiam į "HyperSpec"" objektą
-#' scores <- decomposition(Object, t(coef(NMF_data))[,OrderOfRows],
-#'                            label.wavelength = "Komponentai",
-#'                            label.spc        = "Amplitudė, a.u.")
-#' colnames(scores$spc) <- paste0("k_", PeakAt)
 #' ======================================================================
 #'
-#' # Print names of components
-#' tbl_virsunes <- data.frame(Nr = 1:length(PeakAt), Padetis = PeakAt)
-#' pander(t(tbl_virsunes), caption = "Komponento auksščiausios viršūnės padėtis")
+#' sortLoadings(Loadings[c(2,3,5,1,4),,])
 #'
-#' kNames    <- loadings$kNames
+#' ======================================================================
+#'
+#' loadings <- Loadings[[]] # Exrtract matrix of spectra
+#'
+#' L1 <- sortLoadings(loadings)         # returns a matrix
+#' class(L1)
+#' ## [1] "matrix"
+#'
+#' L2 <- sortLoadings(loadings,Spectra) # returns a hyperSpec object
+#' class(L2)
+#' ## [1] "hyperSpec"
+#' ======================================================================
 
 
-sortLoadings <- function(loadings, sp = NULL, PCA = FALSE, sort = TRUE){
 
-    if (PCA & !is.null(sp)){ # flip
+sortLoadings <- function(loadings, sp = NULL, PCA = FALSE, sort = TRUE) {
+    if (PCA & !is.null(sp)) { # flip
         ScoresTMP  <- getScores(hy2mat(sp), loadings)
         # ----------------------------------------------------------------------
         # Apverčiama, jei amplitudžių vidurkis neigiamas
         # signCoefs    <- sign(rowMeans(ScoresTMP))
         meanSign     <- function(x){sign(mean(x))}
-        signCoefs    <- apply(ScoresTMP, MARGIN= 2, meanSign)
-        loadings     <- sweep(loadings, MARGIN= 1, signCoefs,`*`)
+        signCoefs    <- apply(ScoresTMP, MARGIN = 2, meanSign)
+        loadings     <- sweep(loadings, MARGIN = 1, signCoefs,`*`)
 
-        # Normuojama
-        maxSpInt     <- apply(loadings, MARGIN= 1, max)
-        PCAvarimax2  <- sweep(loadings, MARGIN= 1, maxSpInt,`/`)
+        # # Normuojama
+        # maxSpInt     <- apply(loadings, MARGIN = 1, max)
+        # PCAvarimax2  <- sweep(loadings, MARGIN = 1, maxSpInt,`/`)
 
         # ======================================================================
     }
@@ -89,7 +86,7 @@ sortLoadings <- function(loadings, sp = NULL, PCA = FALSE, sort = TRUE){
     # Viršūnių padėtis
     index.of.max <- index.of.max[OrderOfRows]
 
-    if (sort == TRUE){
+    if (sort == TRUE) {
         # Matrix with Sorted components
         loadings <- loadings[OrderOfRows,]
     } else {
@@ -97,27 +94,20 @@ sortLoadings <- function(loadings, sp = NULL, PCA = FALSE, sort = TRUE){
     }
 
     if (!(is.null(sp))) {
-
         # Komponentus (išrikiuotas) paverčiam į "hyperSpec"" objektą
         loadings <- decomposition(sp, loadings,
                                   scores = FALSE,
                                   label.spc = "Comp. spektrum",
                                   retain.columns = F)
-
-
         # Suteikiam pavadinimus komponantams
         PeakAt    <- make.unique(paste0(round(wl(loadings)[index.of.max]),
                                         "nm"),"_")
-
         # WARNING is needed, if variables with names are already present
         loadings$PeakAt        <- PeakAt
         loadings$kNames        <- paste0("max: ", PeakAt)
         loadings$order.of.rows <- OrderOfRows
 
         labels(loadings,'spc') <- labels(sp,'spc')
-
-
     }
-
     return(loadings)
 }

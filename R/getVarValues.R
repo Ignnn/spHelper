@@ -103,7 +103,7 @@ getVarValues <- function(VAR, DATA, CALL){
     # name of variable of inerest:
     Name <- CALL[[VAR]]
 
-    if(!is.null(Name))  {
+    if (!is.null(Name)) {
         Name <- as.character(Name);
         txt2 <- paste0(VAR," <- if('",Name,"' %in% colnames(env$",DATA,")) ",
                        "env$", DATA, "$", Name,

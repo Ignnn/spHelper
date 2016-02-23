@@ -46,28 +46,26 @@ plot_kAmp <- function(scores,
 
     sc$gr <- sc$..[,by]
 
-    sc <-AMP2   %>%
+    sc <- AMP2   %>%
         cbind(sc$..["gr"])   %>%
         dplyr::mutate(row = row_number())  %>%
-        tidyr::gather(Komponentas,Amplitude, -gr,  -row) %>%
+        tidyr::gather(Komponentas,Amplitude, -gr, -row) %>%
         dplyr::mutate(Komponentas = factor(Komponentas,sort(kNames),sort(kNames)))
 
     # Plot
-
-
     p <- ggplot(sc, aes(y = Amplitude, x = Komponentas, fill = gr), size = 1)  +
-        geom_violin(alpha=.2)  +
-        #geom_point(alpha=.05,size = 2,
-        #         position = position_jitterdodge(dodge.width=0.9)) +
-        geom_boxplot(alpha=.6,
+        geom_violin(alpha = .2)  +
+        #geom_point(alpha =. 05,size = 2,
+        #         position = position_jitterdodge(dodge.width = 0.9)) +
+        geom_boxplot(alpha = .6,
                      position = position_dodge(width = 0.9))     +
-        facet_grid( ~ Komponentas, scales="free") +
+        facet_grid(~Komponentas, scales = "free") +
 
         ggtitle(subt(Title,subTitle)) + xlab(xLabel) + ylab(yLabel) +
 
-        theme(axis.text.x=element_blank(),
-              legend.title=element_blank()) +
-        geom_hline(yintercept = 0, size = .5,linetype=2, alpha = .5)
+        theme(axis.text.x = element_blank(),
+              legend.title = element_blank()) +
+        geom_hline(yintercept = 0, size = .5,linetype = 2, alpha = .5)
 
     if (length(unique(sc$gr)) == 1) {p <- p + scale_fill_grey()}
 

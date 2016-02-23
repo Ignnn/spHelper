@@ -17,25 +17,31 @@
 #' listFunctions()
 #' listFunctions(Package = "tidyr", print.table = F)
 #'
-listFunctions <- function(Package = "spHelper", print.table = FALSE, plot = FALSE)   {
+listFunctions <- function(Package = "spHelper",
+                          print.table = FALSE,
+                          plot = FALSE)   {
     FunctionList <- unclass(lsf.str(envir = asNamespace(Package), all = TRUE))
-    if (print.table){
+    if (print.table) {
         pander::pander(as.data.frame(FunctionList))
         invisible(FunctionList)
     } else return(data.frame(Functions = FunctionList))
 
-    if (plot){
+    if (plot) {
         require(mvbutils)
         require(sna)
 
-        pkgFW <- mvbutils::foodweb(where=paste0("package:", Package), cex=0.7, charlim=60,  plotting=F)
-        sna::gplot(pkgFW$funmat, g = 8,
+        pkgFW <- mvbutils::foodweb(where = paste0("package:", Package),
+                                     cex = 0.7,
+                                 charlim = 60,
+                                plotting = F)
+        sna::gplot(pkgFW$funmat,
+                   g = 8,
                    jitter = T,
                    # mode = "mds",
                    label.cex = .6,
-                   diag=TRUE,
-                   vertex.cex=1:2,
-                   displaylabels=TRUE,
-                   label.bg="gray90")
+                   diag = TRUE,
+                   vertex.cex = 1:2,
+                   displaylabels = TRUE,
+                   label.bg = "gray90")
     }
 }

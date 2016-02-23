@@ -21,8 +21,8 @@ Vector of indices that indicate rows containing outliers.
 }
 \description{
 Return indices of rows in scores matrix that contain outliers. A row is
-treated as having an oultier if any \href{http://wiki.eigenvector.com/
-index.php?title=Advanced_Preprocessing:_Variable_Scaling#Autoscale}{autoscaled}
+treated as having an oultier if any
+\href{http://wiki.eigenvector.com/index.php?title=Advanced_Preprocessing:_Variable_Scaling#Autoscale}{autoscaled}
 score in that row is not between \code{±zLimit}.
 }
 \examples{

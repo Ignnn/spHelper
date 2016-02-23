@@ -102,11 +102,18 @@ plot_kSp <- function(loadings,
 
     # Get label of `loadings[, name]`, before renaming to "kName"
     if (is.logical(legendName)) {
-        if (legendName)legendName <- labels(loadings, names) else legendName <- NULL
+        if (legendName) {
+                legendName <- labels(loadings, names)
+        } else {
+                legendName <- NULL
+        }
+
     }
 
     #  Choose the way of normalization
-    if (normalize=="auto")  normalize <- any(loadings$spc>0)-any(loadings$spc<0)
+    if (normalize == "auto") {
+            normalize <- any(loadings$spc > 0) - any(loadings$spc < 0)
+    }
 
     loadings <- switch(as.character(as.numeric(normalize)),
                        `0` =  loadings,
@@ -114,15 +121,15 @@ plot_kSp <- function(loadings,
                        `-1` = -sweep(loadings, 1, min, `/`), # `-1` normalize to min value
                        stop("'normalize' is incorrect. Must be either -1, 0 or 1.")
     )
-    scale_x_continuous(breaks=c(10,20,30,40,seq(50,60,by=1),seq(70,200,10)),
-                       minor_breaks=seq(50,60,by=1))
+    scale_x_continuous(breaks = c(10,20,30,40,seq(50,60,by = 1),seq(70,200,10)),
+                       minor_breaks = seq(50,60,by = 1))
     #
     l <- loadings
 
     # Select variable with component names
     names <- as.character(names)
     if (!(names %in% colnames(l))) {l[,names] = as.factor(as.numeric(rownames(l)))} #if variable does not exist"
-    if (names != 'kNames') {colnames(l)[colnames(l)== names] <- 'kNames'}
+    if (names != 'kNames') {colnames(l)[colnames(l) == names] <- 'kNames'}
 
 
     l$rows = 1:nrow(l)                 # Create variable with row numbers
@@ -131,17 +138,17 @@ plot_kSp <- function(loadings,
     l <- as.long.df(l)
 
     # Define the limits
-    limMIN <- ifelse(min(l$spc)>=0, 0, min(l$spc)*1.05)
-    limMAX <- ifelse(max(l$spc)<=0, 0, max(l$spc)*1.05)
+    limMIN <- ifelse(min(l$spc) >= 0, 0, min(l$spc) * 1.05)
+    limMAX <- ifelse(max(l$spc) <= 0, 0, max(l$spc) * 1.05)
 
     # Plot
-    p <- ggplot(l, aes (x = .wavelength,
+    p <- ggplot(l, aes(x = .wavelength,
                         y = spc,
                         group = rows,
                         color = kNames,
                         fill  = kNames)) +
-        geom_hline(yintercept = 0, size = 1,linetype=1, alpha = .5) +
-        geom_line(size=1) +
+        geom_hline(yintercept = 0, size = 1,linetype = 1, alpha = .5) +
+        geom_line(size = 1) +
         theme_bw() +
         scale_x_continuous(expand = c(0,0)) +
         scale_y_continuous(expand = c(0,0),
@@ -153,9 +160,8 @@ plot_kSp <- function(loadings,
              x = xLabel,
              y = yLabel)
 
-
     # Add fill
-    if (filled == TRUE) p <- p + geom_density(stat="Identity", alpha= .1)
+    if (filled == TRUE) p <- p + geom_density(stat = "Identity", alpha = .1)
 
     # Make facets
     if (Facets == TRUE) p <- p + facet_grid(kNames ~., scales = "free")

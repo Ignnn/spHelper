@@ -29,11 +29,9 @@
 #'
 plot_SpDiff <- function(loadings,scores,Spectra,
                         Title = 'Remainders After Subtracting Components',
-                        color = if(".color" %in% ls(Spectra$..)) Spectra$.color else "tan3",
+                        color = if (".color" %in% ls(Spectra$..)) Spectra$.color else "tan3",
                         stacked = if ("ID" %in% ls(Spectra$..)) Spectra$ID else NULL,
-                        spc.nmax = 2000)
-{
-
+                        spc.nmax = 2000) {
     SpRE <- reconstructSp(loadings,scores,Spectra)
 
     plot(Spectra - SpRE,

@@ -119,9 +119,9 @@ addLabels_TD2009 <- function(sp,language = "EN")  {
     # ---------------------------------------------------------------------
     ColsFinal   <- colnames(Object)
     ColsREMOVED <- ColsInitial[!(ColsInitial %in% ColsFinal)]
-    if (length(ColsREMOVED) > 0 ){
+    if (length(ColsREMOVED) > 0 ) {
         message("These columns were removed from the `hyperSpec` object:")
-        cat(ColsREMOVED,sep='\n')
+        cat(ColsREMOVED,sep = '\n')
     }
     # ---------------------------------------------------------------------
 

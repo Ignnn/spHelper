@@ -49,5 +49,5 @@ printDuration <- function(Start,
                         attributes(Duration_of_analysis)$units
     )
 
-    if (returnString==T) return(AnDuration) else  pander::pander(AnDuration)
+    if (returnString == T) return(AnDuration) else  pander::pander(AnDuration)
 }

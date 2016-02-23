@@ -45,7 +45,7 @@
 #'
 corrVec2Mat <- function(vec){
 
-    if (!all(abs(vec)<=1)) stop("All values in input vector must be between [-1 and 1]")
+    if (!all(abs(vec) <= 1)) stop("All values in input vector must be between [-1 and 1]")
 
     nCoeff  <- length(vec)
     n       <- nTri2nRow(nCoeff) # calculate number of summetric matrix rows
@@ -59,7 +59,6 @@ corrVec2Mat <- function(vec){
         vec <- vec[1:n] # prevent additional warning with `lower.tri()`
     }
 
-
     # Generate an idendity matrix (ones in diagonal)
     M <- diag(n)
 
@@ -68,7 +67,6 @@ corrVec2Mat <- function(vec){
 
     # Make the matrix symmetric
     M[upper.tri(M)] <- t(M)[upper.tri(M)]
-
 
     return(M)
 }

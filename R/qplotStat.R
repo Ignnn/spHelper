@@ -65,14 +65,12 @@ qplotStat <- function(sp,
         sp2 <-     spStat(sp, by = by, FUN = FUN)
     } else {sp2 <- aggregate(sp, by = by, FUN = FUN)}
 
+    nl.gr  <- sum(levels(sp2$.aggregate) != ".All")
 
-    nl.gr  <- sum(levels(sp2$.aggregate)!=".All")
-
-    fixedColors <- if (fixed.colors){
+    fixedColors <- if (fixed.colors) {
         colors <- c(gr.color[1:nl.gr], All.color)
         scale_color_manual(values = colors)
     } else NULL
-
 
     p <- qplotspc(sp2, spc.nmax = 1000,
                   mapping = aes(x = .wavelength,
@@ -81,13 +79,12 @@ qplotStat <- function(sp,
                                 group    = .rownames,
                                 size     = .aggregate,
                                 linetype = .aggregate)) +
-        labs(title= subt(Title))+
-        scale_size_manual(    values=c(rep(gr.size,     nl.gr), All.size))  +
-        scale_linetype_manual(values=c(rep(gr.linetype, nl.gr), All.linetype)) + # ,guide=FALSE
+        labs(title = subt(Title)) +
+        scale_size_manual(    values = c(rep(gr.size,     nl.gr), All.size))  +
+        scale_linetype_manual(values = c(rep(gr.linetype, nl.gr), All.linetype)) + # ,guide=FALSE
         fixedColors +
         theme_bw() +
         theme(legend.title = legend.title)
-
 
     return(p)
 }

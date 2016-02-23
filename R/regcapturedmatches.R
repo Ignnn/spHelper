@@ -22,7 +22,7 @@
 #'
 #'
 
-regcapturedmatches<-function(x,m) {
+regcapturedmatches <- function(x,m) {
 
   if (length(x) != length(m))
     stop(gettextf("%s and %s must have the same length",
@@ -41,17 +41,17 @@ regcapturedmatches<-function(x,m) {
     Encoding(x[ind]) <- "bytes"
   }
   if (ili) {
-    if (any(sapply(m, function(x) {is.null(attr(x,"capture.start"))})==T)) {
+    if (any(sapply(m, function(x) {is.null(attr(x,"capture.start"))}) == T)) {
       stop("No capture data found (did you use perl=T?)")
     }
-	  starts<-lapply(m, function(x) {attr(x, "capture.start")})
-	  lengths<-lapply(m, function(x) {attr(x, "capture.length")})
+	  starts <- lapply(m, function(x) {attr(x, "capture.start")})
+	  lengths <- lapply(m, function(x) {attr(x, "capture.length")})
   } else {
     if (is.null(attr(m,"capture.start"))) {
       stop("No capture data found (did you use perl=T?)")
 	  }
-    starts<-data.frame(t(attr(m, "capture.start")))
-    lengths<-data.frame(t(attr(m, "capture.length")))
+    starts <- data.frame(t(attr(m, "capture.start")))
+    lengths <- data.frame(t(attr(m, "capture.length")))
   }
 
   cleannames <- function(x) {
@@ -66,23 +66,23 @@ regcapturedmatches<-function(x,m) {
   lengths <- lapply(lengths, cleannames)
 
 
-  Substring<-function(x,starts,lens) {
-    if(all(starts<0)) {
+  Substring <- function(x,starts,lens) {
+    if (all(starts < 0)) {
       return(character())
     } else {
       x <- t(
-        mapply(function(x,st,ln) substring(x,st,st+ln-1),
+        mapply(function(x,st,ln) substring(x,st,st + ln - 1),
 	      x, data.frame(t(starts)), data.frame(t(lens)),
-	      USE.NAMES=F)
+	      USE.NAMES = F)
       )
         if (!is.null(colnames(starts))) {
-		colnames(x)<-colnames(starts)
+		colnames(x) <- colnames(starts)
         }
         x
     }
   }
 
-  y<-Map(
+  y <- Map(
     function(x, sos, mls) {
       Substring(x,sos,mls)
     },

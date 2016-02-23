@@ -56,7 +56,7 @@
 InfoDim <- function(Matrix){
     eigenval   <- svd(Matrix)$d
     explain    <- eigenval / sum(eigenval);
-    exact_dim   <- prod(sapply(explain,function(x){x^-x}));
+    exact_dim   <- prod(sapply(explain,function(x){x ^ -x}));
     dim         <- ceiling(exact_dim);    # % Round towards infinitive
 
     output <- list(      dim   = dim,

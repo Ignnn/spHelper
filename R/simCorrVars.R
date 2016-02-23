@@ -30,10 +30,11 @@
 #'
 #'
 simCorrVars <- function(corrMat, N = 100){
-    if (missing(corrMat)){
+    if (missing(corrMat)) {
         corrMat = matrix(cbind(1,   0.8, 0.2,
                                0.8, 1  , 0.7,
-                               0.2, 0.7, 1   ),nrow=3)
+                               0.2, 0.7, 1   ),
+                         nrow = 3)
     }
 
     if (!isSymmetric(corrMat)) stop("Correlation matrix must be symmetric.")
@@ -42,11 +43,10 @@ simCorrVars <- function(corrMat, N = 100){
     nvars = dim(U)[1]
 
     # set.seed(1)
-    random.normal = matrix(rnorm(nvars*N,0,1), nrow=nvars, ncol=N);
+    random.normal = matrix(rnorm(nvars*N,0,1), nrow = nvars, ncol = N);
     X = U %*% random.normal
     newX = t(X)
     as.data.frame(newX)
-
 
     # raw = as.data.frame(newX)
     # orig.raw = as.data.frame(t(random.normal))

@@ -19,7 +19,7 @@
 #' nRow2nTri(5)
 #' nRow2nTri(7)
 #'
-nRow2nTri <- function(n)  {nTri = (n^2-n)/2; return(nTri)}
+nRow2nTri <- function(n)  {nTri = (n ^ 2 - n)/2; return(nTri)}
 # the same as #nTri = 0; for (i in (1:n)-1) nTri <- nTri + i;
 
 
