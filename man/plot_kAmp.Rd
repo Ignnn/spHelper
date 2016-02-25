@@ -9,17 +9,19 @@ plot_kAmp(scores, Title = "Component amplitudes", subTitle = NULL,
   by = "gr")
 }
 \arguments{
-\item{scores}{- object of class \code{\link[=hyperSpec-class]{hyperSpec}}
+\item{scores}{An object of class \code{\link[=hyperSpec-class]{hyperSpec}}
 with scores after factorisation/decomposition.}
 
-\item{Title}{- Title}
+\item{Title}{The main title for the plot.}
 
-\item{subTitle}{- Second line of title}
+\item{subTitle}{The second line of title, which will be smaller and
+and in italics.}
 
-\item{xLabel}{- label of x axis}
+\item{xLabel}{A label for abscisa (x) axis.}
 
-\item{yLabel}{- label of y axis
-@param by A name of grouping variable.}
+\item{yLabel}{A label for ordinate (y) axis.}
+
+\item{by}{A name of grouping variable. Default is \code{by = "gr"}.}
 }
 \value{
 object of class "ggplot"
@@ -38,6 +40,6 @@ data(Scores)
 plot_kAmp(Scores)
 
 data(Scores3)
-plot_kAmp(Scores3,by = "class")
+plot_kAmp(Scores3, by = "class")
 }
 

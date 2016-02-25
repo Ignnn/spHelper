@@ -29,9 +29,7 @@
 #' getScores(sp, loadings)
 #'
 #' @export
-#'
-#' @import hyperSpec
-#'
+
 getScores <- function(sp, loadings,
                       xLabel = "Component",
                       yLabel = "Amplitude",

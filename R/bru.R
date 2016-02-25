@@ -97,7 +97,7 @@ bru <- function(symbol = "=",
 }
 
 
-
+#' @param ... \code{bru0}paeameters (the same as in \code{bru}).
 #' @rdname bru
 #' @export
 

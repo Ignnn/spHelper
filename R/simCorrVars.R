@@ -1,4 +1,4 @@
-#' [!!!] Simulate correlated continuaous data from standard normal distribution
+#' [!!!] Simulate correlated continuous data from standard normal distribution
 #'
 #' Simulate correlated continuaous data from standard normal distribution.
 #'

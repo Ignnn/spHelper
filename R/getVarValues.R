@@ -80,6 +80,8 @@
 #' ## function (..., recursive = FALSE)  .Primitive("c")
 #'
 getVarValues <- function(VAR, DATA, CALL){
+    # getVarValues(VAR, DATA, CALL = match.call())
+
     # Look for missing arguments-------------------------------------
     missVar <- vector("logical",3)
     missVar[1] <- missing(VAR)
@@ -101,10 +103,11 @@ getVarValues <- function(VAR, DATA, CALL){
 
     # Get a value of variable in the call object `CALL`. This value is a
     # name of variable of inerest:
-    Name <- CALL[[VAR]]
+    Name <- CALL[[VAR]] # name is a `call` object
 
     if (!is.null(Name)) {
-        Name <- as.character(Name);
+        Name <- as.character(c(Name)); # c() is used to convert `call` object to
+ 		                               # a string correctly.
         txt2 <- paste0(VAR," <- if('",Name,"' %in% colnames(env$",DATA,")) ",
                        "env$", DATA, "$", Name,
                        " else env$", VAR)

@@ -2,31 +2,94 @@
 % Please edit documentation in R/PlotConfusion.R
 \name{PlotConfusion}
 \alias{PlotConfusion}
-\title{Plot a confusion matrix, \code{PlotConfusion}}
+\title{[!] Vizualize a confusion matrix / classification table}
 \usage{
-PlotConfusion(conf)
+PlotConfusion(conf, Title = "Classification table",
+  xLabel = "Reference group", yLabel = "Predicted group", subTitle = NULL,
+  shades = "prop")
 }
 \arguments{
-\item{conf}{- a table, a square matrix.}
+\item{conf}{A confusion matrix / A classificattion table (either a table
+or a square matrix).}
 
-\item{Title}{... /not implemented yet/ Title.}
+\item{Title}{The main title for the plot.}
 
-\item{subTitle}{... /not implemented yet/ Subtitle.}
+\item{xLabel}{A label for abscisa (x) axis.}
+
+\item{yLabel}{A label for ordinate (y) axis.}
+
+\item{subTitle}{Subtitle - second line of a title.}
+
+\item{shades}{A way, how cells are shaded.
+\describe{
+    \item{prop}{(default) A shade (intensity) of a color is proportianal
+          to a value of a cell. Distribution of colors is balanced
+          according to number of classes, but not balanced according to
+          number of observations per class.}
+    \item{max}{Cell with absolute maximum value is represented by the
+    most intensive color. Other cells are represented by colors which
+    are diluted proportionaly to their value in accordance with the
+    maximum value.}
+    \item{const}{Constant red and green colors.}
+    \item{none}{All cells are grey.}
+}}
 }
 \value{
-Plot of confusion matrix. ...
+A plot of confusion matrix.
 }
 \description{
-Plot a confusion matrix, \code{PlotConfusion}
+\code{PlotConfusion}
 }
 \examples{
-Prediction <- sample(c("A","B","C"),1000, replace = T)
-Reference  <- sample(c("A","B","C"),1000, replace = T)
+
+N <- 1000 # number of observations
+
+Prediction <- sample(c("A","B","C","D"),N, replace = TRUE)
+Reference  <- sample(c("A", "B","C","D"),N, replace = TRUE)
+
+
+# Random guess  =====================
 conf <- table(Prediction,Reference)
 
 PlotConfusion(conf)
-PlotConfusion(prop.table(conf,1))
-PlotConfusion(prop.table(conf,2))
+
+# At least 40\% of the cases agree =====================
+ind <- sample(1:N,round(0.5*N))
+Reference[ind] <- Prediction[ind]
+conf2 <- table(Prediction,Reference)
+
+PlotConfusion(conf2)
+
+# Most of the cases agree =============================
+ind <- sample(1:N,round(N*.8))
+Reference[ind] <- Prediction[ind]
+conf3 <- table(Prediction,Reference)
+
+PlotConfusion(conf3)
+
+# Proportions =========================================
+
+PlotConfusion(conf3)
+PlotConfusion(prop.table(conf3))
+PlotConfusion(prop.table(conf3,1))
+PlotConfusion(prop.table(conf3,2))
+
+# Shades: proportional ================================
+
+PlotConfusion(conf,shades = "prop",  subTitle = "shades: 'prop', correct by chance")
+PlotConfusion(conf,shades = "max",   subTitle = "shades: 'max', correct by chance")
+
+PlotConfusion(conf2,shades = "prop", subTitle = "shades: 'prop', correct >50\%")
+PlotConfusion(conf2,shades = "max",  subTitle = "shades: 'max', correct >50\%")
+
+PlotConfusion(conf3,shades = "prop", subTitle = "shades: 'prop', correct >80\%")
+PlotConfusion(conf3,shades = "max",  subTitle = "shades: 'max', correct >80\%")
+
+# Shades: constant and none ===========================
+
+PlotConfusion(conf3,shades = "const",subTitle = "shades: constant")
+PlotConfusion(conf3,shades = "none", subTitle = "shades: none")
+
 
 }
 

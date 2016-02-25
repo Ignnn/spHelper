@@ -4,7 +4,7 @@
 \alias{spStat}
 \title{[!] Calculate summary statistic of spectroscopic data by group and for all data}
 \usage{
-spStat(sp, by = gr, FUN = mean)
+spStat(sp, by, FUN = mean)
 }
 \arguments{
 \item{sp}{A hyperSpec object.}
@@ -29,9 +29,9 @@ statistic is indicated by level \code{.ALL}) in variable
 \code{.aggregate}.
 }
 \examples{
-
-spStat(sp, by=sp$gr, FUN = IQR)
-spStat(sp, by=gr,    FUN = IQR)
+spStat(Spectra)
+spStat(Spectra, by = gr,         FUN = IQR)
+spStat(Spectra, by = Spectra$gr, FUN = IQR)
 
 }
 \seealso{

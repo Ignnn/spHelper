@@ -24,6 +24,8 @@ identification codes/numbers (ID).}
 \item{returnTrain}{Logical. If \code{TRUE}, returns indices of variables in training
 set. If \code{FALSE}, returns indices of variables in
 test set.}
+
+\item{...}{(Ignore this)}
 }
 \value{
 A list of folds. In each fold indices observations.

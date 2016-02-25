@@ -2,12 +2,12 @@
 % Please edit documentation in R/qplotStat.R
 \name{qplotStat}
 \alias{qplotStat}
-\title{[!] Plot a summary statistic of spectroscopic data by group.}
+\title{[!] Plot a summary statistic of spectroscopic data by group}
 \usage{
 qplotStat(sp, by = stop("Argument 'by' is missing."),
   FUN = stop("Argument 'FUN' is missing."),
-  Title = fCap(as.character(match.call()$FUN)), All = TRUE,
-  fixed.colors = TRUE, All.color = "black",
+  Title = fCap(as.character(match.call()$FUN)), subTitle = NULL,
+  All = TRUE, fixed.colors = TRUE, All.color = "black",
   gr.color = RColorBrewer::brewer.pal(8, "Dark2"), All.linetype = "dashed",
   gr.linetype = "solid", All.size = 1.1, gr.size = 0.8,
   legend.title = element_blank())
@@ -16,30 +16,34 @@ qplotStat(sp, by = stop("Argument 'by' is missing."),
 \item{sp}{Spectroscopic data
 (either a \code{\link[=hyperSpec-class]{hyperSpec}} object or a matrix).}
 
-\item{by}{by <- as.factor(by)}
+\item{by}{A grouping variable (\code{by <- as.factor(by)})}
 
-\item{FUN}{- function of summary statistic to apply.}
+\item{FUN}{A function that calculates one or several summary statistics.}
 
-\item{Title}{- ...}
+\item{Title}{A title of the plot.}
 
-\item{All}{- plot additional statistic of all spectra}
+\item{subTitle}{The second line of title, which will be smaller and
+and in italics.}
 
-\item{fixed.colors}{- flag if color scheme where ".All" is plotted as
-a black line shpuld be used.}
+\item{All}{Logical. If \code{TRUE}, plot additional corve for a statistic 
+of all spectra (\code{.ALL}), not devided to grroups.}
 
-\item{All.color}{- ...}
+\item{fixed.colors}{- Logical. If \code{TRUE}, color scheme where \code{.ALL} 
+is plotted as a black line is be used.}
 
-\item{gr.color}{- ...}
+\item{All.color}{A line color for \code{.ALL}.}
 
-\item{All.linetype}{- ...}
+\item{gr.color}{Line colors (a vector) for each level in \code{by}.}
 
-\item{gr.linetype}{- ...}
+\item{All.linetype}{A line type for \code{.ALL}.}
 
-\item{All.size}{- ...}
+\item{gr.linetype}{Line types (a vector) for each level in \code{by}.}
 
-\item{gr.size}{- ...}
+\item{All.size}{A line width for \code{.ALL}.}
 
-\item{legend.title}{- ...}
+\item{gr.size}{Line widths (a vector) for each level in \code{by}.}
+
+\item{legend.title}{A title for legend. Default is no title.}
 }
 \value{
 A plot.\cr (An object of class \code{ggplot} and
@@ -61,7 +65,7 @@ qplotStat(chondro,clusters,median,All=FALSE, fixed.colors=FALSE)
 qplotStat(chondro,clusters,median, "My Title")
 
 
-# Use .aggregate in make facets, to avoid facet called "NA":
+# Use `.aggregate` in making facets, to avoid facet called "NA":
 
 qplotStat(chondro,clusters,mean_pm_sd) + facet_grid(.~clusters)
 qplotStat(chondro,clusters,mean_pm_sd) + facet_grid(.~.aggregate)

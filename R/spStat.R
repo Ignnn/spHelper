@@ -22,15 +22,15 @@
 #' @seealso \code{\link[hyperSpec]{aggregate}}
 #'
 #' @examples
+#' spStat(Spectra)
+#' spStat(Spectra, by = gr,         FUN = IQR)
+#' spStat(Spectra, by = Spectra$gr, FUN = IQR)
 #'
-#' spStat(sp, by=sp$gr, FUN = IQR)
-#' spStat(sp, by=gr,    FUN = IQR)
-#'
-spStat <- function(sp, by = gr, FUN = mean){
-    varName <- as.character(match.call()$by)
-    by <- if (varName %in% colnames(sp)) sp[[,varName]] else by
+spStat <- function(sp, by, FUN = mean){
+	if (missing(by)) stop('Argument `by` is missing with no default.')
 
-
+    by <- getVarValues(VAR = by, DATA = sp, CALL = match.call())
+	
     stat_by_gr  <- aggregate(sp, by = by, FUN)
     stat_all    <-     apply(sp, 2,       FUN)
     stat_all$.aggregate <- factor(".All")

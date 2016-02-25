@@ -18,28 +18,26 @@
 #' @examples
 #' addLabels_TD2009(sp)
 #'
-#' # hyperSpec object
-#' # 1020 spectra
-#' # 11 data columns
-#' # 2048 data points / spectrum
-#' # wavelength: paste(lambda, ", ", nm) [numeric] 348.37 348.66 ... 895.92
-#' #  data:  (1020 rows x 11 columns)
-#' #  1. ID: Spektro ID [factor] D1 D1 ... S9
-#' #  2. spID: Mėginio ID [factor] D1__1_a1 D1__1_a2 ... S9__4_c2
-#' #  3. taskas: Taško numeris mėginy [factor] 1\\a1 1\\a2 ... 4\\c2
-#' #  4. fileName: Bylos pavadinimas [factor] \\TD_2009\\D\\D1\\1\\a1.txt \\TD_2009\\D\\D1\\1\\a2.txt ... \\TD_2009\\S\\S9\\4\\c2.txt
-#' #  5. gr: Grupavimas (S, P, D) [factor] D D ... S
-#' #  6. Boos: Boos index [integer] 18 18 ... 21
-#' #  7. Safranin: Safranin index [integer] 2 2 ... 2
-#' #  8. coll_1: Collagen 1, % [integer] 0 0 ... 10
-#' #  9. coll_2: collagen 2, %  [integer] 80 80 ... 40
-#' #  10. coll_oth: Other collagens, % [integer] 20 20 ... 50
-#' #  11. spc: I, sant.vnt. [matrix2048] 15422 17841 ... 211.7
+#' ## hyperSpec object
+#' ## 1020 spectra
+#' ## 11 data columns
+#' ## 2048 data points / spectrum
+#' ## wavelength: paste(lambda, ", ", nm) [numeric] 348.37 348.66 ... 895.92
+#' ##  data:  (1020 rows x 11 columns)
+#' ##  1. ID: Spektro ID [factor] D1 D1 ... S9
+#' ##  2. spID: Mėginio ID [factor] D1__1_a1 D1__1_a2 ... S9__4_c2
+#' ##  3. taskas: Taško numeris mėginy [factor] 1\\a1 1\\a2 ... 4\\c2
+#' ##  4. fileName: Bylos pavadinimas [factor] \\TD_2009\\D\\D1\\1\\a1.txt \\TD_2009\\D\\D1\\1\\a2.txt ... \\TD_2009\\S\\S9\\4\\c2.txt
+#' ##  5. gr: Grupavimas (S, P, D) [factor] D D ... S
+#' ##  6. Boos: Boos index [integer] 18 18 ... 21
+#' ##  7. Safranin: Safranin index [integer] 2 2 ... 2
+#' ##  8. coll_1: Collagen 1, % [integer] 0 0 ... 10
+#' ##  9. coll_2: collagen 2, %  [integer] 80 80 ... 40
+#' ##  10. coll_oth: Other collagens, % [integer] 20 20 ... 50
+#' ##  11. spc: I, sant.vnt. [matrix2048] 15422 17841 ... 211.7
 #'
 #'
 #' *************************************************************
-#' ...@import hyperSpec
-#' ...@import dplyr
 #'
 #' @export
 #'
@@ -48,7 +46,7 @@ addLabels_TD2009 <- function(sp,language = "EN")  {
 
     data         = sp$..
 
-    # Pasirenkami tik reikalingi stulpeliai (Pašalinami nereikalingi stulpeliai):
+    # Only required columns are sellected:
     data <- data %>%
         dplyr::mutate(fileName = file_name_with_path) %>%
         dplyr::select(ID,
@@ -67,16 +65,16 @@ addLabels_TD2009 <- function(sp,language = "EN")  {
 
     # add Labels ------------------------------------------------------------
     Var.Names <- colnames(Object)
-    Var.LabelsLT <- c("Mėginio ID",
+    Var.LabelsLT <- c("Meginio ID",
                       "Spektro ID",
-                      "Taško numeris mėginy",
+                      "Tasko numeris meginy",
                       "Bylos pavadinimas",
                       "Grupavimas (S, P, D)",
                       "Boos indeksas",
                       "Safranin0 indeksas",
                       "Kolageno 1 kiekis, %",
                       "Kolageno 2 kiekis, % ",
-                      "Kitų kolagenų kiekis, %",
+                      "Kitu kolagenu kiekis, %",
                       "I, sant.vnt."
     )
 

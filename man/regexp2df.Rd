@@ -88,10 +88,6 @@ expr <- paste0('(?<R_file>.*\\\\.[rR]$)|',
                '(?<Rmd_file>.*\\\\.[rR]md$)|',
                '(?<CSV_file>.*\\\\.[cC][sS][vV]$)')
 dir() \%>\% regexp2df(expr)
-
-
-
-... @import dplyr
 }
 \seealso{
 \code{\link{gregexpr}},

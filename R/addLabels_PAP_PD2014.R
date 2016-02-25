@@ -51,7 +51,7 @@ addLabels_PAP_PD2014 <- function(sp,language = "EN")  {
     data$Time <- strptime(paste(data$Date, data$Time), "%m-%d-%Y %H:%M:%S")
     data$Date <- as.Date(data$Date,format = "%m-%d-%Y")
 
-    # Pasirenkami tik reikalingi stulpeliai (Pašalinami nereikalingi stulpeliai):
+    # Only necessary columns are selected:
     data <- data %>%
         dplyr::mutate(fileName = file_name_with_path,
                       Integration_time = Integration_time/1e3) %>%
@@ -76,18 +76,18 @@ addLabels_PAP_PD2014 <- function(sp,language = "EN")  {
 
     # add Labels ------------------------------------------------------------
     Var.Names <- colnames(Object)
-    Var.LabelsLT <- c("Mėginio ID",
-                      "Mėginio ID2",
+    Var.LabelsLT <- c("Meginio ID",
+                      "Meginio ID2",
                       "Spektro ID",
-                      "Taško numeris mėginy",
+                      "Tasko numeris meginy",
                       "Bylos pavadinimas",
                       "Data (Spektometre)",
                       "Registravimo laikas",
                       "Integracijos laikas",
-                      "Šlapias/Išdžiūvęs",
-                      "Ciltologinės grupės",
-                      "Histologinės grupės",
-                      "Hibridinės grupės",
+                      "Slapias/Isdziuves",
+                      "Ciltologines grupes",
+                      "Histologines grupes",
+                      "Hibridines grupes",
                       "Boxcar width",
                       "I, sant.vnt."
 

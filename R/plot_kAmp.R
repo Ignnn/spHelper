@@ -8,13 +8,11 @@
 #'        xLabel = labels(scores, ".wavelength") \cr
 #'        yLabel
 #'
-#' @param Title      - Title
-#' @param subTitle   - Second line of title
-#' @param scores - object of class \code{\link[=hyperSpec-class]{hyperSpec}}
+#' @template labels
+#' @template subtitle
+#' @param scores An object of class \code{\link[=hyperSpec-class]{hyperSpec}}
 #' with scores after factorisation/decomposition.
-#' @param xLabel - label of x axis
-#' @param yLabel - label of y axis
-#'  @param by A name of grouping variable.
+#' @param by A name of grouping variable. Default is \code{by = "gr"}.
 #'
 #'
 #' @return object of class "ggplot"
@@ -24,11 +22,9 @@
 #' plot_kAmp(Scores)
 #'
 #' data(Scores3)
-#' plot_kAmp(Scores3,by = "class")
+#' plot_kAmp(Scores3, by = "class")
 #' @export
 #'
-#' @import hyperSpec
-#' @import ggplot2
 
 plot_kAmp <- function(scores,
                       Title = "Component amplitudes",

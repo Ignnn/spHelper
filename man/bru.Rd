@@ -24,6 +24,8 @@ Default is \cr\code{if (print==TRUE) 1 else 0}.}
 \item{print}{If \code{TRUE} (default for \code{bru}), result is printed to
 console using \code{\link[base]{cat}} method.
        If \code{FALSE}, a string is returned.}
+
+\item{...}{\code{bru0}paeameters (the same as in \code{bru}).}
 }
 \value{
 String of repeated symbols.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/simCorrVars.R
 \name{simCorrVars}
 \alias{simCorrVars}
-\title{[!!!] Simulate correlated continuaous data from standard normal distribution}
+\title{[!!!] Simulate correlated continuous data from standard normal distribution}
 \source{
 \url{http://www.r-bloggers.com/simulating-random-multivariate-correlated-data-continuous-variables/}
 }

@@ -3,8 +3,8 @@
 #' regcapturedmatches.R: extracts captured matches from match data obtained
 #'  by regexpr, gregexpr or regexec.
 #'
-#' @param x - (a list of) strings.
-#' @param m - ParsedData, aresult from a regular expression function.
+#' @param x - (A list of) strings.
+#' @param m - Parsed data, a result from a regular expression function.
 #'
 #' @return ....
 #'
@@ -23,7 +23,6 @@
 #'
 
 regcapturedmatches <- function(x,m) {
-
   if (length(x) != length(m))
     stop(gettextf("%s and %s must have the same length",
       sQuote("x"), sQuote("m")), domain = NA)
@@ -64,7 +63,6 @@ regcapturedmatches <- function(x,m) {
   }
   starts <- lapply(starts, cleannames)
   lengths <- lapply(lengths, cleannames)
-
 
   Substring <- function(x,starts,lens) {
     if (all(starts < 0)) {

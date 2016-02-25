@@ -26,28 +26,26 @@ Select data columns, that are not removed, and add labels to
 \examples{
 addLabels_TD2009(sp)
 
-# hyperSpec object
-# 1020 spectra
-# 11 data columns
-# 2048 data points / spectrum
-# wavelength: paste(lambda, ", ", nm) [numeric] 348.37 348.66 ... 895.92
-#  data:  (1020 rows x 11 columns)
-#  1. ID: Spektro ID [factor] D1 D1 ... S9
-#  2. spID: Mėginio ID [factor] D1__1_a1 D1__1_a2 ... S9__4_c2
-#  3. taskas: Taško numeris mėginy [factor] 1\\\\a1 1\\\\a2 ... 4\\\\c2
-#  4. fileName: Bylos pavadinimas [factor] \\\\TD_2009\\\\D\\\\D1\\\\1\\\\a1.txt \\\\TD_2009\\\\D\\\\D1\\\\1\\\\a2.txt ... \\\\TD_2009\\\\S\\\\S9\\\\4\\\\c2.txt
-#  5. gr: Grupavimas (S, P, D) [factor] D D ... S
-#  6. Boos: Boos index [integer] 18 18 ... 21
-#  7. Safranin: Safranin index [integer] 2 2 ... 2
-#  8. coll_1: Collagen 1, \% [integer] 0 0 ... 10
-#  9. coll_2: collagen 2, \%  [integer] 80 80 ... 40
-#  10. coll_oth: Other collagens, \% [integer] 20 20 ... 50
-#  11. spc: I, sant.vnt. [matrix2048] 15422 17841 ... 211.7
+## hyperSpec object
+## 1020 spectra
+## 11 data columns
+## 2048 data points / spectrum
+## wavelength: paste(lambda, ", ", nm) [numeric] 348.37 348.66 ... 895.92
+##  data:  (1020 rows x 11 columns)
+##  1. ID: Spektro ID [factor] D1 D1 ... S9
+##  2. spID: Mėginio ID [factor] D1__1_a1 D1__1_a2 ... S9__4_c2
+##  3. taskas: Taško numeris mėginy [factor] 1\\\\a1 1\\\\a2 ... 4\\\\c2
+##  4. fileName: Bylos pavadinimas [factor] \\\\TD_2009\\\\D\\\\D1\\\\1\\\\a1.txt \\\\TD_2009\\\\D\\\\D1\\\\1\\\\a2.txt ... \\\\TD_2009\\\\S\\\\S9\\\\4\\\\c2.txt
+##  5. gr: Grupavimas (S, P, D) [factor] D D ... S
+##  6. Boos: Boos index [integer] 18 18 ... 21
+##  7. Safranin: Safranin index [integer] 2 2 ... 2
+##  8. coll_1: Collagen 1, \% [integer] 0 0 ... 10
+##  9. coll_2: collagen 2, \%  [integer] 80 80 ... 40
+##  10. coll_oth: Other collagens, \% [integer] 20 20 ... 50
+##  11. spc: I, sant.vnt. [matrix2048] 15422 17841 ... 211.7
 
 
 *************************************************************
-...@import hyperSpec
-...@import dplyr
 
 }
 

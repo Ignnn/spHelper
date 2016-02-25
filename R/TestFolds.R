@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' data(DataSet1)
-#' FoldsObj <- stratifiedFolds(data = DataSet1, gr = gr, ID = ID, returnTrain=FALSE)
+#' FoldsObj <- stratifiedFolds(data = DataSet1, gr = gr, ID = ID, returnTrain = FALSE)
 #' TestFolds(FoldsObj, DataSet1)
 #'
 TestFolds <- function(FoldsOBJ, DATA, stratBy = "gr", blockBy = "ID") {

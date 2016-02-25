@@ -24,12 +24,14 @@
 #'
 #' @template loadings-hy
 #' @template labels
+#' @template subtitle
 #'
 #' @param names A name of variable in \code{loadings} that contains variable names.
 #'        If indicated variable does not exist, row names are used instead.\cr
 #'        Default is \code{names = 'kNames'}
 #'
-#' @param normalize A flag that indicates whether components should be normalized before plotting.
+#' @param normalize A flag that indicates whether components should be
+#'  normalized before plotting.
 #'      Possible selections: \enumerate{
 #'      \item {\code{FALSE}, \code{0}}{ - do not normalize;}
 #'      \item {\code{TRUE}, \code{+1}}{ - normalize to max value;}
@@ -47,7 +49,7 @@
 #'          \item {logical \code{FALSE}}{ - a legend without a name;}
 #'          \item {logical \code{TRUE}}{ - a label of a variable \code{name} is used as a name of a legend
 #'              (\code{legendName <- labels(loadings,name}));}
-#'          \item {}{manual input of the name.}
+#'          \item {...}{manual input of the name.}
 #'          }
 #'
 #' @param Facets A logical flag. If \code{TRUE}, spectra are plotted on separate graphs/facets
@@ -82,22 +84,22 @@
 #'
 #'
 #' @export
-#'
 #' @import hyperSpec
-#' @import ggplot2
-#'
-#'
+
+
 plot_kSp <- function(loadings,
                      Title = "Components",
-                     xLabel = labels(loadings, "spc"),
-                     yLabel = labels(loadings, ".wavelength"),
+                     xLabel = labels(loadings, ".wavelength"),
+                     yLabel = labels(loadings, "spc"),
                      names  = 'kNames',
                      legendName = TRUE,
                      filled = TRUE,
 
                      normalize  = FALSE,
-                     Facets = FALSE)
+                     Facets = FALSE,
+                     subTitle = NULL)
 {
+
     hyperSpec::chk.hy(loadings)
 
     # Get label of `loadings[, name]`, before renaming to "kName"
@@ -117,20 +119,25 @@ plot_kSp <- function(loadings,
 
     loadings <- switch(as.character(as.numeric(normalize)),
                        `0` =  loadings,
-                       `1` =  sweep(loadings, 1, max, `/`), # `+1` normalize to max value
-                       `-1` = -sweep(loadings, 1, min, `/`), # `-1` normalize to min value
-                       stop("'normalize' is incorrect. Must be either -1, 0 or 1.")
+                     # `+1` normalize to max value
+                       `1` =  sweep(loadings, 1, max, `/`),
+                     # `-1` normalize to min value
+                      `-1` =  sweep(loadings, 1, min, `/`),
+                       stop("Parameter 'normalize' is incorrect. Must be either -1, 0 or 1.")
     )
-    scale_x_continuous(breaks = c(10,20,30,40,seq(50,60,by = 1),seq(70,200,10)),
-                       minor_breaks = seq(50,60,by = 1))
+
     #
     l <- loadings
 
     # Select variable with component names
     names <- as.character(names)
-    if (!(names %in% colnames(l))) {l[,names] = as.factor(as.numeric(rownames(l)))} #if variable does not exist"
-    if (names != 'kNames') {colnames(l)[colnames(l) == names] <- 'kNames'}
 
+    #if variable does not exist
+    if (!(names %in% colnames(l))) {
+        l[,names] = as.factor(as.numeric(rownames(l)))
+    }
+
+    if (names != 'kNames') {colnames(l)[colnames(l) == names] <- 'kNames'}
 
     l$rows = 1:nrow(l)                 # Create variable with row numbers
     l <- l[,c('spc','kNames','rows')]  # Rename variables
@@ -141,9 +148,15 @@ plot_kSp <- function(loadings,
     limMIN <- ifelse(min(l$spc) >= 0, 0, min(l$spc) * 1.05)
     limMAX <- ifelse(max(l$spc) <= 0, 0, max(l$spc) * 1.05)
 
+    scale_y = scale_y_continuous(expand = c(0,0),
+                                 limits = c(limMIN, limMAX)
+                                 # limits = c(0, max(l$spc)*1.03)
+                                 # , breaks = round(seq(0, max(l$spc),length.out = 3))
+    )
+
     # Plot
     p <- ggplot(l, aes(x = .wavelength,
-                        y = spc,
+                       y = spc,
                         group = rows,
                         color = kNames,
                         fill  = kNames)) +
@@ -151,12 +164,8 @@ plot_kSp <- function(loadings,
         geom_line(size = 1) +
         theme_bw() +
         scale_x_continuous(expand = c(0,0)) +
-        scale_y_continuous(expand = c(0,0),
-                           limits = c(limMIN, limMAX)
-                           # limits = c(0, max(l$spc)*1.03)
-                           # , breaks = round(seq(0, max(l$spc),length.out = 3))
-        ) +
-        labs(title = subt(Title),
+        scale_y +
+        labs(title = subt(Title, subTitle),
              x = xLabel,
              y = yLabel)
 

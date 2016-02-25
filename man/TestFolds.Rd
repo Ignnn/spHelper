@@ -24,7 +24,7 @@ Evaluate if data in folds is stratified and blocked.
 }
 \examples{
 data(DataSet1)
-FoldsObj <- stratifiedFolds(data = DataSet1, gr = gr, ID = ID, returnTrain=FALSE)
+FoldsObj <- stratifiedFolds(data = DataSet1, gr = gr, ID = ID, returnTrain = FALSE)
 TestFolds(FoldsObj, DataSet1)
 
 }

@@ -13,7 +13,6 @@
 #' @section Cross-validation:
 #'
 #' \code{\link{stratifiedFolds}} \cr
-#' \code{\link{}} \cr
 #'
 #' @section Component analysis / Spectroscopy:
 #'
@@ -40,6 +39,7 @@
 #' \code{\link{plot_kSpFacets}} \cr
 #' \code{\link{plot_SpDiff}}    \cr
 #' \code{\link{PlotConfusion}}  \cr
+#'
 #' \code{\link{subt}}          \cr
 #' \code{\link{InfoDim_plot}} \cr
 #' \code{\link{getReconstructed}} \cr
@@ -67,7 +67,8 @@
 #'
 #' listFunctions()
 #'
-#' require(sna); require(mvbutils)
+#' requireNamespace(mvbutils)
+#' requireNamespace(sna)
 #' Plot structure of functions inside the package:
 #' pkgFW <- mvbutils::foodweb(where="package:spHelper", cex=0.7, charlim=60)
 #' sna::gplot(pkgFW$funmat, g = 9,
@@ -78,13 +79,6 @@
 #'            vertex.cex=1:2,
 #'            displaylabels=TRUE,
 #'            label.bg="gray90")
-#'
-#'
-#'
-#'
-#'
-#'
-#'
 #'
 #'
 #' # Other things to remember
@@ -99,9 +93,11 @@
 #'
 #' @docType package
 #' @name spHelper
+#'
 NULL
 #> NULL
 
+# \code{\link{}} \cr
 # \code{\link{}} \cr
 # \code{\link{}} \cr
 # \code{\link{}} \cr

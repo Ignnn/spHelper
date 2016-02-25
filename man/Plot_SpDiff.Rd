@@ -40,7 +40,7 @@ Difference between experimental and reconstructed spectra'
 }
 \examples{
 
-plot_SpDiff
+plot_SpDiff(Loadings, Scores, Spectra)
 
 }
 

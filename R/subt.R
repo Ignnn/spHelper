@@ -12,12 +12,10 @@
 #' May not work with plotting functions from package \pkg{hyperSpec}.
 #'
 #' @param Title The first line of title, which will be in bold.
-#' @param subTitle The second line of title, which will be smaller and
-#'        and in italics.
+#' @template subtitle
 #'
 #' @return Formated title.
 #' @export
-#' @import grDevices
 #'
 #'
 #' @examples
@@ -72,7 +70,7 @@ subt <- function(Title = NULL, subTitle = NULL)  {
         Title <- bquote(bold(.(Title)))
     } else {# otherwise add the subtitle
         Title <- bquote(atop(bold(.(Title)),
-                                        atop(italic(.(subTitle)))))}
+						atop(italic(.(subTitle)))))}
 
     return(Title)
 }

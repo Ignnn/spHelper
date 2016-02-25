@@ -1,6 +1,7 @@
 #' [!] Generate spectroscopic data
 #'
-#' Simulate spectroscopic data: generate spectra, loadings and scores.
+#' Simulate spectroscopic data: generate spectra, loadings and scores.\cr
+#' [Description is incomplete]
 #'
 #' @param x Values for x axis ("wavelengths").
 #' @param nGr Number of groups.
@@ -32,8 +33,7 @@ simSpectra <- function(x = 300:800,
                        N = sum(nInGr),
                        nDim  = 4,
                        w.possile = 5:150,
-                       plots = FALSE
-){
+                       plots = FALSE) {
     # x = 300:800
     #
     # nInGr = c(50,50,50)

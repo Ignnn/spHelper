@@ -5,9 +5,10 @@
 \alias{plot_kSpFacets}
 \title{[+] Plot spectral components (a.k.a. loadings)}
 \usage{
-plot_kSp(loadings, Title = "Components", xLabel = labels(loadings, "spc"),
-  yLabel = labels(loadings, ".wavelength"), names = "kNames",
-  legendName = TRUE, filled = TRUE, normalize = FALSE, Facets = FALSE)
+plot_kSp(loadings, Title = "Components", xLabel = labels(loadings,
+  ".wavelength"), yLabel = labels(loadings, "spc"), names = "kNames",
+  legendName = TRUE, filled = TRUE, normalize = FALSE, Facets = FALSE,
+  subTitle = NULL)
 
 plot_kSpFacets(..., Title = "Components (stacked)", normalize = "auto",
   Facets = TRUE)
@@ -29,30 +30,36 @@ Default is \code{names = 'kNames'}}
 \item {logical \code{FALSE}}{ - a legend without a name;}
 \item {logical \code{TRUE}}{ - a label of a variable \code{name} is used as a name of a legend
     (\code{legendName <- labels(loadings,name}));}
-\item {}{manual input of the name.}
+\item {...}{manual input of the name.}
 }}
 
 \item{filled}{A logical flag. If \code{TRUE}, colored fill is used. If \code{FALSE}, no fill is used.
 (Fill is an area between ordinate axis and the curve.)}
 
-\item{normalize}{A flag that indicates whether components should be normalized before plotting.
-Possible selections: \enumerate{
-\item {\code{FALSE}, \code{0}}{ - do not normalize;}
-\item {\code{TRUE}, \code{+1}}{ - normalize to max value;}
-\item {\code{-TRUE}, \code{-1}}{ - normalize to min value [! this choise can give unexpected results];}
-\item {\code{"auto"}}{ - one of the choices above is selected by determining if spectra have any
-     possitive and any negative peaks:\itemize{
-     \item \code{Below0 <- any(loadings$spc < 0);}
-     \item \code{Above0 <- any(loadings$spc > 0);}
-     \item \code{normalize <- (Above0 - Below0)}
-     }
-     }
-}}
+\item{normalize}{A flag that indicates whether components should be
+normalized before plotting.
+    Possible selections: \enumerate{
+    \item {\code{FALSE}, \code{0}}{ - do not normalize;}
+    \item {\code{TRUE}, \code{+1}}{ - normalize to max value;}
+    \item {\code{-TRUE}, \code{-1}}{ - normalize to min value [! this choise can give unexpected results];}
+    \item {\code{"auto"}}{ - one of the choices above is selected by determining if spectra have any
+         possitive and any negative peaks:\itemize{
+         \item \code{Below0 <- any(loadings$spc < 0);}
+         \item \code{Above0 <- any(loadings$spc > 0);}
+         \item \code{normalize <- (Above0 - Below0)}
+         }
+         }
+    }}
 
 \item{Facets}{A logical flag. If \code{TRUE}, spectra are plotted on separate graphs/facets
        (implemented by function \code{\link[ggplot2]{facet_grid}}). If {\code{FALSE}, all spectra
         are plotted on one facet.
 }}
+
+\item{subTitle}{The second line of title, which will be smaller and
+and in italics.}
+
+\item{...}{(Ignore this.)}
 }
 \value{
 A plot.\cr (An object of class \code{ggplot} and

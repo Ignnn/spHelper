@@ -7,7 +7,7 @@
 \usage{
 reconstructSp(loadings, scores, sp = NULL)
 
-getReconstructed(a, ...)
+getReconstructed(..., ignore)
 }
 \arguments{
 \item{loadings}{Components' spectra (loadings) as either a matrix or a
@@ -19,6 +19,10 @@ getReconstructed(a, ...)
 \item{sp}{original \code{hyperSpec} object. If \code{sp} is provided,
 the result of this function will be the \code{sp} in which sp$spc
 will be replaced with \code{reconstructed} spectra.}
+
+\item{...}{(Ignore this)}
+
+\item{ignore}{(Ignore this)}
 }
 \value{
 \code{reconstructed <- scores \%*\% loadings}

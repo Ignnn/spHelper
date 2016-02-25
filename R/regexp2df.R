@@ -86,14 +86,11 @@
 #'                '(?<Rmd_file>.*\\.[rR]md$)|',
 #'                '(?<CSV_file>.*\\.[cC][sS][vV]$)')
 #' dir() %>% regexp2df(expr)
-#'
-#'
-#'
-#' ... @import dplyr
+
 
 regexp2df <- function(strings, pattern)  {
     ParsedData <- gregexpr(pattern,strings, perl = TRUE);
     as_a_list  <- regcapturedmatches(strings,ParsedData)
-    df <- dplyr::do.call(rbind.data.frame, as_a_list)
+    df <- do.call(rbind.data.frame, as_a_list)
     return(df)
 }

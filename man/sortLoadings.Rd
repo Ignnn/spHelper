@@ -35,6 +35,7 @@ In case of \code{hyperSpec} object, 3 additional columns
      \item{If \code{sp} is provided, convert resulting matrix to corresponding
          \code{\link[=hyperSpec-class]{hyperSpec}} object by using function
          \code{\link[hyperSpec]{decomposition}}.}
+
      \item{If \code{PCA = TRUE} and \code{sp} is provided, flips component's spectrum
          if mean of its scores is negative: (\code{sign(mean(Scores_of_component_i)) < 0})
          \code{loadings} and \code{sp} are used to calculate the scores.}

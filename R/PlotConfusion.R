@@ -1,51 +1,142 @@
 # ***** Plot confusion matrix ***** --------------------------------------
 #
-#' Plot a confusion matrix, \code{PlotConfusion}
+#' [!] Vizualize a confusion matrix / classification table
 #'
-#' @param conf - a table, a square matrix.
-#' @param Title ... /not implemented yet/ Title.
-#' @param subTitle ... /not implemented yet/ Subtitle.
+#' \code{PlotConfusion}
 #'
+#' @param conf A confusion matrix / A classificattion table (either a table
+#'        or a square matrix).
+#' @template labels
+#' @param subTitle Subtitle - second line of a title.
+#' @param shades A way, how cells are shaded.
+#'      \describe{
+#'          \item{prop}{(default) A shade (intensity) of a color is proportianal
+#'                to a value of a cell. Distribution of colors is balanced
+#'                according to number of classes, but not balanced according to
+#'                number of observations per class.}
+#'          \item{max}{Cell with absolute maximum value is represented by the
+#'          most intensive color. Other cells are represented by colors which
+#'          are diluted proportionaly to their value in accordance with the
+#'          maximum value.}
+#'          \item{const}{Constant red and green colors.}
+#'          \item{none}{All cells are grey.}
+#'      }
 #'
-#' @return Plot of confusion matrix. ...
+#' @return A plot of confusion matrix.
 #' @examples
-#' Prediction <- sample(c("A","B","C"),1000, replace = T)
-#' Reference  <- sample(c("A","B","C"),1000, replace = T)
+#'
+#' N <- 1000 # number of observations
+#'
+#' Prediction <- sample(c("A","B","C","D"),N, replace = TRUE)
+#' Reference  <- sample(c("A", "B","C","D"),N, replace = TRUE)
+#'
+#'
+#' # Random guess  =====================
 #' conf <- table(Prediction,Reference)
 #'
 #' PlotConfusion(conf)
-#' PlotConfusion(prop.table(conf,1))
-#' PlotConfusion(prop.table(conf,2))
+#'
+#' # At least 40% of the cases agree =====================
+#' ind <- sample(1:N,round(0.5*N))
+#' Reference[ind] <- Prediction[ind]
+#' conf2 <- table(Prediction,Reference)
+#'
+#' PlotConfusion(conf2)
+#'
+#' # Most of the cases agree =============================
+#' ind <- sample(1:N,round(N*.8))
+#' Reference[ind] <- Prediction[ind]
+#' conf3 <- table(Prediction,Reference)
+#'
+#' PlotConfusion(conf3)
+#'
+#' # Proportions =========================================
+#'
+#' PlotConfusion(conf3)
+#' PlotConfusion(prop.table(conf3))
+#' PlotConfusion(prop.table(conf3,1))
+#' PlotConfusion(prop.table(conf3,2))
+#'
+#' # Shades: proportional ================================
+#'
+#' PlotConfusion(conf,shades = "prop",  subTitle = "shades: 'prop', correct by chance")
+#' PlotConfusion(conf,shades = "max",   subTitle = "shades: 'max', correct by chance")
+#'
+#' PlotConfusion(conf2,shades = "prop", subTitle = "shades: 'prop', correct >50%")
+#' PlotConfusion(conf2,shades = "max",  subTitle = "shades: 'max', correct >50%")
+#'
+#' PlotConfusion(conf3,shades = "prop", subTitle = "shades: 'prop', correct >80%")
+#' PlotConfusion(conf3,shades = "max",  subTitle = "shades: 'max', correct >80%")
+#'
+#' # Shades: constant and none ===========================
+#'
+#' PlotConfusion(conf3,shades = "const",subTitle = "shades: constant")
+#' PlotConfusion(conf3,shades = "none", subTitle = "shades: none")
+#'
 #'
 #' @export
-#'
-#' @import ggplot2
-#'
-PlotConfusion <- function(conf) {
+
+
+PlotConfusion <- function(conf,
+                          Title  = "Classification table",
+                          xLabel = "Reference group",
+                          yLabel = "Predicted group",
+                          subTitle = NULL,
+                          shades = "prop") {
     conf <- round(conf,2)
 
     conf.m <- reshape2::melt(conf)
     names(conf.m)[1:2] <- c("Actual","Predicted")
-    conf.m$Actual <- factor(conf.m$Actual, levels = rev(levels(conf.m$Actual)))
+    conf.m$Predicted <- factor(conf.m$Predicted, levels = rev(levels(conf.m$Predicted)))
 
     # Spalvinam įstrižainę ****************************************
     nRows <- nrow(conf.m)
     nCols <- length(unique(conf.m[,2]))
-    ind   <- seq(1,nRows,nCols + 1)
+    indx   <- seq(1,nRows,nCols + 1)
 
-    #     conf.m$ColValue      <- conf.m$value*(-1)
-    #     conf.m$ColValue[ind] <- conf.m$ColValue[ind]*(-1)
+    #     conf.m$ColValue      <-  .8
+    #     conf.m$ColValue[indx] <- -.9
 
-    conf.m$ColValue      <- -1
-    conf.m$ColValue[ind] <- 1
+    switch(shades,
+           prop =  {
+               n <- nrow(conf);
+               conf.m$ColValue       <- conf.m$value / sum(conf) * n * (n - 1);
+               conf.m$ColValue[indx] <- -1/ (n - 1) * conf.m$ColValue[indx]
+            },
+
+           max = {
+               conf.m$ColValue       <- conf.m$value / max(conf);
+               conf.m$ColValue[indx] <- -1 * conf.m$ColValue[indx]
+            },
+
+           const = {
+               conf.m$ColValue      <-  .8;
+               conf.m$ColValue[indx] <- -.9
+            },
+        # No red-green shades
+           conf.m$ColValue <- 0
+    )
+
+    conf.m$ColValue[conf.m$ColValue < -1] <- -1
+    conf.m$ColValue[conf.m$ColValue >  1] <-  1
     # *************************************************************
-
     p <- ggplot(conf.m, aes(Actual, Predicted)) +
-         scale_fill_gradient2(high = "#006400", mid = "#f2f6c3",
+         scale_fill_gradient2(high = "#cd0000",
+                              mid = "#eeeeee", #mid = "#f2f6c3",
                               midpoint = 0,
-                              low  = "#cd0000") +
+                              low  = "#008000",
+
+                              guide = FALSE,
+                              name = " ",
+                              limits = c(-1,1),
+                              breaks = c(1,0,-1),
+                              labels = c("Many Incorrect", "None", "Many Correct")) +
          geom_tile(aes(fill = ColValue), colour = "white") +
-         geom_text(aes(label = value), size = 6)
+         geom_text(aes(label = value), size = 6) +
+
+         labs(title = subt(Title, subTitle),
+             x = xLabel,
+             y = yLabel)
 
     return(p)
 }

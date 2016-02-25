@@ -21,7 +21,7 @@
 #' #  Example 1 ------------------------------------------------------------------------
 #'
 #' x     <- seq(-10,20,.1)
-#' y0    <- GaussAmp(x,xc=0, A=1) + GaussAmp(x,xc=10, A=2) -.5
+#' y0    <- GaussAmp(x,c=0, A=1) + GaussAmp(x,c=10, A=2) -.5
 #' y0NEW <- uniPeak(y0)
 #'
 #' # Plot the results
@@ -36,7 +36,7 @@
 #'
 #' x  = seq(-10,20,.1)
 #' y1 = (sin(x/4) + GaussAmp(x))
-#' y2 = (2*sin(x) + sin(x/5) + GaussAmp(x, xc = 5))
+#' y2 = (2*sin(x) + sin(x/5) + GaussAmp(x, c = 5))
 #' y  = rbind(y1,y2)
 #'
 #' yNEW <- apply(y,1,uniPeak)

@@ -7,9 +7,9 @@
 regcapturedmatches(x, m)
 }
 \arguments{
-\item{x}{- (a list of) strings.}
+\item{x}{- (A list of) strings.}
 
-\item{m}{- ParsedData, aresult from a regular expression function.}
+\item{m}{- Parsed data, a result from a regular expression function.}
 }
 \value{
 ....

@@ -1,5 +1,8 @@
 # Komponentų spektrai (atskirai) ---------------------------------
 #' @rdname plot_kSp
+#' @param ... (Ignore this.)
+#'
+#'
 #' @export
 #'
 plot_kSpFacets <- function(...,Title = "Components (stacked)",

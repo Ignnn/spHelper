@@ -29,7 +29,6 @@
 #'
 #' @return Layer of convex hull for \pkg{ggplot2} plots.
 #' @export
-#' @import ggplot2
 #' @examples
 #'
 #' ggplot(mpg, aes(displ, hwy)) +

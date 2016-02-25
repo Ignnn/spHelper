@@ -10,7 +10,7 @@
 #'      \item{If \code{sp} is provided, convert resulting matrix to corresponding
 #'          \code{\link[=hyperSpec-class]{hyperSpec}} object by using function
 #'          \code{\link[hyperSpec]{decomposition}}.}
-
+#'
 #'      \item{If \code{PCA = TRUE} and \code{sp} is provided, flips component's spectrum
 #'          if mean of its scores is negative: (\code{sign(mean(Scores_of_component_i)) < 0})
 #'          \code{loadings} and \code{sp} are used to calculate the scores.}
@@ -40,7 +40,6 @@
 #'
 #' @seealso More information at \code{\link[hyperSpec]{decomposition}}.
 #'
-#' @import hyperSpec
 #' @export
 #' @examples
 #' ======================================================================
@@ -66,24 +65,24 @@ sortLoadings <- function(loadings, sp = NULL, PCA = FALSE, sort = TRUE) {
     if (PCA & !is.null(sp)) { # flip
         ScoresTMP  <- getScores(hy2mat(sp), loadings)
         # ----------------------------------------------------------------------
-        # Apverčiama, jei amplitudžių vidurkis neigiamas
+        # Flip, if average of amplitudes/scores is negative
         # signCoefs    <- sign(rowMeans(ScoresTMP))
         meanSign     <- function(x){sign(mean(x))}
         signCoefs    <- apply(ScoresTMP, MARGIN = 2, meanSign)
         loadings     <- sweep(loadings, MARGIN = 1, signCoefs,`*`)
 
-        # # Normuojama
+        # # Normalize
         # maxSpInt     <- apply(loadings, MARGIN = 1, max)
         # PCAvarimax2  <- sweep(loadings, MARGIN = 1, maxSpInt,`/`)
 
         # ======================================================================
     }
 
-    # Rikiuojam iš eilės pagal matrcos eilučių maksimumo (y_max) vietą x ašy
+	# Sort in accordance with the position of matrix's row maxima (y_max) on x axis
     index.of.max <- apply(loadings, 1, which.max)
     OrderOfRows  <- order(index.of.max)
 
-    # Viršūnių padėtis
+    # Position of maxima
     index.of.max <- index.of.max[OrderOfRows]
 
     if (sort == TRUE) {
@@ -94,12 +93,12 @@ sortLoadings <- function(loadings, sp = NULL, PCA = FALSE, sort = TRUE) {
     }
 
     if (!(is.null(sp))) {
-        # Komponentus (išrikiuotas) paverčiam į "hyperSpec"" objektą
+        # Convert (sorted) components to "hyperSpec"" object
         loadings <- decomposition(sp, loadings,
                                   scores = FALSE,
                                   label.spc = "Comp. spektrum",
                                   retain.columns = F)
-        # Suteikiam pavadinimus komponantams
+        # Create names of components
         PeakAt    <- make.unique(paste0(round(wl(loadings)[index.of.max]),
                                         "nm"),"_")
         # WARNING is needed, if variables with names are already present

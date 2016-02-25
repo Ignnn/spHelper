@@ -7,11 +7,12 @@
 #' @param Package A name of a package. Default \code{Package = "spHelper"}.
 #' @param print.table A logical flag indicating if the result should be printed as a table using
 #' \code{\link[pander]{pander}}. Default is \code{FALSE}
+#' @param plot Logical. If \code{TRUE} - plots connections between functions in
+#'        a package. Default is \code{FALSE}.
 #'
 #' @return A list of functions in a package.
 #' @export
 #'
-#' @importFrom pander pander
 #' @examples
 #'
 #' listFunctions()
@@ -27,9 +28,6 @@ listFunctions <- function(Package = "spHelper",
     } else return(data.frame(Functions = FunctionList))
 
     if (plot) {
-        require(mvbutils)
-        require(sna)
-
         pkgFW <- mvbutils::foodweb(where = paste0("package:", Package),
                                      cex = 0.7,
                                  charlim = 60,

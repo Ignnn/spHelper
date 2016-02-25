@@ -32,7 +32,8 @@ List of hyperSpec objects:
 }
 }
 \description{
-Simulate spectroscopic data: generate spectra, loadings and scores.
+Simulate spectroscopic data: generate spectra, loadings and scores.\cr
+[Description is incomplete]
 }
 \examples{
 

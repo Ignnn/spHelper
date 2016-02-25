@@ -1,5 +1,3 @@
-# Sukurti sluoksninius k-folds ------------------------------------------------------------------
-#-
 #' @name stratifiedFolds
 #'
 #' @aliases stratifiedFolds
@@ -38,6 +36,7 @@
 #'                    set. If \code{FALSE}, returns indices of variables in
 #'                    test set.
 #'
+#' @param ... (Ignore this)
 #'
 #' @return A list of folds. In each fold indices observations.
 #'         The structure of outpus is the same as if it was created by
@@ -79,8 +78,7 @@
 #' TestFolds(Folds1_d, DataSet1)
 #'
 #'
-stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TRUE)
-{
+stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TRUE) {
     nFolds <- k
 
     # Parse input and prepare data ===========================================

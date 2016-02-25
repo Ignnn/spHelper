@@ -22,9 +22,7 @@
 #'
 #' @export
 #'
-#' @import hyperSpec
-#' @importFrom  pander pander
-#'
+
 read3csv2hy <- function(FileName_base){
     # require(hyperSpec)
 

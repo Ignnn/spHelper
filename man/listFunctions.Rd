@@ -11,6 +11,9 @@ listFunctions(Package = "spHelper", print.table = FALSE, plot = FALSE)
 
 \item{print.table}{A logical flag indicating if the result should be printed as a table using
 \code{\link[pander]{pander}}. Default is \code{FALSE}}
+
+\item{plot}{Logical. If \code{TRUE} - plots connections between functions in
+a package. Default is \code{FALSE}.}
 }
 \value{
 A list of functions in a package.

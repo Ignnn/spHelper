@@ -25,7 +25,7 @@
 #'
 #' @examples
 #'
-#' plot_SpDiff
+#' plot_SpDiff(Loadings, Scores, Spectra)
 #'
 plot_SpDiff <- function(loadings,scores,Spectra,
                         Title = 'Remainders After Subtracting Components',

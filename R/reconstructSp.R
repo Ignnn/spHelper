@@ -33,9 +33,12 @@ reconstructSp  <-  function(loadings, scores, sp = NULL)     {
         } else  return(reconstructed)
 }
 
-
+#===========================================================================
+#' @param ignore (Ignore this)
+#' @param ... (Ignore this)
+#'
 #' @rdname reconstructSp
 #' @export
-getReconstructed  <-  function(a,...) {
+getReconstructed  <-  function(...,ignore) {
     stop('Use function "reconstructSp" in stead of "getReconstructed".')
     }
