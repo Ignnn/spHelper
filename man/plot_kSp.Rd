@@ -33,7 +33,7 @@ Default is \code{names = 'kNames'}}
 \item {...}{manual input of the name.}
 }}
 
-\item{filled}{A logical flag. If \code{TRUE}, colored fill is used. If \code{FALSE}, no fill is used.
+\item{filled}{Logical. If \code{TRUE}, colored fill is used. If \code{FALSE}, no fill is used.
 (Fill is an area between ordinate axis and the curve.)}
 
 \item{normalize}{A flag that indicates whether components should be
@@ -59,7 +59,7 @@ normalized before plotting.
 \item{subTitle}{The second line of title, which will be smaller and
 and in italics.}
 
-\item{...}{(Ignore this.)}
+\item{...}{(The same parameters as above).}
 }
 \value{
 A plot.\cr (An object of class \code{ggplot} and
@@ -83,7 +83,7 @@ The matrix of components/loadings must be treated with function
              to \code{\link[=hyperSpec-class]{hyperSpec}} object. \cr
 }
 \examples{
-library(hyperSpec)
+data(flu, package = "hyperSpec")
 
 plot_kSpFacets(flu, Title = "Flu dataset")
 plot_kSpFacets(flu, Title = "Flu dataset", normalize = 1)
@@ -93,14 +93,23 @@ plot_kSpFacets(flu, Title = "Flu dataset", normalize = -1)
 ## Remove fill ---------------------------------------------------------------------
 
 flu$c2 <- as.factor(flu$c)
-plot_kSp(flu, Title = "Flu dataset", names = 'c2', filled = F)
+plot_kSp(flu, Title = "Flu dataset", names = 'c2', filled = FALSE)
 
-## Name of the legend --------------------------------------------------------------
+## Name of a legend --------------------------------------------------------------
 
 plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = FALSE)
 plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = TRUE)
 plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = "Concentration")
 
 
+}
+\seealso{
+Other spHelper plots: \code{\link{InfoDim_plot}},
+  \code{\link{plot_SpDiff}}, \code{\link{plot_confusion}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_stat}}
+
+Other spHelper plots: \code{\link{InfoDim_plot}},
+  \code{\link{plot_SpDiff}}, \code{\link{plot_confusion}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_stat}}
 }
 

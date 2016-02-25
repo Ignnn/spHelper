@@ -33,14 +33,6 @@ scores - amplitudes of the components (scores)
 
  formula is taken  and adapted from [1]
 }
-\examples{
-# e.g.:
-    sp = Object
-    loadings = loadings
-
-getScores(sp, loadings)
-
-}
 \references{
 [1] M. Brydegaard et al. IEEE Photonics J 2011:3(3);406-21.
 }

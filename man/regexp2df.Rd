@@ -53,11 +53,14 @@ regexp2df(strings1, pattern1)
 #----------------------------------------------------------
 # Wrong. There must NOT be any SPACES in token's name:
 
+\donttest{
+\dontrun{
 pattern2 <- 'A (?<Part A>.*)  B (?<Part B>.*)'
 regexp2df(strings1, pattern2)
 
 ## Error ...
 
+}}
 #----------------------------------------------------------
 strings3 <- c("sn555 ID_O20-5-684_N52_2_Subt2_01.",
               "sn555 ID_O20-5-984_S52_8_Subt10_11.")
@@ -78,6 +81,7 @@ regexp2df(dir(),'(?<R_file>.*\\\\.[rR]$)')
 
 
 # Do the same by using chaining operator \%>\%:
+library(dplyr)
 
 dir() \%>\% regexp2df('(?<R_file>\\\\.*[rR]$)')
 
@@ -88,10 +92,11 @@ expr <- paste0('(?<R_file>.*\\\\.[rR]$)|',
                '(?<Rmd_file>.*\\\\.[rR]md$)|',
                '(?<CSV_file>.*\\\\.[cC][sS][vV]$)')
 dir() \%>\% regexp2df(expr)
+
 }
 \seealso{
-\code{\link{gregexpr}},
+\code{\link[base]{gregexpr}},
          \code{\link{regcapturedmatches}},
-         \code{\link{\%>\%}}
+         \code{\link[dplyr]{\%>\%}}
 }
 

@@ -38,7 +38,9 @@
 #' \code{\link{plot_kSp}} \cr
 #' \code{\link{plot_kSpFacets}} \cr
 #' \code{\link{plot_SpDiff}}    \cr
-#' \code{\link{PlotConfusion}}  \cr
+#' \code{\link{plot_confusion}}  \cr
+#' \code{\link{plot_stat}}  \cr
+#'
 #'
 #' \code{\link{subt}}          \cr
 #' \code{\link{InfoDim_plot}} \cr
@@ -63,13 +65,18 @@
 #'
 #'
 #' @examples
+#'
+#' \donttest{
+#' \dontrun{
+#'
 #' # List all functions in package:
 #'
 #' listFunctions()
 #'
-#' requireNamespace(mvbutils)
-#' requireNamespace(sna)
-#' Plot structure of functions inside the package:
+#' # Plot structure of functions inside the package:
+#' require(sna)
+#' require(mvbutils)
+#'
 #' pkgFW <- mvbutils::foodweb(where="package:spHelper", cex=0.7, charlim=60)
 #' sna::gplot(pkgFW$funmat, g = 9,
 #'            jitter = T,
@@ -82,15 +89,14 @@
 #'
 #'
 #' # Other things to remember
+#'
 #' devtools::install('D:/Data/R/spHelper')
 #' library(spHelper)
 #'
 #'  devtools::build_vignettes()
 #'
-#'
-#'
 #' plotc(ObjectName[,,500],model = spc~Integration_time)
-#'
+#' }}
 #' @docType package
 #' @name spHelper
 #'

@@ -1,6 +1,6 @@
 # addLabels_... --------------------------------------------------------
 #
-#' [!] Add labels to "PAP_PD_2014" and transform dataset.
+#' [!] Add labels to "PAP_PD_2014" and transform the dataset
 #'
 #' Function is designed to label data collected during investigation called
 #'  "PAP_PD_2014".
@@ -17,14 +17,11 @@
 #'
 #' @return A labeled object with reduced number of data columns.
 #'
-#' @examples
-#' addLabels_PAP_PD2014(sp)
-#'
-#'
-#'
 #' @export
 #'
-addLabels_PAP_PD2014 <- function(sp,language = "EN")  {
+#' @family hyperSpcec supplements
+
+addLabels_PAP_PD2014 <- function(sp, language = "EN")  {
     ColsInitial <- colnames(sp) # save initial column names
 
     data         = sp$..

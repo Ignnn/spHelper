@@ -5,8 +5,9 @@
 #' List all functions in a package.
 #'
 #' @param Package A name of a package. Default \code{Package = "spHelper"}.
-#' @param print.table A logical flag indicating if the result should be printed as a table using
-#' \code{\link[pander]{pander}}. Default is \code{FALSE}
+#' @param print.table A logical flag indicating if the result should be
+#'        printed as a table using \code{\link[pander]{pander}}. Default is
+#'        \code{FALSE}.
 #' @param plot Logical. If \code{TRUE} - plots connections between functions in
 #'        a package. Default is \code{FALSE}.
 #'
@@ -16,7 +17,7 @@
 #' @examples
 #'
 #' listFunctions()
-#' listFunctions(Package = "tidyr", print.table = F)
+#' listFunctions(Package = "tidyr", print.table = TRUE)
 #'
 listFunctions <- function(Package = "spHelper",
                           print.table = FALSE,

@@ -23,8 +23,10 @@
 #'          \code{\link[wmtsa]{reconstruct}} in \pkg{wmtsa}\cr
 #'
 #' @examples
-#' function(loadings, scores)
-#' function(loadings, scores, sp)
+#' function(Loadings, Scores)
+#' function(Loadings, Scores, Spectra)
+#'
+#' @import hyperSpec
 #'
 reconstructSp  <-  function(loadings, scores, sp = NULL)     {
     reconstructed <- (hy2mat(scores)) %*% (hy2mat(loadings))
@@ -34,11 +36,10 @@ reconstructSp  <-  function(loadings, scores, sp = NULL)     {
 }
 
 #===========================================================================
-#' @param ignore (Ignore this)
-#' @param ... (Ignore this)
+#' @template same
 #'
 #' @rdname reconstructSp
 #' @export
-getReconstructed  <-  function(...,ignore) {
+getReconstructed  <-  function(...,sp) {
     stop('Use function "reconstructSp" in stead of "getReconstructed".')
     }

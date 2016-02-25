@@ -7,7 +7,7 @@
 read3csv2hy(FileName_base)
 }
 \arguments{
-\item{FileName_base}{- base of file name (a string). See more in section "Details"}
+\item{FileName_base}{A base of file name (a string). See section "Details".}
 }
 \value{
 Object of class \code{\link[=hyperSpec-class]{hyperSpec}}
@@ -18,14 +18,19 @@ Read spectroscopic data from 3 CSV files ("data", "wavelengths" and
  from Matlab.
 }
 \details{
-If base name is "TD_2009", then CSV files must be:
-[1] "TD_2009 (wavelengths).csv"
-[2] "TD_2009 (spectra).csv"
+If base name is "TD_2009", then CSV files must be:\cr
+[1] "TD_2009 (wavelengths).csv"\cr
+[2] "TD_2009 (spectra).csv"\cr
 [3] "TD_2009 (data).csv"
 
 Base name can be a path, e.g.  "D:/spectra/TD_2009"
 }
 \note{
 Data columns, that have unique values are removed.
+}
+\seealso{
+Other hyperSpcec supplements: \code{\link{addLabels_PAP_PD2014}},
+  \code{\link{addLabels_TD2009}}, \code{\link{dropCol}},
+  \code{\link{hy2mat}}, \code{\link{hyAdd.color}}
 }
 

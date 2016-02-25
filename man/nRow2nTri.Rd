@@ -27,5 +27,8 @@ nRow2nTri(7)
 }
 \seealso{
 \link{nTri2nRow}, \link{simCorrVars}
+
+Other Matrix operations: \code{\link{corrVec2Mat}},
+  \code{\link{nTri2nRow}}
 }
 

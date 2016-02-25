@@ -35,4 +35,9 @@ colnames(Spectra2)
 ## [1] "gr"     "class"  "spc"    ".color"
 
 }
+\seealso{
+Other hyperSpcec supplements: \code{\link{addLabels_PAP_PD2014}},
+  \code{\link{addLabels_TD2009}}, \code{\link{dropCol}},
+  \code{\link{hy2mat}}, \code{\link{read3csv2hy}}
+}
 

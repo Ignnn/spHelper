@@ -21,8 +21,8 @@ regcapturedmatches.R: extracts captured matches from match data obtained
 \examples{
 # usage
 x <- c("larry:35,M","alison:22,F","dave","lily:55,F")
-m <- regexpr("(.*):(\\\\\\\\d+),([MF])", x, perl=T)
-D
+m <- regexpr("(.*):(\\\\\\\\d+),([MF])", x, perl=TRUE)
+
 regcapturedmatches(x,m)
 
 

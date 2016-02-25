@@ -25,9 +25,8 @@
 #' simCorrVars(corrMat, N = 10)
 #'
 #' # ------------------------------------------------------------
-#' corrMat <- simCorrMat(3)
-#' simCorrVars(corrMat, N = 10)
 #'
+#' @family simmulation functions
 #'
 simCorrVars <- function(corrMat, N = 100){
     if (missing(corrMat)) {

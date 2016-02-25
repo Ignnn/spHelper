@@ -6,6 +6,7 @@
 #' @return A number of rows/columns in a symmetric matrix. May be a fractional number.
 #' @export
 #' @seealso \link{nRow2nTri}, \link{simCorrVars}
+#' @family Matrix operations
 #' @examples
 #' nTri2nRow(10)
 #' nTri2nRow(6)

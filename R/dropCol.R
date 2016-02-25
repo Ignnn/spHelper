@@ -1,15 +1,14 @@
 # Remove empty columns ----------------------------------------------------
 
-#' [!] Remove colums of hyperSpec object with all NA values
+#' [!] Remove hyperSpec object columns that contain only \code{NA} values
 #'
 #' @template sp
 #'
 #' @return Object without columns that contain all NA values.
 #' @export
 #'
-#' @examples
-#'
-#'  dropCol(sp)
+#' @import hyperSpec
+#' @family hyperSpcec supplements
 #'
 dropCol <- function(sp){
     NAcols <- colSums(is.na(sp$..)) == nrow(sp)

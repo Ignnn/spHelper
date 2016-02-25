@@ -81,6 +81,7 @@ uniPeak <- function(y)  {
     return(yNEW)
 }
 
+#  ------------------------------------------------------------------------
 #' @rdname uniPeak
 #' @export
 unipeak <- function(y){uniPeak(y)}

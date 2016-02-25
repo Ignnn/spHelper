@@ -42,4 +42,8 @@ simSpectra()
 simSpectra()$Spectra
 
 }
+\seealso{
+Other simmulation functions: \code{\link{corrVec2Mat}},
+  \code{\link{simCorrVars}}
+}
 

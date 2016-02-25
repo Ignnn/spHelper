@@ -1,7 +1,5 @@
-
-# ****** Komp: informacijos dimensija ******* -----------------------------------
-
-#' Calculate information dimension of a matix.
+#'
+#' Calculate information dimension of a matix
 #'
 #' The function calculates a measure, called "information dimension".
 #'
@@ -9,13 +7,13 @@
 #' @param  Matrix - data matrix (rows = observations, columns = variables)
 #'
 #' @return A list with fields:
-#'  \itemize{
-#'  \item{$dim }{- information dimension ,rounded towards positive infinitive}
-#'  \item{$exactDim  }{- information dimension (fractional, not rounded)}
-#'  \item{$explained  }{- a vector of eigenvalues, normalized by sum of eigenvalues,
+#'  \describe{
+#'  \item{$dim }{Information dimension ,rounded towards positive infinitive}
+#'  \item{$exactDim  }{Information dimension (fractional, not rounded)}
+#'  \item{$explained  }{A vector of eigenvalues, normalized by sum of eigenvalues,
 #'   which can be used to determine the importance of (principal) components}
-#'  \item{$eigenvalues }{- a vector of eigenvalues}
-#'  \item{$n.comp }{- avector with integers from 1 to length(eigenvalues)}
+#'  \item{$eigenvalues }{A vector of eigenvalues}
+#'  \item{$n.comp }{A vector with integers from 1 to length(eigenvalues)}
 #' }
 #'
 #' @references [1]	R. Cangelosi and A. Goriely, Component retention in principal
@@ -23,16 +21,16 @@
 #'       Biol Direct, 2, 2 (2007), \url{http://dx.doi.org/10.1186/1745-6150-2-2}
 #'
 #' @note
-#' Prieš pradedant vykdyti operaciją, svarbus žingsnis pasirinkti tinkamą
-#' normavimo buda. To nepadarius gausime klaidingą atsakymą. \cr
+#' [LT] Pries pradedant vykdyti operacija, svarbus zingsnis pasirinkti tinkama
+#' normavimo buda. To nepadarius gausime klaidinga atsakyma. \cr
 #' sp = sp_normuok(sp,x,'1',495);
 #'
-#' Taip pat labai svarbus ir triukšmo lygis. Didėjant triukšmui atitinkamai
-#' padidinamas maksimalus dimensijų skaičius.
+#' Taip pat labai svarbus ir triuksmo lygis. Didejant triuksmui atitinkamai
+#' padidinamas maksimalus dimensija skaicius.
 #'
 #'
 #' @note
-#' eigenvalues - Tikrines reiksmes / Singular values
+#' eigenvalues - Singular values
 #' pk - tikimybines dimensiju vertes, skirtos entropijos ivertinimui.
 #' explain = pk;
 #'

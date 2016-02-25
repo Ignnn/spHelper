@@ -7,7 +7,7 @@
 \usage{
 reconstructSp(loadings, scores, sp = NULL)
 
-getReconstructed(..., ignore)
+getReconstructed(..., sp)
 }
 \arguments{
 \item{loadings}{Components' spectra (loadings) as either a matrix or a
@@ -20,9 +20,7 @@ getReconstructed(..., ignore)
 the result of this function will be the \code{sp} in which sp$spc
 will be replaced with \code{reconstructed} spectra.}
 
-\item{...}{(Ignore this)}
-
-\item{ignore}{(Ignore this)}
+\item{...}{(The same parameters as above).}
 }
 \value{
 \code{reconstructed <- scores \%*\% loadings}
@@ -31,8 +29,8 @@ will be replaced with \code{reconstructed} spectra.}
 Reconstruct spectra from loadings and scores (i.e. )
 }
 \examples{
-function(loadings, scores)
-function(loadings, scores, sp)
+function(Loadings, Scores)
+function(Loadings, Scores, Spectra)
 
 }
 \seealso{

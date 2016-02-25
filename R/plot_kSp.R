@@ -57,14 +57,14 @@
 #'           are plotted on one facet.
 #'   }
 #'
-#' @param filled A logical flag. If \code{TRUE}, colored fill is used. If \code{FALSE}, no fill is used.
+#' @param filled Logical. If \code{TRUE}, colored fill is used. If \code{FALSE}, no fill is used.
 #'      (Fill is an area between ordinate axis and the curve.)
 #'
 #'
 #' @template ggplot
 #'
 #' @examples
-#' library(hyperSpec)
+#' data(flu, package = "hyperSpec")
 #'
 #' plot_kSpFacets(flu, Title = "Flu dataset")
 #' plot_kSpFacets(flu, Title = "Flu dataset", normalize = 1)
@@ -74,9 +74,9 @@
 #' ## Remove fill ---------------------------------------------------------------------
 #'
 #' flu$c2 <- as.factor(flu$c)
-#' plot_kSp(flu, Title = "Flu dataset", names = 'c2', filled = F)
+#' plot_kSp(flu, Title = "Flu dataset", names = 'c2', filled = FALSE)
 #'
-#' ## Name of the legend --------------------------------------------------------------
+#' ## Name of a legend --------------------------------------------------------------
 #'
 #' plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = FALSE)
 #' plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = TRUE)
@@ -84,7 +84,9 @@
 #'
 #'
 #' @export
+#' @family spHelper plots
 #' @import hyperSpec
+#' @import ggplot2
 
 
 plot_kSp <- function(loadings,

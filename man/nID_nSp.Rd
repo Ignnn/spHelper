@@ -6,7 +6,7 @@
 \title{Calculate number and percentage of unique IDs and observations}
 \usage{
 nID_nSp(data, ID, gr, ID_text = "medical specimens",
-  observation_text = "spectra", decimals = 0)
+  observation_text = "spectra", decimals = 1)
 
 nID_nObs(data = NULL, ID, gr, ID_text = "unique IDs",
   observation_text = "observations")
@@ -43,7 +43,7 @@ nID_nObs(DataSet1, ID, gr)
 pander::pander(nID_nObs(DataSet1, ID, gr))
 
 # For hyperSpec object
-nID_nSp(Spectra$.., ID, gr)
+nID_nSp(Spectra$.., ID = class, gr)
 
 }
 

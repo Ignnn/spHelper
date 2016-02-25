@@ -18,6 +18,9 @@
 #'
 #' @examples
 #'
+#' whichOutlier(Scores)
+#' whichOutlier(Scores,3)
+#'
 whichOutlier <- function(scores, zLimit = 2) {
     SS <- scale(scores);
     iOutlier <- which(apply({(SS < -zLimit) | (SS > zLimit)},1,any))

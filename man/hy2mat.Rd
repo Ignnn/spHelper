@@ -2,7 +2,7 @@
 % Please edit documentation in R/hy2mat.R
 \name{hy2mat}
 \alias{hy2mat}
-\title{Extract matrix from either hyperSpec object or a matrix}
+\title{Extract matrix from either \code{hyperSpec} object or a matrix}
 \usage{
 hy2mat(sp)
 }
@@ -18,6 +18,8 @@ hy2mat
 }
 \examples{
 
+data(flu, package = "hyperSpec")
+
 flu
 a <- hy2mat(flu)
 b <- hy2mat(flu$spc)
@@ -28,5 +30,10 @@ identical(a,b)
 
 hy2mat(matrix(NA,5,10))
 
+}
+\seealso{
+Other hyperSpcec supplements: \code{\link{addLabels_PAP_PD2014}},
+  \code{\link{addLabels_TD2009}}, \code{\link{dropCol}},
+  \code{\link{hyAdd.color}}, \code{\link{read3csv2hy}}
 }
 

@@ -1,4 +1,4 @@
-# ***** Komponentų amplitudės ***** ---------------------------------------------------
+# ***** Amplitudes of components ***** ---------------------------------------------------
 
 #' [!] Plot component amplitudes (a.k.a scores)
 #'
@@ -23,7 +23,13 @@
 #'
 #' data(Scores3)
 #' plot_kAmp(Scores3, by = "class")
+#'
 #' @export
+#' @family spHelper plots
+#'
+#' @import ggplot2
+#' @import hyperSpec
+#'
 #'
 
 plot_kAmp <- function(scores,
@@ -34,6 +40,12 @@ plot_kAmp <- function(scores,
                       by = "gr")
 {
     hyperSpec::chk.hy(scores)
+
+    ## Quotes are not necessary if uncommented:
+    # CALL <- match.call()
+    # if (!is.null(CALL$by)) {
+    #     by <- as.character(c(CALL$by))
+    # }
 
     kNames <- colnames(scores$spc)
     sc     <- scores
@@ -49,7 +61,10 @@ plot_kAmp <- function(scores,
         dplyr::mutate(Komponentas = factor(Komponentas,sort(kNames),sort(kNames)))
 
     # Plot
-    p <- ggplot(sc, aes(y = Amplitude, x = Komponentas, fill = gr), size = 1)  +
+    p <- ggplot2::ggplot(sc,
+                         aes(y = Amplitude, x = Komponentas, fill = gr),
+                         size = 1
+                   )  +
         geom_violin(alpha = .2)  +
         #geom_point(alpha =. 05,size = 2,
         #         position = position_jitterdodge(dodge.width = 0.9)) +
@@ -66,6 +81,4 @@ plot_kAmp <- function(scores,
     if (length(unique(sc$gr)) == 1) {p <- p + scale_fill_grey()}
 
     return(p)
-
-
 }

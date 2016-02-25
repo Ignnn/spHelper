@@ -18,7 +18,9 @@
 #'  parameters vectors are recycled as ilustrated in example 2 (see parameter "A").
 #'
 #' @return y - values of dependent variable of Gaussian curve.
+#'
 #' @export
+#' @family curves
 #'
 #' @examples
 #' # Example 1
@@ -29,7 +31,6 @@
 #'
 #' # Example 2
 #'
-#' require(hyperSpec)
 #'
 #' # Make 7 lines
 #' y <- GaussAmp(x, c = 1:7,A = c(1,2))
@@ -39,12 +40,13 @@
 #'
 #' Obj <- new("hyperSpec",spc = y,    wavelength = x,
 #'          label = list (spc = "y", .wavelength = "x"))
+#'
 #' plot(Obj, col = 1:nrow(Obj)); grid()
 #'
 GaussAmp <- function(x, c = 0, w = 1, A = 1, y0 = 0){
     P <- max(length(c),length(w),length(A),length(y0))
 
-    c <- rep_len(c, P)
+    c  <- rep_len(c,  P)
     w  <- rep_len(w,  P)
     A  <- rep_len(A,  P)
     y0 <- rep_len(y0, P)
@@ -55,7 +57,6 @@ GaussAmp <- function(x, c = 0, w = 1, A = 1, y0 = 0){
     # Generate the curves
     for (i in 1:P) {y[i,] <- y0[i] + A[i] * exp(-(((x - c[i]) ^ 2) /
                                                     (2 * w[i] ^ 2)))}
-
-    ## Output
+    # Output
     return(y)
 }

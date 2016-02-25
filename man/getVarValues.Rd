@@ -26,7 +26,7 @@ Otherwise return \code{VAR}.
 \examples{
 # Data
 df       <- mtcars[,c("cyl","gear")]
-variable <- c("???","???")
+variable <- c("my","vector")
 #  ------------------------------------------------------------------------
 f1 <- function(data, v1, v2){
     CALL <- match.call()
@@ -43,8 +43,8 @@ f1(df, gear)
 f1(df, variable)
 
 # A Data frame
-   df <- data.frame(A = "Values A (DATA.FRAME)",
-                    E = "Values E (DATA.FRAME)")
+   df <- data.frame(A = "Values_A_(DATA.FRAME)",
+                    E = "Values_E_(DATA.FRAME)")
 
 # Vectors
    A <- "Values of the vector 'A'"
@@ -75,17 +75,20 @@ getVarValues(B, df, CALL)
 
 # UNEXPECTED results -----------------------------------------------------------------------
 
-getVarValues(ID, df, CALL) # ??? `ID` found only in function's `fun` definition.
-## NULL
+\donttest{
+\dontrun{
 
-getVarValues(G, df, CALL) # ERROR, as variable G does not exist.
-##  Error in eval(expr, envir, enclos) : object 'G' not found
+ getVarValues(ID, df, CALL) # ??? `ID` found only in function's `fun` definition.
+ ## NULL
 
-getVarValues(F, df, CALL) # F is a special variable: F = FALSE
-##  FALSE
+ getVarValues(G, df, CALL) # ERROR, as variable G does not exist.
+ ##  Error in eval(expr, envir, enclos) : object 'G' not found
 
-getVarValues(c, df, CALL) # c() is a function.
-## function (..., recursive = FALSE)  .Primitive("c")
+ getVarValues(F, df, CALL) # F is a special variable: F = FALSE
+ ##  FALSE
 
+ getVarValues(c, df, CALL) # c() is a function.
+ ## function (..., recursive = FALSE)  .Primitive("c")
+}}
 }
 

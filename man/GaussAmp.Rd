@@ -40,7 +40,6 @@ plot(x,y, type = "l", col = "green3"); grid()
 
 # Example 2
 
-require(hyperSpec)
 
 # Make 7 lines
 y <- GaussAmp(x, c = 1:7,A = c(1,2))
@@ -50,6 +49,7 @@ dim(y)
 
 Obj <- new("hyperSpec",spc = y,    wavelength = x,
          label = list (spc = "y", .wavelength = "x"))
+
 plot(Obj, col = 1:nrow(Obj)); grid()
 
 }

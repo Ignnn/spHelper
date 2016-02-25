@@ -32,12 +32,13 @@
 #' pander::pander(nID_nObs(DataSet1, ID, gr))
 #'
 #' # For hyperSpec object
-#' nID_nSp(Spectra$.., ID, gr)
+#' nID_nSp(Spectra$.., ID = class, gr)
 #'
+#' @import dplyr
 nID_nSp <- function(data, ID, gr,
                     ID_text          = "medical specimens",
                     observation_text = "spectra",
-                    decimals = 0){
+                    decimals = 1){
 
     # Parse input and prepare data ===========================================
     CALL <- match.call()
@@ -51,8 +52,11 @@ nID_nSp <- function(data, ID, gr,
     data <- data.frame(ID = ID, gr = gr)
 
     # Calculations ===========================================
-    percents <- function(TABLE) {tbl <- prop.table(TABLE)*100 %>% round(0);
-    paste0(tbl, "%")}
+    percents <- function(TABLE) {
+        tbl <- prop.table(TABLE)*100
+        tbl <- round(tbl,decimals)
+        paste0(tbl, "%")
+    }
 
     nID <- table(unique(data[,c("ID", "gr")])[ ,"gr"]) # Number of unique medical samples per grpup
     nSp <- table(data[ ,"gr"]) # Number of spectra per group

@@ -41,5 +41,11 @@ plot_kAmp(Scores)
 
 data(Scores3)
 plot_kAmp(Scores3, by = "class")
+
+}
+\seealso{
+Other spHelper plots: \code{\link{InfoDim_plot}},
+  \code{\link{plot_SpDiff}}, \code{\link{plot_confusion}},
+  \code{\link{plot_kSp}}, \code{\link{plot_stat}}
 }
 

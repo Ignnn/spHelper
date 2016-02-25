@@ -29,7 +29,7 @@ statistic is indicated by level \code{.ALL}) in variable
 \code{.aggregate}.
 }
 \examples{
-spStat(Spectra)
+spStat(Spectra, gr)
 spStat(Spectra, by = gr,         FUN = IQR)
 spStat(Spectra, by = Spectra$gr, FUN = IQR)
 

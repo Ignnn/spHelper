@@ -3,7 +3,7 @@
 \name{bru}
 \alias{bru}
 \alias{bru0}
-\title{[+] Generate a string of repeated symbols.}
+\title{[+] Generate a string of repeated symbols}
 \usage{
 bru(symbol = "=", n = 60, after = (if (print) 1 else 0), before = 0,
   print = TRUE)
@@ -25,7 +25,7 @@ Default is \cr\code{if (print==TRUE) 1 else 0}.}
 console using \code{\link[base]{cat}} method.
        If \code{FALSE}, a string is returned.}
 
-\item{...}{\code{bru0}paeameters (the same as in \code{bru}).}
+\item{...}{(The same parameters as above).}
 }
 \value{
 String of repeated symbols.

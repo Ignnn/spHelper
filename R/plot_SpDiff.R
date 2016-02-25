@@ -27,6 +27,9 @@
 #'
 #' plot_SpDiff(Loadings, Scores, Spectra)
 #'
+#' @family spHelper plots
+#' @import hyperSpec
+#'
 plot_SpDiff <- function(loadings,scores,Spectra,
                         Title = 'Remainders After Subtracting Components',
                         color = if (".color" %in% ls(Spectra$..)) Spectra$.color else "tan3",

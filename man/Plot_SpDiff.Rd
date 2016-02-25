@@ -43,4 +43,9 @@ Difference between experimental and reconstructed spectra'
 plot_SpDiff(Loadings, Scores, Spectra)
 
 }
+\seealso{
+Other spHelper plots: \code{\link{InfoDim_plot}},
+  \code{\link{plot_confusion}}, \code{\link{plot_kAmp}},
+  \code{\link{plot_kSp}}, \code{\link{plot_stat}}
+}
 

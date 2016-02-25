@@ -22,6 +22,8 @@
 #' colnames(Spectra2)
 #' ## [1] "gr"     "class"  "spc"    ".color"
 #'
+#' @import hyperSpec
+#' @family hyperSpcec supplements
 
 hyAdd.color <- function(sp = NULL, by,
                         palette = c("#377EB8","#4DAF4A","#984EA3","#FF7F00",
@@ -35,12 +37,9 @@ hyAdd.color <- function(sp = NULL, by,
     # RColorBrewer::brewer.pal(8,"Dark2")
     # # trellis.par.get("superpose.symbol")$col
 
+    # ColorNumbers[is.na(ColorNumbers)] <- nlevels(sp$gr) + 1;
 
-
-
-
-
-    ColorNumbers <- unclass(as.factor(sp[[, by]][,1])); # ColorNumbers[is.na(ColorNumbers)] <- nlevels(sp$gr) + 1;
+    ColorNumbers <- unclass(as.factor(sp[[, by]][,1]));
     nColors <- max(ColorNumbers, na.rm = T)
 
     if (length(palette) < nColors) stop(sprintf("At least %d colors must be in the palette.",nColors))

@@ -2,7 +2,7 @@
 #' @aliases bru
 #' @aliases bru0
 #'
-#' @title [+] Generate a string of repeated symbols.
+#' @title [+] Generate a string of repeated symbols
 #'
 #' @description Generate a string of repeated symbols.
 #'  Useful for R Markdown (.rmd) files and console output to highlight results.\cr\cr
@@ -97,7 +97,7 @@ bru <- function(symbol = "=",
 }
 
 
-#' @param ... \code{bru0}paeameters (the same as in \code{bru}).
+#' @template same
 #' @rdname bru
 #' @export
 

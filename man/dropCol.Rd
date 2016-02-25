@@ -2,7 +2,7 @@
 % Please edit documentation in R/dropCol.R
 \name{dropCol}
 \alias{dropCol}
-\title{[!] Remove colums of hyperSpec object with all NA values}
+\title{[!] Remove hyperSpec object columns that contain only \code{NA} values}
 \usage{
 dropCol(sp)
 }
@@ -14,11 +14,11 @@ dropCol(sp)
 Object without columns that contain all NA values.
 }
 \description{
-[!] Remove colums of hyperSpec object with all NA values
+[!] Remove hyperSpec object columns that contain only \code{NA} values
 }
-\examples{
-
- dropCol(sp)
-
+\seealso{
+Other hyperSpcec supplements: \code{\link{addLabels_PAP_PD2014}},
+  \code{\link{addLabels_TD2009}}, \code{\link{hy2mat}},
+  \code{\link{hyAdd.color}}, \code{\link{read3csv2hy}}
 }
 

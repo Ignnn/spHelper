@@ -9,8 +9,9 @@ listFunctions(Package = "spHelper", print.table = FALSE, plot = FALSE)
 \arguments{
 \item{Package}{A name of a package. Default \code{Package = "spHelper"}.}
 
-\item{print.table}{A logical flag indicating if the result should be printed as a table using
-\code{\link[pander]{pander}}. Default is \code{FALSE}}
+\item{print.table}{A logical flag indicating if the result should be
+printed as a table using \code{\link[pander]{pander}}. Default is
+\code{FALSE}.}
 
 \item{plot}{Logical. If \code{TRUE} - plots connections between functions in
 a package. Default is \code{FALSE}.}
@@ -24,7 +25,7 @@ List all functions in a package.
 \examples{
 
 listFunctions()
-listFunctions(Package = "tidyr", print.table = F)
+listFunctions(Package = "tidyr", print.table = TRUE)
 
 }
 

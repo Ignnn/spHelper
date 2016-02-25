@@ -8,23 +8,23 @@
 #'
 #' @note Data columns, that have unique values are removed.
 #'
-#' @param FileName_base - base of file name (a string). See more in section "Details"
+#' @param FileName_base A base of file name (a string). See section "Details".
 #'
 #' @return Object of class \code{\link[=hyperSpec-class]{hyperSpec}}
 #'
 #' @details
-#' If base name is "TD_2009", then CSV files must be:
-#' [1] "TD_2009 (wavelengths).csv"
-#' [2] "TD_2009 (spectra).csv"
+#' If base name is "TD_2009", then CSV files must be:\cr
+#' [1] "TD_2009 (wavelengths).csv"\cr
+#' [2] "TD_2009 (spectra).csv"\cr
 #' [3] "TD_2009 (data).csv"
 #'
 #' Base name can be a path, e.g.  "D:/spectra/TD_2009"
 #'
 #' @export
-#'
+#' @import hyperSpec
+#' @family hyperSpcec supplements
 
 read3csv2hy <- function(FileName_base){
-    # require(hyperSpec)
 
     requiredFiles <- paste0(FileName_base,
                             c(" (wavelengths)", " (spectra)", " (data)"),

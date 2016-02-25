@@ -5,7 +5,10 @@
 #'
 #' @return A constructed correlation matrix.
 #' @export
-#' @seealso \link{nTri2nRow}, \link{nRow2nTri}
+#'
+#' @family Matrix operations
+#' @family simmulation functions
+#'
 #' @examples
 #'
 #' # ------------------------------------------------------------
@@ -15,33 +18,38 @@
 #' corrVec2Mat(vector)
 #'
 #' # ------------------------------------------------------------
-#' # Example 1B: Vector is transformed to a matrix by filling
-#' #  it column-wise:
 #'
-#'  # vector = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6)
-#'  #
-#'  #  matrix =
-#'  #       [,1] [,2] [,3] [,4]
-#'  #  [1,]   .     .   .    .
-#'  #  [2,]  0.1    .   .    .
-#'  #  [3,]  0.2  0.4   .    .
-#'  #  [4,]  0.3  0.5  0.6   .
-#'  #
-#'  # In this example only the matrix elements of interest are shown.
+#' \donttest{
+#' \dontrun{
 #'
-#' # ------------------------------------------------------------
-#' # Example 2: inappropriate number of coefficients - warning appears
+#'  # Example 1B: Vector is transformed to a matrix by filling
+#'  # it column-wise:
 #'
-#' corrVec2Mat(vector[1:5])
-#'  ## Warning message:
-#'  ## Only first 3 coefficient(s) out of 5 will be used to construct symmetric matrix with 3 rows.
+#'   ## vector = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6)
+#'   ##
+#'   ##  matrix =
+#'   ##       [,1] [,2] [,3] [,4]
+#'   ##  [1,]   .     .   .    .
+#'   ##  [2,]  0.1    .   .    .
+#'   ##  [3,]  0.2  0.4   .    .
+#'   ##  [4,]  0.3  0.5  0.6   .
+#'   ##
+#'   ## In this example only the matrix elements of interest are shown.
 #'
-#' # ------------------------------------------------------------
-#' # Example 3: ERROR appears - coeefs must be between [-1;1]
+#'  # ------------------------------------------------------------
+#'  # Example 2: inappropriate number of coefficients - warning appears
 #'
-#' corrVec2Mat(1:5)
-#'  ## Error in corrVec2Mat(1:5) :
-#'  ## All values in input vector must be between [-1 and 1]
+#'  corrVec2Mat(vector[1:5])
+#'   ## Warning message:
+#'   ## Only first 3 coefficient(s) out of 5 will be used to construct symmetric matrix with 3 rows.
+#'
+#'  # ------------------------------------------------------------
+#'  # Example 3: ERROR appears - coeefs must be between [-1;1]
+#'
+#'  corrVec2Mat(1:5)
+#'   ## Error in corrVec2Mat(1:5) :
+#'   ## All values in input vector must be between [-1 and 1]
+#' }}
 #'
 corrVec2Mat <- function(vec){
 

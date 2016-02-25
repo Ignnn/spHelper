@@ -1,5 +1,3 @@
-# Apskaičiuoti Komponenų amplitudes matricų daugybos būdu ------------------------------
-#
 #' [!] Calculate component amplitudes (a.k.a. scores) by matrix multiplication
 #'
 #' [!] Calculate component amplitudes (a.k.a. scores) by matrix multiplication
@@ -21,14 +19,11 @@
 #' @param  scores Known scores (do not need to calculate.)
 #'
 #' @return scores - amplitudes of the components (scores)
-#' @examples
-#' # e.g.:
-#'     sp = Object
-#'     loadings = loadings
 #'
-#' getScores(sp, loadings)
 #'
 #' @export
+#'
+#' @import hyperSpec
 
 getScores <- function(sp, loadings,
                       xLabel = "Component",

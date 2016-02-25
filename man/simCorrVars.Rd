@@ -34,12 +34,12 @@ print(corrMat)
 simCorrVars(corrMat, N = 10)
 
 # ------------------------------------------------------------
-corrMat <- simCorrMat(3)
-simCorrVars(corrMat, N = 10)
-
 
 }
 \seealso{
 \link{corrVec2Mat}, \link[MASS]{mvrnorm}
+
+Other simmulation functions: \code{\link{corrVec2Mat}},
+  \code{\link{simSpectra}}
 }
 

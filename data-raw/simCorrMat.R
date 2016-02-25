@@ -52,6 +52,7 @@
 # #'  ## Error in simCorrMat(1:5) :
 # #'  ## All values in input vector must be between [-1 and 1]
 # #'
+# #' @family simmulation functions
 # simCorrMat <- function(n=5, vec = NULL){
 #     # If n is not a scalar
 #     if(is.vector(n)&length(n)>1) vec <- n

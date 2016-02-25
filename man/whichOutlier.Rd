@@ -27,5 +27,8 @@ score in that row is not between \code{±zLimit}.
 }
 \examples{
 
+whichOutlier(Scores)
+whichOutlier(Scores,3)
+
 }
 

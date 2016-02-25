@@ -2,7 +2,7 @@
 % Please edit documentation in R/addLabels_PAP_PD2014.R
 \name{addLabels_PAP_PD2014}
 \alias{addLabels_PAP_PD2014}
-\title{[!] Add labels to "PAP_PD_2014" and transform dataset.}
+\title{[!] Add labels to "PAP_PD_2014" and transform the dataset}
 \usage{
 addLabels_PAP_PD2014(sp, language = "EN")
 }
@@ -25,10 +25,9 @@ Function is designed to label data collected during investigation called
 Select data columns, that are not removed, and add labels to
  \code{\link[=hyperSpec-class]{hyperSpec}} object of "PAP_PD_2014" data.
 }
-\examples{
-addLabels_PAP_PD2014(sp)
-
-
-
+\seealso{
+Other hyperSpcec supplements: \code{\link{addLabels_TD2009}},
+  \code{\link{dropCol}}, \code{\link{hy2mat}},
+  \code{\link{hyAdd.color}}, \code{\link{read3csv2hy}}
 }
 

@@ -47,11 +47,11 @@ spectra (object of class \code{\link[=hyperSpec-class]{hyperSpec}})
          \code{\link[=hyperSpec-class]{hyperSpec}} object.
 }
 \examples{
-======================================================================
+# ======================================================================
 
 sortLoadings(Loadings[c(2,3,5,1,4),,])
 
-======================================================================
+# ======================================================================
 
 loadings <- Loadings[[]] # Exrtract matrix of spectra
 
@@ -62,7 +62,7 @@ class(L1)
 L2 <- sortLoadings(loadings,Spectra) # returns a hyperSpec object
 class(L2)
 ## [1] "hyperSpec"
-======================================================================
+# ======================================================================
 }
 \seealso{
 More information at \code{\link[hyperSpec]{decomposition}}.
