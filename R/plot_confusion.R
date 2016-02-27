@@ -21,7 +21,10 @@
 #'          \item{const}{Constant red and green colors.}
 #'          \item{none}{All cells are grey.}
 #'      }
-#'
+#' @param guide Logical. If \code{TRUE}, a legend is plotted.
+#' @param text.size The size of text inside cells
+#' @param decimals The number of decimal positions in rounding. Default is 2 (i.e.,
+#'        precission is 0.01).
 #' @return A plot of confusion matrix.
 #' @examples
 #'
@@ -31,33 +34,31 @@
 #' Reference  <- sample(c("A", "B","C","D"),N, replace = TRUE)
 #'
 #'
-#' # Random guess  =====================
+#' # Random guess  ===========================================
 #' conf <- table(Prediction,Reference)
 #'
+#' # load("conf.Rda")
 #' plot_confusion(conf)
 #'
-#' # At least 40% of the cases agree =====================
-#' ind <- sample(1:N,round(0.5*N))
+#' # At least 50% of the cases agree =========================
+#' ind <- sample(1:N,round(0.50*N))
 #' Reference[ind] <- Prediction[ind]
 #' conf2 <- table(Prediction,Reference)
 #'
 #' plot_confusion(conf2)
 #'
-#' # Most of the cases agree =============================
-#' ind <- sample(1:N,round(N*.8))
+#' # Most of the cases agree =================================
+#' ind <- sample(1:N,round(N*.80))
 #' Reference[ind] <- Prediction[ind]
 #' conf3 <- table(Prediction,Reference)
 #'
 #' plot_confusion(conf3)
 #'
-#' # Proportions =========================================
+#' # Proportions =============================================
 #'
 #' plot_confusion(conf3)
-#' plot_confusion(prop.table(conf3))
-#' plot_confusion(prop.table(conf3,1))
-#' plot_confusion(prop.table(conf3,2))
 #'
-#' # Shades: proportional ================================
+#' # Shades: proportional =====================================
 #'
 #' plot_confusion(conf,shades = "prop",  subTitle = "shades: 'prop', correct by chance")
 #' plot_confusion(conf,shades = "max",   subTitle = "shades: 'max', correct by chance")
@@ -68,7 +69,7 @@
 #' plot_confusion(conf3,shades = "prop", subTitle = "shades: 'prop', correct >80%")
 #' plot_confusion(conf3,shades = "max",  subTitle = "shades: 'max', correct >80%")
 #'
-#' # Shades: constant and none ===========================
+#' # Shades: constant and none ================================
 #'
 #' plot_confusion(conf3,shades = "const",subTitle = "shades: constant")
 #' plot_confusion(conf3,shades = "none", subTitle = "shades: none")
@@ -78,66 +79,136 @@
 #' @family spHelper plots
 #' @import ggplot2
 
-
 plot_confusion <- function(conf,
                           Title  = "Classification table",
-                          xLabel = "Reference group",
-                          yLabel = "Predicted group",
+                          xLabel = NULL,
+                          yLabel = NULL,
                           subTitle = NULL,
-                          shades = "prop") {
-    if (!is.table(conf)) conf <- as.table(conf)
+                          shades = c("prop","max","const","none"),
+                          guide = FALSE,
+                          text.size = 5,
+                          decimals = 2) {
+    # require(dplyr)
 
-    conf <- round(conf,2)
+    if (!is.table(conf)) {       conf <- as.table(conf)    }
 
-    conf.m <- reshape2::melt(conf)
-    names(conf.m)[1:2] <- c("Actual","Predicted")
-    conf.m$Predicted <- factor(conf.m$Predicted, levels = rev(levels(conf.m$Predicted)))
+    # Calculate accuracy measures
 
-    # Let's color the diagonal cells ****************************************
-    nRows <- nrow(conf.m)
-    nCols <- length(unique(conf.m[,2]))
-    indx  <- seq(1,nRows,nCols + 1)
+    # AccMeasures     <- caret::confusionMatrix(conf)
+    # `<Sensitivity>` <- AccMeasures$byClass[,"Sensitivity"]
+    #        PV       <- AccMeasures$byClass[,"Pos Pred Value"]
+           # K        <- AccMeasures$overall["Kappa"]
 
-    switch(shades,
-           prop =  {
-               n <- nrow(conf);
-               conf.m$ColValue       <- conf.m$value / sum(conf) * n * (n - 1);
-               conf.m$ColValue[indx] <- -1/ (n - 1) * conf.m$ColValue[indx]
+
+    `<Sensitivity>` <- diag(prop.table(conf,2)) # Sensitivity
+           PV       <- diag(prop.table(conf,1)) # "Positive Predictive Value"
+           K        <- psych::cohen.kappa(conf)[["kappa"]]
+
+    # Add accuracy measures to the main matrix/table
+    `<PPV>` <- c(PV, K)
+    conf.a <- rbind(conf,  `<Sensitivity>`)  %>% cbind( ., `<PPV>`)
+
+
+    conf.a   <- round(conf.a,decimals)
+    # Preserve names of dimensions
+    conf.a <- as.table(conf.a)
+    names(dimnames(conf.a)) <- names(dimnames(conf))
+
+    # Make a long format data frame *****************************************
+    conf.m <- reshape2::melt(conf.a)
+
+    # Sort levels to plot data correctly ************************************
+    conf.m[[1]] <- factor(conf.m[[1]], levels = rev(levels(conf.m[[1]])))
+    conf.m[[2]] <- factor(conf.m[[2]], levels =     levels(conf.m[[2]]))
+
+    # Determine COLORS ******************************************************
+
+    N <- length(conf.a) # number of elemants in the extended matrix
+    nr <- nrow(conf)
+    nc <- ncol(conf)
+    n <- max(nr,nc);# number of rows/columns in the main matrix
+    ind.Se   <- base::setdiff(which.in(row,conf.a, nrow(conf.a)), N)
+    ind.PV   <- base::setdiff(which.in(col,conf.a, ncol(conf.a)), N)
+    ind.SePV <- sort(c(ind.Se,ind.PV))
+    ind.main <- base::setdiff(1:N, c(ind.SePV, N)) # indices of the main matrix elements
+    ind.diag <- base::setdiff(which.in.diag(conf.a), N) # ind. of the diag. el. in main matrix
+
+    ColValue <- rep(NA, N)
+
+    accShades <- function(){
+        #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        # Rescale Se and PV
+        ColValue[ind.SePV] <- scales::rescale(conf.a[ind.SePV],c(-1,1),c(1/n,1) )
+        # Rescale Kappa  - - - - - - - - - - - - - - - - - - - - - - -
+        ColValue[N] <- scales::rescale(conf.a[N],c(-1,1),c(0,1))
+        # Correct too small and too high values- - - - - - - - - - - -
+        ColValue[ColValue < -1] <- -1
+        ColValue[ColValue >  1] <-  1
+        #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        return(ColValue)
+    }
+
+    switch(shades[1],
+           prop =  {# best for square matrix
+               ColValue[ind.main] <- -conf.m$value[ind.main] /
+                                      sum(conf) * n * (n - 1);
+               ColValue[ind.diag] <- -ColValue[ind.diag] / (n - 1)
+               ColValue <- accShades()
             },
 
            max = {
-               conf.m$ColValue       <- conf.m$value / max(conf);
-               conf.m$ColValue[indx] <- -1 * conf.m$ColValue[indx]
+               ColValue[ind.main] <- -conf.m$value[ind.main] / max(conf);
+               ColValue[ind.diag] <- -ColValue[ind.diag]
+               ColValue <- accShades()
             },
 
            const = {
-               conf.m$ColValue      <-  .8;
-               conf.m$ColValue[indx] <- -.9
+               ColValue[ind.main]   <- -.60
+               ColValue[ind.diag]   <-  .70
+
             },
         # Just constant grey color (no red nor green colors)
-           conf.m$ColValue <- 0
+           ColValue[] <- 0
     )
-    conf.m$ColValue[conf.m$ColValue < -1] <- -1
-    conf.m$ColValue[conf.m$ColValue >  1] <-  1
 
+    conf.m$ColValue <- ColValue
     # *************************************************************
-    p <- ggplot(conf.m, aes(Actual, Predicted)) +
-         scale_fill_gradient2(high = "#cd0000",
+    # K <- substitute(kappa == K, list(K = conf.a[N]))
+    # conf.m$value[N] <- K
+    conf.m$value[N] <- sprintf("k=%.2f",conf.a[N])
+    #
+    # Plot
+    # *************************************************************
+    nameX <- names(conf.m)[2]
+    nameY <- names(conf.m)[1]
+
+    p <- ggplot(conf.m, aes_string(x = nameX, y = nameY)) +
+         geom_tile(aes(fill = ColValue), colour = "grey50") +
+         geom_text(aes(label = value), size = text.size) +
+         geom_hline(size = 1.2, color = "grey30", yintercept = 1.5    ) +
+         geom_vline(size = 1.2, color = "grey30", xintercept = nc + .5) +
+
+        scale_fill_gradient2(high = "#008000",
                               mid  = "#eeeeee", #mid = "#f2f6c3",
                               midpoint = 0,
-                              low  = "#008000",
+                              low  = "#cd0000",
+                              na.value = "grey60",
 
-                              guide = FALSE,
-                              name = " ",
+                              guide = {if (guide) "colourbar" else FALSE} ,
+                              name = "Accuracy",
                               limits = c(-1,1),
-                              breaks = c(1,0,-1),
-                              labels = c("Incorrectly identified", "0", "Correctly identified")) +
-         geom_tile(aes(fill = ColValue), colour = "white") +
-         geom_text(aes(label = value), size = 6) +
+                              breaks = c(1,-1),
+                              labels = c("High",
+                                         "Low")
+         ) +
 
-         labs(title = subt(Title, subTitle),
-             x = xLabel,
-             y = yLabel)
+         labs(title = subt(Title, subTitle) ,
+              x = {if (is.null(xLabel)) nameX else xLabel},
+              y = {if (is.null(yLabel)) nameY else yLabel}
+         )
+
+    p <- cowplot::ggdraw(cowplot::switch_axis_position(p, axis = 'x'))
+
 
     return(p)
 }

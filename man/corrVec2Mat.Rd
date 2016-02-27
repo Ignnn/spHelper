@@ -61,7 +61,7 @@ corrVec2Mat(vector)
 }
 \seealso{
 Other Matrix operations: \code{\link{nRow2nTri}},
-  \code{\link{nTri2nRow}}
+  \code{\link{nTri2nRow}}, \code{\link{which.in}}
 
 Other simmulation functions: \code{\link{simCorrVars}},
   \code{\link{simSpectra}}

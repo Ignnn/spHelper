@@ -2,7 +2,7 @@
 % Please edit documentation in R/whichOutlier.R
 \name{whichOutlier}
 \alias{whichOutlier}
-\title{[+] Find rows with outlier scores}
+\title{[+] Find indices of rows that contain outlier scores}
 \usage{
 whichOutlier(scores, zLimit = 2)
 }

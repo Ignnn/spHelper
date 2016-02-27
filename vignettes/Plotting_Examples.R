@@ -191,75 +191,16 @@ class(conf)
 plot_confusion(conf, subTitle = "Correct by chance")
 
 # At least 40% of the cases agree =====================
-ind2 <- sample(1:N,round(0.5*N))
+ind2 <- sample(1:N,round(N*.50))
 Reference[ind2] <- Prediction[ind2]
 conf2 <- table(Prediction,Reference)
 
 plot_confusion(conf2, subTitle = "Correct >50%")
 
 # Most of the cases agree =============================
-ind3 <- sample(1:N,round(N*.8))
+ind3 <- sample(1:N,round(N*.80))
 Reference[ind3] <- Prediction[ind3]
 conf3 <- table(Prediction,Reference)
 
 plot_confusion(conf3, subTitle = "Correct >80%")
-
-## ------------------------------------------------------------------------
-# Proportions =========================================
-
-plot_confusion(conf3              , subTitle = "Counts")
-plot_confusion(prop.table(conf3),   subTitle = "Proportions (total sum = 1)")
-plot_confusion(prop.table(conf3,1), subTitle = "Proportions (row sums = 1)")
-plot_confusion(prop.table(conf3,2), subTitle = "Proportions (column sums = 1)")
-
-## ------------------------------------------------------------------------
-# Shades: proportional ================================
-
-plot_confusion(conf,shades = "prop",  subTitle = "Shades: 'prop', Correct by chance");
-plot_confusion(conf,shades = "max",   subTitle = "Shades: 'max', Correct by chance")
-
-plot_confusion(conf2,shades = "prop", subTitle = "Shades: 'prop', Correct >50%");
-plot_confusion(conf2,shades = "max",  subTitle = "Shades: 'max', Correct >50%")
-
-plot_confusion(conf3,shades = "prop", subTitle = "Shades: 'prop', Correct >80%");
-plot_confusion(conf3,shades = "max",  subTitle = "Shades: 'max', Correct >80%")
-
-## ------------------------------------------------------------------------
-# Shades: constant and none ===========================
-
-plot_confusion(conf3,shades = "const",subTitle = "Shades: constant"); plot_confusion(conf3,shades = "none", subTitle = "Shades: none")
-
-
-## ------------------------------------------------------------------------
-n <- round(N/6)
-Prediction[sample(which(Prediction == "A"),n,replace = TRUE)] <- sample(c("B","C"), n,replace = TRUE)
-conf4 <- table(Prediction,Reference)
-
-plot_confusion(conf4, subTitle = "Imbalanced class proportions")
-
-
-
-
-## ------------------------------------------------------------------------
-n <- 3
-m <- matrix(rep(1:n,each = n),n)
-rownames(m) <- paste0("row",1:n)
-colnames(m) <- paste0("col",1:n)
-m <- as.table(m)
-m
-rowSums(m)
-colSums(m)
-
-## ------------------------------------------------------------------------
- my_matrix <- matrix(rexp(200, rate = .1), ncol = 20)
- my_result <- InfoDim(my_matrix)
- 
- # Investigate the result
- str(my_result)
- my_result$exactDim
- my_result$dim
- 
- #Plot
- my_plot <- InfoDim_plot(my_result)
- my_plot
 

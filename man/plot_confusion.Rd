@@ -4,9 +4,9 @@
 \alias{plot_confusion}
 \title{[!] Vizualize a confusion matrix / classification table}
 \usage{
-plot_confusion(conf, Title = "Classification table",
-  xLabel = "Reference group", yLabel = "Predicted group", subTitle = NULL,
-  shades = "prop")
+plot_confusion(conf, Title = "Classification table", xLabel = NULL,
+  yLabel = NULL, subTitle = NULL, shades = c("prop", "max", "const",
+  "none"), guide = FALSE, text.size = 5, decimals = 2)
 }
 \arguments{
 \item{conf}{A confusion matrix / A classificattion table (either a table
@@ -33,6 +33,13 @@ or a square matrix).}
     \item{const}{Constant red and green colors.}
     \item{none}{All cells are grey.}
 }}
+
+\item{guide}{Logical. If \code{TRUE}, a legend is plotted.}
+
+\item{text.size}{The size of text inside cells}
+
+\item{decimals}{The number of decimal positions in rounding. Default is 2 (i.e.,
+precission is 0.01).}
 }
 \value{
 A plot of confusion matrix.
@@ -48,33 +55,31 @@ Prediction <- sample(c("A","B","C","D"),N, replace = TRUE)
 Reference  <- sample(c("A", "B","C","D"),N, replace = TRUE)
 
 
-# Random guess  =====================
+# Random guess  ===========================================
 conf <- table(Prediction,Reference)
 
+# load("conf.Rda")
 plot_confusion(conf)
 
-# At least 40\% of the cases agree =====================
-ind <- sample(1:N,round(0.5*N))
+# At least 50\% of the cases agree =========================
+ind <- sample(1:N,round(0.50*N))
 Reference[ind] <- Prediction[ind]
 conf2 <- table(Prediction,Reference)
 
 plot_confusion(conf2)
 
-# Most of the cases agree =============================
-ind <- sample(1:N,round(N*.8))
+# Most of the cases agree =================================
+ind <- sample(1:N,round(N*.80))
 Reference[ind] <- Prediction[ind]
 conf3 <- table(Prediction,Reference)
 
 plot_confusion(conf3)
 
-# Proportions =========================================
+# Proportions =============================================
 
 plot_confusion(conf3)
-plot_confusion(prop.table(conf3))
-plot_confusion(prop.table(conf3,1))
-plot_confusion(prop.table(conf3,2))
 
-# Shades: proportional ================================
+# Shades: proportional =====================================
 
 plot_confusion(conf,shades = "prop",  subTitle = "shades: 'prop', correct by chance")
 plot_confusion(conf,shades = "max",   subTitle = "shades: 'max', correct by chance")
@@ -85,7 +90,7 @@ plot_confusion(conf2,shades = "max",  subTitle = "shades: 'max', correct >50\%")
 plot_confusion(conf3,shades = "prop", subTitle = "shades: 'prop', correct >80\%")
 plot_confusion(conf3,shades = "max",  subTitle = "shades: 'max', correct >80\%")
 
-# Shades: constant and none ===========================
+# Shades: constant and none ================================
 
 plot_confusion(conf3,shades = "const",subTitle = "shades: constant")
 plot_confusion(conf3,shades = "none", subTitle = "shades: none")

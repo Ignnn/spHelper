@@ -17,7 +17,7 @@ vignette: >
 optDEF <- knitr::opts_chunk$get()
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 
-knitr::opts_chunk$set(fig.width = 5, fig.align = 'center')
+knitr::opts_chunk$set(fig.width = 6, fig.align = 'center')
 ```
 
 Load packages
@@ -216,8 +216,9 @@ Examples with the other dataset
 
 
 ```{r, echo=FALSE}
-knitr::opts_chunk$set(optDEF)
-knitr::opts_chunk$set(fig.show = "hold")
+# knitr::opts_chunk$set(optDEF)
+# 
+knitr::opts_chunk$set(fig.width = 5, fig.show = "hold")
 ```
 ```{r}
 d <- 5 # number of rows/columns
@@ -230,7 +231,6 @@ plot_confusion(Mat, subTitle = "Input is a matrix (1)")
 diag(Mat)[2:3] <- c(1000,250)
 plot_confusion(Mat, subTitle = "Input is a matrix (2)")
 ```
-
 ```{r}
 set.seed(165)
 
@@ -246,14 +246,14 @@ class(conf)
 plot_confusion(conf, subTitle = "Correct by chance")
 
 # At least 40% of the cases agree =====================
-ind2 <- sample(1:N,round(0.5*N))
+ind2 <- sample(1:N,round(N*.50))
 Reference[ind2] <- Prediction[ind2]
 conf2 <- table(Prediction,Reference)
 
 plot_confusion(conf2, subTitle = "Correct >50%")
 
 # Most of the cases agree =============================
-ind3 <- sample(1:N,round(N*.8))
+ind3 <- sample(1:N,round(N*.80))
 Reference[ind3] <- Prediction[ind3]
 conf3 <- table(Prediction,Reference)
 
@@ -264,9 +264,9 @@ plot_confusion(conf3, subTitle = "Correct >80%")
 # Proportions =========================================
 
 plot_confusion(conf3              , subTitle = "Counts")
-plot_confusion(prop.table(conf3),   subTitle = "Proportions (total sum = 1)")
-plot_confusion(prop.table(conf3,1), subTitle = "Proportions (row sums = 1)")
-plot_confusion(prop.table(conf3,2), subTitle = "Proportions (column sums = 1)")
+# plot_confusion(prop.table(conf3),   subTitle = "Proportions (total sum = 1)")
+# plot_confusion(prop.table(conf3,1), subTitle = "Proportions (row sums = 1)")
+# plot_confusion(prop.table(conf3,2), subTitle = "Proportions (column sums = 1)")
 ```
 
 ```{r}
@@ -313,7 +313,7 @@ colSums(m)
 ```
 `InfoDim` and `InfoDim_plot`
 ============================
-```{r}
+```{r, fig.width= 6}
  my_matrix <- matrix(rexp(200, rate = .1), ncol = 20)
  my_result <- InfoDim(my_matrix)
  

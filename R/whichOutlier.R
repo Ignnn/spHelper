@@ -1,4 +1,4 @@
-#' [+] Find rows with outlier scores
+#' [+] Find indices of rows that contain outlier scores
 #'
 #' Return indices of rows in scores matrix that contain outliers. A row is
 #' treated as having an oultier if any
