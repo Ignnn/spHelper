@@ -15,7 +15,7 @@
 #' # Example 1A: Vector into a matrix
 #'
 #' vector = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6)
-#' corrVec2Mat(vector)
+#' corr_vec2mat(vector)
 #'
 #' # ------------------------------------------------------------
 #'
@@ -39,19 +39,19 @@
 #'  # ------------------------------------------------------------
 #'  # Example 2: inappropriate number of coefficients - warning appears
 #'
-#'  corrVec2Mat(vector[1:5])
+#'  corr_vec2mat(vector[1:5])
 #'   ## Warning message:
 #'   ## Only first 3 coefficient(s) out of 5 will be used to construct symmetric matrix with 3 rows.
 #'
 #'  # ------------------------------------------------------------
 #'  # Example 3: ERROR appears - coeefs must be between [-1;1]
 #'
-#'  corrVec2Mat(1:5)
-#'   ## Error in corrVec2Mat(1:5) :
+#'  corr_vec2mat(1:5)
+#'   ## Error in corr_vec2mat(1:5) :
 #'   ## All values in input vector must be between [-1 and 1]
 #' }}
 #'
-corrVec2Mat <- function(vec){
+corr_vec2mat <- function(vec){
 
     if (!all(abs(vec) <= 1)) stop("All values in input vector must be between [-1 and 1]")
 

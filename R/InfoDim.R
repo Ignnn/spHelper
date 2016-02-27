@@ -1,12 +1,14 @@
+#' @name infoDim
+#' @aliases infoDim
+#' @aliases InfoDim
+#' @title Calculate information dimension of a matix
 #'
-#' Calculate information dimension of a matix
-#'
-#' The function calculates a measure, called "information dimension".
+#' @description The function calculates a measure, called "information dimension".
 #'
 #'
 #' @param  Matrix - data matrix (rows = observations, columns = variables)
 #'
-#' @return A list with fields:
+#' @return A list (class "list" and "infoDim") with fields:
 #'  \describe{
 #'  \item{$dim }{Information dimension ,rounded towards positive infinitive}
 #'  \item{$exactDim  }{Information dimension (fractional, not rounded)}
@@ -20,21 +22,7 @@
 #'       component analysis with application to cDNA microarray data.
 #'       Biol Direct, 2, 2 (2007), \url{http://dx.doi.org/10.1186/1745-6150-2-2}
 #'
-#' @note
-#' [LT] Pries pradedant vykdyti operacija, svarbus zingsnis pasirinkti tinkama
-#' normavimo buda. To nepadarius gausime klaidinga atsakyma. \cr
-#' sp = sp_normuok(sp,x,'1',495);
 #'
-#' Taip pat labai svarbus ir triuksmo lygis. Didejant triuksmui atitinkamai
-#' padidinamas maksimalus dimensija skaicius.
-#'
-#'
-#' @note
-#' eigenvalues - Singular values
-#' pk - tikimybines dimensiju vertes, skirtos entropijos ivertinimui.
-#' explain = pk;
-#'
-#' @seealso InfoDim_plot
 #' @export
 #'
 #' @examples
@@ -48,19 +36,43 @@
 #'  my_result$dim
 #'
 #'  #Plot
-#'  my_plot <- InfoDim_plot(my_result)
+#'  my_plot <- plot_infoDim(my_result)
 #'  my_plot
 #'
-InfoDim <- function(Matrix){
+#' @family information dimension functions
+
+infoDim <- function(Matrix){
     eigenval   <- svd(Matrix)$d
     explain    <- eigenval / sum(eigenval);
-    exact_dim   <- prod(sapply(explain,function(x){x ^ -x}));
-    dim         <- ceiling(exact_dim);    # % Round towards infinitive
+    exact_dim  <- prod(sapply(explain,function(x){x ^ -x}));
+    dim        <- ceiling(exact_dim);    # % Round towards infinitive
 
     output <- list(      dim   = dim,
                          exactDim   = exact_dim,
                          explained   = explain,
                          eigenvalues = eigenval,
                          n.comp      = 1:length(explain))
+
+    attr(output, "class") <- c("list","infoDim")
     return(output)
+
+   # @note
+   # [LT] Pries pradedant vykdyti operacija, svarbus zingsnis pasirinkti tinkama
+   # normavimo buda. To nepadarius gausime klaidinga atsakyma. \cr
+   # sp = sp_normuok(sp,x,'1',495);
+
+   # Taip pat labai svarbus ir triuksmo lygis. Didejant triuksmui atitinkamai
+   # padidinamas maksimalus dimensija skaicius.
+
+
+   # @note
+   # eigenvalues - Singular values
+   # pk - tikimybines dimensiju vertes, skirtos entropijos ivertinimui.
+   # explain = pk;
 }
+
+
+#' @rdname infoDim
+#' @export
+
+InfoDim <- function(Matrix) {infoDim(Matrix)}

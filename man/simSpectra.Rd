@@ -43,7 +43,7 @@ simSpectra()$Spectra
 
 }
 \seealso{
-Other simmulation functions: \code{\link{corrVec2Mat}},
+Other simmulation functions: \code{\link{corr_vec2mat}},
   \code{\link{simCorrVars}}
 }
 

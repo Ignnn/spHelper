@@ -45,7 +45,8 @@ plot_SpDiff(Loadings, Scores, Spectra)
 }
 \seealso{
 Other spHelper plots: \code{\link{InfoDim_plot}},
-  \code{\link{plot_confusion}}, \code{\link{plot_kAmp}},
-  \code{\link{plot_kSp}}, \code{\link{plot_stat}}
+  \code{\link{plot_confusion}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
+  \code{\link{plot_stat}}
 }
 

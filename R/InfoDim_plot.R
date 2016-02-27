@@ -36,7 +36,7 @@
 #' @note http://www.originlab.com/doc%5Cen/Tutorial/images/Principal_Component_Analysis/Pca_scree_plot.png
 #'
 #' @family spHelper plots
-#'
+#' @family information dimension functions
 
 InfoDim_plot <- function(Object, n.comp.SHOW = 20, selected = NULL,
                          Title = "Scree Plot"){

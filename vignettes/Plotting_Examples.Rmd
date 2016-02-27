@@ -305,16 +305,43 @@ plot_confusion(conf4, subTitle = "Imbalanced class proportions")
 `InfoDim` and `InfoDim_plot`
 ============================
 ```{r, fig.width= 6}
- my_matrix <- matrix(rexp(200, rate = .1), ncol = 20)
- my_result <- InfoDim(my_matrix)
  
- # Investigate the result
- str(my_result)
- my_result$exactDim
- my_result$dim
+# Example 1 ==================================================================
+     my_matrix <- matrix(rexp(2000, rate = .1), ncol = 20)
+     my_result <- infoDim(my_matrix)
+    
+     # Investigate the result
+     str(my_result)
+     my_result$exactDim
+     my_result$dim
+    
+     #Plot
+     plot_infoDim(my_result) # Object of class "infoDim"
+     
+     plot_infoDim(my_matrix) # Object of class "matrix"
+     
  
- #Plot
- my_plot <- InfoDim_plot(my_result)
- my_plot
+ 
+# Example 2 ==================================================================
+   
+     p1 <- plot_infoDim(Spectra) # Object of class "hyperSpec"
+     p1
+     
+     # Possition of a legend changes, if theme applied in this way:
+     p1 + theme_grey() 
+     
+     # A better way to use non-default theme:
+     p2 <- plot_infoDim(Spectra, ggtheme = theme_grey())
+     p2
+     
+     # Numbes of selected components can be indicated
+     p3 <- plot_infoDim(Spectra, selected = 4)
+     p3     
+```
+```{r}
+    # Numbes of selected components can be indicated
+     p4 <- plot_infoDim(Spectra, y.log = FALSE)
+     ggplotly(p4)  
+   
 ```
 

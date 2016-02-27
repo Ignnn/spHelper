@@ -71,7 +71,7 @@ which.in.diag(m2)
 
 }
 \seealso{
-Other Matrix operations: \code{\link{corrVec2Mat}},
+Other Matrix operations: \code{\link{corr_vec2mat}},
   \code{\link{nRow2nTri}}, \code{\link{nTri2nRow}}
 }
 

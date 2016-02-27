@@ -58,7 +58,7 @@ simSpectra <- function(x = 300:800,
     #         )
 
     # Create correlated data --------------------------------------------------
-    ACor <- corrVec2Mat(c(.3,-.6,.2)) # c(.3,-.6,.7,.3,.6,.1)
+    ACor <- corr_vec2mat(c(.3,-.6,.2)) # c(.3,-.6,.7,.3,.6,.1)
     det(ACor)
     A <- MASS::mvrnorm(N, Sigma = ACor , mu = rep(0,nrow(ACor)), empirical = T)
     A_mu     <- runif(nrow(ACor),50,200)

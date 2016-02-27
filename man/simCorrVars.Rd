@@ -37,9 +37,9 @@ simCorrVars(corrMat, N = 10)
 
 }
 \seealso{
-\link{corrVec2Mat}, \link[MASS]{mvrnorm}
+\link{corr_vec2mat}, \link[MASS]{mvrnorm}
 
-Other simmulation functions: \code{\link{corrVec2Mat}},
+Other simmulation functions: \code{\link{corr_vec2mat}},
   \code{\link{simSpectra}}
 }
 

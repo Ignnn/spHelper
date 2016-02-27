@@ -7,7 +7,7 @@
 #'
 #' @return A dataframe of correlated variables.
 #'
-#' @seealso \link{corrVec2Mat}, \link[MASS]{mvrnorm}
+#' @seealso \link{corr_vec2mat}, \link[MASS]{mvrnorm}
 #' @export
 #' @source \url{http://www.r-bloggers.com/simulating-random-multivariate-correlated-data-continuous-variables/}
 #'

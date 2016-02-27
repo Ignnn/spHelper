@@ -1,8 +1,14 @@
 # ***** Plot a confusion matrix ***** --------------------------------------
 #
-#' [!] Vizualize a confusion matrix / classification table
+#' @name plot_confusion
+#' @aliases plot_confusion
+#' @aliases plot_confusion2
 #'
-#' \code{plot_confusion}
+#' @title [!] Visualize a confusion matrix (classification table)
+#'
+#' @description Plot a confusion matrix (classification table) and
+#'  additional statistics.
+#'
 #'
 #' @param conf A confusion matrix / A classificattion table (either a table
 #'        or a square matrix).
@@ -25,19 +31,20 @@
 #' @param text.size The size of text inside cells
 #' @param decimals The number of decimal positions in rounding. Default is 2
 #'        (i.e., precission is 0.01).
-#' @return A plot of confusion matrix and additional statistics.
+#' @return A plot of confusion matrix and additional statistics (`ggplot` object).
 #' @examples
 #'
-#' N <- 1000 # number of observations
+#' # Generate data: Random guess  ============================
+#'  N <- 1000 # number of observations
 #'
-#' Prediction <- sample(c("A","B","C","D"),N, replace = TRUE)
+#' Prediction <- sample(c("A","B","C","D"), N, replace = TRUE)
 #' Reference  <- sample(c("A", "B","C","D"),N, replace = TRUE)
 #'
+#' # This function:
+#' plot_confusion2(Prediction,Reference)
 #'
-#' # Random guess  ===========================================
+#' # does the same as:
 #' conf <- table(Prediction,Reference)
-#'
-#' # load("conf.Rda")
 #' plot_confusion(conf)
 #'
 #' # At least 50% of the cases agree =========================
@@ -78,7 +85,6 @@
 #' @export
 #' @family spHelper plots
 #' @import ggplot2
-
 plot_confusion <- function(conf,
                           Title  = "Classification table",
                           xLabel = NULL,
@@ -203,6 +209,23 @@ plot_confusion <- function(conf,
 
     p <- cowplot::ggdraw(cowplot::switch_axis_position(p, axis = 'x'))
 
-
     return(p)
+}
+
+
+# ============================================================================
+#' @rdname plot_confusion
+#'
+#' @param Prediction A factor variable with \bold{predicted} groups.
+#' @param Reference A factor variable  with \bold{reference} groups.
+#' @param ... Parameters used in \code{plot_confusion}.
+#'
+#' @export
+
+plot_confusion2 <- function(Prediction, Reference,...){
+    if (length(Prediction) != length(Reference)) {
+        stop("Lengths of vectors `Prediction` and `Reference` must be equal.")
+    }
+    conf <- table(Prediction,Reference)
+    plot_confusion(conf = conf, ...)
 }

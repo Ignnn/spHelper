@@ -2,11 +2,14 @@
 % Please edit documentation in R/plot_confusion.R
 \name{plot_confusion}
 \alias{plot_confusion}
-\title{[!] Vizualize a confusion matrix / classification table}
+\alias{plot_confusion2}
+\title{[!] Visualize a confusion matrix (classification table)}
 \usage{
 plot_confusion(conf, Title = "Classification table", xLabel = NULL,
   yLabel = NULL, subTitle = NULL, shades = c("prop", "max", "const",
   "none"), guide = FALSE, text.size = 4, decimals = 2)
+
+plot_confusion2(Prediction, Reference, ...)
 }
 \arguments{
 \item{conf}{A confusion matrix / A classificattion table (either a table
@@ -40,25 +43,33 @@ or a square matrix).}
 
 \item{decimals}{The number of decimal positions in rounding. Default is 2
 (i.e., precission is 0.01).}
+
+\item{Prediction}{A factor variable with \bold{predicted} groups.}
+
+\item{Reference}{A factor variable  with \bold{reference} groups.}
+
+\item{...}{Parameters used in \code{plot_confusion}.}
 }
 \value{
-A plot of confusion matrix and additional statistics.
+A plot of confusion matrix and additional statistics (`ggplot` object).
 }
 \description{
-\code{plot_confusion}
+Plot a confusion matrix (classification table) and
+ additional statistics.
 }
 \examples{
 
-N <- 1000 # number of observations
+# Generate data: Random guess  ============================
+ N <- 1000 # number of observations
 
-Prediction <- sample(c("A","B","C","D"),N, replace = TRUE)
+Prediction <- sample(c("A","B","C","D"), N, replace = TRUE)
 Reference  <- sample(c("A", "B","C","D"),N, replace = TRUE)
 
+# This function:
+plot_confusion2(Prediction,Reference)
 
-# Random guess  ===========================================
+# does the same as:
 conf <- table(Prediction,Reference)
-
-# load("conf.Rda")
 plot_confusion(conf)
 
 # At least 50\% of the cases agree =========================
@@ -99,7 +110,8 @@ plot_confusion(conf3,shades = "none", subTitle = "shades: none")
 }
 \seealso{
 Other spHelper plots: \code{\link{InfoDim_plot}},
-  \code{\link{plot_SpDiff}}, \code{\link{plot_kAmp}},
-  \code{\link{plot_kSp}}, \code{\link{plot_stat}}
+  \code{\link{plot_SpDiff}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
+  \code{\link{plot_stat}}
 }
 
