@@ -285,32 +285,23 @@ plot_confusion(conf3,shades = "max",  subTitle = "Shades: 'max', Correct >80%")
 ```{r}
 # Shades: constant and none ===========================
 
-plot_confusion(conf3,shades = "const",subTitle = "Shades: constant"); plot_confusion(conf3,shades = "none", subTitle = "Shades: none")
+plot_confusion(conf3,shades = "const",subTitle = "Shades: constant");
+plot_confusion(conf3,shades = "none", subTitle = "Shades: none")
 
 ```
 
 ```{r}
 n <- round(N/6)
-Prediction[sample(which(Prediction == "A"),n,replace = TRUE)] <- sample(c("B","C"), n,replace = TRUE)
+Prediction[sample(which(Prediction == "A"),n,replace = TRUE)] <- 
+    sample(c("B","C"), n,replace = TRUE)
+
 conf4 <- table(Prediction,Reference)
 
 plot_confusion(conf4, subTitle = "Imbalanced class proportions")
 
 
+```
 
-```
-Test `rowSums` and `colSums`
-============================
-```{r}
-n <- 3
-m <- matrix(rep(1:n,each = n),n)
-rownames(m) <- paste0("row",1:n)
-colnames(m) <- paste0("col",1:n)
-m <- as.table(m)
-m
-rowSums(m)
-colSums(m)
-```
 `InfoDim` and `InfoDim_plot`
 ============================
 ```{r, fig.width= 6}

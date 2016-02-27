@@ -6,7 +6,7 @@
 \usage{
 plot_confusion(conf, Title = "Classification table", xLabel = NULL,
   yLabel = NULL, subTitle = NULL, shades = c("prop", "max", "const",
-  "none"), guide = FALSE, text.size = 5, decimals = 2)
+  "none"), guide = FALSE, text.size = 4, decimals = 2)
 }
 \arguments{
 \item{conf}{A confusion matrix / A classificattion table (either a table
@@ -38,11 +38,11 @@ or a square matrix).}
 
 \item{text.size}{The size of text inside cells}
 
-\item{decimals}{The number of decimal positions in rounding. Default is 2 (i.e.,
-precission is 0.01).}
+\item{decimals}{The number of decimal positions in rounding. Default is 2
+(i.e., precission is 0.01).}
 }
 \value{
-A plot of confusion matrix.
+A plot of confusion matrix and additional statistics.
 }
 \description{
 \code{plot_confusion}

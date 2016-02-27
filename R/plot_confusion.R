@@ -23,9 +23,9 @@
 #'      }
 #' @param guide Logical. If \code{TRUE}, a legend is plotted.
 #' @param text.size The size of text inside cells
-#' @param decimals The number of decimal positions in rounding. Default is 2 (i.e.,
-#'        precission is 0.01).
-#' @return A plot of confusion matrix.
+#' @param decimals The number of decimal positions in rounding. Default is 2
+#'        (i.e., precission is 0.01).
+#' @return A plot of confusion matrix and additional statistics.
 #' @examples
 #'
 #' N <- 1000 # number of observations
@@ -86,20 +86,13 @@ plot_confusion <- function(conf,
                           subTitle = NULL,
                           shades = c("prop","max","const","none"),
                           guide = FALSE,
-                          text.size = 5,
+                          text.size = 4,
                           decimals = 2) {
     # require(dplyr)
 
     if (!is.table(conf)) {       conf <- as.table(conf)    }
 
     # Calculate accuracy measures
-
-    # AccMeasures     <- caret::confusionMatrix(conf)
-    # `<Sensitivity>` <- AccMeasures$byClass[,"Sensitivity"]
-    #        PV       <- AccMeasures$byClass[,"Pos Pred Value"]
-           # K        <- AccMeasures$overall["Kappa"]
-
-
     `<Sensitivity>` <- diag(prop.table(conf,2)) # Sensitivity
            PV       <- diag(prop.table(conf,1)) # "Positive Predictive Value"
            K        <- psych::cohen.kappa(conf)[["kappa"]]
@@ -165,6 +158,7 @@ plot_confusion <- function(conf,
            const = {
                ColValue[ind.main]   <- -.60
                ColValue[ind.diag]   <-  .70
+               # ColValue[N]          <- 0.10
 
             },
         # Just constant grey color (no red nor green colors)
@@ -188,10 +182,10 @@ plot_confusion <- function(conf,
          geom_hline(size = 1.2, color = "grey30", yintercept = 1.5    ) +
          geom_vline(size = 1.2, color = "grey30", xintercept = nc + .5) +
 
-        scale_fill_gradient2(high = "#008000",
+        scale_fill_gradient2(high  = "#209D20",   # "#008000",
                               mid  = "#eeeeee", #mid = "#f2f6c3",
                               midpoint = 0,
-                              low  = "#cd0000",
+                              low  = "#dd4040",#"tomato2",
                               na.value = "grey60",
 
                               guide = {if (guide) "colourbar" else FALSE} ,

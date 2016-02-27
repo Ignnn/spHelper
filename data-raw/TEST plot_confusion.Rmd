@@ -1,0 +1,124 @@
+---
+title: "Untitled"
+author: "Vilmantas Gėgžna"
+date: "`r Sys.time()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
+```
+
+Load packages
+==============
+```{r Load packages, message = FALSE, warning = FALSE}
+library(spHelper)
+library(plotly)
+
+```
+
+
+`plot_confusion`
+================
+
+
+```{r, echo=FALSE}
+# knitr::opts_chunk$set(optDEF)
+# 
+knitr::opts_chunk$set(fig.width = 5, fig.show = "hold")
+```
+```{r}
+d <- 5 # number of rows/columns
+Mat <- matrix(sample(0:100,d ^ 2,T),d)
+colnames(Mat) <- paste0("gr",1:d)
+rownames(Mat) <- colnames(Mat)
+class(Mat)
+plot_confusion(Mat, subTitle = "Input is a matrix (1)")
+
+diag(Mat)[2:3] <- c(1000,250)
+plot_confusion(Mat, subTitle = "Input is a matrix (2)")
+```
+```{r}
+set.seed(165)
+
+N <- 1000 # number of observations
+
+Prediction <- sample(c("A","B","C","D"),N, replace = TRUE)
+Reference  <- sample(c("A", "B","C","D"),N, replace = TRUE)
+
+# Random guess  =====================
+conf <- table(Prediction,Reference)
+class(conf)
+
+plot_confusion(conf, subTitle = "Correct by chance")
+
+# At least 40% of the cases agree =====================
+ind2 <- sample(1:N,round(N*.50))
+Reference[ind2] <- Prediction[ind2]
+conf2 <- table(Prediction,Reference)
+
+plot_confusion(conf2, subTitle = "Correct >50%")
+
+# Most of the cases agree =============================
+ind3 <- sample(1:N,round(N*.80))
+Reference[ind3] <- Prediction[ind3]
+conf3 <- table(Prediction,Reference)
+
+plot_confusion(conf3, subTitle = "Correct >80%")
+```
+
+```{r}
+# Proportions =========================================
+
+plot_confusion(conf3              , subTitle = "Counts")
+plot_confusion(prop.table(conf3),   subTitle = "Proportions (total sum = 1)")
+plot_confusion(prop.table(conf3,1), subTitle = "Proportions (row sums = 1)")
+plot_confusion(prop.table(conf3,2), subTitle = "Proportions (column sums = 1)")
+```
+
+```{r}
+# Shades: proportional ================================
+
+plot_confusion(conf,shades = "prop",  subTitle = "Shades: 'prop', Correct by chance");
+plot_confusion(conf,shades = "max",   subTitle = "Shades: 'max', Correct by chance")
+
+plot_confusion(conf2,shades = "prop", subTitle = "Shades: 'prop', Correct >50%");
+plot_confusion(conf2,shades = "max",  subTitle = "Shades: 'max', Correct >50%")
+
+plot_confusion(conf3,shades = "prop", subTitle = "Shades: 'prop', Correct >80%");
+plot_confusion(conf3,shades = "max",  subTitle = "Shades: 'max', Correct >80%")
+```
+
+```{r}
+
+# Shades: constant and none ===========================
+
+plot_confusion(conf3,shades = "const",subTitle = "Shades: constant");
+plot_confusion(conf3,shades = "none", subTitle = "Shades: none")
+
+```
+
+```{r}
+n <- round(N/6)
+Prediction[sample(which(Prediction == "A"),n,replace = TRUE)] <- 
+    sample(c("B","C"), n,replace = TRUE)
+
+conf4 <- table(Prediction,Reference)
+
+plot_confusion(conf4, subTitle = "Imbalanced class proportions")
+
+
+```
+
+Test `rowSums` and `colSums`
+============================
+```{r}
+n <- 3
+m <- matrix(rep(1:n,each = n),n)
+rownames(m) <- paste0("row",1:n)
+colnames(m) <- paste0("col",1:n)
+m <- as.table(m)
+m
+rowSums(m)
+colSums(m)
+```

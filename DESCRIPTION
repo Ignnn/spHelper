@@ -2,8 +2,8 @@ Package: spHelper
 Type: Package
 Title: Convenience Functions Mainly for Spectroscopy
 Description: Various convenience functions for spectroscopy, etc.
-Version: 0.1.032
-Date: 2016-02-26
+Version: 0.1.033
+Date: 2016-02-27
 Encoding: UTF-8
 Author: Vilmantas Gegzna, et al.
 Maintainer: Vilmantas Gegzna <GegeznaV@gmail.com>
