@@ -23,7 +23,7 @@
 #' ## [1] "gr"     "class"  "spc"    ".color"
 #'
 #' @import hyperSpec
-#' @family hyperSpcec supplements
+#' @family \code{spHelper} functions for \code{hyperSpec}
 
 hyAdd.color <- function(sp = NULL, by,
                         palette = c("#377EB8","#4DAF4A","#984EA3","#FF7F00",

@@ -3,7 +3,8 @@
 \name{stratifiedFolds}
 \alias{createFolds2}
 \alias{stratifiedFolds}
-\title{[~] Block observations and Create stratified folds for k-fold cross-validation.}
+\title{[+] Create folds with stratification and blocking for k-fold
+           cross-validation}
 \usage{
 stratifiedFolds(data = NULL, gr = NULL, ID = NULL, k = 5,
   returnTrain = TRUE)
@@ -11,13 +12,15 @@ stratifiedFolds(data = NULL, gr = NULL, ID = NULL, k = 5,
 createFolds2(..., k = 5)
 }
 \arguments{
-\item{data}{A data frame, that contains variables denoted by \code{ID} and by \code{gr}.}
+\item{data}{A data frame, that contains variables which names are denoted
+by arguments \code{ID} and by \code{gr}.}
 
-\item{gr}{A vector or a name of factor variable in {data}, which levels
-will be used for stratification. E.g., vector with medical groups.}
+\item{gr}{A vector or a name of factor variable in \code{data}, which levels
+will be used for \emph{stratification}. E.g., vector with
+medical groups.}
 
-\item{ID}{A vector or a name of variable in {data}, that contains
-identification codes/numbers (ID).}
+\item{ID}{A vector or a name of variable in \code{data}, that contains
+identification codes/numbers (ID). These codes will be used bor blocking.}
 
 \item{k}{A number of folds, default k = 5.}
 
@@ -25,19 +28,19 @@ identification codes/numbers (ID).}
 set. If \code{FALSE}, returns indices of variables in
 test set.}
 
-\item{...}{(Ignore this)}
+\item{...}{(The same parameters as above).}
 }
 \value{
-A list of folds. In each fold indices observations.
+A list of folds. In each fold there are indices observations.
         The structure of outpus is the same as if it was created by
         \code{\link[caret]{createFolds}}.
 }
 \description{
-Function devides observations into folds that are used for k-fold cross-validation. In
-these folds observations are:
+Function randomly devides observations into folds that are used for k-fold
+cross-validation. In these folds observations are:
 \enumerate{
      \item \bold{blocked} by values in variable \code{ID} (i.e. observations
-       with the same "ID" are treated as one unit and are always in the same fold)
+       with the same "ID" are treated as one unit and are always in the same fold);
      \item \bold{stratified} by levels of factor variable \code{gr} (the proportions of
      these grouped units of observations per each group (level) are kept aproximately
      constant throughout all folds).
@@ -52,37 +55,44 @@ If \code{k} is such big, that some folds have no observations of a certain group
 \examples{
 
 # Load data
-data("DataSet1")
+     data("DataSet1")
 
 # Explore data
-str(DataSet1)
-table(DataSet1[,c("gr","ID")])
-summary(DataSet1)
+     str(DataSet1)
+     table(DataSet1[,c("gr","ID")])
+     summary(DataSet1)
 
 # Explore functions
-nFolds = 5
+     nFolds = 5
 
 # If variables of data frame are provided:
-Folds1_a <- stratifiedFolds(data = DataSet1, gr = gr, ID = ID, nFolds, returnTrain=FALSE)
-# str(Folds1_a)
-TestFolds(Folds1_a, DataSet1)
+     Folds1_a <- stratifiedFolds(data = DataSet1, gr = gr, ID = ID, nFolds, returnTrain=FALSE)
+     # str(Folds1_a)
+     foldsTets(Folds1_a, DataSet1)
 
 # If "free" variables are provided:
-Folds1_b <- stratifiedFolds(gr = DataSet1$gr, ID = DataSet1$ID, k=nFolds, returnTrain=FALSE)
-# str(Folds1_b)
-TestFolds(Folds1_b, DataSet1)
+     Folds1_b <- stratifiedFolds(gr = DataSet1$gr, ID = DataSet1$ID, k=nFolds, returnTrain=FALSE)
+     # str(Folds1_b)
+     foldsTets(Folds1_b, DataSet1)
 
 # Not blocked but stratified
-Folds1_c <- stratifiedFolds(gr = DataSet1$gr, k=nFolds, returnTrain=FALSE)
-# str(Folds1_c)
-TestFolds(Folds1_c, DataSet1)
+     Folds1_c <- stratifiedFolds(gr = DataSet1$gr, k=nFolds, returnTrain=FALSE)
+     # str(Folds1_c)
+     foldsTets(Folds1_c, DataSet1)
 
 
 # Blocked but not stratified
-Folds1_d <- stratifiedFolds(ID = DataSet1$ID, k=nFolds, returnTrain=FALSE)
-# str(Folds1_d)
-TestFolds(Folds1_d, DataSet1)
+     Folds1_d <- stratifiedFolds(ID = DataSet1$ID, k=nFolds, returnTrain=FALSE)
+     # str(Folds1_d)
+     foldsTets(Folds1_d, DataSet1)
 
 
+}
+\seealso{
+\code{\link[caret]{createFolds}}
+
+Other \code{spHelper} fold creation functions: \code{\link{foldsTets}}
+
+Other \code{spHelper} fold creation functions: \code{\link{foldsTets}}
 }
 

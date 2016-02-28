@@ -2,13 +2,13 @@
 % Please edit documentation in R/addLabels_TD2009.R
 \name{addLabels_TD2009}
 \alias{addLabels_TD2009}
-\title{[!] Add labels to "TD_2009" and transform the dataset}
+\title{[+] Add labels to "TD_2009" dataset}
 \usage{
 addLabels_TD2009(sp, language = "EN")
 }
 \arguments{
 \item{sp}{A \code{\link[=hyperSpec-class]{hyperSpec}} object of TD_2009 data,
-created by function \code{\link{read3csv2hy}}}
+created by function \code{\link{read3csv2hy}}.}
 
 \item{language}{A string, indicating a language of labels. Possible entries are
 \code{EN} - English and \code{LT} - Lithuanian. Default is \code{EN}.}
@@ -22,7 +22,7 @@ Select data columns, that are not removed, and add labels to
  \code{\link[=hyperSpec-class]{hyperSpec}} object of "TD_2009" data.
 }
 \seealso{
-Other hyperSpcec supplements: \code{\link{addLabels_PAP_PD2014}},
+Other \code{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},
   \code{\link{dropCol}}, \code{\link{hy2mat}},
   \code{\link{hyAdd.color}}, \code{\link{read3csv2hy}}
 }

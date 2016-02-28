@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @import hyperSpec
-#' @family hyperSpcec supplements
+#' @family \code{spHelper} functions for \code{hyperSpec}
 #'
 dropCol <- function(sp){
     NAcols <- colSums(is.na(sp$..)) == nrow(sp)

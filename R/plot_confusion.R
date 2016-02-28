@@ -4,31 +4,45 @@
 #' @aliases plot_confusion
 #' @aliases plot_confusion2
 #'
-#' @title [!] Visualize a confusion matrix (classification table)
+#' @title [+] Plot a confusion matrix (a.k.a. classification table)
 #'
-#' @description Plot a confusion matrix (classification table) and
-#'  additional statistics.
+#' @description Plot a confusion matrix (classification table) with
+#'              additional statistics (sensitivity (Se) a.k.a. true positive
+#'              rate, positive predictive value (PPV) and Cohens' Kappa (k)). \cr
 #'
+#'          Colors in the main matrix: \bold{diagonal} cells vary from grey to
+#'          \bold{green} and \bold{offdiagonal} elements vary from grey to
+#'          \bold{red}. The color intensity in certain cell is determined by
+#'          parameter \code{shades}.\cr
 #'
-#' @param conf A confusion matrix / A classificattion table (either a table
-#'        or a square matrix).
+#'               Colors of cells with statistics Se, PPV and k vary depening on
+#'           values of these statistics from \bold{red} (\emph{low} values) to
+#'           \bold{grey} (\emph{middle} values), to \bold{green} (\emph{high} values).\cr
+#'
+#'             \bold{Exception:} when \code{shades="const"} and \code{shades="none"},
+#'          color intensities are constant.
+#'
+#' @param conf A confusion matrix (classification table): either an object of
+#'             a class "table" or a square matrix.
+#' @param Prediction A factor variable with \bold{predicted} groups.
+#' @param Reference A factor variable  with \bold{reference} groups.
 #' @template labels
-#' @param subTitle Subtitle - second line of a title.
-#' @param shades A way, how cells are shaded.
+#' @template subtitle
+#' @param shades A function how intensities of cell colors in the main confsion
+#'        matrix depend on cell values:
 #'      \describe{
-#'          \item{prop}{(default) A shade (intensity) of a color is proportianal
-#'                to a value of a cell. Distribution of colors is balanced
-#'                according to number of classes, but not balanced according to
-#'                number of observations per class.}
-#'          \item{max}{Cell with absolute maximum value is represented by the
-#'          most intensive color. Other cells are represented by colors which
-#'          are diluted proportionaly to their value in accordance with the
-#'          maximum value.}
-#'          \item{const}{Constant red and green colors.}
-#'          \item{none}{All cells are grey.}
+#'          \item{"prop"}{An intensity of a cell color is proportianal
+#'                to a value in the cell. Distribution of color intensities is
+#'                 balanced according to number of classes (but not balanced
+#'                 according to number of observations per class.)}
+#'          \item{"max"}{Cell with the absolute maximum value is represented by the
+#'          most intensive color. Other cells are proportionally less intensive.
+#'          }
+#'          \item{"const"}{Constant red and green colors.}
+#'          \item{"none"}{All cells are grey.}
 #'      }
 #' @param guide Logical. If \code{TRUE}, a legend is plotted.
-#' @param text.size The size of text inside cells
+#' @param text.size The size of a text inside cells.
 #' @param decimals The number of decimal positions in rounding. Default is 2
 #'        (i.e., precission is 0.01).
 #' @return A plot of confusion matrix and additional statistics (`ggplot` object).
@@ -212,13 +226,10 @@ plot_confusion <- function(conf,
     return(p)
 }
 
-
 # ============================================================================
 #' @rdname plot_confusion
 #'
-#' @param Prediction A factor variable with \bold{predicted} groups.
-#' @param Reference A factor variable  with \bold{reference} groups.
-#' @param ... Parameters used in \code{plot_confusion}.
+#' @template same
 #'
 #' @export
 

@@ -1,6 +1,8 @@
 addLabels_PAP_PD2014           [!] Add labels to "PAP_PD_2014" and transform the dataset
 addLabels_TD2009               [!] Add labels to "TD_2009" and transform the dataset
 bru                            [+] Generate a string of repeated symbols
+
+
 corr_vec2mat                   [!!!] Construct a correlation matrix
 Datasets-DataSet1              Dataset: a data frame for illustrations
 Datasets-Loadings              [!] DataSets: Loadings

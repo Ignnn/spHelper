@@ -3,7 +3,7 @@
 \name{plot_confusion}
 \alias{plot_confusion}
 \alias{plot_confusion2}
-\title{[!] Visualize a confusion matrix (classification table)}
+\title{[+] Plot a confusion matrix (a.k.a. classification table)}
 \usage{
 plot_confusion(conf, Title = "Classification table", xLabel = NULL,
   yLabel = NULL, subTitle = NULL, shades = c("prop", "max", "const",
@@ -12,8 +12,8 @@ plot_confusion(conf, Title = "Classification table", xLabel = NULL,
 plot_confusion2(Prediction, Reference, ...)
 }
 \arguments{
-\item{conf}{A confusion matrix / A classificattion table (either a table
-or a square matrix).}
+\item{conf}{A confusion matrix (classification table): either an object of
+a class "table" or a square matrix.}
 
 \item{Title}{The main title for the plot.}
 
@@ -21,25 +21,26 @@ or a square matrix).}
 
 \item{yLabel}{A label for ordinate (y) axis.}
 
-\item{subTitle}{Subtitle - second line of a title.}
+\item{subTitle}{The second line of title, which will be smaller and
+and in italics.}
 
-\item{shades}{A way, how cells are shaded.
+\item{shades}{A function how intensities of cell colors in the main confsion
+  matrix depend on cell values:
 \describe{
-    \item{prop}{(default) A shade (intensity) of a color is proportianal
-          to a value of a cell. Distribution of colors is balanced
-          according to number of classes, but not balanced according to
-          number of observations per class.}
-    \item{max}{Cell with absolute maximum value is represented by the
-    most intensive color. Other cells are represented by colors which
-    are diluted proportionaly to their value in accordance with the
-    maximum value.}
-    \item{const}{Constant red and green colors.}
-    \item{none}{All cells are grey.}
+    \item{"prop"}{An intensity of a cell color is proportianal
+          to a value in the cell. Distribution of color intensities is
+           balanced according to number of classes (but not balanced
+           according to number of observations per class.)}
+    \item{"max"}{Cell with the absolute maximum value is represented by the
+    most intensive color. Other cells are proportionally less intensive.
+    }
+    \item{"const"}{Constant red and green colors.}
+    \item{"none"}{All cells are grey.}
 }}
 
 \item{guide}{Logical. If \code{TRUE}, a legend is plotted.}
 
-\item{text.size}{The size of text inside cells}
+\item{text.size}{The size of a text inside cells.}
 
 \item{decimals}{The number of decimal positions in rounding. Default is 2
 (i.e., precission is 0.01).}
@@ -48,14 +49,27 @@ or a square matrix).}
 
 \item{Reference}{A factor variable  with \bold{reference} groups.}
 
-\item{...}{Parameters used in \code{plot_confusion}.}
+\item{...}{(The same parameters as above).}
 }
 \value{
 A plot of confusion matrix and additional statistics (`ggplot` object).
 }
 \description{
-Plot a confusion matrix (classification table) and
- additional statistics.
+Plot a confusion matrix (classification table) with
+             additional statistics (sensitivity (Se) a.k.a. true positive
+             rate, positive predictive value (PPV) and Cohens' Kappa (k)). \cr
+
+         Colors in the main matrix: \bold{diagonal} cells vary from grey to
+         \bold{green} and \bold{offdiagonal} elements vary from grey to
+         \bold{red}. The color intensity in certain cell is determined by
+         parameter \code{shades}.\cr
+
+              Colors of cells with statistics Se, PPV and k vary depening on
+          values of these statistics from \bold{red} (\emph{low} values) to
+          \bold{grey} (\emph{middle} values), to \bold{green} (\emph{high} values).\cr
+
+            \bold{Exception:} when \code{shades="const"} and \code{shades="none"},
+         color intensities are constant.
 }
 \examples{
 

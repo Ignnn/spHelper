@@ -2,7 +2,7 @@
 % Please edit documentation in R/InfoDim_plot.R
 \name{InfoDim_plot}
 \alias{InfoDim_plot}
-\title{[! ]Plot the result of \code{\link{InfoDim}}}
+\title{[!!! Will be removed! Use \code{plot_infoDim} instead !!!]}
 \usage{
 InfoDim_plot(Object, n.comp.SHOW = 20, selected = NULL,
   Title = "Scree Plot")
@@ -26,8 +26,9 @@ A scree plot: a "lattice" (class "trellis") plot which helps to
 \description{
 Plot the result of \code{\link{InfoDim}}
 }
-\note{
-http://www.originlab.com/doc%5Cen/Tutorial/images/Principal_Component_Analysis/Pca_scree_plot.png
+\details{
+Plot the results of function \code{\link{InfoDim}} and return `trellis`
+graphics object.
 }
 \examples{
  my_matrix <- matrix(rexp(200, rate=.1), ncol=20)
@@ -43,6 +44,9 @@ http://www.originlab.com/doc%5Cen/Tutorial/images/Principal_Component_Analysis/P
  my_plot <- InfoDim_plot(my_result)
  my_plot
 
+}
+\references{
+http://www.originlab.com/doc%5Cen/Tutorial/images/Principal_Component_Analysis/Pca_scree_plot.png
 }
 \seealso{
 Other information dimension functions: \code{\link{infoDim}},

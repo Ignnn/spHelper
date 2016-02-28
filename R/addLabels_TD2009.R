@@ -1,6 +1,6 @@
 # addLabels_TD2009 --------------------------------------------------------
 #
-#' [!] Add labels to "TD_2009" and transform the dataset
+#' [+] Add labels to "TD_2009" dataset
 #'
 #' Function is designed to label data collected during investigation called "TD_2009".
 #' Select data columns, that are not removed, and add labels to
@@ -8,7 +8,7 @@
 #'
 #'
 #' @param sp A \code{\link[=hyperSpec-class]{hyperSpec}} object of TD_2009 data,
-#'             created by function \code{\link{read3csv2hy}}
+#'             created by function \code{\link{read3csv2hy}}.
 #' @param language A string, indicating a language of labels. Possible entries are
 #' \code{EN} - English and \code{LT} - Lithuanian. Default is \code{EN}.
 #'
@@ -17,7 +17,7 @@
 #'
 #' @export
 #' @import hyperSpec
-#' @family hyperSpcec supplements
+#' @family \code{spHelper} functions for \code{hyperSpec}
 
 addLabels_TD2009 <- function(sp,language = "EN")  {
     ColsInitial <- colnames(sp) # save initial column names

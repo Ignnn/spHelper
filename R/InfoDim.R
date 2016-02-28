@@ -6,16 +6,16 @@
 #' @description The function calculates a measure, called "information dimension".
 #'
 #'
-#' @param  Matrix - data matrix (rows = observations, columns = variables)
+#' @param  Matrix A matrix with data (rows = observations, columns = variables).
 #'
-#' @return A list (class "list" and "infoDim") with fields:
+#' @return A list (classes "list" and "infoDim") with fields:
 #'  \describe{
-#'  \item{$dim }{Information dimension ,rounded towards positive infinitive}
-#'  \item{$exactDim  }{Information dimension (fractional, not rounded)}
+#'  \item{$dim }{Information dimension, rounded towards positive infinitive;}
+#'  \item{$exactDim  }{Information dimension (fractional, not rounded);}
 #'  \item{$explained  }{A vector of eigenvalues, normalized by sum of eigenvalues,
-#'   which can be used to determine the importance of (principal) components}
-#'  \item{$eigenvalues }{A vector of eigenvalues}
-#'  \item{$n.comp }{A vector with integers from 1 to length(eigenvalues)}
+#'   which can be used to determine the importance of (principal) components;}
+#'  \item{$eigenvalues }{A vector of eigenvalues;}
+#'  \item{$n.comp }{A vector with integers from 1 to length(eigenvalues).}
 #' }
 #'
 #' @references [1]	R. Cangelosi and A. Goriely, Component retention in principal
@@ -74,5 +74,7 @@ infoDim <- function(Matrix){
 
 #' @rdname infoDim
 #' @export
+#' @section WARNING!!!:
+#' \code{InfoDim} will be removed in future versions. Use \code{infoDim} instead.
 
 InfoDim <- function(Matrix) {infoDim(Matrix)}

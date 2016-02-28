@@ -22,7 +22,7 @@
 #'
 #' @export
 #' @import hyperSpec
-#' @family hyperSpcec supplements
+#' @family \code{spHelper} functions for \code{hyperSpec}
 
 read3csv2hy <- function(FileName_base){
 

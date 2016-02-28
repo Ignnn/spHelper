@@ -10,21 +10,25 @@ infoDim(Matrix)
 InfoDim(Matrix)
 }
 \arguments{
-\item{Matrix}{- data matrix (rows = observations, columns = variables)}
+\item{Matrix}{A matrix with data (rows = observations, columns = variables).}
 }
 \value{
-A list (class "list" and "infoDim") with fields:
+A list (classes "list" and "infoDim") with fields:
  \describe{
- \item{$dim }{Information dimension ,rounded towards positive infinitive}
- \item{$exactDim  }{Information dimension (fractional, not rounded)}
+ \item{$dim }{Information dimension, rounded towards positive infinitive;}
+ \item{$exactDim  }{Information dimension (fractional, not rounded);}
  \item{$explained  }{A vector of eigenvalues, normalized by sum of eigenvalues,
-  which can be used to determine the importance of (principal) components}
- \item{$eigenvalues }{A vector of eigenvalues}
- \item{$n.comp }{A vector with integers from 1 to length(eigenvalues)}
+  which can be used to determine the importance of (principal) components;}
+ \item{$eigenvalues }{A vector of eigenvalues;}
+ \item{$n.comp }{A vector with integers from 1 to length(eigenvalues).}
 }
 }
 \description{
 The function calculates a measure, called "information dimension".
+}
+\section{WARNING!!!}{
+
+\code{InfoDim} will be removed in future versions. Use \code{infoDim} instead.
 }
 \examples{
  my_matrix <- matrix(rexp(200, rate=.1), ncol=20)

@@ -2,19 +2,26 @@
 % Please edit documentation in R/corr_vec2mat.R
 \name{corr_vec2mat}
 \alias{corr_vec2mat}
-\title{[!!!] Construct a correlation matrix}
+\title{[+] Construct a correlation matrix from a coefficients' vector}
 \usage{
 corr_vec2mat(vec)
 }
 \arguments{
-\item{vec}{A Vector with known correlation coefficients to construct
-a correlation matrix.}
+\item{vec}{A Vector with known correlation coefficients.}
 }
 \value{
 A constructed correlation matrix.
 }
 \description{
-[!!!] Construct a correlation matrix
+Construct a correlation matrix from a vector vector of coefficients, that
+ will be placed in the lower triangle of a matrix (as illustrated in example
+ Example 1B) and then mirrored symetrically to the upper triangle.
+}
+\details{
+@details The number of elements in the vector should be equal to the number
+ of elements in lower triangle of a n*n matrix. If there's insufficient
+ number of elements in vector, hen only first m melements will be used to
+ construct(n-1)*(n-1) matrix.
 }
 \examples{
 
@@ -43,7 +50,7 @@ corr_vec2mat(vector)
   ##
   ## In this example only the matrix elements of interest are shown.
 
- # ------------------------------------------------------------
+ # -----------------------------------------------------------------
  # Example 2: inappropriate number of coefficients - warning appears
 
  corr_vec2mat(vector[1:5])
@@ -51,7 +58,7 @@ corr_vec2mat(vector)
   ## Only first 3 coefficient(s) out of 5 will be used to construct symmetric matrix with 3 rows.
 
  # ------------------------------------------------------------
- # Example 3: ERROR appears - coeefs must be between [-1;1]
+ # Example 3: ERROR appears - values of coeffs must be between [-1;1]
 
  corr_vec2mat(1:5)
   ## Error in corr_vec2mat(1:5) :
@@ -60,8 +67,8 @@ corr_vec2mat(vector)
 
 }
 \seealso{
-Other Matrix operations: \code{\link{nRow2nTri}},
-  \code{\link{nTri2nRow}}, \code{\link{which.in}}
+Other matrix operations: \code{\link{nDiag2nTri}},
+  \code{\link{nTri2nDiag}}, \code{\link{which.in}}
 
 Other simmulation functions: \code{\link{simCorrVars}},
   \code{\link{simSpectra}}

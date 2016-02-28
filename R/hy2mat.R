@@ -23,7 +23,7 @@
 #' @export
 #'
 #' @import hyperSpec
-#' @family hyperSpcec supplements
+#' @family \code{spHelper} functions for \code{hyperSpec}
 
 hy2mat <- function(sp)
 {    switch(class(sp),

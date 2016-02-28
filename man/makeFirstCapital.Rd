@@ -3,23 +3,23 @@
 \name{makeFirstCapital}
 \alias{fCap}
 \alias{makeFirstCapital}
-\title{[!] Convert the first letter to capital.}
+\title{[+] Convert first letters of all words to capitals}
 \usage{
 makeFirstCapital(x)
 
 fCap(x)
 }
 \arguments{
-\item{x}{- a string or vector of strings}
+\item{x}{Either a string or a vector of strings.}
 }
 \value{
-The same string with all words starting with capital letter.
+The same string as input with all words starting in capital letters.
 }
 \description{
-[!] Convert the first letter to capital.
+Convert first letters of all words in a string to capitals.
 }
 \details{
-\code{fCap} is a wrapper of \code{makeFirstCapital}
+\code{fCap} is a wrapper of \code{makeFirstCapital}.
 }
 \examples{
 

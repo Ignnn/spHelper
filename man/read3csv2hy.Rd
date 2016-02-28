@@ -29,7 +29,7 @@ Base name can be a path, e.g.  "D:/spectra/TD_2009"
 Data columns, that have unique values are removed.
 }
 \seealso{
-Other hyperSpcec supplements: \code{\link{addLabels_PAP_PD2014}},
+Other \code{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},
   \code{\link{addLabels_TD2009}}, \code{\link{dropCol}},
   \code{\link{hy2mat}}, \code{\link{hyAdd.color}}
 }

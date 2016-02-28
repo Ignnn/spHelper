@@ -8,7 +8,7 @@
 \alias{which.in.row}
 \alias{which.in.trilow}
 \alias{which.in.triupp}
-\title{Indices of certain matrix elements}
+\title{[+] Get indices of certain matrix elements}
 \usage{
 which.in(type, x, ...)
 
@@ -25,12 +25,13 @@ which.in.trilow(x, diag = FALSE)
 which.in.triupp(x, diag = FALSE)
 }
 \arguments{
-\item{type}{(just for \code{which.in}) Either \code{diag}, \code{offdiag},
-\code{col}, \code{row}, \code{trilow} or \code{triupp}.}
+\item{type}{Either \code{diag}, \code{offdiag},
+\code{col}, \code{row}, \code{trilow} or \code{triupp}
+(just for \code{which.in()}).}
 
 \item{x}{A matrix or an object, which can be coerced to a marix.}
 
-\item{...}{Other appropriate parameters, as indicated below.}
+\item{...}{Other appropriate parameters indicated below.}
 
 \item{col}{An index/Indices of columns that contain elements of interest.}
 
@@ -39,39 +40,55 @@ which.in.triupp(x, diag = FALSE)
 \item{diag}{logical.  Should the diagonal be included?}
 }
 \value{
-Indices of indicated* elements of a matrix (*that belong to either
-        diagonal, offdiagonal, upper/lower triange of matrix, certain row(s)
-        or column(s)).
+Indices of indicated elements of a matrix.
 }
 \description{
-Calculate indices of certain (e.g., diagonal) matrix elements.
+Get indices of certain (e.g., diagonal) matrix elements.
 These elements can be in:
 \enumerate{
- \item{diag}{diagonal;}
- \item{offdiag}{offdiagonal;}
- \item{col}{certain columns;}
- \item{row}{certain rows;}
- \item{trilow}{lower triangle;}
- \item{triupp}{upper triangle.}
+ \item{\emph{diag} - diagonal;}
+ \item{\emph{offdiag} - offdiagonal;}
+ \item{\emph{col} - indicated columns;}
+ \item{\emph{row} - indicated rows;}
+ \item{\emph{trilow} - lower triangle (with or without diagonal);}
+ \item{\emph{triupp} - upper triangle (with or without diagonal).}
 }
 }
 \examples{
 
 m1 <- matrix(NA, 5, 5)
-which.in.diag(m1)
- ## [1]  1  7 13 19 25
+m1
 
-m2 <- matrix(NA, 5, 2)
+ #>        [,1] [,2] [,3] [,4] [,5]
+ #>  [1,]   NA   NA   NA   NA   NA
+ #>  [2,]   NA   NA   NA   NA   NA
+ #>  [3,]   NA   NA   NA   NA   NA
+ #>  [4,]   NA   NA   NA   NA   NA
+ #>  [5,]   NA   NA   NA   NA   NA
+
+which.in.diag(m1)
+ #>  [1]  1  7 13 19 25
+
+m2 <- matrix(NA, 2, 5)
 which.in.diag(m2)
- ## [1]  1  7
+ #>  [1]  1  4
 
 #================================
 
- which.in(diag, m1)
+ which.in(diag,    m1)
+ which.in(offdiag, m1)
+
+ which.in(col, m1, col = 2)
+ which.in(row, m1, row = 2)
+
+ which.in(trilow, m1)
+ which.in(trilow, m1, diag = TRUE)
+
+ which.in(triupp, m1)
 
 }
 \seealso{
-Other Matrix operations: \code{\link{corr_vec2mat}},
-  \code{\link{nRow2nTri}}, \code{\link{nTri2nRow}}
+Other matrix operations: \code{\link{corr_vec2mat}},
+  \code{\link{nDiag2nTri}}, \code{\link{nTri2nDiag}}
 }
 

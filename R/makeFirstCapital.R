@@ -1,17 +1,14 @@
-# Padaryti pirmą raidę didžiąja -------------------------------------------
-#
-#
 #' @name makeFirstCapital
 #' @aliases makeFirstCapital
 #' @aliases fCap
-#' @title [!] Convert the first letter to capital.
+#' @title [+] Convert first letters of all words to capitals
 #'
-#' @description   [!] Convert the first letter to capital.
-#' @details \code{fCap} is a wrapper of \code{makeFirstCapital}
+#' @description  Convert first letters of all words in a string to capitals.
+#' @details \code{fCap} is a wrapper of \code{makeFirstCapital}.
 #'
-#' @param x - a string or vector of strings
+#' @param x Either a string or a vector of strings.
 #'
-#' @return The same string with all words starting with capital letter.
+#' @return The same string as input with all words starting in capital letters.
 #'
 #' @examples
 #'

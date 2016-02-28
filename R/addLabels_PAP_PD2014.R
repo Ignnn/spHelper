@@ -1,6 +1,6 @@
 # addLabels_... --------------------------------------------------------
 #
-#' [!] Add labels to "PAP_PD_2014" and transform the dataset
+#' [+] Add labels to "PAP_PD_2014" and transform the dataset
 #'
 #' Function is designed to label data collected during investigation called
 #'  "PAP_PD_2014".
@@ -10,7 +10,7 @@
 #'
 #'
 #' @param sp A \code{\link[=hyperSpec-class]{hyperSpec}} object of PAP_PD_2014
-#'  data, created by function \code{\link{read3csv2hy}}
+#'  data, created by function \code{\link{read3csv2hy}}.
 #' @param language A string, indicating a language of labels. Possible
 #' entries are \code{EN} - English and \code{LT} - Lithuanian.
 #' Default is \code{EN}.
@@ -19,7 +19,7 @@
 #'
 #' @export
 #'
-#' @family hyperSpcec supplements
+#' @family \code{spHelper} functions for \code{hyperSpec}
 
 addLabels_PAP_PD2014 <- function(sp, language = "EN")  {
     ColsInitial <- colnames(sp) # save initial column names

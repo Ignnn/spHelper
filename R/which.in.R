@@ -7,44 +7,61 @@
 #' @aliases which.in.trilow
 #' @aliases which.in.triupp
 #'
-#' @title Indices of certain matrix elements
+#' @title [+] Get indices of certain matrix elements
 #'
-#' @description Calculate indices of certain (e.g., diagonal) matrix elements.
+#' @description Get indices of certain (e.g., diagonal) matrix elements.
 #' These elements can be in:
 #' \enumerate{
-#'  \item{diag}{diagonal;}
-#'  \item{offdiag}{offdiagonal;}
-#'  \item{col}{certain columns;}
-#'  \item{row}{certain rows;}
-#'  \item{trilow}{lower triangle;}
-#'  \item{triupp}{upper triangle.}
+#'  \item{\emph{diag} - diagonal;}
+#'  \item{\emph{offdiag} - offdiagonal;}
+#'  \item{\emph{col} - indicated columns;}
+#'  \item{\emph{row} - indicated rows;}
+#'  \item{\emph{trilow} - lower triangle (with or without diagonal);}
+#'  \item{\emph{triupp} - upper triangle (with or without diagonal).}
 #' }
 #'
 #' @param x A matrix or an object, which can be coerced to a marix.
-#' @param type (just for \code{which.in}) Either \code{diag}, \code{offdiag},
-#'  \code{col}, \code{row}, \code{trilow} or \code{triupp}.
-#' @param ... Other appropriate parameters, as indicated below.
+#' @param type Either \code{diag}, \code{offdiag},
+#'  \code{col}, \code{row}, \code{trilow} or \code{triupp}
+#'  (just for \code{which.in()}).
+#' @param ... Other appropriate parameters indicated below.
 #'
-#' @return Indices of indicated* elements of a matrix (*that belong to either
-#'         diagonal, offdiagonal, upper/lower triange of matrix, certain row(s)
-#'         or column(s)).
+#' @return Indices of indicated elements of a matrix.
 #' @export
 #'
 #' @examples
 #'
 #' m1 <- matrix(NA, 5, 5)
-#' which.in.diag(m1)
-#'  ## [1]  1  7 13 19 25
+#' m1
 #'
-#' m2 <- matrix(NA, 5, 2)
+#'  #>        [,1] [,2] [,3] [,4] [,5]
+#'  #>  [1,]   NA   NA   NA   NA   NA
+#'  #>  [2,]   NA   NA   NA   NA   NA
+#'  #>  [3,]   NA   NA   NA   NA   NA
+#'  #>  [4,]   NA   NA   NA   NA   NA
+#'  #>  [5,]   NA   NA   NA   NA   NA
+#'
+#' which.in.diag(m1)
+#'  #>  [1]  1  7 13 19 25
+#'
+#' m2 <- matrix(NA, 2, 5)
 #' which.in.diag(m2)
-#'  ## [1]  1  7
+#'  #>  [1]  1  4
 #'
 #' #================================
 #'
-#'  which.in(diag, m1)
+#'  which.in(diag,    m1)
+#'  which.in(offdiag, m1)
 #'
-#' @family Matrix operations
+#'  which.in(col, m1, col = 2)
+#'  which.in(row, m1, row = 2)
+#'
+#'  which.in(trilow, m1)
+#'  which.in(trilow, m1, diag = TRUE)
+#'
+#'  which.in(triupp, m1)
+#'
+#' @family matrix operations
 
 
 which.in <- function(type, x,  ...){
@@ -55,7 +72,7 @@ which.in <- function(type, x,  ...){
                  col     = which.in.col(x, ...) ,
                  row     = which.in.row(x, ...) ,
                  trilow  = which.in.trilow(x, ...) ,
-                 triupp  = which.in.(x, ...)
+                 triupp  = which.in.triupp(x, ...)
     )
     return(ind)
 }
@@ -106,7 +123,7 @@ which.in.row <- function(x, row){
 #' @inheritParams base::lower.tri
 which.in.trilow <- function(x, diag = FALSE){
     m      <- ind.matrix(x)
-    ind.l  <- m[lower.tri(m)]
+    ind.l  <- m[lower.tri(m, diag = diag)]
     return(ind.l)
 }
 
@@ -115,7 +132,7 @@ which.in.trilow <- function(x, diag = FALSE){
 #' @export
 which.in.triupp <- function(x, diag = FALSE){
     m      <- ind.matrix(x)
-    ind.u  <- m[upper.tri(m)]
+    ind.u  <- m[upper.tri(m, diag = diag)]
     return(ind.u)
 }
 
@@ -123,8 +140,8 @@ which.in.triupp <- function(x, diag = FALSE){
 # [Internal function]
 # ind.matrix()
 #
-# Genereta a matrix of the same size as `x`, where each element represents its
-# index.
+# Genereta a matrix of the same size as `x`, where each element represents
+# its index.
 #
 ind.matrix <- function(x){
     x      <- as.matrix(x)
