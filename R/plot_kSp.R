@@ -91,6 +91,7 @@
 #'
 #' @export
 #' @family spHelper plots
+#' @family component analysis / factorisation related functions
 #' @import hyperSpec
 #' @import ggplot2
 
@@ -199,7 +200,6 @@ plot_kSp <- function(loadings,
 
 #  ------------------------------------------------------------------------
 #' @rdname plot_kSp
-#' @param filled
 #' @export
 
 plot_sp <- function(..., filled = FALSE) {plot_kSp(..., filled = FALSE)}

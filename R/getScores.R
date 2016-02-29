@@ -43,6 +43,7 @@
 #' @import hyperSpec
 #'
 #' @seealso \code{\link{plot_scores}}
+#' @family component analysis / factorisation related functions
 #'
 #' @examples
 #'

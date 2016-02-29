@@ -61,5 +61,10 @@ plot_scores(sc)
 }
 \seealso{
 \code{\link{plot_scores}}
+
+Other component analysis / factorisation related functions: \code{\link{infoDim}},
+  \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
+  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
+  \code{\link{reconstructSp}}
 }
 

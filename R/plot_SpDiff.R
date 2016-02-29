@@ -1,46 +1,77 @@
-# ***** ***** -----------------------------------------------------
-#
-#' [!] Plot Remainders After Subtracting Components
+
+#' @name plot_spDiff
 #'
-#' Plot difference between experimental and reconstructed spectra \cr \cr
+#' @title [+] Plot difference between oginal and reconstructed spectra
 #'
-#' Plot difference between experimental (original) and reconstructed spectra.
-#' Uses function \code{\link{getReconstructed}}, to calculate the reconstructed
-#' spectra and subtracts it from original spectra. \cr
-#'
-#' Difference between experimental and reconstructed spectra'
+#' @description Plot difference between original (e.g., experimental) and
+#' reconstructed spectra. Uses function \code{\link{reconstructSp}}, to
+#' calculate the reconstructed spectra and subtracts it from original spectra.
 #'
 #'
-#' @param loadings loadings
-#' @param scores scores
-#' @param Spectra Spectra (hyperSpec object)
-#' @param Title Title of the plot.
-#' @param spc.nmax max number of spectra to plot
-#' @param color ...
-#' @param stacked ...
+#' @note
+#'
+#' Function \code{\link[hyperSpec]{plotspc}} is used to make a plot. R \{base}
+#' plotting system annotations can be used to enhance the plot.
+#'
+#' @template loadings-hy
+#' @template scores
+#' @template sp-hy
+#' @template Title
+#' @param color see \code{\link[graphics]{par} col}. Might be a vector giving
+#'        individual colors for the spectra.
+#'        \bold{Default} values: vector in \code{sp$.color}, if does not exist,
+#'        "tan3" is used as a default color.
+#' @param stacked if not \code{NULL}, a "stacked" plot is produced.
+#'       \code{stacked} may be  \code{TRUE} to stack single spectra. A numeric
+#'        or factor is
+#'         be interpreted as giving the grouping, character is interpreted as
+#'         the name of the extra data column that holds the groups.
+#'         \bold{Default} stacking is by \code{sp$ID}, and \code{NULL} if this
+#'         variable is missing.
+#' @param ... Other parameters to be passed to function
+#'          \code{\link[hyperSpec]{plotspc}}.
+#' @inheritParams hyperSpec::plotspc
 #'
 #' @return Plot of calculated difference between expected (original)
 #' and reconstructed spectra.
+#'
 #' @export
-#'
 #' @examples
-#'
-#' plot_SpDiff(Loadings, Scores, Spectra)
+#' plot_spDiff(Loadings, Scores[1:10,,], Spectra[1:10,,], stacked = TRUE)
 #'
 #' @family spHelper plots
+#' @family component analysis / factorisation related functions
 #' @import hyperSpec
 #'
-plot_SpDiff <- function(loadings,scores,Spectra,
-                        Title = 'Remainders After Subtracting Components',
-                        color = if (".color" %in% ls(Spectra$..)) Spectra$.color else "tan3",
-                        stacked = if ("ID" %in% ls(Spectra$..)) Spectra$ID else NULL,
-                        spc.nmax = 2000) {
-    SpRE <- reconstructSp(loadings,scores,Spectra)
 
-    plot(Spectra - SpRE,
+plot_spDiff <- function(loadings, scores, sp,
+                        Title = 'Difference between oginal\nand reconstructed spectra',
+                        color = if (".color" %in% ls(Spectra$..)) sp$.color else "tan3",
+                        stacked = if ("ID" %in% ls(Spectra$..)) sp$ID else NULL,
+                        spc.nmax = 2000,
+                        ...) {
+    spREC  <- reconstructSp(loadings,scores, sp)
+    spDiff <- sp - spREC
+
+    plotspc(spDiff,
          spc.nmax = spc.nmax,
          col = color,
          stacked = stacked,
+         ...,
          title.args = list(main = Title)
+
     )
+
+    # # Generate a plot with ggplot2
+    # p <- plot_sp(spDiff,Title = Title, Facets = T)
+    # invisible(p)
+}
+
+
+#  ------------------------------------------------------------------------
+#' @rdname plot_spDiff
+#' @export
+plot_SpDiff <- function(loadings, scores, sp,
+            Title = 'Remainders After Subtracting Components') {
+    plot_spDiff(loadings, scores, sp, Title, ...)
 }

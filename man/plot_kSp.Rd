@@ -108,9 +108,14 @@ plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = "Concentration")
 
 }
 \seealso{
+Other component analysis / factorisation related functions: \code{\link{getScores}},
+  \code{\link{infoDim}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_spDiff}},
+  \code{\link{reconstructSp}}
+
 Other spHelper plots: \code{\link{InfoDim_plot}},
-  \code{\link{plot_SpDiff}}, \code{\link{plot_confusion}},
-  \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
+  \code{\link{plot_confusion}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_spDiff}},
   \code{\link{plot_stat}}
 }
 

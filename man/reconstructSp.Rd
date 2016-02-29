@@ -3,7 +3,7 @@
 \name{reconstructSp}
 \alias{getReconstructed}
 \alias{reconstructSp}
-\title{[!] Reconstruct spectra from loadings and scores.}
+\title{[+] Reconstruct spectra from loadings and scores (i.e. components and amplitudes)}
 \usage{
 reconstructSp(loadings, scores, sp = NULL)
 
@@ -16,17 +16,22 @@ getReconstructed(..., sp)
 \item{scores}{Components' amplitudes (scores) as either a matrix or a
 \code{\link[=hyperSpec-class]{hyperSpec}} object.}
 
-\item{sp}{original \code{hyperSpec} object. If \code{sp} is provided,
-the result of this function will be the \code{sp} in which sp$spc
-will be replaced with \code{reconstructed} spectra.}
+\item{sp}{\code{hyperSpec} object which has the same number or rows as
+ \code{scores}. If \code{sp} is provided, reconstructed spectra will replace
+other spectroscopic data in \code{sp}. This object will be returned as a
+result of this function.}
 
 \item{...}{(The same parameters as above).}
 }
 \value{
-\code{reconstructed <- scores \%*\% loadings}
+Reconstruction of the original spectroscopic data matrix, based on
+        \code{scores} and \code{loadings} as either a matrix or
+        \code{hyperSpec} object. \cr
+     \code{reconstructed <- scores \%*\% loadings}
 }
 \description{
-Reconstruct spectra from loadings and scores (i.e. )
+Reconstruct spectra from loadings and scores (i.e. from
+spectroscopic components and their amplitudes).
 }
 \examples{
 function(Loadings, Scores)
@@ -36,7 +41,11 @@ function(Loadings, Scores, Spectra)
 \seealso{
 \code{\link[ChemometricsWithR]{reconstruct}} in \pkg{ChemometricsWithR}, \cr
          \code{\link[ChemometricsWithR]{project}} in \pkg{ChemometricsWithR},\cr
-         \code{\link[Rssa]{reconstruct}} in \pkg{Rssa},\cr
-         \code{\link[wmtsa]{reconstruct}} in \pkg{wmtsa}\cr
+         \code{\link[Rssa]{reconstruct}} in \pkg{Rssa}
+
+Other component analysis / factorisation related functions: \code{\link{getScores}},
+  \code{\link{infoDim}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
+  \code{\link{plot_spDiff}}
 }
 

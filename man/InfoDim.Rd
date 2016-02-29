@@ -51,6 +51,11 @@ The function calculates a measure, called "information dimension".
       Biol Direct, 2, 2 (2007), \url{http://dx.doi.org/10.1186/1745-6150-2-2}
 }
 \seealso{
+Other component analysis / factorisation related functions: \code{\link{getScores}},
+  \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
+  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
+  \code{\link{reconstructSp}}
+
 Other information dimension functions: \code{\link{InfoDim_plot}},
   \code{\link{plot_infoDim}}
 }

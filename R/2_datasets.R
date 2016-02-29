@@ -21,6 +21,8 @@
 "DataSet1"
 
 
+# Datasets-Loadings -------------------------------------------------------
+
 #' @name Datasets-Loadings
 #' @aliases Datasets-Loadings
 #'
@@ -36,6 +38,9 @@
 'Loadings4'
 
 
+
+# Datasets-Scores ---------------------------------------------------------
+
 #' @name Datasets-Scores
 #' @aliases Datasets-Scores
 #'
@@ -47,6 +52,9 @@
 'Scores3'
 #' @rdname Datasets-Scores
 'Scores4'
+
+
+# Datasets-Spectra --------------------------------------------------------
 
 #' @name Datasets-Spectra
 #' @aliases Datasets-Spectra

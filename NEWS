@@ -1,14 +1,15 @@
-spHelper v0.1.036 (2016-02-29)
+spHelper v0.1.037 (2016-02-29)
 ==============================
 
 Renamed functions:
- (NEW name) <- (old name)
+ (NEW name)     <- (old name)
 
- - uniPeak <- unipeak
- - infoDim <- InfoDim
- - InfoDim_plot <- plot_infoDim
+ - unipeak      <- uniPeak
+ - infoDim      <- InfoDim
+ - plot_infoDim <- InfoDim_plot
+ - plot_stat    <- qplotStat
+ - plot_spDiff  <- plot_SpDiff
 
-Renamed functions:
 
 Other changes:
 

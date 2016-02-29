@@ -59,6 +59,12 @@ Plot amplitudes (a.k.a scores) of spectroscopic components
 \details{
 Plots are drawn in this order: violin plot, jitter plot, boxplot.
 }
+\note{
+If more information on matrix decomposition/factorisation is
+needed it can be found
+\href{https://en.wikipedia.org/wiki/Matrix_decomposition}{here} or
+\href{http://www.r-bloggers.com/matrix-factorization/}{here}).
+}
 \examples{
 
 data(Scores)
@@ -76,14 +82,19 @@ p + theme_bw()
 
 }
 \seealso{
+Other component analysis / factorisation related functions: \code{\link{getScores}},
+  \code{\link{infoDim}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
+  \code{\link{reconstructSp}}
+
 Other spHelper plots: \code{\link{InfoDim_plot}},
-  \code{\link{plot_SpDiff}}, \code{\link{plot_confusion}},
-  \code{\link{plot_infoDim}}, \code{\link{plot_kSp}},
+  \code{\link{plot_confusion}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
   \code{\link{plot_stat}}
 
 Other spHelper plots: \code{\link{InfoDim_plot}},
-  \code{\link{plot_SpDiff}}, \code{\link{plot_confusion}},
-  \code{\link{plot_infoDim}}, \code{\link{plot_kSp}},
+  \code{\link{plot_confusion}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
   \code{\link{plot_stat}}
 }
 

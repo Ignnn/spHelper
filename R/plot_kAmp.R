@@ -6,7 +6,7 @@
 #'  grouped by categorical variable \code{by}. Amplitudes are provided as
 #' \code{\link[=hyperSpec-class]{hyperSpec}} object.\cr
 #'
-#' @concepts If more information on matrix decomposition/factorisation is
+#' @note If more information on matrix decomposition/factorisation is
 #' needed it can be found
 #' \href{https://en.wikipedia.org/wiki/Matrix_decomposition}{here} or
 #' \href{http://www.r-bloggers.com/matrix-factorization/}{here}).
@@ -49,6 +49,7 @@
 #'
 #' @export
 #' @family spHelper plots
+#' @family component analysis / factorisation related functions
 #'
 #' @import ggplot2
 #' @import hyperSpec

@@ -4,35 +4,43 @@
 #' @aliases reconstructSp
 #' @aliases getReconstructed
 #'
-#' @title [!] Reconstruct spectra from loadings and scores.
+#' @title [+] Reconstruct spectra from loadings and scores (i.e. components and amplitudes)
 #'
-#' @description Reconstruct spectra from loadings and scores (i.e. )
+#' @description Reconstruct spectra from loadings and scores (i.e. from
+#' spectroscopic components and their amplitudes).
 #'
 #' @template loadings
 #' @template scores
-#' @param sp original \code{hyperSpec} object. If \code{sp} is provided,
-#' the result of this function will be the \code{sp} in which sp$spc
-#' will be replaced with \code{reconstructed} spectra.
+#' @param sp \code{hyperSpec} object which has the same number or rows as
+#'  \code{scores}. If \code{sp} is provided, reconstructed spectra will replace
+#' other spectroscopic data in \code{sp}. This object will be returned as a
+#' result of this function.
 #'
-#' @return \code{reconstructed <- scores \%*\% loadings}
+#' @return Reconstruction of the original spectroscopic data matrix, based on
+#'         \code{scores} and \code{loadings} as either a matrix or
+#'         \code{hyperSpec} object. \cr
+#'      \code{reconstructed <- scores \%*\% loadings}
 #' @export
 #'
 #' @seealso  \code{\link[ChemometricsWithR]{reconstruct}} in \pkg{ChemometricsWithR}, \cr
 #'          \code{\link[ChemometricsWithR]{project}} in \pkg{ChemometricsWithR},\cr
-#'          \code{\link[Rssa]{reconstruct}} in \pkg{Rssa},\cr
-#'          \code{\link[wmtsa]{reconstruct}} in \pkg{wmtsa}\cr
+#'          \code{\link[Rssa]{reconstruct}} in \pkg{Rssa}
 #'
 #' @examples
 #' function(Loadings, Scores)
 #' function(Loadings, Scores, Spectra)
 #'
 #' @import hyperSpec
+#' @family component analysis / factorisation related functions
 #'
 reconstructSp  <-  function(loadings, scores, sp = NULL)     {
     reconstructed <- (hy2mat(scores)) %*% (hy2mat(loadings))
     if (class(sp) == "hyperSpec")   {
-        sp$spc <- reconstructed; return(sp)
-        } else  return(reconstructed)
+        sp$spc <- reconstructed
+        return(sp)            # hyperSpec object
+    } else  {
+        return(reconstructed) # matrix
+    }
 }
 
 #===========================================================================

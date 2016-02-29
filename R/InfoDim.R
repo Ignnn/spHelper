@@ -40,7 +40,8 @@
 #'  my_plot
 #'
 #' @family information dimension functions
-
+#' @family component analysis / factorisation related functions
+#'
 infoDim <- function(Matrix){
     eigenval   <- svd(Matrix)$d
     explain    <- eigenval / sum(eigenval);

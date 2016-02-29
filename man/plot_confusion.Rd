@@ -124,8 +124,8 @@ plot_confusion(conf3,shades = "none", subTitle = "shades: none")
 }
 \seealso{
 Other spHelper plots: \code{\link{InfoDim_plot}},
-  \code{\link{plot_SpDiff}}, \code{\link{plot_infoDim}},
-  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
+  \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
+  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
   \code{\link{plot_stat}}
 }
 
