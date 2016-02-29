@@ -1,22 +1,25 @@
 
-# ***** Komponentų spektrai (kartu) ***** ---------------------------------------
-
 #' @name plot_kSp
 #' @aliases plot_kSp
 #' @aliases plot_kSpFacets
+#' @aliases plot_sp
 #'
-#' @title [+] Plot spectral components (a.k.a. loadings)
+#' @title [+] Plot spectroscopic curves and spectral components (a.k.a. loadings)
 #'
-#' @description These functions are designed to plot spectra of spectral components
+#' @description Plot spectroscopic curves in different colors\cr
+#'
+#'              Functions \code{plot_kSp}, \code{plot_kSpFacets} are designed
+#'              to plot spectra of spectral components
 #'             (a.k.a. loadings), extracted in principal component analysis
-#'             (e.g., \code{\link[stats]{princomp}}), by variaus matrix factorization
+#'             (e.g., \code{\link[stats]{princomp}}), variaus matrix factorization
 #'              methods (e.g., \code{\link[NMF]{nmf}})) and some other dimension
-#'              reduction methods. \cr\cr
-#'              The functions can plot (experimental) spectra too.
+#'              reduction methods. \cr
+#'              The function \code{plot_sp} is convenient for all spectroscopic
+#'              curves as uses no fill.
 #'
-#' @note       The matrix of components/loadings must be treated with function
-#'              \code{\link[hyperSpec]{decomposition}} (or equivalent) which converts
-#'              to \code{\link[=hyperSpec-class]{hyperSpec}} object. \cr
+#' @usage       The matrix of components/loadings must be treated with function
+#'              \code{\link[hyperSpec]{decomposition}} (or equivalent) which
+#'              converts to \code{\link[=hyperSpec-class]{hyperSpec}} object.
 #'
 #' @details \code{plot_kSp} plots spectra on one graph. \cr\cr
 #'          \code{plot_kSpFacets} plots spectra on separate graphs (facets).
@@ -71,17 +74,20 @@
 #' plot_kSpFacets(flu, Title = "Flu dataset", normalize = FALSE)
 #' plot_kSpFacets(flu, Title = "Flu dataset", normalize = -1)
 #'
-#' ## Remove fill ---------------------------------------------------------------------
+#' ## Remove fill -----------------------------------------------------------------
 #'
 #' flu$c2 <- as.factor(flu$c)
-#' plot_kSp(flu, Title = "Flu dataset", names = 'c2', filled = FALSE)
+#' plot_kSp(flu, filled = FALSE)
+#' plot_sp(flu)
 #'
-#' ## Name of a legend --------------------------------------------------------------
+#' ## Name of a legend ------------------------------------------------------------
 #'
-#' plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = FALSE)
-#' plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = TRUE)
-#' plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = "Concentration")
+#' plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = FALSE)
+#' plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = TRUE)
+#' plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = "Concentration")
 #'
+#' ## Example of line color transitions -------------------------------------------
+#'   plot_sp(laser)
 #'
 #' @export
 #' @family spHelper plots
@@ -147,14 +153,16 @@ plot_kSp <- function(loadings,
     l <- as.long.df(l)
 
     # Define the limits
-    limMIN <- ifelse(min(l$spc) >= 0, 0, min(l$spc) * 1.05)
-    limMAX <- ifelse(max(l$spc) <= 0, 0, max(l$spc) * 1.05)
+    if (Facets == TRUE)  {
+        nTicksY <- 2
+        limMIN <- ifelse(min(l$spc) >= 0, 0, min(l$spc) * 1.1)
+        limMAX <- ifelse(max(l$spc) <= 0, 0, max(l$spc) * 1.1)
 
-    scale_y = scale_y_continuous(expand = c(0,0),
-                                 limits = c(limMIN, limMAX)
-                                 # limits = c(0, max(l$spc)*1.03)
-                                 # , breaks = round(seq(0, max(l$spc),length.out = 3))
-    )
+    } else {
+        nTicksY <- 5
+        limMIN <- ifelse(min(l$spc) >= 0, 0, min(l$spc) * 1.05)
+        limMAX <- ifelse(max(l$spc) <= 0, 0, max(l$spc) * 1.05)
+    }
 
     # Plot
     p <- ggplot(l, aes(x = .wavelength,
@@ -166,7 +174,9 @@ plot_kSp <- function(loadings,
         geom_line(size = 1) +
         theme_bw() +
         scale_x_continuous(expand = c(0,0)) +
-        scale_y +
+        scale_y_continuous(expand = c(0,0),
+                           limits = c(limMIN, limMAX),
+                           breaks = number_ticks(nTicksY) ) +
         labs(title = subt(Title, subTitle),
              x = xLabel,
              y = yLabel)
@@ -180,6 +190,21 @@ plot_kSp <- function(loadings,
     # Add name of the legend
     p$labels[p$labels == "kNames"] = legendName
 
+    # Remove stripes
+    p <- p  + theme(strip.text = element_blank(),
+                    strip.background = element_blank())
+
     return(p)
 }
 
+#  ------------------------------------------------------------------------
+#' @rdname plot_kSp
+#' @param filled
+#' @export
+
+plot_sp <- function(..., filled = FALSE) {plot_kSp(..., filled = FALSE)}
+
+
+#  ------------------------------------------------------------------------
+#  Function to to plot ticks
+number_ticks <- function(n) {function(limits) pretty(limits, n, min.n = 2)}

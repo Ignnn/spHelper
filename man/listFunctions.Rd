@@ -2,30 +2,23 @@
 % Please edit documentation in R/listFunctions.R
 \name{listFunctions}
 \alias{listFunctions}
-\title{[!] List all functions in a package.}
+\title{[+] List all functions in a package}
 \usage{
-listFunctions(Package = "spHelper", print.table = FALSE, plot = FALSE)
+listFunctions(Package = "spHelper", use.pander = FALSE)
 }
 \arguments{
 \item{Package}{A name of a package. Default \code{Package = "spHelper"}.}
-
-\item{print.table}{A logical flag indicating if the result should be
-printed as a table using \code{\link[pander]{pander}}. Default is
-\code{FALSE}.}
-
-\item{plot}{Logical. If \code{TRUE} - plots connections between functions in
-a package. Default is \code{FALSE}.}
 }
 \value{
-A list of functions in a package.
+A data frame with function names in a package.
 }
 \description{
-List all functions in a package.
+List all functions in a package and return it as a data frame.
 }
 \examples{
 
 listFunctions()
-listFunctions(Package = "tidyr", print.table = TRUE)
+listFunctions(Package = "tidyr")
 
 }
 

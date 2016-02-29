@@ -1,28 +1,51 @@
-# ***** Amplitudes of components ***** ---------------------------------------------------
+# ***** Amplitudes of components ***** -----------------------------------------
 
-#' [!] Plot component amplitudes (a.k.a scores)
+#' @title [+] Plot amplitudes (a.k.a scores) of spectroscopic components
 #'
-#' Plot component amplitudes (a.k.a scores).
+#' @description Plot amplitudes (a.k.a scores) of spectroscopic components
+#'  grouped by categorical variable \code{by}. Amplitudes are provided as
+#' \code{\link[=hyperSpec-class]{hyperSpec}} object.\cr
 #'
-#' @note May be incorrect, if cals is not hyperSpec \cr
-#'        xLabel = labels(scores, ".wavelength") \cr
-#'        yLabel
+#' @concepts If more information on matrix decomposition/factorisation is
+#' needed it can be found
+#' \href{https://en.wikipedia.org/wiki/Matrix_decomposition}{here} or
+#' \href{http://www.r-bloggers.com/matrix-factorization/}{here}).
+#'
+#' @param scores An object of class \code{\link[=hyperSpec-class]{hyperSpec}}
+#' with factor scores, principal component scores, component amplitudes, etc.
 #'
 #' @template labels
 #' @template subtitle
-#' @param scores An object of class \code{\link[=hyperSpec-class]{hyperSpec}}
-#' with scores after factorisation/decomposition.
-#' @param by A name of grouping variable. Default is \code{by = "gr"}.
+#' @param by A name of grouping variable. If \code{NULL}, all data is ploted.
+#'      Default is \code{by = "gr"} for \code{plot_kAmp} and
+#'       \code{by = NULL} for \code{plot_scores}.
+#' @param add.violin Logical. If \code{TRUE} adds so called violin (i.e.,
+#'        symmetrical probarility density) plot.
+#'         Default is \code{TRUE} for \code{plot_kAmp}.
+#' @param add.jitter Logical. If \code{TRUE} adds jitter plot.
+#'          Default is \code{FALSE}.
+#' @param add.boxplot Logical. If \code{TRUE} adds boxplot.
+#'         Default is \code{TRUE}.
+#' @param violin.alpha Transperency of violin plot.
+#' @param jitter.alpha Transperency of jitter plot.
+#' @param jitter.size  Point size in jitter plot.
 #'
-#'
-#' @return object of class "ggplot"
+#' @details Plots are drawn in this order: violin plot, jitter plot, boxplot.
+#' @template ggplot
 #' @examples
 #'
 #' data(Scores)
 #' plot_kAmp(Scores)
+#' plot_scores(Scores)
 #'
 #' data(Scores3)
 #' plot_kAmp(Scores3, by = "class")
+#'
+#' p <- plot_scores(Scores, add.jitter = TRUE)
+#' p
+#'
+#' p + theme_bw()
+#'
 #'
 #' @export
 #' @family spHelper plots
@@ -37,7 +60,13 @@ plot_kAmp <- function(scores,
                       subTitle = NULL,
                       xLabel = labels(scores, ".wavelength"),
                       yLabel = labels(scores, "spc"),
-                      by = "gr")
+                      by = "gr",
+                      add.violin  = TRUE,
+                      add.jitter  = FALSE,
+                      add.boxplot = TRUE,
+                      violin.alpha = .25,
+                      jitter.alpha = .30,
+                      jitter.size  = 1)
 {
     hyperSpec::chk.hy(scores)
 
@@ -48,37 +77,58 @@ plot_kAmp <- function(scores,
     # }
 
     kNames <- colnames(scores$spc)
-    sc     <- scores
-    AMP2   <- as.data.frame(sc$spc)
+    AMP2   <- as.data.frame(scores$spc)
     names(AMP2) <- kNames # paste0("Komp_", names(AMP2))
 
-    sc$gr <- sc$..[,by]
+    if (is.null(by)) {
+        scores$Groups <- "All data"
+    } else {
+       scores$Groups <- scores$..[,by]
+    }
 
-    sc <- AMP2   %>%
-        cbind(sc$..["gr"])   %>%
+    scores <- AMP2   %>%
+        cbind(scores$..["Groups"])   %>%
         dplyr::mutate(row = row_number())  %>%
-        tidyr::gather(Komponentas,Amplitude, -gr, -row) %>%
-        dplyr::mutate(Komponentas = factor(Komponentas,sort(kNames),sort(kNames)))
+        tidyr::gather(Components, Amplitude, -Groups, -row) %>%
+        dplyr::mutate(Components = factor(Components,sort(kNames),sort(kNames)))
 
-    # Plot
-    p <- ggplot2::ggplot(sc,
-                         aes(y = Amplitude, x = Komponentas, fill = gr),
+    # Plot ====================================================================
+    p <- ggplot2::ggplot(scores,
+                         aes(y = Amplitude, x = Components, fill = Groups),
                          size = 1
-                   )  +
-        geom_violin(alpha = .2)  +
-        #geom_point(alpha =. 05,size = 2,
-        #         position = position_jitterdodge(dodge.width = 0.9)) +
-        geom_boxplot(alpha = .6,
-                     position = position_dodge(width = 0.9))     +
-        facet_grid(~Komponentas, scales = "free") +
+                   )
+
+    if (add.violin == TRUE) { p <- p +  geom_violin(alpha = violin.alpha) }
+    if (add.jitter == TRUE) {
+        p <- p +
+            geom_point(alpha = jitter.alpha, size = jitter.size,
+                       position = position_jitterdodge(dodge.width = 0.9))
+    }
+    if (add.boxplot == TRUE) {
+        p <- p +
+            geom_boxplot(alpha = .6,
+                         position = position_dodge(width = 0.9))
+    }
+
+    p <- p +
+        facet_grid(~Components, scales = "free") +
 
         ggtitle(subt(Title,subTitle)) + xlab(xLabel) + ylab(yLabel) +
 
-        theme(axis.text.x = element_blank(),
-              legend.title = element_blank()) +
+        theme(axis.ticks.x = element_blank(),
+              axis.text.x  = element_blank(),
+              # strip.text   = element_blank(),
+              # strip.background = element_blank(),
+              legend.title = element_blank()              ) +
+
         geom_hline(yintercept = 0, size = .5,linetype = 2, alpha = .5)
 
-    if (length(unique(sc$gr)) == 1) {p <- p + scale_fill_grey()}
+    # # If unique values in `Groups`
+    if (length(unique(scores$Groups)) == 1) {
+        p <- p + guides(fill = FALSE)
+        # p <- p + scale_fill_grey()
+        }
+
 
     return(p)
 }

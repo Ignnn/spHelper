@@ -1,3 +1,24 @@
+spHelper v0.1.036 (2016-02-29)
+==============================
+
+Renamed functions:
+ (NEW name) <- (old name)
+
+ - uniPeak <- unipeak
+ - infoDim <- InfoDim
+ - InfoDim_plot <- plot_infoDim
+
+Renamed functions:
+
+Other changes:
+
+- Improved documentation
+
+- In `plot_kAmp` removed:
+    # If unique values in `gr`
+    if (length(unique(scores$gr)) == 1) {p <- p + scale_fill_grey()}
+
+
 spHelper v0.1.029 (2016-02-22)
 ==============================
 
@@ -6,3 +27,6 @@ Changes:
 - Added functions for data simmulation.
 
 - Functions formated in accordance with [Hadley Wickham’s style guide](http://adv-r.had.co.nz/Style.html).
+
+
+

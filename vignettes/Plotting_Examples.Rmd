@@ -30,7 +30,10 @@ library(plotly)
 
 `plot_kSp` and `plot_kSpFacets`
 ===============================
-```{r plot_kSpFacets}
+
+Facets
+------------
+```{r plot_kSpFacets, fig.height= 4}
 library(hyperSpec)
 plot_kSpFacets(flu, Title = "Flu dataset")
 plot_kSpFacets(flu, Title = "Flu dataset", normalize = 1)
@@ -81,19 +84,19 @@ plot_kAmp(Scores3, by = "class")
 
 ```
 
-`uniPeak` - Transform Spectra of Components
+`unipeak` - Transform Spectra of Components
 ==============================================
 ```{r}
  #  Example 1 -------------------------------------------------------
 
  x     <- seq(-10,20,.1)
  y0    <- GaussAmp(x, c = 0, A = 1) + GaussAmp(x, c = 10, A = 2) - .5
- y0NEW <- uniPeak(y0)
+ y0NEW <- unipeak(y0)
 
  # Plot the results
  par(mfrow = c(1,1))
  plot( x, y0,    type = "l", lty = 3,
-         main = "'uniPeak' keeps positive part \n of highest peak only" );
+         main = "'unipeak' keeps positive part \n of highest peak only" );
  lines(x, y0NEW, type = "l", lty = 1, lwd = 3);
  legend("topleft", legend = c("Before","After"), lty = c(3,1))
 
@@ -107,7 +110,7 @@ plot_kAmp(Scores3, by = "class")
  y2 = (2*sin(x) + sin(x/5) + GaussAmp(x, c = 5))
  y  = base::rbind(y1,y2)
 
- yNEW <- apply(y,1,uniPeak)
+ yNEW <- apply(y,1,unipeak)
 
  par(mfrow = c(3,1))
 
@@ -305,7 +308,9 @@ plot_confusion(conf4, subTitle = "Imbalanced class proportions")
 `InfoDim` and `InfoDim_plot`
 ============================
 ```{r, fig.width= 6}
- 
+ knitr::opts_chunk$set(fig.width = 4.5, fig.show = "asis")
+```
+```{r}
 # Example 1 ==================================================================
      my_matrix <- matrix(rexp(2000, rate = .1), ncol = 20)
      my_result <- infoDim(my_matrix)

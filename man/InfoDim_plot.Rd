@@ -2,7 +2,7 @@
 % Please edit documentation in R/InfoDim_plot.R
 \name{InfoDim_plot}
 \alias{InfoDim_plot}
-\title{[!!! Will be removed! Use \code{plot_infoDim} instead !!!]}
+\title{[---!!! Will be removed! Use \code{plot_infoDim} instead !!!---]}
 \usage{
 InfoDim_plot(Object, n.comp.SHOW = 20, selected = NULL,
   Title = "Scree Plot")

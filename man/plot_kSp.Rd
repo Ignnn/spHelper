@@ -3,12 +3,14 @@
 \name{plot_kSp}
 \alias{plot_kSp}
 \alias{plot_kSpFacets}
-\title{[+] Plot spectral components (a.k.a. loadings)}
+\alias{plot_sp}
+\title{[+] Plot spectroscopic curves and spectral components (a.k.a. loadings)}
 \usage{
-plot_kSp(loadings, Title = "Components", xLabel = labels(loadings,
-  ".wavelength"), yLabel = labels(loadings, "spc"), names = "kNames",
-  legendName = TRUE, filled = TRUE, normalize = FALSE, Facets = FALSE,
-  subTitle = NULL)
+The matrix of components/loadings must be treated with function
+             \code{\link[hyperSpec]{decomposition}} (or equivalent) which
+             converts to \code{\link[=hyperSpec-class]{hyperSpec}} object.
+
+plot_sp(..., filled = FALSE)
 
 plot_kSpFacets(..., Title = "Components (stacked)", normalize = "auto",
   Facets = TRUE)
@@ -66,21 +68,20 @@ A plot.\cr (An object of class \code{ggplot} and
         \code{gg}. More details in package \pkg{ggplot2}).
 }
 \description{
-These functions are designed to plot spectra of spectral components
+Plot spectroscopic curves in different colors\cr
+
+             Functions \code{plot_kSp}, \code{plot_kSpFacets} are designed
+             to plot spectra of spectral components
             (a.k.a. loadings), extracted in principal component analysis
-            (e.g., \code{\link[stats]{princomp}}), by variaus matrix factorization
+            (e.g., \code{\link[stats]{princomp}}), variaus matrix factorization
              methods (e.g., \code{\link[NMF]{nmf}})) and some other dimension
-             reduction methods. \cr\cr
-             The functions can plot (experimental) spectra too.
+             reduction methods. \cr
+             The function \code{plot_sp} is convenient for all spectroscopic
+             curves as uses no fill.
 }
 \details{
 \code{plot_kSp} plots spectra on one graph. \cr\cr
          \code{plot_kSpFacets} plots spectra on separate graphs (facets).
-}
-\note{
-The matrix of components/loadings must be treated with function
-             \code{\link[hyperSpec]{decomposition}} (or equivalent) which converts
-             to \code{\link[=hyperSpec-class]{hyperSpec}} object. \cr
 }
 \examples{
 data(flu, package = "hyperSpec")
@@ -90,25 +91,23 @@ plot_kSpFacets(flu, Title = "Flu dataset", normalize = 1)
 plot_kSpFacets(flu, Title = "Flu dataset", normalize = FALSE)
 plot_kSpFacets(flu, Title = "Flu dataset", normalize = -1)
 
-## Remove fill ---------------------------------------------------------------------
+## Remove fill -----------------------------------------------------------------
 
 flu$c2 <- as.factor(flu$c)
-plot_kSp(flu, Title = "Flu dataset", names = 'c2', filled = FALSE)
+plot_kSp(flu, filled = FALSE)
+plot_sp(flu)
 
-## Name of a legend --------------------------------------------------------------
+## Name of a legend ------------------------------------------------------------
 
-plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = FALSE)
-plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = TRUE)
-plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = "Concentration")
+plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = FALSE)
+plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = TRUE)
+plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = "Concentration")
 
+## Example of line color transitions -------------------------------------------
+  plot_sp(laser)
 
 }
 \seealso{
-Other spHelper plots: \code{\link{InfoDim_plot}},
-  \code{\link{plot_SpDiff}}, \code{\link{plot_confusion}},
-  \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
-  \code{\link{plot_stat}}
-
 Other spHelper plots: \code{\link{InfoDim_plot}},
   \code{\link{plot_SpDiff}}, \code{\link{plot_confusion}},
   \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},

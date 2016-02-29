@@ -1,4 +1,4 @@
-#' [!!! Will be removed! Use \code{plot_infoDim} instead !!!]
+#' [---!!! Will be removed! Use \code{plot_infoDim} instead !!!---]
 #'
 #' Plot the result of \code{\link{InfoDim}}
 #'
