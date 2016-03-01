@@ -6,9 +6,7 @@
 \alias{plot_sp}
 \title{[+] Plot spectroscopic curves and spectral components (a.k.a. loadings)}
 \usage{
-The matrix of components/loadings must be treated with function
-             \code{\link[hyperSpec]{decomposition}} (or equivalent) which
-             converts to \code{\link[=hyperSpec-class]{hyperSpec}} object.
+
 
 plot_sp(..., filled = FALSE)
 
@@ -68,7 +66,7 @@ A plot.\cr (An object of class \code{ggplot} and
         \code{gg}. More details in package \pkg{ggplot2}).
 }
 \description{
-Plot spectroscopic curves in different colors\cr
+Plot spectroscopic curves in different colors.
 
              Functions \code{plot_kSp}, \code{plot_kSpFacets} are designed
              to plot spectra of spectral components
@@ -80,8 +78,14 @@ Plot spectroscopic curves in different colors\cr
              curves as uses no fill.
 }
 \details{
-\code{plot_kSp} plots spectra on one graph. \cr\cr
-         \code{plot_kSpFacets} plots spectra on separate graphs (facets).
+\code{plot_kSp} plots spectra on one graph. \cr
+         \code{plot_kSpFacets} plots spectra on separate graphs (facets).\cr
+}
+\note{
+Before using as an argument \code{loadings},
+         a matrix of components/loadings (\code{loadings}) must be treated
+         with function \code{\link[hyperSpec]{decomposition}} (or equivalent)
+         which converts it to \code{\link[=hyperSpec-class]{hyperSpec}} object.
 }
 \examples{
 data(flu, package = "hyperSpec")

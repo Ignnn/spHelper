@@ -41,6 +41,9 @@ colnames(Spectra2)
 labels(Spectra2,".color")
    #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
 
+hyGet.palette(Spectra2)
+   #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
+
 }
 \seealso{
 Other \code{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},

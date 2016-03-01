@@ -29,6 +29,9 @@
 #' labels(Spectra2,".color")
 #'    #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
 #'
+#' hyGet.palette(Spectra2)
+#'    #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
+#'
 #' @import hyperSpec
 #' @family \code{spHelper} functions for \code{hyperSpec}
 

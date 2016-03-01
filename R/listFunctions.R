@@ -12,14 +12,16 @@
 #' listFunctions()
 #' listFunctions(Package = "tidyr")
 #'
-listFunctions <- function(Package = "spHelper",
-                          use.pander = FALSE)   {
+listFunctions <- function(Package = "spHelper")   {
     # Main function
-    FunctionList <- unclass(lsf.str(envir = asNamespace(Package), all = TRUE))
+    FunctionList <- unclass(lsf.str(envir = asNamespace(Package),
+                                    all = TRUE))
 
     # Annotations
     df <- data.frame(Functions = FunctionList)
-    names(df) <- paste0("Functions in ",Package," (",packageVersion(Package),")")
+    names(df) <- paste0("Functions in ",
+                        Package,
+                        " (",packageVersion(Package),")")
 
     # Return
     return(df)

@@ -4,7 +4,7 @@
 \alias{listFunctions}
 \title{[+] List all functions in a package}
 \usage{
-listFunctions(Package = "spHelper", use.pander = FALSE)
+listFunctions(Package = "spHelper")
 }
 \arguments{
 \item{Package}{A name of a package. Default \code{Package = "spHelper"}.}

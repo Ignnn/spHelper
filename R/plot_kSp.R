@@ -6,7 +6,7 @@
 #'
 #' @title [+] Plot spectroscopic curves and spectral components (a.k.a. loadings)
 #'
-#' @description Plot spectroscopic curves in different colors\cr
+#' @description Plot spectroscopic curves in different colors.
 #'
 #'              Functions \code{plot_kSp}, \code{plot_kSpFacets} are designed
 #'              to plot spectra of spectral components
@@ -17,13 +17,15 @@
 #'              The function \code{plot_sp} is convenient for all spectroscopic
 #'              curves as uses no fill.
 #'
-#' @usage       The matrix of components/loadings must be treated with function
-#'              \code{\link[hyperSpec]{decomposition}} (or equivalent) which
-#'              converts to \code{\link[=hyperSpec-class]{hyperSpec}} object.
+#' @usage
 #'
-#' @details \code{plot_kSp} plots spectra on one graph. \cr\cr
-#'          \code{plot_kSpFacets} plots spectra on separate graphs (facets).
+#' @details \code{plot_kSp} plots spectra on one graph. \cr
+#'          \code{plot_kSpFacets} plots spectra on separate graphs (facets).\cr
 #'
+#' @note    Before using as an argument \code{loadings},
+#'          a matrix of components/loadings (\code{loadings}) must be treated
+#'          with function \code{\link[hyperSpec]{decomposition}} (or equivalent)
+#'          which converts it to \code{\link[=hyperSpec-class]{hyperSpec}} object.
 #'
 #' @template loadings-hy
 #' @template labels
