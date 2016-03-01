@@ -60,7 +60,7 @@
 #' \code{\link{fCap}} \cr
 #' \code{\link{makeFirstCapital}} \cr
 #' \code{\link{listFunctions}} \cr
-#' \code{\link{dropCol}} \cr
+#' \code{\link{hyDrop.NA}} \cr
 #'
 #'
 #'

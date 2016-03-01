@@ -33,7 +33,8 @@ hy2mat(matrix(NA,5,10))
 }
 \seealso{
 Other \code{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},
-  \code{\link{addLabels_TD2009}}, \code{\link{dropCol}},
-  \code{\link{hyAdd.color}}, \code{\link{read3csv2hy}}
+  \code{\link{addLabels_TD2009}},
+  \code{\link{hyAdd.color}}, \code{\link{hyDrop.NA}},
+  \code{\link{read3csv2hy}}
 }
 

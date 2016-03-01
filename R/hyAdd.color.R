@@ -1,14 +1,17 @@
-#' [!] Add a variable with color names to hyperSpec object
+#' [+] Add a variable with color names to \code{hyperSpec} object
 #'
 #' Add (or overwrite, if already exists) a column \code{.color} with color
-#' names that correspond to values of factor variable \code{by}.
+#' names that correspond to levels of factor variable \code{by}.
 #'
-#' @template sp
-#' @param by Variale which levels will correspond to colors in \code{.color}.
-#' @param palette A color palette (vector with colors for each level in \code{by}).
+#' @template sp-hy
+#' @param by A factor variale which levels will correspond to colors in
+#'       \code{.color}.
+#' @param palette A color palette (vector with colors for each level in
+#'       \code{by}). If this argument is not provided, default palette is used.
 #'
-#' @return HyperSpec object with added/replaced column \code{.color}. Lavel of
-#'        \code{.color} indicate unique names of used colors.
+#' @return \code{HyperSpec} object with added/replaced column \code{.color}.
+#'              Lables of variable \code{.color} indicate unique colors used
+#'              (illustration in section "Examples").
 #' @export
 #'
 #' @examples
@@ -17,10 +20,14 @@
 #' Spectra2 <- hyAdd.color(Spectra, "class")
 #'
 #' colnames(Spectra)
-#' ## [1] "gr"    "class" "spc"
+#'    #> [1] "gr"    "class" "spc"
 #'
 #' colnames(Spectra2)
-#' ## [1] "gr"     "class"  "spc"    ".color"
+#'    #> [1] "gr"     "class"  "spc"    ".color"
+#'
+#' # Names of colors, used for each level of factor variable
+#' labels(Spectra2,".color")
+#'    #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
 #'
 #' @import hyperSpec
 #' @family \code{spHelper} functions for \code{hyperSpec}
@@ -42,7 +49,9 @@ hyAdd.color <- function(sp = NULL, by,
     ColorNumbers <- unclass(as.factor(sp[[, by]][,1]));
     nColors <- max(ColorNumbers, na.rm = T)
 
-    if (length(palette) < nColors) stop(sprintf("At least %d colors must be in the palette.",nColors))
+    if (length(palette) < nColors) {
+        stop(sprintf("At least %d colors must be in the palette.",nColors))
+    }
 
     UniqueColors <- palette[1:nColors]
 

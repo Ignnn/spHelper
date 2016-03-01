@@ -1,4 +1,4 @@
-spHelper v0.1.037 (2016-02-29)
+spHelper v0.1.038 (2016-03-01)
 ==============================
 
 Renamed functions:
@@ -9,6 +9,7 @@ Renamed functions:
  - plot_infoDim <- InfoDim_plot
  - plot_stat    <- qplotStat
  - plot_spDiff  <- plot_SpDiff
+ - hyDrop.NA    <- dropCol
 
 
 Other changes:

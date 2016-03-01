@@ -1,4 +1,3 @@
-#'
 #' [!] Calculate summary statistic of spectroscopic data by group and for all data
 #'
 #' Calculate summary statistic spectra in hyperSpec object by group and for all data
@@ -36,6 +35,6 @@ spStat <- function(sp, by, FUN = mean){
     stat_all$.aggregate <- factor(".All")
     sp2 <- collapse(stat_by_gr, stat_all)
 
-    sp2 <- dropCol(sp2)
+    sp2 <- hyDrop.NA(sp2)
     return(sp2)
 }

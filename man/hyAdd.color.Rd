@@ -2,26 +2,29 @@
 % Please edit documentation in R/hyAdd.color.R
 \name{hyAdd.color}
 \alias{hyAdd.color}
-\title{[!] Add a variable with color names to hyperSpec object}
+\title{[+] Add a variable with color names to \code{hyperSpec} object}
 \usage{
 hyAdd.color(sp = NULL, by, palette = c("#377EB8", "#4DAF4A", "#984EA3",
   "#FF7F00", "#A65628", "#F781BF", "#999999"))
 }
 \arguments{
-\item{sp}{Spectroscopic data
-(either a \code{\link[=hyperSpec-class]{hyperSpec}} object or a matrix).}
+\item{sp}{Spectroscopic data as a \code{\link[=hyperSpec-class]{hyperSpec}}
+object.}
 
-\item{by}{Variale which levels will correspond to colors in \code{.color}.}
+\item{by}{A factor variale which levels will correspond to colors in
+\code{.color}.}
 
-\item{palette}{A color palette (vector with colors for each level in \code{by}).}
+\item{palette}{A color palette (vector with colors for each level in
+\code{by}). If this argument is not provided, default palette is used.}
 }
 \value{
-HyperSpec object with added/replaced column \code{.color}. Lavel of
-       \code{.color} indicate unique names of used colors.
+\code{HyperSpec} object with added/replaced column \code{.color}.
+             Lables of variable \code{.color} indicate unique colors used
+             (illustration in section "Examples").
 }
 \description{
 Add (or overwrite, if already exists) a column \code{.color} with color
-names that correspond to values of factor variable \code{by}.
+names that correspond to levels of factor variable \code{by}.
 }
 \examples{
 
@@ -29,15 +32,19 @@ data(Spectra)
 Spectra2 <- hyAdd.color(Spectra, "class")
 
 colnames(Spectra)
-## [1] "gr"    "class" "spc"
+   #> [1] "gr"    "class" "spc"
 
 colnames(Spectra2)
-## [1] "gr"     "class"  "spc"    ".color"
+   #> [1] "gr"     "class"  "spc"    ".color"
+
+# Names of colors, used for each level of factor variable
+labels(Spectra2,".color")
+   #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
 
 }
 \seealso{
 Other \code{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},
-  \code{\link{addLabels_TD2009}}, \code{\link{dropCol}},
-  \code{\link{hy2mat}}, \code{\link{read3csv2hy}}
+  \code{\link{addLabels_TD2009}}, \code{\link{hy2mat}},
+  \code{\link{hyDrop.NA}}, \code{\link{read3csv2hy}}
 }
 

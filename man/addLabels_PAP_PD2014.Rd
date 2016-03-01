@@ -27,7 +27,7 @@ Select data columns, that are not removed, and add labels to
 }
 \seealso{
 Other \code{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_TD2009}},
-  \code{\link{dropCol}}, \code{\link{hy2mat}},
-  \code{\link{hyAdd.color}}, \code{\link{read3csv2hy}}
+  \code{\link{hy2mat}}, \code{\link{hyAdd.color}},
+  \code{\link{hyDrop.NA}}, \code{\link{read3csv2hy}}
 }
 

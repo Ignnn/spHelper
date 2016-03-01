@@ -7,12 +7,12 @@
 regcapturedmatches(x, m)
 }
 \arguments{
-\item{x}{- (A list of) strings.}
+\item{x}{(A list of) strings.}
 
-\item{m}{- Parsed data, a result from a regular expression function.}
+\item{m}{Parsed data, a result from a regular expression function.}
 }
 \value{
-....
+A list with captured matches
 }
 \description{
 regcapturedmatches.R: extracts captured matches from match data obtained

@@ -2,7 +2,7 @@
 % Please edit documentation in R/getVarValues.R
 \name{getVarValues}
 \alias{getVarValues}
-\title{[!] Parse a call of a function and return approriate values for a variable.}
+\title{[~] Parse arguments of a function and return approriate values for selected variable}
 \usage{
 getVarValues(VAR, DATA, CALL)
 }

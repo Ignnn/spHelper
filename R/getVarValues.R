@@ -1,4 +1,4 @@
-#' [!] Parse a call of a function and return approriate values for a variable.
+#' [~] Parse arguments of a function and return approriate values for selected variable
 #'
 #' Parse dataframe \code{DATA}, variable \code{VAR} and a call
 #' \code{CALL} of a function and return approriate values of the

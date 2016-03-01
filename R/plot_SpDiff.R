@@ -1,16 +1,15 @@
 
 #' @name plot_spDiff
 #'
-#' @title [+] Plot difference between oginal and reconstructed spectra
+#' @title [+] Plot difference between original and reconstructed spectra
 #'
 #' @description Plot difference between original (e.g., experimental) and
-#' reconstructed spectra. Uses function \code{\link{reconstructSp}}, to
-#' calculate the reconstructed spectra and subtracts it from original spectra.
-#'
+#' reconstructed spectra. Function \code{\link{reconstructSp}} is used
+#' to reconstruct spectra, that are subtracted from original spectra afrterwards.
 #'
 #' @note
 #'
-#' Function \code{\link[hyperSpec]{plotspc}} is used to make a plot. R \{base}
+#' Function \code{\link[hyperSpec]{plotspc}} is used to make a plot. R \code{base}
 #' plotting system annotations can be used to enhance the plot.
 #'
 #' @template loadings-hy
@@ -66,7 +65,6 @@ plot_spDiff <- function(loadings, scores, sp,
     # p <- plot_sp(spDiff,Title = Title, Facets = T)
     # invisible(p)
 }
-
 
 #  ------------------------------------------------------------------------
 #' @rdname plot_spDiff

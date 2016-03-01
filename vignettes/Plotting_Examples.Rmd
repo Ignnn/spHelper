@@ -21,7 +21,7 @@ knitr::opts_chunk$set(fig.width = 6, fig.align = 'center')
 ```
 
 Load packages
-==============
+
 ```{r Load packages, message = FALSE, warning = FALSE}
 library(spHelper)
 library(plotly)

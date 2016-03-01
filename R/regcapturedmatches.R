@@ -3,10 +3,10 @@
 #' regcapturedmatches.R: extracts captured matches from match data obtained
 #'  by regexpr, gregexpr or regexec.
 #'
-#' @param x - (A list of) strings.
-#' @param m - Parsed data, a result from a regular expression function.
+#' @param x (A list of) strings.
+#' @param m Parsed data, a result from a regular expression function.
 #'
-#' @return ....
+#' @return A list with captured matches
 #'
 #' @export
 #' @author  Daniel Marcelino

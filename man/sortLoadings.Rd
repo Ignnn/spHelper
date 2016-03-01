@@ -2,7 +2,7 @@
 % Please edit documentation in R/sortLoadings.R
 \name{sortLoadings}
 \alias{sortLoadings}
-\title{[!] Sort component spectra (a.k.a. loadings) by possition of top peak}
+\title{[+] Sort component spectra (a.k.a. loadings) by of top peak}
 \usage{
 sortLoadings(loadings, sp = NULL, PCA = FALSE, sort = TRUE)
 }
@@ -13,8 +13,11 @@ sortLoadings(loadings, sp = NULL, PCA = FALSE, sort = TRUE)
 \item{sp}{Spectroscopic data
 (either a \code{\link[=hyperSpec-class]{hyperSpec}} object or a matrix).}
 
-\item{PCA}{Logical. If \code{TRUE}, some components are flipped. ... Set to TRUE
-if PCA loadings are used. Default \code{PCA = FALSE}}
+\item{PCA}{Logical. If \code{TRUE}, some components are flipped. Set to TRUE
+if PCA loadings are used. Default \code{PCA = FALSE}. The flipping follows
+the rule:
+\deqn{loading_i * (-score_i) = (-loading_i) * score_i}{loading[i] * (-score[i]) = (-loading[i]) * score[i]}
+where \eqn{-loading-i}{-loading[i]} represents the i-th flipped loading.}
 
 \item{sort}{Logical. Indicates if returned componenst must be sorted.
 If \code{FALSE}, only additional tasks are performed.
@@ -27,17 +30,17 @@ In case of \code{hyperSpec} object, 3 additional columns
 (PeakAt, order.of.rows, kNames) are added.
 }
 \description{
-[!] = [INCOMPLETE DESCRIPTION] \cr
-
- Sort component spectra (a.k.a. loadings) by
- possition of top peak and do additional tasks:
+Sort rows of \code{hyperSpoec} object by possition of maximum
+ value in rows (in other words, sort component spectra, a.k.a. loadings, by
+ possition of top peak) and do additional tasks:
  \enumerate{
      \item{If \code{sp} is provided, convert resulting matrix to corresponding
          \code{\link[=hyperSpec-class]{hyperSpec}} object by using function
          \code{\link[hyperSpec]{decomposition}}.}
 
-     \item{If \code{PCA = TRUE} and \code{sp} is provided, flips component's spectrum
-         if mean of its scores is negative: (\code{sign(mean(Scores_of_component_i)) < 0})
+     \item{If \code{PCA = TRUE}, \code{sp} is provided, and if the mean of
+     i-th component's scores is negative, flip the loadings ot that component:
+      (\code{sign(mean(Scores_of_component_i)) < 0})
          \code{loadings} and \code{sp} are used to calculate the scores.}
  }
 }

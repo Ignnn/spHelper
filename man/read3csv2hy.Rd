@@ -2,7 +2,7 @@
 % Please edit documentation in R/read3csv2hy.R
 \name{read3csv2hy}
 \alias{read3csv2hy}
-\title{[!] Read spectroscopic data from 3 CSV files ("data", "wavelengths" and "spectra") to hyperSpec object}
+\title{[+] Read spectroscopic data from 3 CSV files ("data", "wavelengths" and "spectra") to \code{hyperSpec} object}
 \usage{
 read3csv2hy(FileName_base)
 }
@@ -13,24 +13,30 @@ read3csv2hy(FileName_base)
 Object of class \code{\link[=hyperSpec-class]{hyperSpec}}
 }
 \description{
-Read spectroscopic data from 3 CSV files ("data", "wavelengths" and
- "spectra") to hyperSpec object. These fileas are usually exported
- from Matlab.
+Read spectroscopic data  ("data", "wavelengths" and
+ "spectra") stored in 3 CSV files to hyperSpec object. These fileas are
+ usually exported from Matlab.
 }
 \details{
-If base name is "TD_2009", then CSV files must be:\cr
+\bold{NOTE:} Data columns, that have unique values are removed.
+
+
+If base name is "TD_2009", then CSV file names must be:\cr
 [1] "TD_2009 (wavelengths).csv"\cr
 [2] "TD_2009 (spectra).csv"\cr
 [3] "TD_2009 (data).csv"
 
-Base name can be a path, e.g.  "D:/spectra/TD_2009"
+Base name can be a path, e.g. "D:/spectra/TD_2009"
 }
-\note{
-Data columns, that have unique values are removed.
+\section{MATLAB code}{
+
+
+The MATLAB code used to generate csv files:
+\href{Save_DS_for_R.m}{https://github.com/GegznaV/spHelper/blob/master/data-raw/Save_DS_for_R.m}
 }
 \seealso{
 Other \code{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},
-  \code{\link{addLabels_TD2009}}, \code{\link{dropCol}},
-  \code{\link{hy2mat}}, \code{\link{hyAdd.color}}
+  \code{\link{addLabels_TD2009}}, \code{\link{hy2mat}},
+  \code{\link{hyAdd.color}}, \code{\link{hyDrop.NA}}
 }
 

@@ -3,7 +3,7 @@
 \name{plot_spDiff}
 \alias{plot_SpDiff}
 \alias{plot_spDiff}
-\title{[+] Plot difference between oginal and reconstructed spectra}
+\title{[+] Plot difference between original and reconstructed spectra}
 \usage{
 plot_spDiff(loadings, scores, sp,
   Title = "Difference between oginal\\nand reconstructed spectra",
@@ -50,8 +50,12 @@ and reconstructed spectra.
 }
 \description{
 Plot difference between original (e.g., experimental) and
-reconstructed spectra. Uses function \code{\link{reconstructSp}}, to
-calculate the reconstructed spectra and subtracts it from original spectra.
+reconstructed spectra. Function \code{\link{reconstructSp}} is used
+to reconstruct spectra, that are subtracted from original spectra afrterwards.
+}
+\note{
+Function \code{\link[hyperSpec]{plotspc}} is used to make a plot. R \code{base}
+plotting system annotations can be used to enhance the plot.
 }
 \examples{
 plot_spDiff(Loadings, Scores[1:10,,], Spectra[1:10,,], stacked = TRUE)

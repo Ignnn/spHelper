@@ -1,24 +1,29 @@
 # Read 3 CSV spectra (from Matlab) to hyperSpec --------------------------------------------
 #
-#' [!] Read spectroscopic data from 3 CSV files ("data", "wavelengths" and "spectra") to hyperSpec object
+#' [+] Read spectroscopic data from 3 CSV files ("data", "wavelengths" and "spectra") to \code{hyperSpec} object
 #'
-#' Read spectroscopic data from 3 CSV files ("data", "wavelengths" and
-#'  "spectra") to hyperSpec object. These fileas are usually exported
-#'  from Matlab.
+#' Read spectroscopic data  ("data", "wavelengths" and
+#'  "spectra") stored in 3 CSV files to hyperSpec object. These fileas are
+#'  usually exported from Matlab.
 #'
-#' @note Data columns, that have unique values are removed.
+#' \bold{NOTE:} Data columns, that have unique values are removed.
 #'
 #' @param FileName_base A base of file name (a string). See section "Details".
 #'
 #' @return Object of class \code{\link[=hyperSpec-class]{hyperSpec}}
 #'
 #' @details
-#' If base name is "TD_2009", then CSV files must be:\cr
+#' If base name is "TD_2009", then CSV file names must be:\cr
 #' [1] "TD_2009 (wavelengths).csv"\cr
 #' [2] "TD_2009 (spectra).csv"\cr
 #' [3] "TD_2009 (data).csv"
 #'
-#' Base name can be a path, e.g.  "D:/spectra/TD_2009"
+#' Base name can be a path, e.g. "D:/spectra/TD_2009"
+#'
+#' @section MATLAB code:
+#'
+#' The MATLAB code used to generate csv files:
+#' \href{Save_DS_for_R.m}{https://github.com/GegznaV/spHelper/blob/master/data-raw/Save_DS_for_R.m}
 #'
 #' @export
 #' @import hyperSpec
