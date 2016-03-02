@@ -123,10 +123,10 @@ plot_confusion(conf3,shades = "none", subTitle = "shades: none")
 
 }
 \seealso{
-Other spHelper plots: \code{\link{InfoDim_plot}},
-  \code{\link{nTick}}, \code{\link{plot_infoDim}},
-  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
-  \code{\link{plot_spDiff}}, \code{\link{plot_stat}},
+Other spHelper plots: \code{\link{nTick}},
+  \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
+  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
+  \code{\link{plot_stat}}, \code{\link{rmExpr}},
   \code{\link{stat_chull}}
 }
 

@@ -69,6 +69,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <h1 class="title">Other <code>spHelper</code> examples</h1>
+<h3 class="subtitle"><em>(spHelper v0.1.43)</em></h3>
 <h4 class="author"><em>Vilmantas Gegzna</em></h4>
 <h4 class="date"><em>2016-03-02</em></h4>
 
@@ -80,12 +81,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="#stratifiedfolds-createfolds2-and-foldstets"><span class="toc-section-number">2</span> <code>stratifiedFolds</code>, <code>createFolds2</code> and <code>foldsTets</code></a></li>
 <li><a href="#which.in-family-of-function"><span class="toc-section-number">3</span> <code>which.in</code> family of function</a></li>
 <li><a href="#corr_vec2mat"><span class="toc-section-number">4</span> <code>corr_vec2mat</code></a></li>
+<li><a href="#getvarvalues"><span class="toc-section-number">5</span> getVarValues</a><ul>
+<li><a href="#example-1"><span class="toc-section-number">5.1</span> Example 1</a></li>
+<li><a href="#example-2"><span class="toc-section-number">5.2</span> Example 2</a></li>
+<li><a href="#unexpected-results"><span class="toc-section-number">5.3</span> Unexpected results</a></li>
+</ul></li>
 </ul>
 </div>
 
 <p>Load packages</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(spHelper)</code></pre></div>
-<p>Package spHelper (version 0.1.41)</p>
 <div id="regular-expressions-regexp2df" class="section level1">
 <h1><span class="header-section-number">1</span> Regular expressions <code>regexp2df</code></h1>
 <p>Some simple examples</p>
@@ -143,23 +148,43 @@ pattern3 &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span clas
 <span class="co">#&gt; 2           555 O20-5-984     S     52     8</span></code></pre></div>
 <p>List all .R files in your working directory:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">regexp2df</span>(<span class="kw">dir</span>(),<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)'</span>)
-<span class="co">#&gt;             R_file</span>
-<span class="co">#&gt; 1 Other_Examples.R</span></code></pre></div>
+<span class="co">#&gt;                        R_file</span>
+<span class="co">#&gt; 1       1_spHelper_Plotting.R</span>
+<span class="co">#&gt; 2          2_Other_Examples.R</span>
+<span class="co">#&gt; 3 3_Plotting_Examples_gg-hy.R</span></code></pre></div>
 <p>Do the same by using chaining operator <code>%&gt;%</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">library</span>(dplyr)
 
  <span class="kw">dir</span>() %&gt;%<span class="st"> </span><span class="kw">regexp2df</span>(<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)'</span>)
-<span class="co">#&gt;             R_file</span>
-<span class="co">#&gt; 1 Other_Examples.R</span></code></pre></div>
+<span class="co">#&gt;                        R_file</span>
+<span class="co">#&gt; 1       1_spHelper_Plotting.R</span>
+<span class="co">#&gt; 2          2_Other_Examples.R</span>
+<span class="co">#&gt; 3 3_Plotting_Examples_gg-hy.R</span></code></pre></div>
 <p>Capture several types of files:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> expr &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)|'</span>,
                 <span class="st">'(?&lt;Rmd_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]md$)|'</span>,
                 <span class="st">'(?&lt;HTML_file&gt;.*</span><span class="ch">\\</span><span class="st">.html$)'</span>)
  <span class="kw">dir</span>() %&gt;%<span class="st"> </span><span class="kw">regexp2df</span>(expr) 
-<span class="co">#&gt;             R_file              Rmd_file HTML_file</span>
-<span class="co">#&gt; 1 Other_Examples.R                                </span>
-<span class="co">#&gt; 2                     Other_Examples.Rmd          </span>
-<span class="co">#&gt; 3                  Plotting_Examples.Rmd</span></code></pre></div>
+<span class="co">#&gt;                        R_file                      Rmd_file</span>
+<span class="co">#&gt; 1                                                          </span>
+<span class="co">#&gt; 2       1_spHelper_Plotting.R                              </span>
+<span class="co">#&gt; 3                                   1_spHelper_Plotting.Rmd</span>
+<span class="co">#&gt; 4                                                          </span>
+<span class="co">#&gt; 5          2_Other_Examples.R                              </span>
+<span class="co">#&gt; 6                                      2_Other_Examples.Rmd</span>
+<span class="co">#&gt; 7                                                          </span>
+<span class="co">#&gt; 8 3_Plotting_Examples_gg-hy.R                              </span>
+<span class="co">#&gt; 9                             3_Plotting_Examples_gg-hy.Rmd</span>
+<span class="co">#&gt;                        HTML_file</span>
+<span class="co">#&gt; 1       1_spHelper_Plotting.html</span>
+<span class="co">#&gt; 2                               </span>
+<span class="co">#&gt; 3                               </span>
+<span class="co">#&gt; 4          2_Other_Examples.html</span>
+<span class="co">#&gt; 5                               </span>
+<span class="co">#&gt; 6                               </span>
+<span class="co">#&gt; 7 3_Plotting_Examples_gg-hy.html</span>
+<span class="co">#&gt; 8                               </span>
+<span class="co">#&gt; 9</span></code></pre></div>
 </div>
 <div id="stratifiedfolds-createfolds2-and-foldstets" class="section level1">
 <h1><span class="header-section-number">2</span> <code>stratifiedFolds</code>, <code>createFolds2</code> and <code>foldsTets</code></h1>
@@ -388,6 +413,85 @@ vector =<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.1<
  <span class="co"># corr_vec2mat(1:5)</span>
     <span class="co">#&gt; Error in corr_vec2mat(1:5) :</span>
     <span class="co">#&gt; All values in input vector must be between [-1 and 1]</span></code></pre></div>
+</div>
+<div id="getvarvalues" class="section level1">
+<h1><span class="header-section-number">5</span> getVarValues</h1>
+<div id="example-1" class="section level2">
+<h2><span class="header-section-number">5.1</span> Example 1</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Data</span>
+df  &lt;-<span class="st"> </span>mtcars[,<span class="kw">c</span>(<span class="st">&quot;cyl&quot;</span>,<span class="st">&quot;gear&quot;</span>)]
+
+<span class="co">#  Function, that uses `getVarValues`:</span>
+f1 &lt;-<span class="st"> </span>function(data, v1) { <span class="kw">getVarValues</span>(v1, data) }
+
+<span class="co"># Returns values of `df$cyl`:</span>
+<span class="kw">f1</span>(df, cyl)
+<span class="co">#&gt;  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</span>
+
+<span class="kw">f1</span>(df, <span class="st">&quot;cyl&quot;</span>)
+<span class="co">#&gt;  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</span>
+
+cyl &lt;-<span class="st"> &quot;gear&quot;</span>        <span class="co"># !!! Still values of `df$cyl`, not `df$gear`:</span>
+<span class="kw">f1</span>(df, cyl)
+<span class="co">#&gt;  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</span>
+
+<span class="co"># Returns values of `df$gear`:</span>
+<span class="kw">f1</span>(df, gear)
+<span class="co">#&gt;  [1] 4 4 4 3 3 3 3 4 4 4 4 3 3 3 3 3 3 4 4 4 3 3 3 3 3 4 5 5 5 5 5 4</span>
+
+<span class="co"># Returns values of vector `a`, as there is no variable `df$a`:</span>
+a =<span class="st"> &quot;cyl&quot;</span>
+<span class="kw">f1</span>(df, a)
+<span class="co">#&gt; [1] &quot;cyl&quot;</span>
+
+var &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;My&quot;</span>, <span class="st">&quot;variable&quot;</span>, <span class="st">&quot;var&quot;</span>)
+<span class="kw">f1</span>(df, var)
+<span class="co">#&gt; [1] &quot;My&quot;       &quot;variable&quot; &quot;var&quot;</span></code></pre></div>
+</div>
+<div id="example-2" class="section level2">
+<h2><span class="header-section-number">5.2</span> Example 2</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A Data frame</span>
+   df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">A =</span> <span class="st">&quot;Values_A_(DATA.FRAME)&quot;</span>,
+                    <span class="dt">E =</span> <span class="st">&quot;Values_E_(DATA.FRAME)&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># Vectors</span>
+   A &lt;-<span class="st"> &quot;Values of the vector 'A'&quot;</span>
+   B &lt;-<span class="st"> &quot;Values of the vector 'B'&quot;</span>
+
+<span class="co"># A call object `CALL`:</span>
+    fun  &lt;-<span class="st"> </span>function(data, gr, ID) { <span class="kw">match.call</span>() }
+    CALL &lt;-<span class="st"> </span><span class="kw">fun</span>(df, A, B)
+    CALL
+<span class="co">#&gt; fun(data = df, gr = A, ID = B)</span>
+
+<span class="co"># Outputs of `getVarValues` -------------------------------------------------</span>
+
+    <span class="kw">getVarValues</span>(<span class="dt">VAR =</span> gr, <span class="dt">DATA =</span> df, <span class="dt">CALL =</span> CALL)
+<span class="co">#&gt; [1] &quot;Values_A_(DATA.FRAME)&quot;</span>
+    
+    <span class="kw">getVarValues</span>(gr, df, CALL)
+<span class="co">#&gt; [1] &quot;Values_A_(DATA.FRAME)&quot;</span>
+    
+    <span class="kw">getVarValues</span>(A, df, CALL)
+<span class="co">#&gt; [1] &quot;Values of the vector 'A'&quot;</span>
+    
+    <span class="kw">getVarValues</span>(B, df, CALL)
+<span class="co">#&gt; [1] &quot;Values of the vector 'B'&quot;</span></code></pre></div>
+</div>
+<div id="unexpected-results" class="section level2">
+<h2><span class="header-section-number">5.3</span> Unexpected results</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">     <span class="kw">getVarValues</span>(ID, df, CALL) <span class="co"># `ID` found only in function's `fun` definition.</span>
+<span class="co">#&gt; NULL</span>
+                                <span class="co"># `df$ID` does not exist.</span>
+    
+     <span class="kw">getVarValues</span>(F, df, CALL) <span class="co"># `F` is a special variable: `F = FALSE`</span>
+<span class="co">#&gt; [1] FALSE</span>
+    
+     <span class="kw">getVarValues</span>(c, df, CALL) <span class="co"># `c()` is a function.</span>
+<span class="co">#&gt; function (..., recursive = FALSE)  .Primitive(&quot;c&quot;)</span></code></pre></div>
+<pre><code>    getVarValues(G, df, CALL) # ERROR, as neither variable `G` nor `df$G` exists.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="co">#&gt;  Error in eval(expr, envir, enclos) : object 'G' not found</span></code></pre></div>
+</div>
 </div>
 
 

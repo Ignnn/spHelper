@@ -1,5 +1,6 @@
 ---
-title: "Plotting examples"
+title: "Plotting Examples with `spHelper`"
+subtitle: "(spHelper v`r packageVersion('spHelper')`)"
 author: "Vilmantas Gegzna"
 date: "`r Sys.Date()`"
 output:
@@ -8,16 +9,14 @@ output:
         number_sections: yes
 
 vignette: >
-  %\VignetteIndexEntry{Plotting examples}
+  %\VignetteIndexEntry{1 spHelper Plotting Examples}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteDepends{plotly}
   %\VignetteEncoding{UTF-8}
 ---
-```{r options, echo = FALSE, message = FALSE, warning = FALSE}
+```{r options 1, echo = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.align = 'center')
 optDEF <- knitr::opts_chunk$get()
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
-
-knitr::opts_chunk$set(fig.width = 6, fig.align = 'center')
 ```
 
 Load packages
@@ -27,11 +26,58 @@ library(spHelper)
 library(plotly)
 
 ```
-Package spHelper (version `r packageVersion("spHelper")`)
 
+`subt` - Title and Subtitle 
+==============================
+```{r subt, fig.height=3}
+ subt("Cars")
+ ## bold("Cars")
+
+ subt("Cars","Distance vs. speed")
+ ## atop(bold("Cars"), atop(italic("Distance vs. speed")))
+
+ # ----------------------------------------------------------------
+
+ plot(cars[,1:2], main = "Cars")
+ plot(cars[,1:2], main = subt("Cars")) # the same as in previous line
+ plot(cars[,1:2], main = subt("Cars","Distance vs. speed"))
+ plot(cars[,1:2], main = subt(subTitle = "Distance vs. speed"))
+
+ # ----------------------------------------------------------------
+
+ library(ggplot2)
+
+ g <- qplot(mpg, wt, data = mtcars)
+ g + ggtitle("Cars") # non-bold title
+ g + ggtitle(subt("Cars")) # bold title
+ g + ggtitle(subt("Cars","Distance vs. speed"))
+ g + ggtitle(subt(subTitle = "Distance vs. speed"))
+
+
+ # ----------------------------------------------------------------
+
+ library(lattice)
+
+ xyplot(eruptions~waiting, data = faithful)
+
+ xyplot(eruptions~waiting, data = faithful,
+  main = "Old Faithful Geyser Data")
+
+ xyplot(eruptions~waiting, data = faithful,
+  main = subt("Old Faithful Geyser Data"))
+
+ xyplot(eruptions~waiting, data = faithful,
+  main = subt("Old Faithful Geyser", "Data"))
+
+ xyplot(eruptions~waiting, data = faithful,
+  main = subt(subTitle = "Old Faithful Geyser Data"))
+```
 
 `plot_kSp` and `plot_kSpFacets`
 ===============================
+```{r options 2, echo = FALSE}
+knitr::opts_chunk$set(fig.width = 6, fig.align = 'center')
+```
 
 Facets
 ------------
@@ -86,146 +132,49 @@ plot_kAmp(Scores3, by = "class")
 
 ```
 
-`unipeak` - Transform Spectra of Components
-==============================================
-```{r}
- #  Example 1 -------------------------------------------------------
-
- x     <- seq(-10,20,.1)
- y0    <- GaussAmp(x, c = 0, A = 1) + GaussAmp(x, c = 10, A = 2) - .5
- y0NEW <- unipeak(y0)
-
- # Plot the results
- par(mfrow = c(1,1))
- plot( x, y0,    type = "l", lty = 3,
-         main = "'unipeak' keeps positive part \n of highest peak only" );
- lines(x, y0NEW, type = "l", lty = 1, lwd = 3);
- legend("topleft", legend = c("Before","After"), lty = c(3,1))
-
-```
-
-```{r, fig.height=10}
- #  Example 2 -------------------------------------------------------
-
- x  = seq(-10,20,.1)
- y1 = (sin(x/4) + GaussAmp(x))
- y2 = (2*sin(x) + sin(x/5) + GaussAmp(x, c = 5))
- y  = base::rbind(y1,y2)
-
- yNEW <- apply(y,1,unipeak)
-
- par(mfrow = c(3,1))
-
- # plot 1
- matplot(x, t(y), type = "l", lty = 3,
-         main = "A - Initial curves");
- abline(h = 0)
-
- # plot 2
- matplot(x,yNEW, type = "l", lty = 1,lwd = 3,
-         main = "B - Only the highest positive\n peaks per curve");
- abline(h = 0)
-
- # plot 3: both plots together
- matplot(x, t(y), type = "l", lty = 3, main = "A and B together");
- matlines(x,yNEW, type = "l", lty = 1,lwd = 3);
- abline(h = 0)
- 
- par(mfrow = c(1,1))
-```
-
 `plot_stat` - Plot Summary Statistic of Spactra
 ================================================
 
-```{r}
+```{r plot_stat 1}
  plot_stat(chondro,clusters,mean)
  plot_stat(chondro,clusters,mean,All = FALSE)
- plot_stat(chondro,clusters,mean_sd,All = FALSE) + facet_grid(.~clusters)
+ plot_stat(chondro,clusters,mean_sd,All = FALSE) +
+     facet_grid(.~clusters) +
+     nTick_x()
 
  plot_stat(chondro,clusters,median,All = FALSE, fixed.colors = FALSE)
  plot_stat(chondro,clusters,median, "My Title")
 
+ plot_stat(chondro,clusters,mean_pm_sd) +
+     facet_grid(.~clusters) +
+     nTick_x()
 
- # Use `.aggregate` in making facets, to avoid facet called "NA":
-
- plot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~clusters)
- plot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~.aggregate)
 ```
 
 Examples with the other dataset
 
-```{r}
+```{r plot_stat 2}
  plot_stat(Spectra,gr,mean)
  plot_stat(Spectra,gr,mean,All = FALSE)
- plot_stat(Spectra,gr,mean_sd,All = FALSE) + facet_grid(.~gr)
+ plot_stat(Spectra,gr,mean_sd,All = FALSE) +
+     facet_grid(.~gr) +
+     nTick_x()
 
  plot_stat(Spectra,gr,median,All = FALSE, fixed.colors = FALSE)
  plot_stat(Spectra,gr,median, "My Title")
 
-
- # Use `.aggregate` in making facets, to avoid facet called "NA":
-
- plot_stat(Spectra,gr,mean_pm_sd) + facet_grid(.~gr)
- plot_stat(Spectra,gr,mean_pm_sd) + facet_grid(.~.aggregate)
+plot_stat(Spectra,gr,mean_pm_sd) +
+     facet_grid(.~gr) +
+     nTick_x()
 ```
-
-`subt` - Title and Subtitle 
-==============================
-```{r}
- subt("Cars")
- ## bold("Cars")
-
- subt("Cars","Distance vs. speed")
- ## atop(bold("Cars"), atop(italic("Distance vs. speed")))
-
- # ----------------------------------------------------------------
-
- plot(cars[,1:2], main = "Cars")
- plot(cars[,1:2], main = subt("Cars")) # the same as in previous line
- plot(cars[,1:2], main = subt("Cars","Distance vs. speed"))
- plot(cars[,1:2], main = subt(subTitle = "Distance vs. speed"))
-
- # ----------------------------------------------------------------
-
- library(ggplot2)
-
- g <- qplot(mpg, wt, data = mtcars)
- g + ggtitle("Cars") # non-bold title
- g + ggtitle(subt("Cars")) # bold title
- g + ggtitle(subt("Cars","Distance vs. speed"))
- g + ggtitle(subt(subTitle = "Distance vs. speed"))
-
-
- # ----------------------------------------------------------------
-
- library(lattice)
-
- xyplot(eruptions~waiting, data = faithful)
-
- xyplot(eruptions~waiting, data = faithful,
-  main = "Old Faithful Geyser Data")
-
- xyplot(eruptions~waiting, data = faithful,
-  main = subt("Old Faithful Geyser Data"))
-
- xyplot(eruptions~waiting, data = faithful,
-  main = subt("Old Faithful Geyser", "Data"))
-
- xyplot(eruptions~waiting, data = faithful,
-  main = subt(subTitle = "Old Faithful Geyser Data"))
-```
-
 
 `plot_confusion`
 ================
-
-
-```{r, echo=FALSE}
+```{r options 3, echo=FALSE}
 # knitr::opts_chunk$set(optDEF)
-# 
 knitr::opts_chunk$set(fig.width = 5, fig.show = "hold")
 ```
-```{r}
+```{r plot_confusion 1}
 d <- 5 # number of rows/columns
 Mat <- matrix(sample(0:100,d ^ 2,T),d)
 colnames(Mat) <- paste0("gr",1:d)
@@ -236,7 +185,7 @@ plot_confusion(Mat, subTitle = "Input is a matrix (1)")
 diag(Mat)[2:3] <- c(1000,250)
 plot_confusion(Mat, subTitle = "Input is a matrix (2)")
 ```
-```{r}
+```{r  plot_confusion 2}
 set.seed(165)
 
 N <- 1000 # number of observations
@@ -265,7 +214,7 @@ conf3 <- table(Prediction,Reference)
 plot_confusion(conf3, subTitle = "Correct >80%")
 ```
 
-```{r}
+```{r  plot_confusion 3}
 # Proportions =========================================
 
 plot_confusion(conf3              , subTitle = "Counts")
@@ -274,7 +223,7 @@ plot_confusion(conf3              , subTitle = "Counts")
 # plot_confusion(prop.table(conf3,2), subTitle = "Proportions (column sums = 1)")
 ```
 
-```{r}
+```{r  plot_confusion 4}
 # Shades: proportional ================================
 
 plot_confusion(conf,shades = "prop",  subTitle = "Shades: 'prop', Correct by chance");
@@ -287,7 +236,7 @@ plot_confusion(conf3,shades = "prop", subTitle = "Shades: 'prop', Correct >80%")
 plot_confusion(conf3,shades = "max",  subTitle = "Shades: 'max', Correct >80%")
 ```
 
-```{r}
+```{r  plot_confusion 5}
 # Shades: constant and none ===========================
 
 plot_confusion(conf3,shades = "const",subTitle = "Shades: constant");
@@ -295,7 +244,7 @@ plot_confusion(conf3,shades = "none", subTitle = "Shades: none")
 
 ```
 
-```{r}
+```{r plot_confusion 6}
 n <- round(N/6)
 Prediction[sample(which(Prediction == "A"),n,replace = TRUE)] <- 
     sample(c("B","C"), n,replace = TRUE)
@@ -303,16 +252,14 @@ Prediction[sample(which(Prediction == "A"),n,replace = TRUE)] <-
 conf4 <- table(Prediction,Reference)
 
 plot_confusion(conf4, subTitle = "Imbalanced class proportions")
-
-
 ```
 
 `InfoDim` and `InfoDim_plot`
 ============================
-```{r, fig.width= 6}
- knitr::opts_chunk$set(fig.width = 4.5, fig.show = "asis")
+```{r options 5}
+ knitr::opts_chunk$set(fig.width = 6, fig.show = "asis")
 ```
-```{r}
+```{r InfoDim 1}
 # Example 1 ==================================================================
      my_matrix <- matrix(rexp(2000, rate = .1), ncol = 20)
      my_result <- infoDim(my_matrix)
@@ -343,12 +290,61 @@ plot_confusion(conf4, subTitle = "Imbalanced class proportions")
      
      # Numbes of selected components can be indicated
      p3 <- plot_infoDim(Spectra, selected = 4)
-     p3     
+     p3 
+     ggplotly(p3)
 ```
 ```{r}
     # Numbes of selected components can be indicated
      p4 <- plot_infoDim(Spectra, y.log = FALSE)
-     ggplotly(p4)  
-   
+       
+    p4 
+    ggplotly(p4)
 ```
 
+`unipeak` - Transform Spectra of Components
+==============================================
+```{r unipeak}
+ #  Example 1 -------------------------------------------------------
+
+ x     <- seq(-10,20,.1)
+ y0    <- GaussAmp(x, c = 0, A = 1) + GaussAmp(x, c = 10, A = 2) - .5
+ y0NEW <- unipeak(y0)
+
+ # Plot the results
+ par(mfrow = c(1,1))
+ plot( x, y0,    type = "l", lty = 3,
+         main = "'unipeak' keeps positive part \n of highest peak only" );
+ lines(x, y0NEW, type = "l", lty = 1, lwd = 3);
+ legend("topleft", legend = c("Before","After"), lty = c(3,1))
+
+```
+
+```{r unipeak 2, fig.height=10}
+ #  Example 2 -------------------------------------------------------
+
+ x  = seq(-10,20,.1)
+ y1 = (sin(x/4) + GaussAmp(x))
+ y2 = (2*sin(x) + sin(x/5) + GaussAmp(x, c = 5))
+ y  = base::rbind(y1,y2)
+
+ yNEW <- apply(y,1,unipeak)
+
+ par(mfrow = c(3,1))
+
+ # plot 1
+ matplot(x, t(y), type = "l", lty = 3,
+         main = "A - Initial curves");
+ abline(h = 0)
+
+ # plot 2
+ matplot(x,yNEW, type = "l", lty = 1,lwd = 3,
+         main = "B - Only the highest positive\n peaks per curve");
+ abline(h = 0)
+
+ # plot 3: both plots together
+ matplot(x, t(y), type = "l", lty = 3, main = "A and B together");
+ matlines(x,yNEW, type = "l", lty = 1,lwd = 3);
+ abline(h = 0)
+ 
+ par(mfrow = c(1,1))
+```

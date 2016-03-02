@@ -2,7 +2,7 @@ Package: spHelper
 Type: Package
 Title: Convenience Functions Mainly for Spectroscopy
 Description: Various convenience functions for spectroscopy, etc.
-Version: 0.1.042
+Version: 0.1.043
 Date: 2016-03-01
 Encoding: UTF-8
 Author: Vilmantas Gegzna, et al.
@@ -31,7 +31,8 @@ Imports:
     devtools,
     psych,
     cowplot,
-    scales
+    scales,
+    simsalapar
 Suggests:
     knitr,
     rmarkdown

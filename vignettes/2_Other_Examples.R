@@ -154,3 +154,61 @@ corr_vec2mat(vector)
     #> All values in input vector must be between [-1 and 1]
 
 
+## ------------------------------------------------------------------------
+# Data
+df  <- mtcars[,c("cyl","gear")]
+
+#  Function, that uses `getVarValues`:
+f1 <- function(data, v1) { getVarValues(v1, data) }
+
+# Returns values of `df$cyl`:
+f1(df, cyl)
+
+f1(df, "cyl")
+
+cyl <- "gear"        # !!! Still values of `df$cyl`, not `df$gear`:
+f1(df, cyl)
+
+# Returns values of `df$gear`:
+f1(df, gear)
+
+# Returns values of vector `a`, as there is no variable `df$a`:
+a = "cyl"
+f1(df, a)
+
+var <- c("My", "variable", "var")
+f1(df, var)
+
+## ------------------------------------------------------------------------
+# A Data frame
+   df <- data.frame(A = "Values_A_(DATA.FRAME)",
+                    E = "Values_E_(DATA.FRAME)", stringsAsFactors = FALSE)
+
+# Vectors
+   A <- "Values of the vector 'A'"
+   B <- "Values of the vector 'B'"
+
+# A call object `CALL`:
+    fun  <- function(data, gr, ID) { match.call() }
+    CALL <- fun(df, A, B)
+    CALL
+
+# Outputs of `getVarValues` -------------------------------------------------
+
+    getVarValues(VAR = gr, DATA = df, CALL = CALL)
+    
+    getVarValues(gr, df, CALL)
+    
+    getVarValues(A, df, CALL)
+    
+    getVarValues(B, df, CALL)
+
+
+## ------------------------------------------------------------------------
+     getVarValues(ID, df, CALL) # `ID` found only in function's `fun` definition.
+                                # `df$ID` does not exist.
+    
+     getVarValues(F, df, CALL) # `F` is a special variable: `F = FALSE`
+    
+     getVarValues(c, df, CALL) # `c()` is a function.
+

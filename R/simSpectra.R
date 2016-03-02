@@ -1,29 +1,30 @@
-#' [!] Generate data that simulates spectroscopic curves
+#' [!] Simulate spectroscopic data
 #'
-#' Generate data a that simulates spectroscopic curves: loadings (spectroscopic
-#' components), scores (amplitudes of these components) an spectra (mixture of
-#' the spectroscopic components multiplied by amplitudes with added random noise).\cr
+#' Simulation of spectroscopic data: Loadings (spectra of spectroscopic
+#' components), Scores (amplitudes of these components) an Spectra (mixture of
+#' the spectroscopic components multiplied by the amplitudes with random noise
+#' added).
 #'
-#' [This function works, but is not well documented yet.]
+#' [\emph{This function works, but is not well documented yet.}]
 #'
 #' @param x Values for x axis ("wavelengths").
 #' @param nGr Number of groups.
 #' @param nInGr Number of samples in a group (vector of values for each group).
 #' @param N Total number of samples.
-#' @param nDim Number of spectral components (dimensions0).
+#' @param nDim Number of spectral components (dimensions).
 #' @param w.possile A vector of possible values of Gaussian curve parameter "w'
-#'        (i.e., width)
+#'        (i.e., width). Values of w will be randomly sampled from this vector.
 #' @param plots Logical. If \code{TRUE} - makes plots. Default is \code{FALSE}.
 #'
-#' @return List of hyperSpec objects:
+#' @return List of \code{\link[=hyperSpec-class]{hyperSpec}} objects:
 #' \describe{
 #'      \item{Spectra}{Spectra of each observation, made of \code{(Scores * Loadings) + NOISE}.}
 #'      \item{Loadings}{Normalized spectra of \bold{components}.}
 #'      \item{Scores}{\bold{Amplitudes} of components for each observation.}
 #' }
 #'
-#' @format In the list the \code{\link[=hyperSpec-class]{hyperSpec}} objects
-#' contain spectroscopic data and additional variables.
+#' In the list the \code{hyperSpec} objects contain spectroscopic data and
+#' additional variables.
 #'
 #' Additional variables for \code{Spectra} and \code{Scores}:
 #'

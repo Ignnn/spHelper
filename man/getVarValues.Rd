@@ -4,17 +4,19 @@
 \alias{getVarValues}
 \title{[~] Parse arguments of a function and return approriate values for selected variable}
 \usage{
-getVarValues(VAR, DATA, CALL)
+getVarValues(VAR, DATA, CALL = match.call(definition =
+  sys.function(sys.parent()), call = sys.call(sys.parent())))
 }
 \arguments{
 \item{VAR}{A name of a variable (with or without quotes).}
 
 \item{DATA}{A name of a data frame (with or without quotes).}
 
-\item{CALL}{(\code{\link[=call-class]{Call}}) to be parsed.}
+\item{CALL}{(\code{\link[=call-class]{Call}}) to be parsed. Default is
+call to parent function.}
 }
 \value{
-A vector. If possible, return \code{DATA[,"VAR"]}.
+A vector. If possible, return \code{DATA[,VAR]}.
 Otherwise return \code{VAR}.
 }
 \description{
@@ -24,27 +26,44 @@ Parse dataframe \code{DATA}, variable \code{VAR} and a call
 Otherwise return \code{VAR}.
 }
 \examples{
+EXAMPLE 1 *****************************************************************
+
 # Data
-df       <- mtcars[,c("cyl","gear")]
-variable <- c("my","vector")
-#  ------------------------------------------------------------------------
-f1 <- function(data, v1, v2){
-    CALL <- match.call()
-    out  <- getVarValues(v1, data, CALL) # <<< function `getVarValues`
-    return(out)
-}
+df  <- mtcars[,c("cyl","gear")]
 
-# Returns values of variable in data frame `df`:
+#  Function, that uses `getVarValues`:
+f1 <- function(data, v1, v2) { getVarValues(v1, data) }
+
+# Returns values of `df$cyl`:
 f1(df, cyl)
+##  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4
+
+f1(df, "cyl")
+##  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4
+
+cyl <- "gear"        # !!! Still values of `df$cyl`, not `df$gear`:
+f1(df, cyl)
+##  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4
+
+# Returns values of `df$gear`:
 f1(df, gear)
+## [1] 4 4 4 3 3 3 3 4 4 4 4 3 3 3 3 3 3 4 4 4 3 3 3 3 3 4 5 5 5 5 5 4
 
-# Returns values of "free" variable
-# (i.e., values of variable in caller function's environment):
-f1(df, variable)
 
+# Returns values of vector `a`, as there is no variable `df$a`:
+a = "cyl"
+f1(df, a)
+## [1] "cyl"
+
+var <- c("My", "variable", "var")
+f1(df, var)
+## [1] "My"   "variable"   "var"
+
+
+# EXAMPLE 2 *****************************************************************
 # A Data frame
    df <- data.frame(A = "Values_A_(DATA.FRAME)",
-                    E = "Values_E_(DATA.FRAME)")
+                    E = "Values_E_(DATA.FRAME)", stringsAsFactors = FALSE)
 
 # Vectors
    A <- "Values of the vector 'A'"
@@ -58,7 +77,8 @@ CALL <- fun(df, A, B)
 CALL
 ## fun(data = df, gr = A, ID = B)
 
-# Possible outputs -----------------------------------------------------------------------
+
+# Outputs of `getVarValues` -------------------------------------------------
 
 getVarValues(VAR = gr, DATA = df, CALL = CALL)
 ## [1] Values A (DATA.FRAME)
@@ -71,7 +91,6 @@ getVarValues(A, df, CALL)
 
 getVarValues(B, df, CALL)
 ## [1] "Values of the vector 'B'"
-
 
 # UNEXPECTED results -----------------------------------------------------------------------
 

@@ -2,23 +2,7 @@
 % Please edit documentation in R/simSpectra.R
 \name{simSpectra}
 \alias{simSpectra}
-\title{[!] Generate data that simulates spectroscopic curves}
-\format{In the list the \code{\link[=hyperSpec-class]{hyperSpec}} objects
-contain spectroscopic data and additional variables.
-
-Additional variables for \code{Spectra} and \code{Scores}:
-
-\describe{
-  \item{class}{A factor variable for classification.}
-  \item{gr}{A factor variable for other type classification.}
-}
-
-Additional variables for \code{Loadings}:
-\describe{
-  \item{PeakAt}{Position of components top peak.}
-  \item{kNames}{Names of components.}
-  \item{order.of.rows}{Original order of components before sorting.}
-}}
+\title{[!] Simulate spectroscopic data}
 \usage{
 simSpectra(x = 300:800, nGr = 2, nInGr = c(50, 50, 50), N = sum(nInGr),
   nDim = 4, w.possile = 5:150, plots = FALSE)
@@ -32,28 +16,46 @@ simSpectra(x = 300:800, nGr = 2, nInGr = c(50, 50, 50), N = sum(nInGr),
 
 \item{N}{Total number of samples.}
 
-\item{nDim}{Number of spectral components (dimensions0).}
+\item{nDim}{Number of spectral components (dimensions).}
 
 \item{w.possile}{A vector of possible values of Gaussian curve parameter "w'
-(i.e., width)}
+(i.e., width). Values of w will be randomly sampled from this vector.}
 
 \item{plots}{Logical. If \code{TRUE} - makes plots. Default is \code{FALSE}.}
 }
 \value{
-List of hyperSpec objects:
+List of \code{\link[=hyperSpec-class]{hyperSpec}} objects:
 \describe{
      \item{Spectra}{Spectra of each observation, made of \code{(Scores * Loadings) + NOISE}.}
      \item{Loadings}{Normalized spectra of \bold{components}.}
      \item{Scores}{\bold{Amplitudes} of components for each observation.}
 }
+
+In the list the \code{hyperSpec} objects contain spectroscopic data and
+additional variables.
+
+Additional variables for \code{Spectra} and \code{Scores}:
+
+\describe{
+  \item{class}{A factor variable for classification.}
+  \item{gr}{A factor variable for other type classification.}
+}
+
+Additional variables for \code{Loadings}:
+\describe{
+  \item{PeakAt}{Position of components top peak.}
+  \item{kNames}{Names of components.}
+  \item{order.of.rows}{Original order of components before sorting.}
+}
 }
 \description{
-Generate data a that simulates spectroscopic curves: loadings (spectroscopic
-components), scores (amplitudes of these components) an spectra (mixture of
-the spectroscopic components multiplied by amplitudes with added random noise).\cr
+Simulation of spectroscopic data: Loadings (spectra of spectroscopic
+components), Scores (amplitudes of these components) an Spectra (mixture of
+the spectroscopic components multiplied by the amplitudes with random noise
+added).
 }
 \details{
-[This function works, but is not well documented yet.]
+[\emph{This function works, but is not well documented yet.}]
 }
 \examples{
 

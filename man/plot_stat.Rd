@@ -78,10 +78,10 @@ plot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~clusters) + nTick_x(2)
 \seealso{
 \code{\link{spStat}}
 
-Other spHelper plots: \code{\link{InfoDim_plot}},
-  \code{\link{nTick}}, \code{\link{plot_confusion}},
-  \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
-  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
+Other spHelper plots: \code{\link{nTick}},
+  \code{\link{plot_confusion}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
+  \code{\link{plot_spDiff}}, \code{\link{rmExpr}},
   \code{\link{stat_chull}}
 }
 

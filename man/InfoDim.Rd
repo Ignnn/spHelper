@@ -56,7 +56,6 @@ Other component analysis / factorisation related functions: \code{\link{getScore
   \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
   \code{\link{reconstructSp}}
 
-Other information dimension functions: \code{\link{InfoDim_plot}},
-  \code{\link{plot_infoDim}}
+Other information dimension functions: \code{\link{plot_infoDim}}
 }
 

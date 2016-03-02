@@ -72,13 +72,12 @@ Other component analysis / factorisation related functions: \code{\link{getScore
   \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
   \code{\link{reconstructSp}}
 
-Other information dimension functions: \code{\link{InfoDim_plot}},
-  \code{\link{infoDim}}
+Other information dimension functions: \code{\link{infoDim}}
 
-Other spHelper plots: \code{\link{InfoDim_plot}},
-  \code{\link{nTick}}, \code{\link{plot_confusion}},
-  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
-  \code{\link{plot_spDiff}}, \code{\link{plot_stat}},
+Other spHelper plots: \code{\link{nTick}},
+  \code{\link{plot_confusion}}, \code{\link{plot_kAmp}},
+  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
+  \code{\link{plot_stat}}, \code{\link{rmExpr}},
   \code{\link{stat_chull}}
 }
 

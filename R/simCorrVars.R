@@ -1,13 +1,21 @@
-#' [!!!] Simulate correlated continuous data from standard normal distribution
+#' [+] Simulate correlated continuous data from standard normal distribution
 #'
-#' Simulate correlated continuaous data from standard normal distribution.
+#' Simulate correlated continuaous data from standard normal distribution by
+#' using Choleski factorization of correlation matrix.
+#' @details Number of variables is determined by the size of correlation matrix
+#'          \code{corrMat}.
 #'
-#' @param corrMat A symmetricmatrix of correlation coefficients.
-#' @param N A number of observations.
 #'
-#' @return A dataframe of correlated variables.
+#' @param corrMat A symmetricmatrix of correlation coefficients. Determinant of
+#'                \code{corrMat} must be positive. If \code{corrMat} is a vector,
+#'                it is passed to function \code{\link{corr_vec2mat}} to
+#'                construct a correlation matrix.\cr
+#'                Default \code{corrMat = corr_vec2mat(c(.8,.2,.7))}.
+#' @param N A number of observations. Default is 100.
 #'
-#' @seealso \link{corr_vec2mat}, \link[MASS]{mvrnorm}
+#' @return A dataframe with correlated variables.
+#'
+#' @seealso \code{\link{corr_vec2mat}}, \link[MASS]{mvrnorm}, \link[base]{chol}
 #' @export
 #' @source \url{http://www.r-bloggers.com/simulating-random-multivariate-correlated-data-continuous-variables/}
 #'
@@ -18,24 +26,26 @@
 #' simCorrVars(N = 10)
 #'
 #' # ------------------------------------------------------------
-#' # Generate 2 correlated variables with 10 observations
+#' # Generate 2 correlated variables with 10 observations:
+#' # A. Imput is a matrix
 #'
 #' corrMat <- matrix(c(1, .5, .5, 1), 2)
 #' print(corrMat)
 #' simCorrVars(corrMat, N = 10)
 #'
-#' # ------------------------------------------------------------
+#' # B. Imput is a vector
+#' simCorrVars(.5, N = 10)
+#' simCorrVars(c(.1,.5,.8), N = 10)
 #'
+#' # ------------------------------------------------------------
 #' @family simmulation functions
 #'
 simCorrVars <- function(corrMat, N = 100){
     if (missing(corrMat)) {
-        corrMat = matrix(cbind(1,   0.8, 0.2,
-                               0.8, 1  , 0.7,
-                               0.2, 0.7, 1   ),
-                         nrow = 3)
+        corrMat = corr_vec2mat(c(.8,.2,.7))
     }
 
+    if (is.vector(corrMat)) corrMat <- corr_vec2mat(corrMat)
     if (!isSymmetric(corrMat)) stop("Correlation matrix must be symmetric.")
 
     U = t(chol(corrMat))
