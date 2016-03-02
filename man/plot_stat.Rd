@@ -9,11 +9,11 @@ plot_stat(sp, by = stop("Argument 'by' is missing."),
   FUN = stop("Argument 'FUN' is missing."),
   Title = fCap(as.character(match.call()$FUN)), subTitle = NULL,
   All = TRUE, fixed.colors = TRUE, All.color = "black",
-  gr.color = RColorBrewer::brewer.pal(8, "Dark2"), All.linetype = "dashed",
-  gr.linetype = "solid", All.size = 1.1, gr.size = 0.8,
-  legend.title = element_blank())
+  gr.color = c(hyGet.palette(sp), RColorBrewer::brewer.pal(8, "Dark2")),
+  All.linetype = "dashed", gr.linetype = "solid", All.size = 1.1,
+  gr.size = 0.8, legend.title = element_blank())
 
-qplotStat(..., FUN = mean)
+qplotStat(sp, by, FUN = mean, ...)
 }
 \arguments{
 \item{sp}{Spectroscopic data
@@ -70,10 +70,9 @@ plot_stat(chondro,clusters,median,All=FALSE, fixed.colors=FALSE)
 plot_stat(chondro,clusters,median, "My Title")
 
 
-# Use `.aggregate` in making facets, to avoid facet called "NA":
+# Make facets:
 
-plot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~clusters)
-plot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~.aggregate)
+plot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~clusters) + nTick_x(2)
 
 }
 \seealso{

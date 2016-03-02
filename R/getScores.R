@@ -58,7 +58,8 @@ getScores <- function(sp, loadings = NULL,
                       scores = NULL)
 {
     y2 <- hy2mat(sp)
-
+    if (is.null(loadings) & is.null(scores))
+        stop("Either argument 'loadings' or 'scores' must be provided.")
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     if (is.null(scores)) {
     # Prepare loadings
@@ -66,14 +67,14 @@ getScores <- function(sp, loadings = NULL,
         if (dim(y2)[2] == dim(loadings2)[2])   loadings2 <- t(loadings2) #transpose, if needed
 
     # Apply MATRIX MULTIPLICATION
-        scores <- y2 %*% (loadings2 %*% solve(crossprod(loadings2)))
+        scores <- y2 %*% (loadings2 %*% base::solve(crossprod(loadings2)))
     }
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Create names of components
     if (!is.null(loadings) & (names.var %in% colnames(loadings))) {
         kNames <- gsub("max:( )?","c", loadings$..[["kNames"]])
     } else {
-        kNames <- paste0("No", 1:nwl(scores))
+        kNames <- paste0("No", 1:ncol(scores))
     }
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Convert (sorted) amplitudes  to "hyperSpec"" object

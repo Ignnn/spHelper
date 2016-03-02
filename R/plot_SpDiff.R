@@ -44,7 +44,7 @@
 #'
 
 plot_spDiff <- function(loadings, scores, sp,
-                        Title = 'Difference between oginal\nand reconstructed spectra',
+                        Title = 'Difference between oginal and reconstructed spectra',
                         color = if (".color" %in% ls(Spectra$..)) sp$.color else "tan3",
                         stacked = if ("ID" %in% ls(Spectra$..)) sp$ID else NULL,
                         spc.nmax = 2000,

@@ -17,7 +17,6 @@
 #'              The function \code{plot_sp} is convenient for all spectroscopic
 #'              curves as uses no fill.
 #'
-#' @usage
 #'
 #' @details \code{plot_kSp} plots spectra on one graph. \cr
 #'          \code{plot_kSpFacets} plots spectra on separate graphs (facets).\cr
@@ -69,6 +68,9 @@
 #' @template ggplot
 #'
 #' @examples
+#'
+#' plot_kSp(Loadings)
+#'
 #' data(flu, package = "hyperSpec")
 #'
 #' plot_kSpFacets(flu, Title = "Flu dataset")
@@ -78,11 +80,12 @@
 #'
 #' ## Remove fill -----------------------------------------------------------------
 #'
-#' flu$c2 <- as.factor(flu$c)
+#'
 #' plot_kSp(flu, filled = FALSE)
 #' plot_sp(flu)
 #'
 #' ## Name of a legend ------------------------------------------------------------
+#' flu$c2 <- as.factor(flu$c)
 #'
 #' plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = FALSE)
 #' plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = TRUE)
@@ -103,9 +106,8 @@ plot_kSp <- function(loadings,
                      xLabel = labels(loadings, ".wavelength"),
                      yLabel = labels(loadings, "spc"),
                      names  = 'kNames',
-                     legendName = TRUE,
+                     legendName = FALSE,
                      filled = TRUE,
-
                      normalize  = FALSE,
                      Facets = FALSE,
                      subTitle = NULL)
@@ -113,7 +115,7 @@ plot_kSp <- function(loadings,
 
     hyperSpec::chk.hy(loadings)
 
-    # Get label of `loadings[, name]`, before renaming to "kName"
+    # Get label of `loadings[, names]`, before renaming to "kName"
     if (is.logical(legendName)) {
         if (legendName) {
                 legendName <- labels(loadings, names)
@@ -145,7 +147,8 @@ plot_kSp <- function(loadings,
 
     #if variable does not exist
     if (!(names %in% colnames(l))) {
-        l[,names] = as.factor(as.numeric(rownames(l)))
+        # l[,names] = as.factor(as.numeric(rownames(l)))
+        l[,names] = as.factor(rownames(l))
     }
 
     if (names != 'kNames') {colnames(l)[colnames(l) == names] <- 'kNames'}
@@ -205,8 +208,3 @@ plot_kSp <- function(loadings,
 #' @export
 
 plot_sp <- function(..., filled = FALSE) {plot_kSp(..., filled = FALSE)}
-
-
-#  ------------------------------------------------------------------------
-#  Function to to plot ticks
-number_ticks <- function(n) {function(limits) pretty(limits, n, min.n = 2)}

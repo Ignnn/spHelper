@@ -16,6 +16,10 @@ Color palette used to create variable \code{.color}.
 \description{
 [+] Get color palette used to create variable'.color'
 }
+\note{
+If class of \code{sp} is not \code{hyperSpec}, function returns
+      \code{NULL}.
+}
 \examples{
 data(Spectra)
 Spectra2 <- hyAdd.color(Spectra, "class")

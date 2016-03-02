@@ -40,10 +40,9 @@
 #' plot_stat(chondro,clusters,median, "My Title")
 #'
 #'
-#' # Use `.aggregate` in making facets, to avoid facet called "NA":
+#' # Make facets:
 #'
-#' plot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~clusters)
-#' plot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~.aggregate)
+#' plot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~clusters) + nTick_x(2)
 #'
 #' @seealso \code{\link{spStat}}
 #' @family spHelper plots
@@ -59,7 +58,7 @@ plot_stat <- function(sp,
                       All = TRUE,
                       fixed.colors = TRUE,
                       All.color = "black",
-                      gr.color = RColorBrewer::brewer.pal(8,"Dark2"),
+                      gr.color = c(hyGet.palette(sp),  RColorBrewer::brewer.pal(8,"Dark2")),
                       All.linetype = "dashed",
                       gr.linetype  = "solid",
                       All.size =  1.1,
@@ -67,38 +66,39 @@ plot_stat <- function(sp,
                       legend.title = element_blank()
                     )
 {
-    varName <- as.character(match.call()$by)
-    by <- if (varName %in% colnames(sp)) sp[[,varName]] else by
-    # by <- as.factor(by)
+    if (nrow(sp) == 0) {warning("Number of rows in `sp` is 0!"); return(NULL)
+    } else {
+        varName <- as.character(match.call()$by)
+        by <- if (varName %in% colnames(sp)) sp[[,varName]] else by
+        # by <- as.factor(by)
 
-    # match.call()$by
+        if (All == TRUE) {# All - plot statistic by all spectra?
+                sp2 <-    spStat(sp, by = by, FUN = FUN,  Name_of.by = as.character(match.call()$by))
+        } else {sp2 <- aggregate(sp, by = by, FUN = FUN)}
 
-    if (All == TRUE) {# All - plot statistic by all spectra?
-            sp2 <-    spStat(sp, by = by, FUN = FUN)
-    } else {sp2 <- aggregate(sp, by = by, FUN = FUN)}
+        nl.gr  <- sum(levels(sp2$.aggregate) != ".All")
 
-    nl.gr  <- sum(levels(sp2$.aggregate) != ".All")
+        fixedColors <- if (fixed.colors) {
+            colors  <- c(gr.color[1:nl.gr], All.color)
+            scale_color_manual(values = colors)
+        } else NULL
 
-    fixedColors <- if (fixed.colors) {
-        colors  <- c(gr.color[1:nl.gr], All.color)
-        scale_color_manual(values = colors)
-    } else NULL
+        p <- qplotspc(sp2, spc.nmax = 10000,
+                      mapping = aes(x = .wavelength,
+                                    y = spc,
+                                    colour   = .aggregate,
+                                    group    = .rownames,
+                                    size     = .aggregate,
+                                    linetype = .aggregate)) +
+            labs(title = subt(Title, subTitle)) +
+            scale_size_manual(    values = c(rep(gr.size,     nl.gr), All.size))  +
+            scale_linetype_manual(values = c(rep(gr.linetype, nl.gr), All.linetype)) + # ,guide=FALSE
+            fixedColors +
+            theme_bw() +
+            theme(legend.title = legend.title)
 
-    p <- qplotspc(sp2, spc.nmax = 1000,
-                  mapping = aes(x = .wavelength,
-                                y = spc,
-                                colour   = .aggregate,
-                                group    = .rownames,
-                                size     = .aggregate,
-                                linetype = .aggregate)) +
-        labs(title = subt(Title, subTitle)) +
-        scale_size_manual(    values = c(rep(gr.size,     nl.gr), All.size))  +
-        scale_linetype_manual(values = c(rep(gr.linetype, nl.gr), All.linetype)) + # ,guide=FALSE
-        fixedColors +
-        theme_bw() +
-        theme(legend.title = legend.title)
-
-    return(p)
+        return(p)
+    }
 }
 
 
@@ -107,4 +107,7 @@ plot_stat <- function(sp,
 #' @rdname plot_stat
 #' @template same
 #' @export
-qplotStat <- function(..., FUN = mean) {plot_stat(..., FUN = FUN)}
+qplotStat <- function(sp, by, FUN = mean, ...) {
+    # warning('Use `plot_stat` instead of `qplotStat`')
+    plot_stat(sp, by, FUN = FUN, ...)
+    }

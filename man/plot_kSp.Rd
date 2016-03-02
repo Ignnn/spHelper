@@ -6,7 +6,10 @@
 \alias{plot_sp}
 \title{[+] Plot spectroscopic curves and spectral components (a.k.a. loadings)}
 \usage{
-
+plot_kSp(loadings, Title = "Components", xLabel = labels(loadings,
+  ".wavelength"), yLabel = labels(loadings, "spc"), names = "kNames",
+  legendName = FALSE, filled = TRUE, normalize = FALSE, Facets = FALSE,
+  subTitle = NULL)
 
 plot_sp(..., filled = FALSE)
 
@@ -88,6 +91,9 @@ Before using as an argument \code{loadings},
          which converts it to \code{\link[=hyperSpec-class]{hyperSpec}} object.
 }
 \examples{
+
+plot_kSp(Loadings)
+
 data(flu, package = "hyperSpec")
 
 plot_kSpFacets(flu, Title = "Flu dataset")
@@ -97,11 +103,12 @@ plot_kSpFacets(flu, Title = "Flu dataset", normalize = -1)
 
 ## Remove fill -----------------------------------------------------------------
 
-flu$c2 <- as.factor(flu$c)
+
 plot_kSp(flu, filled = FALSE)
 plot_sp(flu)
 
 ## Name of a legend ------------------------------------------------------------
+flu$c2 <- as.factor(flu$c)
 
 plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = FALSE)
 plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = TRUE)

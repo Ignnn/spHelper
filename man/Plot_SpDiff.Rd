@@ -6,10 +6,9 @@
 \title{[+] Plot difference between original and reconstructed spectra}
 \usage{
 plot_spDiff(loadings, scores, sp,
-  Title = "Difference between oginal\\nand reconstructed spectra",
-  color = if (".color" \%in\% ls(Spectra$..)) sp$.color else "tan3",
-  stacked = if ("ID" \%in\% ls(Spectra$..)) sp$ID else NULL,
-  spc.nmax = 2000, ...)
+  Title = "Difference between oginal and reconstructed spectra", color = if
+  (".color" \%in\% ls(Spectra$..)) sp$.color else "tan3", stacked = if ("ID"
+  \%in\% ls(Spectra$..)) sp$ID else NULL, spc.nmax = 2000, ...)
 
 plot_SpDiff(loadings, scores, sp,
   Title = "Remainders After Subtracting Components")

@@ -4,7 +4,7 @@
 \alias{spStat}
 \title{[!] Calculate summary statistic of spectroscopic data by group and for all data}
 \usage{
-spStat(sp, by, FUN = mean)
+spStat(sp, by, FUN = mean, Name_of.by = as.character(match.call()$by))
 }
 \arguments{
 \item{sp}{A hyperSpec object.}
@@ -13,6 +13,8 @@ spStat(sp, by, FUN = mean)
 or vector (factor) of length \code{length(sp)}}
 
 \item{FUN}{A function to apply.}
+
+\item{Name_of.by}{(Do not change this.)}
 }
 \value{
 A hyperSpec object that contain summary statistic. Additional
