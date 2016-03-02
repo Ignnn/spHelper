@@ -3,7 +3,7 @@
 \name{nID_nSp}
 \alias{nID_nObs}
 \alias{nID_nSp}
-\title{Calculate number and percentage of unique IDs and observations}
+\title{[+] Calculate number and percentage of unique IDs and observations}
 \usage{
 nID_nSp(data, ID, gr, ID_text = "medical specimens",
   observation_text = "spectra", decimals = 1)

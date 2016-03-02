@@ -2,7 +2,23 @@
 % Please edit documentation in R/simSpectra.R
 \name{simSpectra}
 \alias{simSpectra}
-\title{[!] Generate spectroscopic data}
+\title{[!] Generate data that simulates spectroscopic curves}
+\format{In the list the \code{\link[=hyperSpec-class]{hyperSpec}} objects
+contain spectroscopic data and additional variables.
+
+Additional variables for \code{Spectra} and \code{Scores}:
+
+\describe{
+  \item{class}{A factor variable for classification.}
+  \item{gr}{A factor variable for other type classification.}
+}
+
+Additional variables for \code{Loadings}:
+\describe{
+  \item{PeakAt}{Position of components top peak.}
+  \item{kNames}{Names of components.}
+  \item{order.of.rows}{Original order of components before sorting.}
+}}
 \usage{
 simSpectra(x = 300:800, nGr = 2, nInGr = c(50, 50, 50), N = sum(nInGr),
   nDim = 4, w.possile = 5:150, plots = FALSE)
@@ -26,14 +42,18 @@ simSpectra(x = 300:800, nGr = 2, nInGr = c(50, 50, 50), N = sum(nInGr),
 \value{
 List of hyperSpec objects:
 \describe{
-     \item{Spectra}{Spectra of each observation, made of \code{Scores * Loadings + NOISE}.}
+     \item{Spectra}{Spectra of each observation, made of \code{(Scores * Loadings) + NOISE}.}
      \item{Loadings}{Normalized spectra of \bold{components}.}
      \item{Scores}{\bold{Amplitudes} of components for each observation.}
 }
 }
 \description{
-Simulate spectroscopic data: generate spectra, loadings and scores.\cr
-[Description is incomplete]
+Generate data a that simulates spectroscopic curves: loadings (spectroscopic
+components), scores (amplitudes of these components) an spectra (mixture of
+the spectroscopic components multiplied by amplitudes with added random noise).\cr
+}
+\details{
+[This function works, but is not well documented yet.]
 }
 \examples{
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/stat_chull.R
 \name{stat_chull}
 \alias{stat_chull}
-\title{[!] Convex hull layer for ggplot2}
+\title{[+] A convex hull layer for \code{ggplot2}}
 \usage{
 stat_chull(mapping = NULL, data = NULL, geom = "polygon",
   position = "identity", na.rm = FALSE, show.legend = NA,
@@ -61,5 +61,12 @@ ggplot(mpg, aes(displ, hwy)) +
              stat_chull(geom = "point", size = 4, colour = "red") +
              geom_point()
 
+}
+\seealso{
+Other spHelper plots: \code{\link{InfoDim_plot}},
+  \code{\link{nTick}}, \code{\link{plot_confusion}},
+  \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
+  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
+  \code{\link{plot_stat}}
 }
 
