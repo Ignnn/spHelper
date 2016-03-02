@@ -1,94 +1,52 @@
----
-title: "Plotting examples"
-author: "Vilmantas Gegzna"
-date: "`r Sys.Date()`"
-output:
-    rmarkdown::html_vignette: 
-        toc: yes
-        number_sections: yes
-
-vignette: >
-  %\VignetteIndexEntry{Plotting examples}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteDepends{plotly}
-  %\VignetteEncoding{UTF-8}
----
-```{r options, echo = FALSE, message = FALSE, warning = FALSE}
+## ----options, echo = FALSE, message = FALSE, warning = FALSE-------------
 optDEF <- knitr::opts_chunk$get()
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 
 knitr::opts_chunk$set(fig.width = 6, fig.align = 'center')
-```
 
-Load packages
-
-```{r Load packages, message = FALSE, warning = FALSE}
+## ----Load packages, message = FALSE, warning = FALSE---------------------
 library(spHelper)
 library(plotly)
 
-```
-Package spHelper (version `r packageVersion("spHelper")`)
 
-
-`plot_kSp` and `plot_kSpFacets`
-===============================
-
-Facets
-------------
-```{r plot_kSpFacets, fig.height= 4}
+## ----plot_kSpFacets, fig.height= 4---------------------------------------
 library(hyperSpec)
 plot_kSpFacets(flu, Title = "Flu dataset")
 plot_kSpFacets(flu, Title = "Flu dataset", normalize = 1)
 plot_kSpFacets(flu, Title = "Flu dataset", normalize = FALSE)
 plot_kSpFacets(flu, Title = "Flu dataset", normalize = -1)
 
-```
 
-Remove fill
-------------
-```{r}
+## ------------------------------------------------------------------------
 flu$c2 <- as.factor(flu$c)
 plot_kSp(flu, Title = "Flu dataset", names = 'c2', filled = F)
-```
 
-Name of the legend
-------------------
-```{r}
+## ------------------------------------------------------------------------
 plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = FALSE)
 plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = TRUE)
 plot_kSp(flu, Title = "Flu dataset", names = 'c2', legendName = "Concentration")
-```
 
-Examples using package `plotly`
--------------------------------
-```{r,fig.width= 5, fig.cap = "**Fig2.** 'Plotly' example."}
+## ----fig.width= 5, fig.cap = "**Fig2.** 'Plotly' example."---------------
 
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 qplot(carat, price, data = dsamp, colour = clarity) %>% ggplotly()
 
-```
 
-```{r, fig.align='center',fig.width= 5, fig.cap = c("**Fig1.** Spectra of Components (_hyperSpec_ package)", "**Fig2.** Spectra of Components (_spHelper_ package)","**Fig3.** Spectra of Components (_spHelper_ and _plotly_ packages)", "**Fig4.** Amplitudes by groups (_spHelper_ package)")}
+## ---- fig.align='center',fig.width= 5, fig.cap = c("**Fig1.** Spectra of Components (_hyperSpec_ package)", "**Fig2.** Spectra of Components (_spHelper_ package)","**Fig3.** Spectra of Components (_spHelper_ and _plotly_ packages)", "**Fig4.** Amplitudes by groups (_spHelper_ package)")----
 data("Loadings")
 
 plot_kSpFacets(Loadings)
 plot_kSpFacets(Loadings) %>% ggplotly()
-```
 
-`plot_kAmp`
-===============================
-```{r}
+## ------------------------------------------------------------------------
 data(Scores)
 plot_kAmp(Scores)
 
 data(Scores3)
 plot_kAmp(Scores3, by = "class")
 
-```
 
-`unipeak` - Transform Spectra of Components
-==============================================
-```{r}
+## ------------------------------------------------------------------------
  #  Example 1 -------------------------------------------------------
 
  x     <- seq(-10,20,.1)
@@ -102,9 +60,8 @@ plot_kAmp(Scores3, by = "class")
  lines(x, y0NEW, type = "l", lty = 1, lwd = 3);
  legend("topleft", legend = c("Before","After"), lty = c(3,1))
 
-```
 
-```{r, fig.height=10}
+## ---- fig.height=10------------------------------------------------------
  #  Example 2 -------------------------------------------------------
 
  x  = seq(-10,20,.1)
@@ -132,12 +89,8 @@ plot_kAmp(Scores3, by = "class")
  abline(h = 0)
  
  par(mfrow = c(1,1))
-```
 
-`plot_stat` - Plot Summary Statistic of Spactra
-================================================
-
-```{r}
+## ------------------------------------------------------------------------
  plot_stat(chondro,clusters,mean)
  plot_stat(chondro,clusters,mean,All = FALSE)
  plot_stat(chondro,clusters,mean_sd,All = FALSE) + facet_grid(.~clusters)
@@ -150,11 +103,8 @@ plot_kAmp(Scores3, by = "class")
 
  plot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~clusters)
  plot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~.aggregate)
-```
 
-Examples with the other dataset
-
-```{r}
+## ------------------------------------------------------------------------
  plot_stat(Spectra,gr,mean)
  plot_stat(Spectra,gr,mean,All = FALSE)
  plot_stat(Spectra,gr,mean_sd,All = FALSE) + facet_grid(.~gr)
@@ -167,11 +117,8 @@ Examples with the other dataset
 
  plot_stat(Spectra,gr,mean_pm_sd) + facet_grid(.~gr)
  plot_stat(Spectra,gr,mean_pm_sd) + facet_grid(.~.aggregate)
-```
 
-`subt` - Title and Subtitle 
-==============================
-```{r}
+## ------------------------------------------------------------------------
  subt("Cars")
  ## bold("Cars")
 
@@ -213,19 +160,13 @@ Examples with the other dataset
 
  xyplot(eruptions~waiting, data = faithful,
   main = subt(subTitle = "Old Faithful Geyser Data"))
-```
 
-
-`plot_confusion`
-================
-
-
-```{r, echo=FALSE}
+## ---- echo=FALSE---------------------------------------------------------
 # knitr::opts_chunk$set(optDEF)
 # 
 knitr::opts_chunk$set(fig.width = 5, fig.show = "hold")
-```
-```{r}
+
+## ------------------------------------------------------------------------
 d <- 5 # number of rows/columns
 Mat <- matrix(sample(0:100,d ^ 2,T),d)
 colnames(Mat) <- paste0("gr",1:d)
@@ -235,8 +176,8 @@ plot_confusion(Mat, subTitle = "Input is a matrix (1)")
 
 diag(Mat)[2:3] <- c(1000,250)
 plot_confusion(Mat, subTitle = "Input is a matrix (2)")
-```
-```{r}
+
+## ------------------------------------------------------------------------
 set.seed(165)
 
 N <- 1000 # number of observations
@@ -263,18 +204,16 @@ Reference[ind3] <- Prediction[ind3]
 conf3 <- table(Prediction,Reference)
 
 plot_confusion(conf3, subTitle = "Correct >80%")
-```
 
-```{r}
+## ------------------------------------------------------------------------
 # Proportions =========================================
 
 plot_confusion(conf3              , subTitle = "Counts")
 # plot_confusion(prop.table(conf3),   subTitle = "Proportions (total sum = 1)")
 # plot_confusion(prop.table(conf3,1), subTitle = "Proportions (row sums = 1)")
 # plot_confusion(prop.table(conf3,2), subTitle = "Proportions (column sums = 1)")
-```
 
-```{r}
+## ------------------------------------------------------------------------
 # Shades: proportional ================================
 
 plot_confusion(conf,shades = "prop",  subTitle = "Shades: 'prop', Correct by chance");
@@ -285,17 +224,15 @@ plot_confusion(conf2,shades = "max",  subTitle = "Shades: 'max', Correct >50%")
 
 plot_confusion(conf3,shades = "prop", subTitle = "Shades: 'prop', Correct >80%");
 plot_confusion(conf3,shades = "max",  subTitle = "Shades: 'max', Correct >80%")
-```
 
-```{r}
+## ------------------------------------------------------------------------
 # Shades: constant and none ===========================
 
 plot_confusion(conf3,shades = "const",subTitle = "Shades: constant");
 plot_confusion(conf3,shades = "none", subTitle = "Shades: none")
 
-```
 
-```{r}
+## ------------------------------------------------------------------------
 n <- round(N/6)
 Prediction[sample(which(Prediction == "A"),n,replace = TRUE)] <- 
     sample(c("B","C"), n,replace = TRUE)
@@ -305,14 +242,11 @@ conf4 <- table(Prediction,Reference)
 plot_confusion(conf4, subTitle = "Imbalanced class proportions")
 
 
-```
 
-`InfoDim` and `InfoDim_plot`
-============================
-```{r, fig.width= 6}
+## ---- fig.width= 6-------------------------------------------------------
  knitr::opts_chunk$set(fig.width = 4.5, fig.show = "asis")
-```
-```{r}
+
+## ------------------------------------------------------------------------
 # Example 1 ==================================================================
      my_matrix <- matrix(rexp(2000, rate = .1), ncol = 20)
      my_result <- infoDim(my_matrix)
@@ -344,11 +278,10 @@ plot_confusion(conf4, subTitle = "Imbalanced class proportions")
      # Numbes of selected components can be indicated
      p3 <- plot_infoDim(Spectra, selected = 4)
      p3     
-```
-```{r}
+
+## ------------------------------------------------------------------------
     # Numbes of selected components can be indicated
      p4 <- plot_infoDim(Spectra, y.log = FALSE)
      ggplotly(p4)  
    
-```
 

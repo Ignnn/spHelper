@@ -52,9 +52,10 @@ http://www.originlab.com/doc%5Cen/Tutorial/images/Principal_Component_Analysis/P
 Other information dimension functions: \code{\link{infoDim}},
   \code{\link{plot_infoDim}}
 
-Other spHelper plots: \code{\link{plot_confusion}},
-  \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
-  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
-  \code{\link{plot_stat}}
+Other spHelper plots: \code{\link{nTick}},
+  \code{\link{plot_confusion}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
+  \code{\link{plot_spDiff}}, \code{\link{plot_stat}},
+  \code{\link{stat_chull}}
 }
 

@@ -143,23 +143,28 @@ pattern3 &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span clas
 <span class="co">#&gt; 2           555 O20-5-984     S     52     8</span></code></pre></div>
 <p>List all .R files in your working directory:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">regexp2df</span>(<span class="kw">dir</span>(),<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)'</span>)
-<span class="co">#&gt;             R_file</span>
-<span class="co">#&gt; 1 Other_Examples.R</span></code></pre></div>
+<span class="co">#&gt;                R_file</span>
+<span class="co">#&gt; 1    Other_Examples.R</span>
+<span class="co">#&gt; 2 Plotting_Examples.R</span></code></pre></div>
 <p>Do the same by using chaining operator <code>%&gt;%</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">library</span>(dplyr)
 
  <span class="kw">dir</span>() %&gt;%<span class="st"> </span><span class="kw">regexp2df</span>(<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)'</span>)
-<span class="co">#&gt;             R_file</span>
-<span class="co">#&gt; 1 Other_Examples.R</span></code></pre></div>
+<span class="co">#&gt;                R_file</span>
+<span class="co">#&gt; 1    Other_Examples.R</span>
+<span class="co">#&gt; 2 Plotting_Examples.R</span></code></pre></div>
 <p>Capture several types of files:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> expr &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)|'</span>,
                 <span class="st">'(?&lt;Rmd_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]md$)|'</span>,
                 <span class="st">'(?&lt;HTML_file&gt;.*</span><span class="ch">\\</span><span class="st">.html$)'</span>)
  <span class="kw">dir</span>() %&gt;%<span class="st"> </span><span class="kw">regexp2df</span>(expr) 
-<span class="co">#&gt;             R_file              Rmd_file HTML_file</span>
-<span class="co">#&gt; 1 Other_Examples.R                                </span>
-<span class="co">#&gt; 2                     Other_Examples.Rmd          </span>
-<span class="co">#&gt; 3                  Plotting_Examples.Rmd</span></code></pre></div>
+<span class="co">#&gt;                R_file              Rmd_file              HTML_file</span>
+<span class="co">#&gt; 1                                              Other_Examples.html</span>
+<span class="co">#&gt; 2    Other_Examples.R                                             </span>
+<span class="co">#&gt; 3                        Other_Examples.Rmd                       </span>
+<span class="co">#&gt; 4                                           Plotting_Examples.html</span>
+<span class="co">#&gt; 5 Plotting_Examples.R                                             </span>
+<span class="co">#&gt; 6                     Plotting_Examples.Rmd</span></code></pre></div>
 </div>
 <div id="stratifiedfolds-createfolds2-and-foldstets" class="section level1">
 <h1><span class="header-section-number">2</span> <code>stratifiedFolds</code>, <code>createFolds2</code> and <code>foldsTets</code></h1>

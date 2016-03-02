@@ -1,6 +1,6 @@
 # ***** ggplot LAYER ***** ------------------------------------------------
 
-#' [!] Convex hull layer for ggplot2
+#' [+] A convex hull layer for \code{ggplot2}
 #'
 #' Create a layer of convex hull for \pkg{ggplot2} plots.\cr
 #' Source: vignette \href{https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html}{Extending ggplot2}
@@ -44,6 +44,8 @@
 #' ggplot(mpg, aes(displ, hwy)) +
 #'              stat_chull(geom = "point", size = 4, colour = "red") +
 #'              geom_point()
+#'
+#' @family spHelper plots
 #'
 stat_chull <- function(mapping = NULL, data = NULL, geom = "polygon",
                        position = "identity", na.rm = FALSE, show.legend = NA,

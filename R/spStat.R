@@ -1,20 +1,22 @@
-#' [!] Calculate summary statistic of spectroscopic data by group and for all data
+#' [+] Calculate summary statistic of spectroscopic data for all spectra and by groups
 #'
-#' Calculate summary statistic spectra in hyperSpec object by group and for all data
+#' Calculate summary statistic spectra in \code{hyperSpec} object for all
+#' spectra and by levels of factor variable \code{by}.
 #'
 #' @note
 #' This function is similar to \code{\link[hyperSpec]{aggregate}},
 #' just calculates additional statistic for all spectra. This
-#' statistic is indicated by level \code{.ALL}) in variable
-#' \code{.aggregate}.
+#' statistic is labeled by adding level \code{.ALL}) in variable
+#' \code{.aggregate} and variable, that has the same name as \code{by}
+#' (if \code{Name_of.by} si not modified).
 #'
 #' @param sp A hyperSpec object.
 #' @param by A grouping variable (either variable name of \code{sp},
 #'              or vector (factor) of length \code{length(sp)}
 #' @param FUN A function to apply.
-#' @param Name_of.by (Do not change this.)
+#' @param Name_of.by (Do not change this!) The name of input \code{by}.
 #'
-#' @return A hyperSpec object that contain summary statistic. Additional
+#' @return A hyperSpec object that contains summary statistic. Additional
 #'         column \code{.aggregate} is added. In this column levels of
 #'         grouping variable are indicated.
 #' @export
@@ -32,13 +34,14 @@ spStat <- function(sp, by, FUN = mean,
 
     by <- getVarValues(VAR = by, DATA = sp, CALL = match.call())
 
-
     stat_by_gr  <- aggregate(sp, by = by, FUN)
     stat_all    <-     apply(sp, 2,       FUN)
 
     # Add 2 variables to `stat_all`: 1. `.aggregate`, 2. name of "by":
-    stat_all$.aggregate <- factor('.All')
-    eval(parse(text = paste0("stat_all$",Name_of.by, " <- factor('.All')")))
+    stat_all$.aggregate      <- factor('.All') # creates a nev variable.
+    stat_all$..[,Name_of.by] <- factor('.All') # changes values of existing variable.
+
+    # eval(parse(text = paste0("stat_all$",Name_of.by, " <- factor('.All')")))
 
     # Drop NAs at this point in order enable `collapse` and
     # to avoid problems with variables of class `POSIXct`

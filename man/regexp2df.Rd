@@ -7,6 +7,10 @@
 regexp2df(text, pattern, ignore.case = FALSE, ...)
 }
 \arguments{
+\item{text}{The text to be parsed: a character vector where matches are
+sought, or an object which can be coerced by \code{as.character}
+to a character vector.}
+
 \item{pattern}{Perl-like regular expression.}
 
 \item{ignore.case}{if \code{FALSE}, the pattern matching is \emph{case

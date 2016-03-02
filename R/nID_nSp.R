@@ -1,7 +1,7 @@
 #' @name nID_nSp
 #' @aliases nID_nSp
 #' @aliases nID_nObs
-#' @title Calculate number and percentage of unique IDs and observations
+#' @title [+] Calculate number and percentage of unique IDs and observations
 #'
 #'
 #' @description Calculate number and percentage of unique IDs and observations.\cr

@@ -76,8 +76,9 @@ Other information dimension functions: \code{\link{InfoDim_plot}},
   \code{\link{infoDim}}
 
 Other spHelper plots: \code{\link{InfoDim_plot}},
-  \code{\link{plot_confusion}}, \code{\link{plot_kAmp}},
-  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
-  \code{\link{plot_stat}}
+  \code{\link{nTick}}, \code{\link{plot_confusion}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
+  \code{\link{plot_spDiff}}, \code{\link{plot_stat}},
+  \code{\link{stat_chull}}
 }
 

@@ -14,10 +14,19 @@ knitr::opts_chunk$set(
 )
 ```
 
-Developement version of `spHelper` package
+Developement version of package `spHelper` 
 ==========================================
-  
+
+Version of package: `r packageVersion("spHelper")`)
+
+
+
 **Package is under construction.**
 
 
-Only a few functions are ready to be used.
+Some functions may be changed significantly.
+
+* * *
+File updated on: `r Sys.Date()`
+
+

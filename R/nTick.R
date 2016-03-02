@@ -2,7 +2,7 @@
 #' @aliases nTick_x
 #' @aliases nTick_y
 #'
-#' @title Control number of ticks in \code{ggplot2} plots with continuous scale
+#' @title [+] Control number of ticks in \code{ggplot2} plots with continuous scale
 #'
 #' @description Convenience function to control number of ticks in \code{ggplot2}
 #'  plots with continuous scale.
@@ -12,7 +12,7 @@
 #'          values are rounded down.
 #' @param min.n nonnegative integer giving the minimal number of intervals.
 #'        If \code{min.n == 0}, \code{pretty(.)} may return a single value.
-#' @param ... Other parameters to pass to \code{pretty}
+#' @param ... Other parameters to be passed to function \code{pretty}.
 #'
 #' @export
 #' @seealso Pretty breakpoints: \code{\link[base]{pretty}}.
@@ -28,6 +28,7 @@
 #' p + nTick_x(2)
 #' p + nTick_x(2) + nTick_y(8)
 #'
+#' @family spHelper plots
 
 
 nTick_x <- function(n = 2, min.n = 2, ...){
@@ -44,4 +45,4 @@ nTick_y <- function(n = 2, min.n = 2, ...){
 #  ------------------------------------------------------------------------
 #  [Internal function]
 #  Function to to plot ticks
-number_ticks <- function(n, min.n, ...) {function(limits) pretty(limits, n, min.n = min.n,...)}
+number_ticks <- function(n, min.n = 2, ...) {function(limits) pretty(limits, n, min.n = min.n,...)}

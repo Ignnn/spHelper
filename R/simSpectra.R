@@ -1,7 +1,10 @@
-#' [!] Generate spectroscopic data
+#' [!] Generate data that simulates spectroscopic curves
 #'
-#' Simulate spectroscopic data: generate spectra, loadings and scores.\cr
-#' [Description is incomplete]
+#' Generate data a that simulates spectroscopic curves: loadings (spectroscopic
+#' components), scores (amplitudes of these components) an spectra (mixture of
+#' the spectroscopic components multiplied by amplitudes with added random noise).\cr
+#'
+#' [This function works, but is not well documented yet.]
 #'
 #' @param x Values for x axis ("wavelengths").
 #' @param nGr Number of groups.
@@ -14,9 +17,26 @@
 #'
 #' @return List of hyperSpec objects:
 #' \describe{
-#'      \item{Spectra}{Spectra of each observation, made of \code{Scores * Loadings + NOISE}.}
+#'      \item{Spectra}{Spectra of each observation, made of \code{(Scores * Loadings) + NOISE}.}
 #'      \item{Loadings}{Normalized spectra of \bold{components}.}
 #'      \item{Scores}{\bold{Amplitudes} of components for each observation.}
+#' }
+#'
+#' @format In the list the \code{\link[=hyperSpec-class]{hyperSpec}} objects
+#' contain spectroscopic data and additional variables.
+#'
+#' Additional variables for \code{Spectra} and \code{Scores}:
+#'
+#' \describe{
+#'   \item{class}{A factor variable for classification.}
+#'   \item{gr}{A factor variable for other type classification.}
+#' }
+#'
+#' Additional variables for \code{Loadings}:
+#' \describe{
+#'   \item{PeakAt}{Position of components top peak.}
+#'   \item{kNames}{Names of components.}
+#'   \item{order.of.rows}{Original order of components before sorting.}
 #' }
 #'
 #' @export

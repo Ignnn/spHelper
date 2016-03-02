@@ -4,7 +4,7 @@
 \alias{nTick}
 \alias{nTick_x}
 \alias{nTick_y}
-\title{Control number of ticks in \code{ggplot2} plots with continuous scale}
+\title{[+] Control number of ticks in \code{ggplot2} plots with continuous scale}
 \usage{
 nTick_x(n = 2, min.n = 2, ...)
 
@@ -17,7 +17,7 @@ values are rounded down.}
 \item{min.n}{nonnegative integer giving the minimal number of intervals.
 If \code{min.n == 0}, \code{pretty(.)} may return a single value.}
 
-\item{...}{Other parameters to pass to \code{pretty}}
+\item{...}{Other parameters to be passed to function \code{pretty}.}
 }
 \description{
 Convenience function to control number of ticks in \code{ggplot2}
@@ -38,5 +38,11 @@ p + nTick_x(2) + nTick_y(8)
 }
 \seealso{
 Pretty breakpoints: \code{\link[base]{pretty}}.
+
+Other spHelper plots: \code{\link{InfoDim_plot}},
+  \code{\link{plot_confusion}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
+  \code{\link{plot_spDiff}}, \code{\link{plot_stat}},
+  \code{\link{stat_chull}}
 }
 

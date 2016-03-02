@@ -8,6 +8,9 @@
 #' @note Call to function \code{gregexpr} with parameter \code{perl = TRUE}
 #' is used.
 #'
+#' @param text The text to be parsed: a character vector where matches are
+#'        sought, or an object which can be coerced by \code{as.character}
+#'        to a character vector.
 #' @param pattern Perl-like regular expression.
 #' @param ... Other arguments to be passed to \code{\link[base]{gregexpr}}.
 #' @inheritParams base::gregexpr

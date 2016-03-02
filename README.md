@@ -1,7 +1,13 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-Developement version of `spHelper` package
+Developement version of package `spHelper`
 ==========================================
+
+Version of package: 0.1.41)
 
 **Package is under construction.**
 
-Only a few functions are ready to be used.
+Some functions may be changed significantly.
+
+------------------------------------------------------------------------
+
+File updated on: 2016-03-02
