@@ -38,7 +38,7 @@
 #' @examples
 #' plot_spDiff(Loadings, Scores[1:10,,], Spectra[1:10,,], stacked = TRUE)
 #'
-#' @family spHelper plots
+#' @family \pkg{spHelper} plots
 #' @family component analysis / factorisation related functions
 #' @author Vilmantas Gegzna
 

@@ -21,7 +21,7 @@ object that contain only \code{NA} values.
 Vilmantas Gegzna
 }
 \seealso{
-Other \code{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},
+Other \pkg{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},
   \code{\link{addLabels_TD2009}}, \code{\link{hy2mat}},
   \code{\link{hyAdd.color}}, \code{\link{hyAdd}},
   \code{\link{read3csv2hy}}

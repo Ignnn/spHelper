@@ -40,7 +40,7 @@
 #' my_duration
 #' ## Analysis completed in 2.4 mins
 #'
-#' @family `spHelper` utilities
+#' @family \pkg{spHelper} utilities
 #' @author Vilmantas Gegzna
 #'
 printDuration <- function(Start,

@@ -32,7 +32,7 @@
 #' hyGet.palette(Spectra2)
 #'    #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
 #'
-#' @family \code{spHelper} functions for \code{hyperSpec}
+#' @family \pkg{spHelper} functions for \code{hyperSpec}
 #' @author Vilmantas Gegzna
 
 hyAdd.color <- function(sp = NULL, by,

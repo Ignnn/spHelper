@@ -42,7 +42,7 @@ Vilmantas Gegzna
 \seealso{
 Pretty breakpoints: \code{\link[base]{pretty}}.
 
-Other spHelper plots: \code{\link{plot_confusion}},
+Other \pkg{spHelper} plots: \code{\link{plot_confusion}},
   \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
   \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
   \code{\link{plot_stat}}, \code{\link{rmExpr}},

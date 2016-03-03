@@ -80,7 +80,7 @@
 #'      foldsTets(Folds1_d, DataSet1)
 #'
 #'
-#' @family \code{spHelper} fold creation functions
+#' @family \pkg{spHelper} fold creation functions
 #' @seealso \code{\link[caret]{createFolds}}
 #' @author Vilmantas Gegzna
 #'
@@ -169,7 +169,7 @@ stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TR
 #' @rdname stratifiedFolds
 #' @export
 #' @template same
-#' @family \code{spHelper} fold creation functions
+#' @family \pkg{spHelper} fold creation functions
 createFolds2 <- function(...,k = 5){
     stratifiedFolds(..., k = k)
 }

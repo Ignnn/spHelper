@@ -19,7 +19,7 @@
 #'
 #' @export
 #'
-#' @family \code{spHelper} functions for \code{hyperSpec}
+#' @family \pkg{spHelper} functions for \code{hyperSpec}
 #' @author Vilmantas Gegzna
 #'
 addLabels_PAP_PD2014 <- function(sp, language = "EN")  {

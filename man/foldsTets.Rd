@@ -68,6 +68,6 @@ foldsTets(FoldsOBJ, DataSet1)
 Vilmantas Gegzna
 }
 \seealso{
-Other \code{spHelper} fold creation functions: \code{\link{stratifiedFolds}}
+Other \pkg{spHelper} fold creation functions: \code{\link{stratifiedFolds}}
 }
 

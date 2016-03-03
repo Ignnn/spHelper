@@ -60,16 +60,16 @@ plot_spDiff(Loadings, Scores[1:10,,], Spectra[1:10,,], stacked = TRUE)
 Vilmantas Gegzna
 }
 \seealso{
+Other \pkg{spHelper} plots: \code{\link{nTick}},
+  \code{\link{plot_confusion}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
+  \code{\link{plot_stat}}, \code{\link{rmExpr}},
+  \code{\link{stat_chull}}
+
 Other component analysis / factorisation related functions: \code{\link{getScores}},
   \code{\link{infoDim}}, \code{\link{plot_infoDim}},
   \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
   \code{\link{reconstructSp}}, \code{\link{sortLoadings}},
   \code{\link{unipeak}}, \code{\link{whichOutlier}}
-
-Other spHelper plots: \code{\link{nTick}},
-  \code{\link{plot_confusion}}, \code{\link{plot_infoDim}},
-  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
-  \code{\link{plot_stat}}, \code{\link{rmExpr}},
-  \code{\link{stat_chull}}
 }
 

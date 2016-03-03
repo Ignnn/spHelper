@@ -75,6 +75,7 @@
 #' ##
 #' ## **********
 #'
+#' @family \pkg{spHelper} utilities
 #' @author Vilmantas Gegzna
 #'
 bru <- function(symbol = "=",

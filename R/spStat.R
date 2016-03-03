@@ -28,7 +28,7 @@
 #' spStat(Spectra, by = gr,         FUN = IQR)
 #' spStat(Spectra, by = Spectra$gr, FUN = IQR)
 #'
-#' @family hyperSpcec supplements
+#' @family functions for \pkg{hyperSpec}
 #' @author Vilmantas Gegzna
 #'
 spStat <- function(sp, by, FUN = mean,

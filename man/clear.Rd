@@ -48,8 +48,8 @@ clear()
 Vilmantas Gegzna
 }
 \seealso{
-Other `spHelper` utilities: \code{\link{expr2text}},
-  \code{\link{makeFirstCapital}},
+Other \pkg{spHelper} utilities: \code{\link{bru}},
+  \code{\link{expr2text}}, \code{\link{makeFirstCapital}},
   \code{\link{printDuration}}, \code{\link{regexp2df}},
   \code{\link{rmExpr}}, \code{\link{subt}},
   \code{\link{uncall}}

@@ -46,7 +46,7 @@
 #'              stat_chull(geom = "point", size = 4, colour = "red") +
 #'              geom_point()
 #'
-#' @family spHelper plots
+#' @family \pkg{spHelper} plots
 #'
 stat_chull <- function(mapping = NULL, data = NULL, geom = "polygon",
                        position = "identity", na.rm = FALSE, show.legend = NA,

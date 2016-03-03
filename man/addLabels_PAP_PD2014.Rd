@@ -29,7 +29,7 @@ Select data columns, that are not removed, and add labels to
 Vilmantas Gegzna
 }
 \seealso{
-Other \code{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_TD2009}},
+Other \pkg{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_TD2009}},
   \code{\link{hy2mat}}, \code{\link{hyAdd.color}},
   \code{\link{hyAdd}}, \code{\link{hyDrop.NA}},
   \code{\link{read3csv2hy}}

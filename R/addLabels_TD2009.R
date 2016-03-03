@@ -14,7 +14,7 @@
 #' @return A labeled object with reduced number of data columns.
 #'
 #' @export
-#' @family \code{spHelper} functions for \code{hyperSpec}
+#' @family \pkg{spHelper} functions for \code{hyperSpec}
 #' @author Vilmantas Gegzna
 #'
 addLabels_TD2009 <- function(sp,language = "EN")  {

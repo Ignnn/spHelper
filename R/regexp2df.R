@@ -100,7 +100,7 @@
 #'                '(?<CSV_file>.*\\.[cC][sS][vV]$)')
 #' dir() %>% regexp2df(expr)
 #'
-#' @family `spHelper` utilities
+#' @family \pkg{spHelper} utilities
 #' @author Vilmantas Gegzna
 
 regexp2df <- function(text, pattern, ignore.case = FALSE, ...)  {

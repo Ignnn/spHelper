@@ -28,7 +28,7 @@
 #' clear.fun()
 #' clear()
 #'
-#' @family `spHelper` utilities
+#' @family \pkg{spHelper} utilities
 #' @source Ideas to create \code{clear} is taken from \code{\link[pracma]{clear}}
 #'         in \pkg{pracma}.
 #' @author Vilmantas Gegzna

@@ -40,8 +40,8 @@
 #'
 #' }}
 #'
-#' @family spHelper plots
-#' @family `spHelper` utilities
+#' @family \pkg{spHelper} plots
+#' @family \pkg{spHelper} utilities
 #' @author Vilmantas Gegzna
 rmExpr <- function(p = ggplot2::last_plot()) {
     p$labels  <- lapply(p$labels, expr2text)
@@ -57,7 +57,7 @@ rmExpr <- function(p = ggplot2::last_plot()) {
 #'
 #' @return A string.
 #' @export
-#' @family `spHelper` utilities
+#' @family \pkg{spHelper} utilities
 #' @author Vilmantas Gegzna
 uncall <- function(x){
 
@@ -76,7 +76,7 @@ uncall <- function(x){
 #' @param x `Call` object or `expression`
 #'
 #' @export
-#' @family `spHelper` utilities
+#' @family \pkg{spHelper} utilities
 #' @author Vilmantas Gegzna
 #'
 expr2text <- function(x) {

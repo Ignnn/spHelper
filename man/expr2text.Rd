@@ -16,8 +16,8 @@ expr2text(x)
 Vilmantas Gegzna
 }
 \seealso{
-Other `spHelper` utilities: \code{\link{clear}},
-  \code{\link{makeFirstCapital}},
+Other \pkg{spHelper} utilities: \code{\link{bru}},
+  \code{\link{clear}}, \code{\link{makeFirstCapital}},
   \code{\link{printDuration}}, \code{\link{regexp2df}},
   \code{\link{rmExpr}}, \code{\link{subt}},
   \code{\link{uncall}}

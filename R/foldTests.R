@@ -52,7 +52,7 @@
 #'
 #'
 #'
-#' @family \code{spHelper} fold creation functions
+#' @family \pkg{spHelper} fold creation functions
 #' @author Vilmantas Gegzna
 #'
 foldsTets <- function(FoldsOBJ, DATA, stratBy = "gr", blockBy = "ID",

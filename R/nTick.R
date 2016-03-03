@@ -28,7 +28,7 @@
 #' p + nTick_x(2)
 #' p + nTick_x(2) + nTick_y(8)
 #'
-#' @family spHelper plots
+#' @family \pkg{spHelper} plots
 #' @author Vilmantas Gegzna
 
 nTick_x <- function(n = 2, min.n = 2, ...){

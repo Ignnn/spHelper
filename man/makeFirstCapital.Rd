@@ -34,9 +34,10 @@ fCap('laa laa laa')
 Vilmantas Gegzna
 }
 \seealso{
-Other `spHelper` utilities: \code{\link{clear}},
-  \code{\link{expr2text}}, \code{\link{printDuration}},
-  \code{\link{regexp2df}}, \code{\link{rmExpr}},
-  \code{\link{subt}}, \code{\link{uncall}}
+Other \pkg{spHelper} utilities: \code{\link{bru}},
+  \code{\link{clear}}, \code{\link{expr2text}},
+  \code{\link{printDuration}}, \code{\link{regexp2df}},
+  \code{\link{rmExpr}}, \code{\link{subt}},
+  \code{\link{uncall}}
 }
 

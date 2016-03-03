@@ -37,6 +37,6 @@ labels(Spectra2,".color")
 Vilmantas Gegzna
 }
 \seealso{
-Other hyperSpcec supplements: \code{\link{spStat}}
+Other functions for \pkg{hyperSpec}: \code{\link{spStat}}
 }
 

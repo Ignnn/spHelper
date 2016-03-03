@@ -68,7 +68,7 @@ ggplot(mpg, aes(displ, hwy)) +
 Hadley Wickham
 }
 \seealso{
-Other spHelper plots: \code{\link{nTick}},
+Other \pkg{spHelper} plots: \code{\link{nTick}},
   \code{\link{plot_confusion}}, \code{\link{plot_infoDim}},
   \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
   \code{\link{plot_spDiff}}, \code{\link{plot_stat}},

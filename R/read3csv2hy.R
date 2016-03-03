@@ -26,7 +26,7 @@
 #' \href{https://github.com/GegznaV/spHelper/tree/master/inst/doc/Save_DS_for_R.m}{Save_DS_for_R.m}
 #'
 #' @export
-#' @family \code{spHelper} functions for \code{hyperSpec}
+#' @family \pkg{spHelper} functions for \code{hyperSpec}
 #' @author Vilmantas Gegzna
 
 read3csv2hy <- function(FileName_base){

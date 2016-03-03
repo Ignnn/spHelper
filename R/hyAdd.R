@@ -15,7 +15,7 @@
 #' @export
 #'
 #'
-#' @family \code{spHelper} functions for \code{hyperSpec}
+#' @family \pkg{spHelper} functions for \code{hyperSpec}
 #' @author Vilmantas Gegzna
 #'
 hyAdd <- function(sp, var.name, by, unique.values) {

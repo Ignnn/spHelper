@@ -19,7 +19,7 @@
 #' ##[1] "Laa Laa Laa"
 #'
 #' @export
-#' @family `spHelper` utilities
+#' @family \pkg{spHelper} utilities
 #' @author Vilmantas Gegzna
 
 makeFirstCapital <- function(x) {

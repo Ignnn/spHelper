@@ -94,8 +94,8 @@ Vilmantas Gegzna
 \seealso{
 \code{\link[caret]{createFolds}}
 
-Other \code{spHelper} fold creation functions: \code{\link{foldsTets}}
+Other \pkg{spHelper} fold creation functions: \code{\link{foldsTets}}
 
-Other \code{spHelper} fold creation functions: \code{\link{foldsTets}}
+Other \pkg{spHelper} fold creation functions: \code{\link{foldsTets}}
 }
 

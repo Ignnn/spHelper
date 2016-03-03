@@ -95,7 +95,7 @@
 #'
 #'
 #' @export
-#' @family spHelper plots
+#' @family \pkg{spHelper} plots
 #' @author Vilmantas Gegzna
 qplot_confusion <- function(conf,
                           Title  = "Classification table",

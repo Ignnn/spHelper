@@ -115,8 +115,9 @@ Vilmantas Gegzna
          \code{\link{regcapturedmatches}},
          \code{\link[dplyr]{\%>\%}}
 
-Other `spHelper` utilities: \code{\link{clear}},
-  \code{\link{expr2text}}, \code{\link{makeFirstCapital}},
+Other \pkg{spHelper} utilities: \code{\link{bru}},
+  \code{\link{clear}}, \code{\link{expr2text}},
+  \code{\link{makeFirstCapital}},
   \code{\link{printDuration}}, \code{\link{rmExpr}},
   \code{\link{subt}}, \code{\link{uncall}}
 }

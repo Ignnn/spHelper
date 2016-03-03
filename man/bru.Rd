@@ -93,4 +93,11 @@ bru('*', 10, before = 5) # 5 empty rows are added
 \author{
 Vilmantas Gegzna
 }
+\seealso{
+Other \pkg{spHelper} utilities: \code{\link{clear}},
+  \code{\link{expr2text}}, \code{\link{makeFirstCapital}},
+  \code{\link{printDuration}}, \code{\link{regexp2df}},
+  \code{\link{rmExpr}}, \code{\link{subt}},
+  \code{\link{uncall}}
+}
 

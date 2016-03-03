@@ -44,6 +44,6 @@ Vilmantas Gegzna
 \seealso{
 \code{\link[hyperSpec]{aggregate}}
 
-Other hyperSpcec supplements: \code{\link{hyGet.palette}}
+Other functions for \pkg{hyperSpec}: \code{\link{hyGet.palette}}
 }
 

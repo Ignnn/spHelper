@@ -43,7 +43,7 @@
 #' qplot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~clusters) + nTick_x(2)
 #'
 #' @seealso \code{\link{spStat}}
-#' @family spHelper plots
+#' @family \pkg{spHelper} plots
 #' @author Vilmantas Gegzna
 #'
 qplot_stat <- function(sp,

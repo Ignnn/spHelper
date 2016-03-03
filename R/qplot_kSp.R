@@ -90,7 +90,7 @@
 #'   qplot_sp(laser)
 #'
 #' @export
-#' @family spHelper plots
+#' @family \pkg{spHelper} plots
 #' @family component analysis / factorisation related functions
 #' @author Vilmantas Gegzna
 

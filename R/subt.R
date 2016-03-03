@@ -62,7 +62,7 @@
 #' xyplot(eruptions~waiting, data = faithful,
 #'  main = subt(subTitle = "Old Faithful Geyser Data"))
 #'
-#' @family `spHelper` utilities
+#' @family \pkg{spHelper} utilities
 #' @author Vilmantas Gegzna
 
 subt <- function(Title = NULL, subTitle = NULL)  {
