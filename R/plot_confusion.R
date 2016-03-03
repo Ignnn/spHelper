@@ -1,8 +1,6 @@
 # ***** Plot a confusion matrix ***** --------------------------------------
 #
 #' @name plot_confusion
-#' @aliases plot_confusion
-#' @aliases plot_confusion2
 #'
 #' @title [+] Plot a confusion matrix (a.k.a. classification table)
 #'
@@ -226,17 +224,4 @@ plot_confusion <- function(conf,
     return(p)
 }
 
-# ============================================================================
-#' @rdname plot_confusion
-#'
-#' @template same
-#'
-#' @export
 
-plot_confusion2 <- function(Prediction, Reference,...){
-    if (length(Prediction) != length(Reference)) {
-        stop("Lengths of vectors `Prediction` and `Reference` must be equal.")
-    }
-    conf <- table(Prediction,Reference)
-    plot_confusion(conf = conf, ...)
-}

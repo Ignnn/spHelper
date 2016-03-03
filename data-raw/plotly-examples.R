@@ -200,3 +200,54 @@ p
 
 
 #  ------------------------------------------------------------------------
+
+
+# Correct manually --------------------------------------------------------
+
+data(flu, package = "hyperSpec")
+
+qplotspc(flu)
+ggplotly()
+
+rmExpr()
+ggplotly()
+
+#--------------------------------
+p1 <- plot_sp(Loadings)
+p1$labels
+
+p2 <- rmExpr(p1)
+p2$labels
+
+ggplotly(p1)
+ggplotly(p2)
+
+#----------------------------------
+
+qplotspc(aggregate(chondro, chondro$clusters, mean_pm_sd),
+         mapping = aes(x = .wavelength,
+                       y = spc,
+                       colour = clusters)) +
+    facet_grid(clusters ~ .) + ggtitle("Spectra of Chondrocytes")
+
+rmExpr()
+ggplotly()
+
+# Namually correct `plotly` object
+pp  <- plotly_build(p)
+ppp <- plotly_build(p2)
+str(ppp)
+# Add legend
+pp$layout$showlegend <- TRUE
+
+# Remove stripe text
+pp$layout$annotations[1:3] <- NULL
+
+# Position of legends
+pp$layout$annotations[[1]]$y <- -.1
+pp$layout$annotations[[2]]$x <- -.2
+pp
+
+p = ggplot2::last_plot()
+p$labels$x
+#' }}

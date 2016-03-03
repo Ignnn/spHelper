@@ -35,13 +35,13 @@
 #' @examples
 #'
 #' data(Scores)
-#' plot_kAmp(Scores)
-#' plot_scores(Scores)
+#' qplot_kAmp(Scores)
+#' qplot_scores(Scores)
 #'
 #' data(Scores3)
-#' plot_kAmp(Scores3, by = "class")
+#' qplot_kAmp(Scores3, by = "class")
 #'
-#' p <- plot_scores(Scores, add.jitter = TRUE)
+#' p <- qplot_scores(Scores, add.jitter = TRUE)
 #' p
 #'
 #' p + theme_bw()

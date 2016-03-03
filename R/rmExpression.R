@@ -38,24 +38,7 @@
 #'  rmExpr()
 #'  ggplotly()
 #'
-#'  # Namually correct `plotly` object
-#'  pp  <- plotly_build(p)
-#'  ppp <- plotly_build(p2)
-#'  str(ppp)
-#'  # Add legend
-#'  pp$layout$showlegend <- TRUE
-#'
-#'  # Remove stripe text
-#'  pp$layout$annotations[1:3] <- NULL
-#'
-#'  # Position of legends
-#'  pp$layout$annotations[[1]]$y <- -.1
-#'  pp$layout$annotations[[2]]$x <- -.2
-#'  pp
-#'
-#'  p = ggplot2::last_plot()
-#'  p$labels$x
-#' #' }}
+#' }}
 #'
 #' @family spHelper plots
 #'

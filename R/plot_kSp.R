@@ -1,9 +1,4 @@
 
-#' @name plot_kSp
-#' @aliases plot_kSp
-#' @aliases plot_kSpFacets
-#' @aliases plot_sp
-#'
 #' @title [+] Plot spectroscopic curves and spectral components (a.k.a. loadings)
 #'
 #' @description Plot spectroscopic curves in different colors.
@@ -30,7 +25,7 @@
 #' @template labels
 #' @template subtitle
 #'
-#' @param names A name of variable in \code{loadings} that contains variable names.
+#' @param names.in A name of variable in \code{loadings} that contains variable names.
 #'        If indicated variable does not exist, row names are used instead.\cr
 #'        Default is \code{names = 'kNames'}
 #'
@@ -56,7 +51,7 @@
 #'          \item {...}{manual input of the name.}
 #'          }
 #'
-#' @param Facets A logical flag. If \code{TRUE}, spectra are plotted on separate graphs/facets
+#' @param facets A logical flag. If \code{TRUE}, spectra are plotted on separate graphs/facets
 #'          (implemented by function \code{\link[ggplot2]{facet_grid}}). If {\code{FALSE}, all spectra
 #'           are plotted on one facet.
 #'   }
@@ -87,9 +82,9 @@
 #' ## Name of a legend ------------------------------------------------------------
 #' flu$c2 <- as.factor(flu$c)
 #'
-#' plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = FALSE)
-#' plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = TRUE)
-#' plot_sp(flu, Title = "Flu dataset", names = 'c2', legendName = "Concentration")
+#' plot_sp(flu, Title = "Flu dataset", names.in = 'c2', legendName = FALSE)
+#' plot_sp(flu, Title = "Flu dataset", names.in = 'c2', legendName = TRUE)
+#' plot_sp(flu, Title = "Flu dataset", names.in = 'c2', legendName = "Concentration")
 #'
 #' ## Example of line color transitions -------------------------------------------
 #'   plot_sp(laser)
@@ -105,11 +100,11 @@ plot_kSp <- function(loadings,
                      Title = "Components",
                      xLabel = labels(loadings, ".wavelength"),
                      yLabel = labels(loadings, "spc"),
-                     names  = 'kNames',
+                     names.in  = 'kNames',
                      legendName = FALSE,
                      filled = TRUE,
                      normalize  = FALSE,
-                     Facets = FALSE,
+                     facets = FALSE,
                      subTitle = NULL)
 {
 
@@ -118,7 +113,7 @@ plot_kSp <- function(loadings,
     # Get label of `loadings[, names]`, before renaming to "kName"
     if (is.logical(legendName)) {
         if (legendName) {
-                legendName <- labels(loadings, names)
+                legendName <- labels(loadings, names.in)
         } else {
                 legendName <- NULL
         }
@@ -143,15 +138,15 @@ plot_kSp <- function(loadings,
     l <- loadings
 
     # Select variable with component names
-    names <- as.character(names)
+    names.in <- as.character(names.in)
 
     #if variable does not exist
-    if (!(names %in% colnames(l))) {
-        # l[,names] = as.factor(as.numeric(rownames(l)))
-        l[,names] = as.factor(rownames(l))
+    if (!(names.in %in% colnames(l))) {
+        # l[,names.in] = as.factor(as.numeric(rownames(l)))
+        l[,names.in] = as.factor(rownames(l))
     }
 
-    if (names != 'kNames') {colnames(l)[colnames(l) == names] <- 'kNames'}
+    if (names.in != 'kNames') {colnames(l)[colnames(l) == names.in] <- 'kNames'}
 
     l$rows = 1:nrow(l)                 # Create variable with row numbers
     l <- l[,c('spc','kNames','rows')]  # Rename variables
@@ -159,7 +154,7 @@ plot_kSp <- function(loadings,
     l <- as.long.df(l)
 
     # Define the limits
-    if (Facets == TRUE)  {
+    if (facets == TRUE)  {
         nTicksY <- 2
         limMIN <- ifelse(min(l$spc) >= 0, 0, min(l$spc) * 1.1)
         limMAX <- ifelse(max(l$spc) <= 0, 0, max(l$spc) * 1.1)
@@ -191,7 +186,7 @@ plot_kSp <- function(loadings,
     if (filled == TRUE) p <- p + geom_density(stat = "Identity", alpha = .1)
 
     # Make facets
-    if (Facets == TRUE) p <- p + facet_grid(kNames ~., scales = "free")
+    if (facets == TRUE) p <- p + facet_grid(kNames ~., scales = "free")
 
     # Add name of the legend
     p$labels[p$labels == "kNames"] = legendName
@@ -203,8 +198,4 @@ plot_kSp <- function(loadings,
     return(p)
 }
 
-#  ------------------------------------------------------------------------
-#' @rdname plot_kSp
-#' @export
 
-plot_sp <- function(..., filled = FALSE) {plot_kSp(..., filled = FALSE)}
