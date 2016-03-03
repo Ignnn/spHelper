@@ -3,7 +3,8 @@
 #' [+] A convex hull layer for \code{ggplot2}
 #'
 #' Create a layer of convex hull for \pkg{ggplot2} plots.\cr
-#' Source: vignette \href{https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html}{Extending ggplot2}
+#' @source Source: vignette \href{https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html}{Extending ggplot2}
+#' @author Hadley Wickham
 #'
 #' @param mapping Set of aesthetic mappings created by \code{\link[ggplot2]{aes}}
 #' or \code{\link[ggplot2]{aes_}}. If specified and \code{inherit.aes = TRUE} (the

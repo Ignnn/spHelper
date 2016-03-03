@@ -45,9 +45,13 @@ hyGet.palette(Spectra2)
    #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
 
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
 Other \code{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},
   \code{\link{addLabels_TD2009}}, \code{\link{hy2mat}},
-  \code{\link{hyDrop.NA}}, \code{\link{read3csv2hy}}
+  \code{\link{hyAdd}}, \code{\link{hyDrop.NA}},
+  \code{\link{read3csv2hy}}
 }
 

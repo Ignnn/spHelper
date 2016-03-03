@@ -32,11 +32,15 @@ Base name can be a path, e.g. "D:/spectra/TD_2009"
 
 
 The MATLAB code used to generate csv files:
-\href{Save_DS_for_R.m}{https://github.com/GegznaV/spHelper/blob/master/data-raw/Save_DS_for_R.m}
+\href{https://github.com/GegznaV/spHelper/tree/master/inst/doc/Save_DS_for_R.m}{Save_DS_for_R.m}
+}
+\author{
+Vilmantas Gegzna
 }
 \seealso{
 Other \code{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},
   \code{\link{addLabels_TD2009}}, \code{\link{hy2mat}},
-  \code{\link{hyAdd.color}}, \code{\link{hyDrop.NA}}
+  \code{\link{hyAdd.color}}, \code{\link{hyAdd}},
+  \code{\link{hyDrop.NA}}
 }
 

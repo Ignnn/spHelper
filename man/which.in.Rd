@@ -87,6 +87,9 @@ which.in.diag(m2)
  which.in(triupp, m1)
 
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
 Other matrix operations: \code{\link{corr_vec2mat}},
   \code{\link{nDiag2nTri}}, \code{\link{nTri2nDiag}}

@@ -75,6 +75,8 @@
 #' ##
 #' ## **********
 #'
+#' @author Vilmantas Gegzna
+#'
 bru <- function(symbol = "=",
                 n = 60,
                 after  = (if (print) 1 else 0),

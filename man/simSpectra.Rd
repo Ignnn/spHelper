@@ -64,6 +64,9 @@ simSpectra()
 simSpectra()$Spectra
 
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
 Other simmulation functions: \code{\link{corr_vec2mat}},
   \code{\link{simCorrVars}}

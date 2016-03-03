@@ -34,7 +34,7 @@
 #' # For hyperSpec object
 #' nID_nSp(Spectra$.., ID = class, gr)
 #'
-#' @import dplyr
+#' @author Vilmantas Gegzna
 nID_nSp <- function(data, ID, gr,
                     ID_text          = "medical specimens",
                     observation_text = "spectra",

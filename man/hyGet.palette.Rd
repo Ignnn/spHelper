@@ -33,4 +33,10 @@ labels(Spectra2,".color")
    #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
 
 }
+\author{
+Vilmantas Gegzna
+}
+\seealso{
+Other hyperSpcec supplements: \code{\link{spStat}}
+}
 

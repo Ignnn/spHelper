@@ -1,0 +1,30 @@
+#' @import hyperSpec
+#' @import ggplot2
+#' @import hyperSpec
+
+#' @family hyperSpcec supplements
+#' @family matrix operations
+#' @family simmulation functions
+#' @family curves
+#' @family spHelper plots
+#' @family component analysis / factorisation related functions
+#' @family \code{spHelper} fold creation functions
+#' @family `spHelper` utilities
+
+
+
+#' \donttest{
+#' \dontrun{
+
+
+
+#' @author Vilmantas Gegzna
+
+#' @author Ignas Ciplys
+#' @family functions by Ignas Ciplys
+
+\code{\link[=hyperSpec-class]{hyperSpec}}
+
+--------------------------------------------
+https://gist.github.com/hadley/5576263
+paprašyt, kad debugintų per "stack overflow"

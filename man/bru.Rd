@@ -90,4 +90,7 @@ bru('*', 10, before = 5) # 5 empty rows are added
 ## **********
 
 }
+\author{
+Vilmantas Gegzna
+}
 

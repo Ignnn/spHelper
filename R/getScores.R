@@ -44,6 +44,7 @@
 #'
 #' @seealso \code{\link{plot_scores}}
 #' @family component analysis / factorisation related functions
+#' @author Vilmantas Gegzna
 #'
 #' @examples
 #'

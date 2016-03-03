@@ -1,8 +1,6 @@
 #  ------------------------------------------------------------------------
-#' @rdname plot_kSp
+#' @rdname qplot_kSp
 #' @export
-plot_sp <- function(..., filled = FALSE) {plot_kSp(..., filled = FALSE)}
-#  ------------------------------------------------------------------------
-#' @rdname plot_kSp
-#' @export
-qplot_sp <- function(..., filled = FALSE) {plot_kSp(..., filled = FALSE)}
+qplot_sp <- function(..., filled = FALSE) {
+	qplot_kSp(..., filled = FALSE)
+}

@@ -36,6 +36,9 @@ p + nTick_x(2)
 p + nTick_x(2) + nTick_y(8)
 
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
 Pretty breakpoints: \code{\link[base]{pretty}}.
 

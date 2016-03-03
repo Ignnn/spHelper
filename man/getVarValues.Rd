@@ -26,7 +26,7 @@ Parse dataframe \code{DATA}, variable \code{VAR} and a call
 Otherwise return \code{VAR}.
 }
 \examples{
-EXAMPLE 1 *****************************************************************
+# EXAMPLE 1 *****************************************************************
 
 # Data
 df  <- mtcars[,c("cyl","gear")]
@@ -109,5 +109,8 @@ getVarValues(B, df, CALL)
  getVarValues(c, df, CALL) # c() is a function.
  ## function (..., recursive = FALSE)  .Primitive("c")
 }}
+}
+\author{
+Vilmantas Gegzna
 }
 

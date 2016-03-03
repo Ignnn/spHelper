@@ -10,7 +10,7 @@ rmExpr(p = ggplot2::last_plot())
 \item{p}{ggplot2 object}
 }
 \value{
-ggplot2 object
+`ggplot2` object
 }
 \description{
 Convert expressions in \code{\link[ggplot2]{ggplot}} object labels to strings, to
@@ -50,7 +50,15 @@ mapping = aes(x = .wavelength,
 }}
 
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
+Other `spHelper` utilities: \code{\link{clear}},
+  \code{\link{expr2text}}, \code{\link{makeFirstCapital}},
+  \code{\link{printDuration}}, \code{\link{regexp2df}},
+  \code{\link{subt}}, \code{\link{uncall}}
+
 Other spHelper plots: \code{\link{nTick}},
   \code{\link{plot_confusion}}, \code{\link{plot_infoDim}},
   \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},

@@ -12,4 +12,14 @@ expr2text(x)
 \description{
 [.] Convert `expression` and `call` to text and remove quotes
 }
+\author{
+Vilmantas Gegzna
+}
+\seealso{
+Other `spHelper` utilities: \code{\link{clear}},
+  \code{\link{makeFirstCapital}},
+  \code{\link{printDuration}}, \code{\link{regexp2df}},
+  \code{\link{rmExpr}}, \code{\link{subt}},
+  \code{\link{uncall}}
+}
 

@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @examples
-#' EXAMPLE 1 *****************************************************************
+#' # EXAMPLE 1 *****************************************************************
 #'
 #' # Data
 #' df  <- mtcars[,c("cyl","gear")]
@@ -99,6 +99,8 @@
 #'  getVarValues(c, df, CALL) # c() is a function.
 #'  ## function (..., recursive = FALSE)  .Primitive("c")
 #' }}
+#' @author Vilmantas Gegzna
+#'
 getVarValues <- function(VAR, DATA,
                          CALL = match.call(definition = sys.function(sys.parent()),
                                            call = sys.call(sys.parent()))) {
@@ -121,7 +123,6 @@ getVarValues <- function(VAR, DATA,
     # Convert input values to character
     VAR   <- as.character(match.call()$VAR)
     DATA  <- as.character(match.call()$DATA)
-
 
     # Get a value of variable in the call object `CALL`. This value is a
     # name of variable of inerest:

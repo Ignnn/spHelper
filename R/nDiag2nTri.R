@@ -18,6 +18,8 @@
 #' nDiag2nTri(5)
 #' nDiag2nTri(7)
 #'
+#' @author Vilmantas Gegzna
+#'
 nDiag2nTri <- function(n)  {nTri = (n ^ 2 - n)/2; return(nTri)}
 # the same as #nTri = 0; for (i in (1:n)-1) nTri <- nTri + i;
 

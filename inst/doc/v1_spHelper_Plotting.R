@@ -5,7 +5,7 @@ optDEF <- knitr::opts_chunk$get()
 ## ----Load main package, message = FALSE, warning = FALSE-----------------
 library(spHelper)
 
-## ----subt, fig.height=3--------------------------------------------------
+## ----subt, fig.height=3---------------------------------
  subt("Cars")
  ## bold("Cars")
 
@@ -48,27 +48,27 @@ library(spHelper)
  xyplot(eruptions~waiting, data = faithful,
   main = subt(subTitle = "Old Faithful Geyser Data"))
 
-## ----options2, echo = FALSE----------------------------------------------
+## ----options2, echo = FALSE-----------------------------
 knitr::opts_chunk$set(fig.width = 6, fig.align = 'center')
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------
 data(flu, package = "hyperSpec")
 
 qplot_sp(flu)
 qplot_kSp(flu)
 qplot_kSpFacets(flu)
 
-## ----qplot_kSpFacets 1, fig.height= 4------------------------------------
+## ----qplot_kSpFacets 1, fig.height= 4-------------------
 qplot_sp(flu, Title = "Flu dataset", facets = TRUE)
 qplot_kSpFacets(flu, Title = "Flu dataset")
 
-## ----qplot_kSpFacets 2, fig.height= 4------------------------------------
+## ----qplot_kSpFacets 2, fig.height= 4-------------------
 qplot_kSpFacets(flu, Title = "Flu dataset", normalize = 1)
 qplot_kSpFacets(flu, Title = "Flu dataset", normalize = FALSE)
 qplot_kSpFacets(flu, Title = "Flu dataset", normalize = -1)
 qplot_sp(flu, Title = "Flu dataset", normalize = 1)
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------
 flu$c2 <- as.factor(flu$c)
 
 # `qplot_sp` uses no fill by default
@@ -78,14 +78,14 @@ p <- qplot_sp(flu, Title = "Flu dataset", names.in = 'c2')
 p <- qplot_kSp(flu, Title = "Flu dataset", names.in = 'c2', filled = FALSE)
 p
 
-## ------------------------------------------------------------------------
+## -------------------------------------------------------
 # No name
 qplot_kSp(flu, Title = "Flu dataset", names.in = 'c2', legendName = FALSE)
 # Automatic name
 qplot_kSp(flu, Title = "Flu dataset", names.in = 'c2', legendName = TRUE)
 qplot_kSp(flu, Title = "Flu dataset", names.in = 'c2', legendName = "Concentration")
 
-## ----fig.width= 5, fig.cap = "**Fig2.** 'Plotly' example."---------------
+## ----fig.width= 5, fig.cap = "**Fig2.** 'Plotly' example."----
 
 dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
 qplot(carat, price, data = dsamp, colour = clarity) %>% ggplotly()
@@ -97,7 +97,7 @@ data("Loadings")
 qplot_kSpFacets(Loadings)
 qplot_kSpFacets(Loadings) %>% ggplotly()
 
-## ----qplot_kAmp-----------------------------------------------------------------------------
+## ----qplot_kAmp-----------------------------------------
 data(Scores)
 
 qplot_kAmp(Scores)
@@ -110,7 +110,7 @@ p
 
 p + theme_bw()
 
-## ----qplot_stat 1------------------------------------------------------------------------------
+## ----qplot_stat 1---------------------------------------
 qplot_stat(chondro,clusters,mean)
 qplot_stat(chondro,clusters,mean,All = FALSE)
 qplot_stat(chondro,clusters,mean_sd,All = FALSE) +
@@ -125,7 +125,7 @@ qplot_stat(chondro,clusters,mean_pm_sd) +
     nTick_x()
 
 
-## ----qplot_stat 2------------------------------------------------------------------------------
+## ----qplot_stat 2---------------------------------------
 qplot_stat(Spectra,gr,mean)
 qplot_stat(Spectra,gr,mean,All = FALSE)
 qplot_stat(Spectra,gr,mean_sd,All = FALSE) +
@@ -139,11 +139,11 @@ qplot_stat(Spectra,gr,mean_pm_sd) +
     facet_grid(.~gr) +
     nTick_x()
 
-## ----options 3, echo=FALSE---------------------------------------------------------------------
+## ----options 3, echo=FALSE------------------------------
 # knitr::opts_chunk$set(optDEF)
 knitr::opts_chunk$set(fig.width = 5, fig.show = "hold")
 
-## ----qplot_confusion 1-------------------------------------------------------------------------
+## ----qplot_confusion 1----------------------------------
 d <- 5 # number of rows/columns
 Mat <- matrix(sample(0:100,d ^ 2,T),d)
 colnames(Mat) <- paste0("gr",1:d)
@@ -154,7 +154,7 @@ qplot_confusion(Mat, subTitle = "Input is a matrix (1)")
 diag(Mat)[2:3] <- c(1000,250)
 qplot_confusion(Mat, subTitle = "Input is a matrix (2)")
 
-## ----qplot_confusion 2-------------------------------------------------------------------------
+## ----qplot_confusion 2----------------------------------
 set.seed(165)
 
 N <- 1000 # number of observations
@@ -182,14 +182,14 @@ conf3 <- table(Prediction,Reference)
 
 qplot_confusion(conf3, subTitle = "Correct >80%")
 
-## ----qplot_confusion 3-------------------------------------------------------------------------
+## ----qplot_confusion 3----------------------------------
 # Proportions =========================================
 
 qplot_confusion(conf3              , subTitle = "Counts")
 qplot_confusion(prop.table(conf3),   subTitle = "Proportions (total sum = 1)")
 
 
-## ----qplot_confusion 4-------------------------------------------------------------------------
+## ----qplot_confusion 4----------------------------------
 # Shades: proportional ================================
 
 qplot_confusion(conf,shades = "prop",  subTitle = "Shades: 'prop', Correct by chance");
@@ -201,14 +201,14 @@ qplot_confusion(conf2,shades = "max",  subTitle = "Shades: 'max', Correct >50%")
 qplot_confusion(conf3,shades = "prop", subTitle = "Shades: 'prop', Correct >80%");
 qplot_confusion(conf3,shades = "max",  subTitle = "Shades: 'max', Correct >80%")
 
-## ----qplot_confusion 5-------------------------------------------------------------------------
+## ----qplot_confusion 5----------------------------------
 # Shades: constant and none ===========================
 
 qplot_confusion(conf3,shades = "const",subTitle = "Shades: constant");
 qplot_confusion(conf3,shades = "none", subTitle = "Shades: none")
 
 
-## ----qplot_confusion 6-------------------------------------------------------------------------
+## ----qplot_confusion 6----------------------------------
 n <- round(N/6)
 Prediction[sample(which(Prediction == "A"),n,replace = TRUE)] <-
     sample(c("B","C"), n,replace = TRUE)
@@ -217,10 +217,10 @@ conf4 <- table(Prediction,Reference)
 
 qplot_confusion(conf4, subTitle = "Imbalanced class proportions")
 
-## ----options 5---------------------------------------------------------------------------------
+## ----options 5------------------------------------------
 knitr::opts_chunk$set(fig.width = 6, fig.show = "asis")
 
-## ----InfoDim 1---------------------------------------------------------------------------------
+## ----InfoDim 1------------------------------------------
 # Example 1 =============================================================
 my_matrix <- matrix(rexp(2000, rate = .1), ncol = 20)
 my_result <- infoDim(my_matrix)
@@ -255,14 +255,14 @@ p3 <- qplot_infoDim(Spectra, selected = 4)
 p3
 ggplotly(p3)
 
-## ----InfoDim 5---------------------------------------------------------------------------------
+## ----InfoDim 5------------------------------------------
 # Numbes of selected components can be indicated
 p4 <- qplot_infoDim(Spectra, y.log = FALSE)
 
 p4
 ggplotly(p4)
 
-## ----unipeak-----------------------------------------------------------------------------------
+## ----unipeak--------------------------------------------
 #  Example 1 -------------------------------------------------------
 
 x     <- seq(-10,20,.1)
@@ -277,7 +277,7 @@ lines(x, y0NEW, type = "l", lty = 1, lwd = 3);
 legend("topleft", legend = c("Before","After"), lty = c(3,1))
 
 
-## ----unipeak 2, fig.height=10------------------------------------------------------------------
+## ----unipeak 2, fig.height=10---------------------------
 #  Example 2 -------------------------------------------------------
 
 x  = seq(-10,20,.1)

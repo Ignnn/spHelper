@@ -22,9 +22,9 @@
 #'
 #' @export
 #'
-#' @import hyperSpec
 #' @family \code{spHelper} functions for \code{hyperSpec}
-
+#' @author Vilmantas Gegzna
+#'
 hy2mat <- function(sp)
 {    switch(class(sp),
             "hyperSpec" = sp$spc,

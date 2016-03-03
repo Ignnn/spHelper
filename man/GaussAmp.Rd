@@ -53,4 +53,10 @@ Obj <- new("hyperSpec",spc = y,    wavelength = x,
 plot(Obj, col = 1:nrow(Obj)); grid()
 
 }
+\author{
+Vilmantas Gegzna
+}
+\seealso{
+Other curves: \code{\link{unipeak}}
+}
 

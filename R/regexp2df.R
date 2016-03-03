@@ -1,5 +1,6 @@
 
 # Regular expression (named tokens) ------------------------------------------------------------------
+
 #' [+] Capture information to a dataframe by regular expressions
 #'
 #' Capture information in substrings of \code{text} that match named tokens
@@ -99,6 +100,8 @@
 #'                '(?<CSV_file>.*\\.[cC][sS][vV]$)')
 #' dir() %>% regexp2df(expr)
 #'
+#' @family `spHelper` utilities
+#' @author Vilmantas Gegzna
 
 regexp2df <- function(text, pattern, ignore.case = FALSE, ...)  {
     ParsedData <- gregexpr(pattern, text, ignore.case, perl = TRUE, ...);

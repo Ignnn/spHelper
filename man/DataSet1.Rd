@@ -27,5 +27,8 @@ and \code{.row}.
 
    # devtools::use_data(DataSet1)
 }
+\author{
+Vilmantas Gegzna
+}
 \keyword{datasets}
 

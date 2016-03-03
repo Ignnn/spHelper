@@ -1,4 +1,4 @@
-#' Extract regular expression matches captured by names
+#' [.] Extract regular expression matches captured by names
 #'
 #' regcapturedmatches.R: extracts captured matches from match data obtained
 #'  by regexpr, gregexpr or regexec.
@@ -9,7 +9,8 @@
 #' @return A list with captured matches
 #'
 #' @export
-#' @author  Daniel Marcelino
+#' @author  Daniel Marcelino (MrFlick)
+#' @source
 #' \url{https://gist.github.com/danielmarcelino/8209cfdf2cd993eeb1b3}[github.com/danielmarcelino]
 #' \url{https://gist.github.com/MrFlick/10413321}
 #' \url{http://stackoverflow.com/questions/33288075/from-matlab-to-r-capture-named-fields-with-regular-expressions-to-a-dataframe}

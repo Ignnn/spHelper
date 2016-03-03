@@ -40,8 +40,7 @@
 #'
 #' @family spHelper plots
 #' @family component analysis / factorisation related functions
-#' @import hyperSpec
-#'
+#' @author Vilmantas Gegzna
 
 plot_spDiff <- function(loadings, scores, sp,
                         Title = 'Difference between oginal and reconstructed spectra',
@@ -64,12 +63,4 @@ plot_spDiff <- function(loadings, scores, sp,
     # # Generate a plot with ggplot2
     # p <- plot_sp(spDiff,Title = Title, Facets = T)
     # invisible(p)
-}
-
-#  ------------------------------------------------------------------------
-#' @rdname plot_spDiff
-#' @export
-plot_SpDiff <- function(loadings, scores, sp,
-            Title = 'Remainders After Subtracting Components') {
-    plot_spDiff(loadings, scores, sp, Title, ...)
 }

@@ -21,6 +21,7 @@
 #'
 #' @export
 #' @family curves
+#' @author Vilmantas Gegzna
 #'
 #' @examples
 #' # Example 1

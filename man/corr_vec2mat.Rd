@@ -66,6 +66,9 @@ corr_vec2mat(vector)
 }}
 
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
 Other matrix operations: \code{\link{nDiag2nTri}},
   \code{\link{nTri2nDiag}}, \code{\link{which.in}}

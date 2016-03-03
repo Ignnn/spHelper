@@ -19,6 +19,8 @@
 #' ##[1] "Laa Laa Laa"
 #'
 #' @export
+#' @family `spHelper` utilities
+#' @author Vilmantas Gegzna
 
 makeFirstCapital <- function(x) {
     s <- strsplit(x, " ")[[1]]

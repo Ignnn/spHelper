@@ -1,6 +1,3 @@
-#' @name infoDim
-#' @aliases infoDim
-#' @aliases InfoDim
 #' @title Calculate information dimension of a matix
 #'
 #' @description The function calculates a measure, called "information dimension".
@@ -28,7 +25,7 @@
 #' @examples
 #'  my_matrix <- matrix(rexp(200, rate=.1), ncol=20)
 #'
-#'  my_result <- InfoDim(my_matrix)
+#'  my_result <- infoDim(my_matrix)
 #'
 #'  # Investigate the result
 #'  str(my_result)
@@ -41,6 +38,7 @@
 #'
 #' @family information dimension functions
 #' @family component analysis / factorisation related functions
+#' @author Vilmantas Gegzna
 #'
 infoDim <- function(Matrix){
     eigenval   <- svd(Matrix)$d
@@ -71,11 +69,3 @@ infoDim <- function(Matrix){
    # pk - tikimybines dimensiju vertes, skirtos entropijos ivertinimui.
    # explain = pk;
 }
-
-
-#' @rdname infoDim
-#' @export
-#' @section WARNING!!!:
-#' \code{InfoDim} will be removed in future versions. Use \code{infoDim} instead.
-
-InfoDim <- function(Matrix) {infoDim(Matrix)}

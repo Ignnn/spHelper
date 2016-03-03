@@ -12,6 +12,8 @@
 #' listFunctions()
 #' listFunctions(Package = "tidyr")
 #'
+#' @author Vilmantas Gegzna
+#'
 listFunctions <- function(Package = "spHelper")   {
     # Main function
     FunctionList <- unclass(lsf.str(envir = asNamespace(Package),

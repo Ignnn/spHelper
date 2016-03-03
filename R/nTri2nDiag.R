@@ -9,6 +9,7 @@
 #' @return A number of rows/columns in a symmetric matrix. May be a fractional number.
 #' @export
 #' @family matrix operations
+#' @author Vilmantas Gegzna
 #' @examples
 #' nTri2nDiag(10)
 #' nTri2nDiag(6)

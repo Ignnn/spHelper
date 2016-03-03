@@ -49,7 +49,7 @@
 #' simSpectra()$Spectra
 #'
 #' @family simmulation functions
-#'
+#' @author Vilmantas Gegzna
 simSpectra <- function(x = 300:800,
                        nGr = 2,
                        nInGr = c(50,50,50),

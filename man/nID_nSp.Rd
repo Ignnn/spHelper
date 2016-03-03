@@ -46,4 +46,7 @@ pander::pander(nID_nObs(DataSet1, ID, gr))
 nID_nSp(Spectra$.., ID = class, gr)
 
 }
+\author{
+Vilmantas Gegzna
+}
 

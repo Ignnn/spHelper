@@ -21,6 +21,8 @@
 #' whichOutlier(Scores)
 #' whichOutlier(Scores,3)
 #'
+#' @family component analysis / factorisation related functions
+#' @author Vilmantas Gegzna
 whichOutlier <- function(scores, zLimit = 2) {
     SS <- scale(scores);
     iOutlier <- which(apply({(SS < -zLimit) | (SS > zLimit)},1,any))

@@ -31,4 +31,14 @@ whichOutlier(Scores)
 whichOutlier(Scores,3)
 
 }
+\author{
+Vilmantas Gegzna
+}
+\seealso{
+Other component analysis / factorisation related functions: \code{\link{getScores}},
+  \code{\link{infoDim}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
+  \code{\link{plot_spDiff}}, \code{\link{reconstructSp}},
+  \code{\link{sortLoadings}}, \code{\link{unipeak}}
+}
 

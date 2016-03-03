@@ -32,8 +32,8 @@
 #' hyGet.palette(Spectra2)
 #'    #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
 #'
-#' @import hyperSpec
 #' @family \code{spHelper} functions for \code{hyperSpec}
+#' @author Vilmantas Gegzna
 
 hyAdd.color <- function(sp = NULL, by,
                         palette = c("#377EB8","#4DAF4A","#984EA3","#FF7F00",
@@ -49,7 +49,8 @@ hyAdd.color <- function(sp = NULL, by,
 
     # ColorNumbers[is.na(ColorNumbers)] <- nlevels(sp$gr) + 1;
 
-    ColorNumbers <- unclass(as.factor(sp[[, by]][,1]));
+    by           <- getVarValues(by, sp)
+    ColorNumbers <- unclass(as.factor(by));
     nColors <- max(ColorNumbers, na.rm = T)
 
     if (length(palette) < nColors) {
@@ -66,3 +67,4 @@ hyAdd.color <- function(sp = NULL, by,
     labels(sp, ".color") <- UniqueColors
     return(sp)
 }
+

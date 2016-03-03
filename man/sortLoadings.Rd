@@ -67,7 +67,16 @@ class(L2)
 ## [1] "hyperSpec"
 # ======================================================================
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
-More information at \code{\link[hyperSpec]{decomposition}}.
+\code{\link[hyperSpec]{decomposition}}
+
+Other component analysis / factorisation related functions: \code{\link{getScores}},
+  \code{\link{infoDim}}, \code{\link{plot_infoDim}},
+  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
+  \code{\link{plot_spDiff}}, \code{\link{reconstructSp}},
+  \code{\link{unipeak}}, \code{\link{whichOutlier}}
 }
 

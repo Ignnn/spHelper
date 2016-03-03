@@ -38,6 +38,9 @@ function(Loadings, Scores)
 function(Loadings, Scores, Spectra)
 
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
 \code{\link[ChemometricsWithR]{reconstruct}} in \pkg{ChemometricsWithR}, \cr
          \code{\link[ChemometricsWithR]{project}} in \pkg{ChemometricsWithR},\cr
@@ -46,6 +49,7 @@ function(Loadings, Scores, Spectra)
 Other component analysis / factorisation related functions: \code{\link{getScores}},
   \code{\link{infoDim}}, \code{\link{plot_infoDim}},
   \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
-  \code{\link{plot_spDiff}}
+  \code{\link{plot_spDiff}}, \code{\link{sortLoadings}},
+  \code{\link{unipeak}}, \code{\link{whichOutlier}}
 }
 

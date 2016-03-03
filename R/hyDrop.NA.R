@@ -11,9 +11,9 @@
 #' @export
 #'
 #' @family \code{spHelper} functions for \code{hyperSpec}
+#' @author Vilmantas Gegzna
 #'
 hyDrop.NA <- function(sp){
-    require(hyperSpec)
     NAcols          <- colSums(is.na(sp$..)) == nrow(sp)
     dropTheseNames  <- names(NAcols)[NAcols]
     sp <- sp[,!(colnames(sp) %in% dropTheseNames)]

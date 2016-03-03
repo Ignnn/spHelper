@@ -40,6 +40,9 @@
 #' my_duration
 #' ## Analysis completed in 2.4 mins
 #'
+#' @family `spHelper` utilities
+#' @author Vilmantas Gegzna
+#'
 printDuration <- function(Start,
                           Message = "Analysis completed in",
                           returnString = FALSE){

@@ -30,4 +30,13 @@ fCap('laa laa laa')
 ##[1] "Laa Laa Laa"
 
 }
+\author{
+Vilmantas Gegzna
+}
+\seealso{
+Other `spHelper` utilities: \code{\link{clear}},
+  \code{\link{expr2text}}, \code{\link{printDuration}},
+  \code{\link{regexp2df}}, \code{\link{rmExpr}},
+  \code{\link{subt}}, \code{\link{uncall}}
+}
 

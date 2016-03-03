@@ -82,6 +82,7 @@
 #'
 #' @family \code{spHelper} fold creation functions
 #' @seealso \code{\link[caret]{createFolds}}
+#' @author Vilmantas Gegzna
 #'
 stratifiedFolds <- function(data=NULL, gr=NULL, ID=NULL, k = 5, returnTrain = TRUE) {
     nFolds <- k

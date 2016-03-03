@@ -38,7 +38,12 @@ spStat(Spectra, by = gr,         FUN = IQR)
 spStat(Spectra, by = Spectra$gr, FUN = IQR)
 
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
 \code{\link[hyperSpec]{aggregate}}
+
+Other hyperSpcec supplements: \code{\link{hyGet.palette}}
 }
 

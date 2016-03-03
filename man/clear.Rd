@@ -6,7 +6,7 @@
 \alias{clear.fun}
 \title{[.] Clear variables from workspace (global environment)}
 \source{
-Function \code{clear} is copied from \code{\link[pracma]{clear}}
+Ideas to create \code{clear} is taken from \code{\link[pracma]{clear}}
         in \pkg{pracma}.
 }
 \usage{
@@ -43,5 +43,15 @@ clear.class("numeric")
 clear.fun()
 clear()
 
+}
+\author{
+Vilmantas Gegzna
+}
+\seealso{
+Other `spHelper` utilities: \code{\link{expr2text}},
+  \code{\link{makeFirstCapital}},
+  \code{\link{printDuration}}, \code{\link{regexp2df}},
+  \code{\link{rmExpr}}, \code{\link{subt}},
+  \code{\link{uncall}}
 }
 

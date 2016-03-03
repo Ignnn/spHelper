@@ -38,7 +38,6 @@
 #'          which will be used to convert sorted loadings into
 #'          \code{\link[=hyperSpec-class]{hyperSpec}} object.
 #'
-#' @seealso More information at \code{\link[hyperSpec]{decomposition}}.
 #'
 #' @export
 #' @examples
@@ -58,7 +57,9 @@
 #' class(L2)
 #' ## [1] "hyperSpec"
 #' # ======================================================================
-
+#' @seealso \code{\link[hyperSpec]{decomposition}}
+#' @family component analysis / factorisation related functions
+#' @author Vilmantas Gegzna
 
 sortLoadings <- function(loadings, sp = NULL, PCA = FALSE, sort = TRUE) {
     if (PCA & !is.null(sp)) { # flip

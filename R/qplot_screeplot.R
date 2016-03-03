@@ -2,13 +2,11 @@
 #' @template same
 #' @export
 
-qplot_screeplot <- function(data, ...) {
-    qplot_infoDim(data, ...)
+qplot_screeplot <- function(obj, ...) {
+    qplot_infoDim(obj, ...)
 }
 #' @rdname qplot_infoDim
-#' @template same
 #' @export
-
-qplot_scree <- function(data, ...) {
-    qplot_infoDim(data, ...)
+qplot_scree <- function(obj, ...) {
+    qplot_infoDim(obj, ...)
 }

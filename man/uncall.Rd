@@ -13,12 +13,21 @@ uncall(x)
 \item{x}{A `call` object}
 }
 \value{
-A string
+A string.
 }
 \description{
 [.] Unwrap text from `call` object
 Assumption: only the second element in a `call` can be text
 first element is an object of class "name", that can be dropped.
 This algorithm can loose some text elements.
+}
+\author{
+Vilmantas Gegzna
+}
+\seealso{
+Other `spHelper` utilities: \code{\link{clear}},
+  \code{\link{expr2text}}, \code{\link{makeFirstCapital}},
+  \code{\link{printDuration}}, \code{\link{regexp2df}},
+  \code{\link{rmExpr}}, \code{\link{subt}}
 }
 

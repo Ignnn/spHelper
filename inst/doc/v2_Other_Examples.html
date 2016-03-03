@@ -69,7 +69,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <h1 class="title">Other <code>spHelper</code> examples</h1>
-<h3 class="subtitle"><em>(spHelper v0.1.44)</em></h3>
+<h3 class="subtitle"><em>(spHelper v0.1.46)</em></h3>
 <h4 class="author"><em>Vilmantas Gegzna</em></h4>
 <h4 class="date"><em>2016-03-03</em></h4>
 
@@ -148,34 +148,45 @@ pattern3 &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span clas
 <span class="co">#&gt; 2           555 O20-5-984     S     52     8</span></code></pre></div>
 <p>List all .R files in your working directory:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">regexp2df</span>(<span class="kw">dir</span>(),<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)'</span>)
-<span class="co">#&gt;                  R_file</span>
-<span class="co">#&gt; 1 1_spHelper_Plotting.R</span>
-<span class="co">#&gt; 2    2_Other_Examples.R</span></code></pre></div>
+<span class="co">#&gt;                   R_file</span>
+<span class="co">#&gt; 1 v1_spHelper_Plotting.R</span>
+<span class="co">#&gt; 2    v2_Other_Examples.R</span></code></pre></div>
 <p>Do the same by using chaining operator <code>%&gt;%</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">library</span>(dplyr)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'dplyr'</span>
+<span class="co">#&gt; The following object is masked from 'package:hyperSpec':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     collapse</span>
+<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     filter, lag</span>
+<span class="co">#&gt; The following objects are masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 
  <span class="kw">dir</span>() %&gt;%<span class="st"> </span><span class="kw">regexp2df</span>(<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)'</span>)
-<span class="co">#&gt;                  R_file</span>
-<span class="co">#&gt; 1 1_spHelper_Plotting.R</span>
-<span class="co">#&gt; 2    2_Other_Examples.R</span></code></pre></div>
+<span class="co">#&gt;                   R_file</span>
+<span class="co">#&gt; 1 v1_spHelper_Plotting.R</span>
+<span class="co">#&gt; 2    v2_Other_Examples.R</span></code></pre></div>
 <p>Capture several types of files:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> expr &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)|'</span>,
                 <span class="st">'(?&lt;Rmd_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]md$)|'</span>,
                 <span class="st">'(?&lt;HTML_file&gt;.*</span><span class="ch">\\</span><span class="st">.html$)'</span>)
  <span class="kw">dir</span>() %&gt;%<span class="st"> </span><span class="kw">regexp2df</span>(expr) 
-<span class="co">#&gt;                  R_file                      Rmd_file</span>
-<span class="co">#&gt; 1                                                    </span>
-<span class="co">#&gt; 2 1_spHelper_Plotting.R                              </span>
-<span class="co">#&gt; 3                             1_spHelper_Plotting.Rmd</span>
-<span class="co">#&gt; 4    2_Other_Examples.R                              </span>
-<span class="co">#&gt; 5                                2_Other_Examples.Rmd</span>
-<span class="co">#&gt; 6                       3_Plotting_Examples_gg-hy.Rmd</span>
-<span class="co">#&gt;                  HTML_file</span>
-<span class="co">#&gt; 1 1_spHelper_Plotting.html</span>
-<span class="co">#&gt; 2                         </span>
-<span class="co">#&gt; 3                         </span>
-<span class="co">#&gt; 4                         </span>
-<span class="co">#&gt; 5                         </span>
+<span class="co">#&gt;                   R_file                       Rmd_file</span>
+<span class="co">#&gt; 1                                                      </span>
+<span class="co">#&gt; 2 v1_spHelper_Plotting.R                               </span>
+<span class="co">#&gt; 3                              v1_spHelper_Plotting.Rmd</span>
+<span class="co">#&gt; 4    v2_Other_Examples.R                               </span>
+<span class="co">#&gt; 5                                 v2_Other_Examples.Rmd</span>
+<span class="co">#&gt; 6                        v3_Plotting_Examples_gg_hy.Rmd</span>
+<span class="co">#&gt;                   HTML_file</span>
+<span class="co">#&gt; 1 v1_spHelper_Plotting.html</span>
+<span class="co">#&gt; 2                          </span>
+<span class="co">#&gt; 3                          </span>
+<span class="co">#&gt; 4                          </span>
+<span class="co">#&gt; 5                          </span>
 <span class="co">#&gt; 6</span></code></pre></div>
 </div>
 <div id="stratifiedfolds-createfolds2-and-foldstets" class="section level1">

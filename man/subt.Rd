@@ -69,5 +69,15 @@ xyplot(eruptions~waiting, data = faithful,
 
 xyplot(eruptions~waiting, data = faithful,
  main = subt(subTitle = "Old Faithful Geyser Data"))
+
+}
+\author{
+Vilmantas Gegzna
+}
+\seealso{
+Other `spHelper` utilities: \code{\link{clear}},
+  \code{\link{expr2text}}, \code{\link{makeFirstCapital}},
+  \code{\link{printDuration}}, \code{\link{regexp2df}},
+  \code{\link{rmExpr}}, \code{\link{uncall}}
 }
 

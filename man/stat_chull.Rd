@@ -3,6 +3,9 @@
 \name{stat_chull}
 \alias{stat_chull}
 \title{[+] A convex hull layer for \code{ggplot2}}
+\source{
+Source: vignette \href{https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html}{Extending ggplot2}
+}
 \usage{
 stat_chull(mapping = NULL, data = NULL, geom = "polygon",
   position = "identity", na.rm = FALSE, show.legend = NA,
@@ -43,7 +46,6 @@ Layer of convex hull for \pkg{ggplot2} plots.
 }
 \description{
 Create a layer of convex hull for \pkg{ggplot2} plots.\cr
-Source: vignette \href{https://cran.r-project.org/web/packages/ggplot2/vignettes/extending-ggplot2.html}{Extending ggplot2}
 }
 \examples{
 
@@ -61,6 +63,9 @@ ggplot(mpg, aes(displ, hwy)) +
              stat_chull(geom = "point", size = 4, colour = "red") +
              geom_point()
 
+}
+\author{
+Hadley Wickham
 }
 \seealso{
 Other spHelper plots: \code{\link{nTick}},

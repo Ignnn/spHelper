@@ -23,11 +23,11 @@
 #' @section MATLAB code:
 #'
 #' The MATLAB code used to generate csv files:
-#' \href{Save_DS_for_R.m}{https://github.com/GegznaV/spHelper/blob/master/data-raw/Save_DS_for_R.m}
+#' \href{https://github.com/GegznaV/spHelper/tree/master/inst/doc/Save_DS_for_R.m}{Save_DS_for_R.m}
 #'
 #' @export
-#' @import hyperSpec
 #' @family \code{spHelper} functions for \code{hyperSpec}
+#' @author Vilmantas Gegzna
 
 read3csv2hy <- function(FileName_base){
 

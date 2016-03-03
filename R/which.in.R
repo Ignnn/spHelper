@@ -62,7 +62,7 @@
 #'  which.in(triupp, m1)
 #'
 #' @family matrix operations
-
+#' @author Vilmantas Gegzna
 
 which.in <- function(type, x,  ...){
     type <- as.character(match.call()$type)

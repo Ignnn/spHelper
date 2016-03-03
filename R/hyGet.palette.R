@@ -21,6 +21,8 @@
 #' labels(Spectra2,".color")
 #'    #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
 #'
+#' @family hyperSpcec supplements
+#' @author Vilmantas Gegzna
 hyGet.palette <- function(sp){
     if (class(sp) == "hyperSpec") {
         Palette <- labels(sp,".color")

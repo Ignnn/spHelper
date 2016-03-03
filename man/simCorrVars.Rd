@@ -49,6 +49,9 @@ simCorrVars(c(.1,.5,.8), N = 10)
 
 # ------------------------------------------------------------
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
 \code{\link{corr_vec2mat}}, \link[MASS]{mvrnorm}, \link[base]{chol}
 

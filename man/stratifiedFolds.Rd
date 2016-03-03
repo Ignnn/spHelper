@@ -88,6 +88,9 @@ If \code{k} is such big, that some folds have no observations of a certain group
 
 
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
 \code{\link[caret]{createFolds}}
 

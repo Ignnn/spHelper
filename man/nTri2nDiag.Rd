@@ -24,6 +24,9 @@ nTri2nDiag(10)
 nTri2nDiag(6)
 
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
 Other matrix operations: \code{\link{corr_vec2mat}},
   \code{\link{nDiag2nTri}}, \code{\link{which.in}}

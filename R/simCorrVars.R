@@ -39,6 +39,7 @@
 #'
 #' # ------------------------------------------------------------
 #' @family simmulation functions
+#' @author Vilmantas Gegzna
 #'
 simCorrVars <- function(corrMat, N = 100){
     if (missing(corrMat)) {

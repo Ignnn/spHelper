@@ -58,5 +58,8 @@ and spectroscopic decomposition data (\code{Loadings..} series - spectra
 of spectroscopic components and \code{Scores..} series - amplitudes
 of spectroscopic componens).
 }
+\author{
+Vilmantas Gegzna
+}
 \keyword{datasets}
 

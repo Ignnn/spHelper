@@ -28,6 +28,9 @@
 #' spStat(Spectra, by = gr,         FUN = IQR)
 #' spStat(Spectra, by = Spectra$gr, FUN = IQR)
 #'
+#' @family hyperSpcec supplements
+#' @author Vilmantas Gegzna
+#'
 spStat <- function(sp, by, FUN = mean,
                    Name_of.by = as.character(match.call()$by)){
 	if (missing(by)) stop('Argument `by` is missing with no default.')

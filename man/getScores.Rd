@@ -56,6 +56,9 @@ sc <- getScores(Spectra, Loadings)
 sc
 plot_scores(sc)
 }
+\author{
+Vilmantas Gegzna
+}
 \references{
 [1] M. Brydegaard et al. IEEE Photonics J 2011:3(3);406-21.
 }
@@ -65,6 +68,7 @@ plot_scores(sc)
 Other component analysis / factorisation related functions: \code{\link{infoDim}},
   \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
   \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
-  \code{\link{reconstructSp}}
+  \code{\link{reconstructSp}}, \code{\link{sortLoadings}},
+  \code{\link{unipeak}}, \code{\link{whichOutlier}}
 }
 

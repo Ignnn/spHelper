@@ -16,6 +16,7 @@
 #'
 #' @family matrix operations
 #' @family simmulation functions
+#' @author Vilmantas Gegzna
 #'
 #' @examples
 #'

@@ -15,3 +15,4 @@
 #               name = "$\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}$") %>%
 #     layout(xaxis = list(title = "$\\sqrt{(n_\\text{c}(t|{T_\\text{early}}))}$"),
 #            yaxis = list(title = "$d, r \\text{ (solar radius)}$"))
+

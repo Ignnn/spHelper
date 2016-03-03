@@ -19,8 +19,8 @@
 #' \code{\link{sortLoadings}} \cr
 #' \code{\link{GaussAmp}} \cr
 #' \code{\link{getScores}} \cr
-#' \code{\link{InfoDim}} \cr
-#' \code{\link{InfoDim_plot}} \cr
+#' \code{\link{infoDim}} \cr
+#' \code{\link{qplot_infoDim}} \cr
 #' \code{\link{whichOutlier}} \cr
 #'
 #'
@@ -34,16 +34,17 @@
 #'
 #' @section Plotting:
 #'
-#' \code{\link{plot_kAmp}} \cr
-#' \code{\link{plot_kSp}} \cr
-#' \code{\link{plot_kSpFacets}} \cr
-#' \code{\link{plot_SpDiff}}    \cr
-#' \code{\link{plot_confusion}}  \cr
-#' \code{\link{plot_stat}}  \cr
+#' \code{\link{qplot_kAmp}} \cr
+#' \code{\link{qplot_kSp}} \cr
+#' \code{\link{qplot_kSpFacets}} \cr
+#' \code{\link{qplot_confusion}}  \cr
+#' \code{\link{qplot_stat}}  \cr
+#' \code{\link{plot_spDiff}}    \cr
+#' 
 #'
 #'
 #' \code{\link{subt}}          \cr
-#' \code{\link{InfoDim_plot}} \cr
+#' \code{\link{qplot_infoDim}} \cr
 #' \code{\link{getReconstructed}} \cr
 #'
 #'
@@ -63,7 +64,10 @@
 #' \code{\link{hyDrop.NA}} \cr
 #'
 #'
+#' @author Vilmantas Gegzna
 #'
+#' @import ggplot2
+#' @importFrom tidyr '%>%'
 #' @examples
 #'
 #' \donttest{

@@ -4,7 +4,7 @@
 #' enable them to be plotted with \code{\link[plotly]{ggplotly}}.
 #' @param p ggplot2 object
 #'
-#' @return ggplot2 object
+#' @return `ggplot2` object
 #' @export
 #'
 #' @examples
@@ -41,7 +41,8 @@
 #' }}
 #'
 #' @family spHelper plots
-#'
+#' @family `spHelper` utilities
+#' @author Vilmantas Gegzna
 rmExpr <- function(p = ggplot2::last_plot()) {
     p$labels  <- lapply(p$labels, expr2text)
     return(p)
@@ -54,9 +55,10 @@ rmExpr <- function(p = ggplot2::last_plot()) {
 #'
 #' @param x A `call` object
 #'
-#' @return A string
+#' @return A string.
 #' @export
-#'
+#' @family `spHelper` utilities
+#' @author Vilmantas Gegzna
 uncall <- function(x){
 
     x <- as.list(x)[-1]
@@ -74,7 +76,9 @@ uncall <- function(x){
 #' @param x `Call` object or `expression`
 #'
 #' @export
-
+#' @family `spHelper` utilities
+#' @author Vilmantas Gegzna
+#'
 expr2text <- function(x) {
     x <- switch(class(x),
                 # expression = simsalapar::escapeLatex(as.call(x)),

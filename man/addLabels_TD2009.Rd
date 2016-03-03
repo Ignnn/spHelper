@@ -21,9 +21,13 @@ Function is designed to label data collected during investigation called "TD_200
 Select data columns, that are not removed, and add labels to
  \code{\link[=hyperSpec-class]{hyperSpec}} object of "TD_2009" data.
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
 Other \code{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},
   \code{\link{hy2mat}}, \code{\link{hyAdd.color}},
-  \code{\link{hyDrop.NA}}, \code{\link{read3csv2hy}}
+  \code{\link{hyAdd}}, \code{\link{hyDrop.NA}},
+  \code{\link{read3csv2hy}}
 }
 

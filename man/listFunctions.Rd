@@ -21,4 +21,7 @@ listFunctions()
 listFunctions(Package = "tidyr")
 
 }
+\author{
+Vilmantas Gegzna
+}
 

@@ -2,7 +2,12 @@
 % Please edit documentation in R/regcapturedmatches.R
 \name{regcapturedmatches}
 \alias{regcapturedmatches}
-\title{Extract regular expression matches captured by names}
+\title{[.] Extract regular expression matches captured by names}
+\source{
+\url{https://gist.github.com/danielmarcelino/8209cfdf2cd993eeb1b3}[github.com/danielmarcelino]
+\url{https://gist.github.com/MrFlick/10413321}
+\url{http://stackoverflow.com/questions/33288075/from-matlab-to-r-capture-named-fields-with-regular-expressions-to-a-dataframe}
+}
 \usage{
 regcapturedmatches(x, m)
 }
@@ -28,9 +33,6 @@ regcapturedmatches(x,m)
 
 }
 \author{
-Daniel Marcelino
-\url{https://gist.github.com/danielmarcelino/8209cfdf2cd993eeb1b3}[github.com/danielmarcelino]
-\url{https://gist.github.com/MrFlick/10413321}
-\url{http://stackoverflow.com/questions/33288075/from-matlab-to-r-capture-named-fields-with-regular-expressions-to-a-dataframe}
+Daniel Marcelino (MrFlick)
 }
 

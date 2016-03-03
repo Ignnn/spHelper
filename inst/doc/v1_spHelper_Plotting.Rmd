@@ -1,5 +1,5 @@
 ---
-title: "Plotting Examples with `spHelper`"
+title: "`spHelper` Plotting Examples"
 subtitle: "(spHelper v`r packageVersion('spHelper')`)"
 author: "Vilmantas Gegzna"
 date: "`r Sys.Date()`"

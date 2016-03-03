@@ -6,7 +6,6 @@
 #' Select data columns, that are not removed, and add labels to
 #'  \code{\link[=hyperSpec-class]{hyperSpec}} object of "TD_2009" data.
 #'
-#'
 #' @param sp A \code{\link[=hyperSpec-class]{hyperSpec}} object of TD_2009 data,
 #'             created by function \code{\link{read3csv2hy}}.
 #' @param language A string, indicating a language of labels. Possible entries are
@@ -14,11 +13,10 @@
 #'
 #' @return A labeled object with reduced number of data columns.
 #'
-#'
 #' @export
-#' @import hyperSpec
 #' @family \code{spHelper} functions for \code{hyperSpec}
-
+#' @author Vilmantas Gegzna
+#'
 addLabels_TD2009 <- function(sp,language = "EN")  {
     ColsInitial <- colnames(sp) # save initial column names
 

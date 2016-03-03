@@ -32,6 +32,7 @@
 #'
 #' @import hyperSpec
 #' @family component analysis / factorisation related functions
+#' @author Vilmantas Gegzna
 #'
 reconstructSp  <-  function(loadings, scores, sp = NULL)     {
     reconstructed <- (hy2mat(scores)) %*% (hy2mat(loadings))
@@ -45,7 +46,6 @@ reconstructSp  <-  function(loadings, scores, sp = NULL)     {
 
 #===========================================================================
 #' @template same
-#'
 #' @rdname reconstructSp
 #' @export
 getReconstructed  <-  function(...,sp) {

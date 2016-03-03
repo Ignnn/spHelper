@@ -12,6 +12,7 @@
 #'   \item{.row}{A row number.}
 #' }
 #' @source Artificially generated in R.
+#' @author Vilmantas Gegzna
 #' @examples
 #'    DataSet1 <- data.frame(ID = gl(n = 20, k = 2),
 #'                          gr = gl(n = 4, labels = LETTERS[1:4], k = 10))
@@ -47,7 +48,9 @@
 #'   \item{order.of.rows}{Original order of components before sorting.}
 #' }
 #' @source Artificially generated in R.
+#' @author Vilmantas Gegzna
 
+# Datasets Loadings -------------------------------------------------------
 #' @rdname Datasets-sp
 'Loadings'
 #' @rdname Datasets-sp

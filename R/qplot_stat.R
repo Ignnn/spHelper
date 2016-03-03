@@ -1,5 +1,3 @@
-
-
 #' @name qplot_stat
 #'
 #' @title [+] Plot a summary statistic of spectroscopic data by group
@@ -46,9 +44,7 @@
 #'
 #' @seealso \code{\link{spStat}}
 #' @family spHelper plots
-#'
-#' @import ggplot2
-#' @import hyperSpec
+#' @author Vilmantas Gegzna
 #'
 qplot_stat <- function(sp,
                        by =  stop("Argument 'by' is missing."),

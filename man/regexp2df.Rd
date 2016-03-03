@@ -105,11 +105,19 @@ expr <- paste0('(?<R_file>.*\\\\.[rR]$)|',
 dir() \%>\% regexp2df(expr)
 
 }
+\author{
+Vilmantas Gegzna
+}
 \seealso{
 @seealso More about regular expressions used in R: \link[base]{regex}\cr
 
          \code{\link[base]{gregexpr}},
          \code{\link{regcapturedmatches}},
          \code{\link[dplyr]{\%>\%}}
+
+Other `spHelper` utilities: \code{\link{clear}},
+  \code{\link{expr2text}}, \code{\link{makeFirstCapital}},
+  \code{\link{printDuration}}, \code{\link{rmExpr}},
+  \code{\link{subt}}, \code{\link{uncall}}
 }
 
