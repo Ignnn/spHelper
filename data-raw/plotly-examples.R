@@ -199,10 +199,12 @@ p <- mtcars %>%
 p
 
 
-#  ------------------------------------------------------------------------
 
 
-# Correct manually --------------------------------------------------------
+# =========================================================================
+# Correct `plotly` manually -----------------------------------------------
+require(spHelper)
+clear()
 
 data(flu, package = "hyperSpec")
 
@@ -224,30 +226,32 @@ ggplotly(p2)
 
 #----------------------------------
 
-qplotspc(aggregate(chondro, chondro$clusters, mean_pm_sd),
+p <- qplotspc(aggregate(chondro, chondro$clusters, mean_pm_sd),
          mapping = aes(x = .wavelength,
                        y = spc,
                        colour = clusters)) +
     facet_grid(clusters ~ .) + ggtitle("Spectra of Chondrocytes")
 
-rmExpr()
-ggplotly()
+p <- rmExpr(p)
+p
+
+ggplotly(p)
 
 # Namually correct `plotly` object
-pp  <- plotly_build(p)
-ppp <- plotly_build(p2)
-str(ppp)
+q2  <- plotly_build(p)
+q1 <- plotly_build(p2)
+str(q2)
 # Add legend
-pp$layout$showlegend <- TRUE
+q2$layout$showlegend <- TRUE
 
 # Remove stripe text
-pp$layout$annotations[1:3] <- NULL
+q2$layout$annotations[1:3] <- NULL
 
 # Position of legends
-pp$layout$annotations[[1]]$y <- -.1
-pp$layout$annotations[[2]]$x <- -.2
-pp
+q2$layout$annotations[[1]]$y <- -.05
+q2$layout$annotations[[2]]$x <- -.1
+q2
 
-p = ggplot2::last_plot()
-p$labels$x
-#' }}
+p0 = ggplot2::last_plot()
+p0$labels$x
+#'

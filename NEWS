@@ -1,10 +1,12 @@
-spHelper v0.1.043 (2016-03-02)
+spHelper v0.1.045 (2016-03-02)
 ==============================
+Renamed functions
+For consistency, renamed `ggplot2` based plotting functions from "plot_..." to "qplot_..." (here "..." is an unchanged part of functions name).
 
 Removed functions:
 
 - InfoDim_plot
-
+-
 
 
 
