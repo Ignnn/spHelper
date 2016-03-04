@@ -21,16 +21,39 @@ If class of \code{sp} is not \code{hyperSpec}, function returns
       \code{NULL}.
 }
 \examples{
+
 data(Spectra)
 Spectra2 <- hyAdd.color(Spectra, "class")
 
+colnames(Spectra)
+   #> [1] "gr"    "class" "spc"
+
+colnames(Spectra2)
+   #> [1] "gr"     "class"  "spc"    ".color"
+
 # Names of colors, used for each level of factor variable
+labels(Spectra2,".color")
+   #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
 
 hyGet.palette(Spectra2)
    #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
 
+# ATTENTION -------------------------------------------------
+
+# Preserve labels/ color palette:
+Spectra2[1,".color"] <- "red"
+hyGet.palette(Spectra2)
+    #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
+
+# Overwrite labels/ color palette:
+Spectra2$.color[1] <- "red"
+hyGet.palette(Spectra2)
+    #>  Warning message:
+    #>  In hyGet.palette(Spectra2) : Values of pallete do not exist.
+    #>  Most probably they are overwriten by operation `$.color<-`.
+
 labels(Spectra2,".color")
-   #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
+    #>  ".color"
 
 }
 \author{
