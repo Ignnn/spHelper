@@ -8,8 +8,10 @@
 #' @param amp ...
 #' @param gr_test  ...
 #' @param gr_predict ...
+#'
 #' @param colors ...
 #' @param k ...
+#' @param color_list List of colors to be used. If used, \code{colors} is ignored.
 #'
 #' @return ...
 #' @export
@@ -19,7 +21,9 @@
 #' @examples
 #'  #NO EXAMPLES YET
 #'
-plot_multiDim <- function(amp, gr_test, gr_predict, colors, k = 2) {
+plot_multiDim <- function(amp, gr_test, gr_predict,
+                          colors, k = 2,
+                          color_list =  colors[factor(gr_predict)]) {
 
     # amp <- AMP_obj$spc
     # gr_test <- test$gr
@@ -33,7 +37,7 @@ plot_multiDim <- function(amp, gr_test, gr_predict, colors, k = 2) {
     blogi_idx <- gr_test !=  gr_predict
 
     # color_list <-  unique(AMP_obj$.color)[factor(gr_sample)]
-    color_list <-  colors[factor(gr_predict)]
+    # color_list <-  colors[factor(gr_predict)] # moved to function's input.
     color_original <- color_list
     color_list[blogi_idx] <- 'red'
 
@@ -44,9 +48,9 @@ plot_multiDim <- function(amp, gr_test, gr_predict, colors, k = 2) {
     x <- fit$points[,1]
     y <- fit$points[,2]
     plot(x, y,
-         xlab = "Coordinate 1",
-         ylab = "Coordinate 2",
-         main = "Metric	MDS",
+         xlab = "Projection 1",
+         ylab = "Projection 2",
+         main = subt("Proximity of Groups", "Metric multidimensional scaling"),
          type = "p",
          col = color_original,
          pch = 20)

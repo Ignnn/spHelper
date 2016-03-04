@@ -47,9 +47,9 @@ Vilmantas Gegzna
          \code{\link[Rssa]{reconstruct}} in \pkg{Rssa}
 
 Other component analysis / factorisation related functions: \code{\link{getScores}},
-  \code{\link{infoDim}}, \code{\link{plot_infoDim}},
-  \code{\link{plot_kAmp}}, \code{\link{plot_kSp}},
-  \code{\link{plot_spDiff}}, \code{\link{sortLoadings}},
+  \code{\link{infoDim}}, \code{\link{plot_spDiff}},
+  \code{\link{qplot_infoDim}}, \code{\link{qplot_kAmp}},
+  \code{\link{qplot_kSp}}, \code{\link{sortLoadings}},
   \code{\link{unipeak}}, \code{\link{whichOutlier}}
 }
 

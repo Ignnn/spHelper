@@ -4,7 +4,8 @@
 \alias{plot_multiDim}
 \title{[~!~] Groups dicrimination - test vs. prediction.}
 \usage{
-plot_multiDim(amp, gr_test, gr_predict, colors, k = 2)
+plot_multiDim(amp, gr_test, gr_predict, colors, k = 2,
+  color_list = colors[factor(gr_predict)])
 }
 \arguments{
 \item{amp}{...}
@@ -16,6 +17,8 @@ plot_multiDim(amp, gr_test, gr_predict, colors, k = 2)
 \item{colors}{...}
 
 \item{k}{...}
+
+\item{color_list}{List of colors to be used. If used, \code{colors} is ignored.}
 }
 \value{
 ...

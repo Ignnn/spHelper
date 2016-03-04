@@ -42,7 +42,7 @@
 #'
 #' @import hyperSpec
 #'
-#' @seealso \code{\link{plot_scores}}
+#' @seealso \code{\link{qplot_scores}}
 #' @family component analysis / factorisation related functions
 #' @author Vilmantas Gegzna
 #'
@@ -50,7 +50,7 @@
 #'
 #' sc <- getScores(Spectra, Loadings)
 #' sc
-#' plot_scores(sc)
+#' qplot_scores(sc)
 
 getScores <- function(sp, loadings = NULL,
                       xLabel = "Component",

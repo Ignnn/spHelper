@@ -48,11 +48,11 @@ Vilmantas Gegzna
 }
 \seealso{
 Other component analysis / factorisation related functions: \code{\link{getScores}},
-  \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
-  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
+  \code{\link{plot_spDiff}}, \code{\link{qplot_infoDim}},
+  \code{\link{qplot_kAmp}}, \code{\link{qplot_kSp}},
   \code{\link{reconstructSp}}, \code{\link{sortLoadings}},
   \code{\link{unipeak}}, \code{\link{whichOutlier}}
 
-Other information dimension functions: \code{\link{plot_infoDim}}
+Other information dimension functions: \code{\link{qplot_infoDim}}
 }
 

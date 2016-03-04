@@ -54,7 +54,7 @@ This formula is taken and adapted from [1].
 
 sc <- getScores(Spectra, Loadings)
 sc
-plot_scores(sc)
+qplot_scores(sc)
 }
 \author{
 Vilmantas Gegzna
@@ -63,11 +63,11 @@ Vilmantas Gegzna
 [1] M. Brydegaard et al. IEEE Photonics J 2011:3(3);406-21.
 }
 \seealso{
-\code{\link{plot_scores}}
+\code{\link{qplot_scores}}
 
 Other component analysis / factorisation related functions: \code{\link{infoDim}},
-  \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
-  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
+  \code{\link{plot_spDiff}}, \code{\link{qplot_infoDim}},
+  \code{\link{qplot_kAmp}}, \code{\link{qplot_kSp}},
   \code{\link{reconstructSp}}, \code{\link{sortLoadings}},
   \code{\link{unipeak}}, \code{\link{whichOutlier}}
 }

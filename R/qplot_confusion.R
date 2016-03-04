@@ -104,7 +104,7 @@ qplot_confusion <- function(conf,
                           subTitle = NULL,
                           shades = c("prop","max","const","none"),
                           guide = FALSE,
-                          text.size = 4,
+                          text.size = 5,
                           decimals = 2) {
     if (!is.table(conf)) {       conf <- as.table(conf)    }
 

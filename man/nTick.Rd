@@ -42,10 +42,11 @@ Vilmantas Gegzna
 \seealso{
 Pretty breakpoints: \code{\link[base]{pretty}}.
 
-Other \pkg{spHelper} plots: \code{\link{plot_confusion}},
-  \code{\link{plot_infoDim}}, \code{\link{plot_kAmp}},
-  \code{\link{plot_kSp}}, \code{\link{plot_spDiff}},
-  \code{\link{plot_stat}}, \code{\link{rmExpr}},
-  \code{\link{stat_chull}}
+Other \pkg{spHelper} plots: \code{\link{plot_spDiff}},
+  \code{\link{qplot_confusion}},
+  \code{\link{qplot_crosstab}},
+  \code{\link{qplot_infoDim}}, \code{\link{qplot_kAmp}},
+  \code{\link{qplot_kSp}}, \code{\link{qplot_stat}},
+  \code{\link{rmExpr}}, \code{\link{stat_chull}}
 }
 
