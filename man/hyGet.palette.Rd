@@ -40,12 +40,12 @@ hyGet.palette(Spectra2)
 
 # ATTENTION -------------------------------------------------
 
-# Preserve labels/ color palette:
+# Preserve labels/ color palette (operator ` ]<-`):
 Spectra2[1,".color"] <- "red"
 hyGet.palette(Spectra2)
     #>  "#377EB8" "#4DAF4A" "#984EA3" "#FF7F00"
 
-# Overwrite labels/ color palette:
+# Overwrite labels/ color palette (operator `$<-`):
 Spectra2$.color[1] <- "red"
 hyGet.palette(Spectra2)
     #>  Warning message:

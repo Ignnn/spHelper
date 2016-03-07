@@ -1,0 +1,143 @@
+
+# plot_multiDim -----------------------------------------------------------
+
+#' [!!!] Plot a multi-dimensiolally scaled (MDS) scatterplot
+#'
+#' /No description yet/ multidimensional scaling is used
+#'
+#' @template scores
+#' @param Reference  Reference grpups. Either a variable name or a vector.
+#' @param Prediction Predicted groups. Either a variable name or a vector.
+#' @param stat A statistic to be added, either "chull" - convex hull (default),
+#'        "ellipse" or "none"
+#' @param type A type of data for scatterplot: either "prediction" (default)
+#'        or "reference".
+#' @param type.stat A type of data for \code{stat}: either  "prediction"
+#'                  (default) or "reference".
+#' @param xproj,yproj An integer: a number of MDS projection to plot on x, y axis
+#'       (respectively).
+#' @param MDS A type of Multi-Dimensional Scaling.
+#' @param palette A color palete to be used. Default is `ggplot2` default palette.
+#' @template labels
+#' @inheritParams MASS::isoMDS
+#'
+#' @template ggplot
+#' @export
+#'
+#' @author Vilmantas Gegzna
+#' @family \pkg{spHelper} plots
+#' @examples
+#'
+#' # Example with a `hyperSpec` object:
+#'
+# data(Scores)
+# Scores$Prediction <- sample(Scores$gr)
+# Scores <- hyAdd.color(sp = Scores, by = "gr", palette = c("tan3", "green4","skyblue"))
+#
+# qplot_prediction(Scores,Prediction = "Prediction", Reference = "gr")
+# qplot_prediction(Scores,Prediction = "Prediction", Reference = "gr", type = "ref")
+#
+# qplot_prediction(Scores,"Prediction","gr", type.stat = "ref", MDS = "isoMDS")
+#
+# sc <- Scores[,,c(1,3),wl.index = TRUE]
+# qplot_prediction(sc,"Prediction","gr", type = "reference")
+# qplot_prediction(sc,"Prediction","gr", type = "prediction")
+# qplot_prediction(sc,"Prediction","gr", type = "prediction", type.stat = "ref")
+# qplot_prediction(sc,"Prediction","gr", type = "prediction", type.stat = "ref",stat ="ellipse")
+#
+# qplot_scatterMDS(sc, "gr")
+
+
+qplot_prediction   <- function(scores,
+                       Prediction,
+                       Reference,
+                       xLabel = paste("Projection", xproj),
+                       yLabel = paste("Projection", yproj),
+                       Title  = "Proximity of Groups",
+                       subTitle = NULL,
+                       palette = hyGet.palette(scores),
+                       type = c("Prediction", "Reference"),
+                       stat = c("chull","ellipse","none"),
+                       type.stat = type,
+                       MDS = c("metric","isoMDS"),
+                       k = 2,
+                       xproj = 1,
+                       yproj = 2) {
+# Get input variables
+    try(Prediction <- getVarValues(Prediction, scores), silent = TRUE)
+    try(Reference  <- getVarValues(Reference,  scores), silent = TRUE)
+
+    scores <- if (class(scores) == "hyperSpec") hy2mat(scores) else as.matrix(scores)
+
+    type      <- match.arg(fCap(type[1]),      c("Prediction", "Reference"))
+    type.stat <- match.arg(fCap(type.stat[1]), c("Prediction", "Reference"))
+
+# Prepare data:
+    scores <- scale(scores)
+    PredictorNames <- paste(colnames(scores), collapse = ", ")
+
+    is_misclassified <- factor(Reference !=  Prediction,
+                               c("TRUE","FALSE"),c("Misclassified","Correct"))
+
+
+
+        # Prediction       <- rep(NA, length(Reference))
+        # is_misclassified <- as.factor(rep(FALSE, length(Reference)))
+        # type      <- "Groups"
+        # type.stat <- "Groups"
+        # shGuide   <- FALSE
+
+
+# Do MDS
+    d   <- dist(scores) # Euclidean distances between the rows
+    fit <- switch(MDS[1],
+                 isoMDS = MASS::isoMDS(d, k = 2,trace = FALSE),
+                 cmdscale(d,eig = TRUE, k) # k is the number of dim
+    )
+
+# Create a data frame
+    data <-  data.frame(x = fit$points[,xproj],
+                        y = fit$points[,yproj],
+               Prediction = Prediction,
+                Reference = Reference,
+           Classification = is_misclassified
+    )
+
+# Plot
+    p <- ggplot(data = data, aes_string(x = "x", y = "y", color = type))
+
+    p <- p +
+        geom_point(aes(shape = Classification)) +
+        scale_shape_manual(values = c("Misclassified" = 4, "Correct" = 19)) +
+        theme_bw() +
+        labs(x = xLabel,
+             y = yLabel,
+             title = subt(Title, subTitle))
+
+    # subTitle <- paste("Predictors:", PredictorNames)
+
+    switch(stat[1],
+           chull   = {p <- p + stat_chull(  aes_string(color = type.stat),fill = NA)},
+           ellipse = {p <- p + stat_ellipse(aes_string(color = type.stat))}
+    )
+
+    if (!is.null(palette)) p <- p + scale_color_manual(values = palette)
+
+    return(p)
+}
+
+#' @rdname qplot_prediction
+#' @param by A grouping variable
+#' @template  same
+#' @export
+
+qplot_scatterMDS   <- function(scores, by, ...) {
+             by  <- getVarValues(by, scores)
+
+    qplot_prediction(scores,
+                      Prediction = by,
+                      Reference  = by,
+                      ...) +
+        guides(shape = FALSE,
+               color = guide_legend("Groups"))
+}
