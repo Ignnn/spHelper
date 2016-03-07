@@ -11,7 +11,7 @@
 
 <meta name="author" content="Vilmantas Gegzna" />
 
-<meta name="date" content="2016-03-03" />
+<meta name="date" content="2016-03-08" />
 
 <title>Other spHelper examples</title>
 
@@ -69,16 +69,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <h1 class="title">Other <code>spHelper</code> examples</h1>
-<h3 class="subtitle"><em>(spHelper v0.1.46)</em></h3>
+<h3 class="subtitle"><em>(spHelper v0.1.52)</em></h3>
 <h4 class="author"><em>Vilmantas Gegzna</em></h4>
-<h4 class="date"><em>2016-03-03</em></h4>
+<h4 class="date"><em>2016-03-08</em></h4>
 
 </div>
 
 <div id="TOC">
 <ul>
 <li><a href="#regular-expressions-regexp2df"><span class="toc-section-number">1</span> Regular expressions <code>regexp2df</code></a></li>
-<li><a href="#stratifiedfolds-createfolds2-and-foldstets"><span class="toc-section-number">2</span> <code>stratifiedFolds</code>, <code>createFolds2</code> and <code>foldsTets</code></a></li>
+<li><a href="#stratifiedfolds-createfolds2-and-foldtests"><span class="toc-section-number">2</span> <code>stratifiedFolds</code>, <code>createFolds2</code> and <code>foldTests</code></a></li>
 <li><a href="#which.in-family-of-function"><span class="toc-section-number">3</span> <code>which.in</code> family of function</a></li>
 <li><a href="#corr_vec2mat"><span class="toc-section-number">4</span> <code>corr_vec2mat</code></a></li>
 <li><a href="#getvarvalues"><span class="toc-section-number">5</span> getVarValues</a><ul>
@@ -148,9 +148,10 @@ pattern3 &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span clas
 <span class="co">#&gt; 2           555 O20-5-984     S     52     8</span></code></pre></div>
 <p>List all .R files in your working directory:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">regexp2df</span>(<span class="kw">dir</span>(),<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)'</span>)
-<span class="co">#&gt;                   R_file</span>
-<span class="co">#&gt; 1 v1_spHelper_Plotting.R</span>
-<span class="co">#&gt; 2    v2_Other_Examples.R</span></code></pre></div>
+<span class="co">#&gt;                         R_file</span>
+<span class="co">#&gt; 1       v1_spHelper_Plotting.R</span>
+<span class="co">#&gt; 2          v2_Other_Examples.R</span>
+<span class="co">#&gt; 3 v3_Plotting_Examples_gg_hy.R</span></code></pre></div>
 <p>Do the same by using chaining operator <code>%&gt;%</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">library</span>(dplyr)
 <span class="co">#&gt; </span>
@@ -166,31 +167,38 @@ pattern3 &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span clas
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 
  <span class="kw">dir</span>() %&gt;%<span class="st"> </span><span class="kw">regexp2df</span>(<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)'</span>)
-<span class="co">#&gt;                   R_file</span>
-<span class="co">#&gt; 1 v1_spHelper_Plotting.R</span>
-<span class="co">#&gt; 2    v2_Other_Examples.R</span></code></pre></div>
+<span class="co">#&gt;                         R_file</span>
+<span class="co">#&gt; 1       v1_spHelper_Plotting.R</span>
+<span class="co">#&gt; 2          v2_Other_Examples.R</span>
+<span class="co">#&gt; 3 v3_Plotting_Examples_gg_hy.R</span></code></pre></div>
 <p>Capture several types of files:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> expr &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)|'</span>,
                 <span class="st">'(?&lt;Rmd_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]md$)|'</span>,
                 <span class="st">'(?&lt;HTML_file&gt;.*</span><span class="ch">\\</span><span class="st">.html$)'</span>)
  <span class="kw">dir</span>() %&gt;%<span class="st"> </span><span class="kw">regexp2df</span>(expr) 
-<span class="co">#&gt;                   R_file                       Rmd_file</span>
-<span class="co">#&gt; 1                                                      </span>
-<span class="co">#&gt; 2 v1_spHelper_Plotting.R                               </span>
-<span class="co">#&gt; 3                              v1_spHelper_Plotting.Rmd</span>
-<span class="co">#&gt; 4    v2_Other_Examples.R                               </span>
-<span class="co">#&gt; 5                                 v2_Other_Examples.Rmd</span>
-<span class="co">#&gt; 6                        v3_Plotting_Examples_gg_hy.Rmd</span>
-<span class="co">#&gt;                   HTML_file</span>
-<span class="co">#&gt; 1 v1_spHelper_Plotting.html</span>
-<span class="co">#&gt; 2                          </span>
-<span class="co">#&gt; 3                          </span>
-<span class="co">#&gt; 4                          </span>
-<span class="co">#&gt; 5                          </span>
-<span class="co">#&gt; 6</span></code></pre></div>
+<span class="co">#&gt;                         R_file                       Rmd_file</span>
+<span class="co">#&gt; 1                                                            </span>
+<span class="co">#&gt; 2       v1_spHelper_Plotting.R                               </span>
+<span class="co">#&gt; 3                                    v1_spHelper_Plotting.Rmd</span>
+<span class="co">#&gt; 4                                                            </span>
+<span class="co">#&gt; 5          v2_Other_Examples.R                               </span>
+<span class="co">#&gt; 6                                       v2_Other_Examples.Rmd</span>
+<span class="co">#&gt; 7                                                            </span>
+<span class="co">#&gt; 8 v3_Plotting_Examples_gg_hy.R                               </span>
+<span class="co">#&gt; 9                              v3_Plotting_Examples_gg_hy.Rmd</span>
+<span class="co">#&gt;                         HTML_file</span>
+<span class="co">#&gt; 1       v1_spHelper_Plotting.html</span>
+<span class="co">#&gt; 2                                </span>
+<span class="co">#&gt; 3                                </span>
+<span class="co">#&gt; 4          v2_Other_Examples.html</span>
+<span class="co">#&gt; 5                                </span>
+<span class="co">#&gt; 6                                </span>
+<span class="co">#&gt; 7 v3_Plotting_Examples_gg_hy.html</span>
+<span class="co">#&gt; 8                                </span>
+<span class="co">#&gt; 9</span></code></pre></div>
 </div>
-<div id="stratifiedfolds-createfolds2-and-foldstets" class="section level1">
-<h1><span class="header-section-number">2</span> <code>stratifiedFolds</code>, <code>createFolds2</code> and <code>foldsTets</code></h1>
+<div id="stratifiedfolds-createfolds2-and-foldtests" class="section level1">
+<h1><span class="header-section-number">2</span> <code>stratifiedFolds</code>, <code>createFolds2</code> and <code>foldTests</code></h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nFolds =<span class="st"> </span><span class="dv">5</span>
 
 <span class="co"># Load data</span>
@@ -215,7 +223,7 @@ c2 &lt;-<span class="st"> </span><span class="kw">stratifiedFolds</span>(<span c
 <p>When variable names from data frame are provided:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Folds1_a &lt;-<span class="st"> </span><span class="kw">stratifiedFolds</span>(<span class="dt">data =</span> DataSet1, <span class="dt">gr =</span> gr, <span class="dt">ID =</span> ID, nFolds, <span class="dt">returnTrain =</span> <span class="ot">FALSE</span>)
 <span class="co"># str(Folds1_a)</span>
-<span class="kw">foldsTets</span>(Folds1_a, DataSet1)
+<span class="kw">foldTests</span>(Folds1_a, DataSet1)
 <span class="co">#&gt; ************************************************************</span>
 <span class="co">#&gt;                 Test for STRATIFICATION </span>
 <span class="co">#&gt; </span>
@@ -244,7 +252,7 @@ c2 &lt;-<span class="st"> </span><span class="kw">stratifiedFolds</span>(<span c
 <p>When “free” variables are provided:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Folds1_b &lt;-<span class="st"> </span><span class="kw">stratifiedFolds</span>(<span class="dt">gr =</span> DataSet1$gr, <span class="dt">ID =</span> DataSet1$ID, <span class="dt">k =</span> nFolds, <span class="dt">returnTrain =</span> <span class="ot">FALSE</span>)
 <span class="co"># str(Folds1_b)</span>
-<span class="kw">foldsTets</span>(Folds1_b, DataSet1)
+<span class="kw">foldTests</span>(Folds1_b, DataSet1)
 <span class="co">#&gt; ************************************************************</span>
 <span class="co">#&gt;                 Test for STRATIFICATION </span>
 <span class="co">#&gt; </span>
@@ -273,7 +281,7 @@ c2 &lt;-<span class="st"> </span><span class="kw">stratifiedFolds</span>(<span c
 <p>Not blocked but stratified:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Folds1_c &lt;-<span class="st"> </span><span class="kw">stratifiedFolds</span>(<span class="dt">gr =</span> DataSet1$gr, <span class="dt">k =</span> nFolds, <span class="dt">returnTrain =</span> <span class="ot">FALSE</span>)
 <span class="co"># str(Folds1_c)</span>
-<span class="kw">foldsTets</span>(Folds1_c, DataSet1)
+<span class="kw">foldTests</span>(Folds1_c, DataSet1)
 <span class="co">#&gt; ************************************************************</span>
 <span class="co">#&gt;                 Test for STRATIFICATION </span>
 <span class="co">#&gt; </span>
@@ -302,7 +310,7 @@ c2 &lt;-<span class="st"> </span><span class="kw">stratifiedFolds</span>(<span c
 <p>Blocked but not stratified:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Folds1_d &lt;-<span class="st"> </span><span class="kw">stratifiedFolds</span>(<span class="dt">ID =</span> DataSet1$ID, <span class="dt">k =</span> nFolds, <span class="dt">returnTrain =</span> <span class="ot">FALSE</span>)
 <span class="co"># str(Folds1_d)</span>
-<span class="kw">foldsTets</span>(Folds1_d, DataSet1)
+<span class="kw">foldTests</span>(Folds1_d, DataSet1)
 <span class="co">#&gt; ************************************************************</span>
 <span class="co">#&gt;                 Test for STRATIFICATION </span>
 <span class="co">#&gt; </span>
@@ -430,13 +438,16 @@ f1 &lt;-<span class="st"> </span>function(data, v1) { <span class="kw">getVarVal
 <span class="co"># Returns values of `df$cyl`:</span>
 <span class="kw">f1</span>(df, cyl)
 <span class="co">#&gt;  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</span>
+<span class="co">#&gt; Levels: 4 &lt; 6 &lt; 8</span>
 
 <span class="kw">f1</span>(df, <span class="st">&quot;cyl&quot;</span>)
 <span class="co">#&gt;  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</span>
+<span class="co">#&gt; Levels: 4 &lt; 6 &lt; 8</span>
 
 cyl &lt;-<span class="st"> &quot;gear&quot;</span>        <span class="co"># !!! Still values of `df$cyl`, not `df$gear`:</span>
 <span class="kw">f1</span>(df, cyl)
 <span class="co">#&gt;  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</span>
+<span class="co">#&gt; Levels: 4 &lt; 6 &lt; 8</span>
 
 <span class="co"># Returns values of `df$gear`:</span>
 <span class="kw">f1</span>(df, gear)
@@ -484,7 +495,11 @@ var &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&qu
 <div id="unexpected-results" class="section level2">
 <h2><span class="header-section-number">5.3</span> Unexpected results</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">     <span class="kw">getVarValues</span>(ID, df, CALL) <span class="co"># `ID` found only in function's `fun` definition.</span>
-<span class="co">#&gt; NULL</span>
+<span class="co">#&gt;  [1] &quot;40&quot;  &quot;56&quot;  &quot;85&quot;  &quot;134&quot; &quot;30&quot;  &quot;131&quot; &quot;137&quot; &quot;95&quot;  &quot;90&quot;  &quot;9&quot;   &quot;29&quot; </span>
+<span class="co">#&gt; [12] &quot;25&quot;  &quot;143&quot; &quot;53&quot;  &quot;105&quot; &quot;68&quot;  &quot;97&quot;  &quot;132&quot; &quot;51&quot;  &quot;102&quot; &quot;122&quot; &quot;28&quot; </span>
+<span class="co">#&gt; [23] &quot;84&quot;  &quot;16&quot;  &quot;34&quot;  &quot;49&quot;  &quot;2&quot;   &quot;48&quot;  &quot;107&quot; &quot;42&quot;  &quot;58&quot;  &quot;72&quot;  &quot;59&quot; </span>
+<span class="co">#&gt; [34] &quot;22&quot;  &quot;96&quot;  &quot;77&quot;  &quot;91&quot;  &quot;13&quot;  &quot;82&quot;  &quot;46&quot;  &quot;114&quot; &quot;71&quot;  &quot;148&quot; &quot;60&quot; </span>
+<span class="co">#&gt; [45] &quot;57&quot;  &quot;83&quot;  &quot;3&quot;   &quot;50&quot;  &quot;75&quot;  &quot;70&quot;</span>
                                 <span class="co"># `df$ID` does not exist.</span>
     
      <span class="kw">getVarValues</span>(F, df, CALL) <span class="co"># `F` is a special variable: `F = FALSE`</span>

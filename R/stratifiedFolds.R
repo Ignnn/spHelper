@@ -61,23 +61,23 @@
 #' # If variables of data frame are provided:
 #'      Folds1_a <- stratifiedFolds(data = DataSet1, gr = gr, ID = ID, nFolds, returnTrain=FALSE)
 #'      # str(Folds1_a)
-#'      foldsTets(Folds1_a, DataSet1)
+#'      foldTests(Folds1_a, DataSet1)
 #'
 #' # If "free" variables are provided:
 #'      Folds1_b <- stratifiedFolds(gr = DataSet1$gr, ID = DataSet1$ID, k=nFolds, returnTrain=FALSE)
 #'      # str(Folds1_b)
-#'      foldsTets(Folds1_b, DataSet1)
+#'      foldTests(Folds1_b, DataSet1)
 #'
 #' # Not blocked but stratified
 #'      Folds1_c <- stratifiedFolds(gr = DataSet1$gr, k=nFolds, returnTrain=FALSE)
 #'      # str(Folds1_c)
-#'      foldsTets(Folds1_c, DataSet1)
+#'      foldTests(Folds1_c, DataSet1)
 #'
 #'
 #' # Blocked but not stratified
 #'      Folds1_d <- stratifiedFolds(ID = DataSet1$ID, k=nFolds, returnTrain=FALSE)
 #'      # str(Folds1_d)
-#'      foldsTets(Folds1_d, DataSet1)
+#'      foldTests(Folds1_d, DataSet1)
 #'
 #'
 #' @family \pkg{spHelper} fold creation functions

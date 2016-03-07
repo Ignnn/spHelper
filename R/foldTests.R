@@ -20,7 +20,7 @@
 #' @examples
 #' data(DataSet1)
 #' FoldsOBJ <- stratifiedFolds(data = DataSet1, gr = gr, ID = ID, returnTrain = FALSE)
-#' foldsTets(FoldsOBJ, DataSet1)
+#' foldTests(FoldsOBJ, DataSet1)
 #'
 #' #>  ************************************************************
 #' #>      Test for STRATIFICATION
@@ -55,7 +55,7 @@
 #' @family \pkg{spHelper} fold creation functions
 #' @author Vilmantas Gegzna
 #'
-foldsTets <- function(FoldsOBJ, DATA, stratBy = "gr", blockBy = "ID",
+foldTests <- function(FoldsOBJ, DATA, stratBy = "gr", blockBy = "ID",
                       nColShow = 10) {
 
     # Calculate:

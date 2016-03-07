@@ -191,6 +191,53 @@ qplot_stat(Spectra,gr,mean_pm_sd) +
     nTick_x()
 ```
 
+`qplot_proximity` and `qplot_prediction`
+=========================================
+
+Examples with a `hyperSpec` object
+------------------------------------
+```{r}
+ data(Scores)
+ Scores$Prediction <- sample(Scores$gr)
+ Scores <- hyAdd.color(sp = Scores, by = "gr", palette = c("tan3", "green4","skyblue"))
+
+ qplot_prediction(Scores,Prediction = "Prediction", Reference = "gr")
+ qplot_prediction(Scores,Prediction = "Prediction", Reference = "gr", type = "ref")
+
+ qplot_prediction(Scores,"Prediction","gr", type.stat = "ref", MDS = "isoMDS")
+
+ sc <- Scores[,,c(1,3),wl.index = TRUE]
+
+ qplot_prediction(sc,"Prediction","gr", type = "reference")
+ qplot_prediction(sc,"Prediction","gr", type = "prediction")
+ qplot_prediction(sc,"Prediction","gr", type = "prediction", type.stat = "ref")
+ qplot_prediction(sc,"Prediction","gr", type = "prediction", type.stat = "ref", stat = "ellipse")
+
+ set.seed(1)
+ sc <- sample(Scores[,,c(1,2),wl.index = TRUE],50)
+ ID <- rownames(sc)
+ 
+ qplot_proximity(sc, "class")
+ qplot_proximity(sc, "class",  plot.scatter = FALSE) + geom_text(aes(label = ID))
+```
+
+`qplot_crosstab`
+================
+
+```{r qplot_crosstab}
+# Generate data: Random guess  ============================
+ N <- 1000 # number of observations
+
+Prediction <- sample(c("A","B","C","D"), N, replace = TRUE)
+Reference  <- sample(c("A", "B","C","D"),N, replace = TRUE)
+
+tabl <- table(Prediction,Reference)
+qplot_crosstab(tabl)
+
+qplot_crosstab(prop.table(table(Prediction,Reference)))
+```
+
+
 `qplot_confusion`
 ================
 ```{r options 3, echo=FALSE}

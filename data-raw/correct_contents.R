@@ -36,7 +36,7 @@ correct_contents2 <- function(FILE){
     # x <- gsub("qqplot_",        "qplot_", x, perl = TRUE)
     #
     # x <- gsub("qplot_spDiff",        "plot_spDiff", x, perl = TRUE)
-    x <- gsub("foldsTets",        "foldTests", x, perl = TRUE)
+    # x <- gsub("foldsTets",        "foldTests", x, perl = TRUE)
     # Writte
     writeLines(x, con = FILE)
 
@@ -45,10 +45,10 @@ correct_contents2 <- function(FILE){
 
 require(spHelper)
 Start <-  Sys.time()
-setwd('D:\\Dokumentai\\R\\spHelper\\')
+setwd('D:\\Dokumentai\\R\\spHelper\\R\\')
 # setwd('D:\\Dokumentai\\R\\Spektroskopija\\PAP_PD_2014')
 AllFiles <- dir()
-FILES <- as.list(AllFiles[grepl(".*\\.Rmd$",AllFiles)])
+FILES <- as.list(AllFiles[grepl(".*\\.R$",AllFiles)])
 
 lapply(FILES, correct_contents2)
 
