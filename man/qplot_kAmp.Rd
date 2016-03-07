@@ -26,12 +26,12 @@ and in italics.}
 \item{yLabel}{A label for ordinate (y) axis.}
 
 \item{by}{A name of grouping variable. If \code{NULL}, all data is ploted.
-Default is \code{by = "gr"} for \code{plot_kAmp} and
- \code{by = NULL} for \code{plot_scores}.}
+Default is \code{by = "gr"} for \code{qplot_kAmp} and
+ \code{by = NULL} for \code{qplot_scores}.}
 
 \item{add.violin}{Logical. If \code{TRUE} adds so called violin (i.e.,
 symmetrical probarility density) plot.
- Default is \code{TRUE} for \code{plot_kAmp}.}
+ Default is \code{TRUE} for \code{qplot_kAmp}.}
 
 \item{add.jitter}{Logical. If \code{TRUE} adds jitter plot.
 Default is \code{FALSE}.}
@@ -48,8 +48,8 @@ Default is \code{TRUE}.}
 \item{...}{(The same parameters as above).}
 }
 \value{
-A plot.\cr (An object of class \code{ggplot} and
-        \code{gg}. More details in package \pkg{ggplot2}).
+A plot: an object of class \code{\link[ggplot2]{ggplot}}.
+       More details in package \pkg{ggplot2}).
 }
 \description{
 Plot amplitudes (a.k.a scores) of spectroscopic components

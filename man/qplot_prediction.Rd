@@ -2,17 +2,22 @@
 % Please edit documentation in R/qplot_prediction.R
 \name{qplot_prediction}
 \alias{qplot_prediction}
-\alias{qplot_scatterMDS}
-\title{[!!!] Plot a multi-dimensiolally scaled (MDS) scatterplot}
+\alias{qplot_proximity}
+\title{[!!!] Proximity plot created using multi-dimensiolal scaling (MDS)}
 \usage{
 qplot_prediction(scores, Prediction, Reference, xLabel = paste("Projection",
   xproj), yLabel = paste("Projection", yproj),
   Title = "Proximity of Groups", subTitle = NULL,
   palette = hyGet.palette(scores), type = c("Prediction", "Reference"),
   stat = c("chull", "ellipse", "none"), type.stat = type,
-  MDS = c("metric", "isoMDS"), k = 2, xproj = 1, yproj = 2)
+  MDS = c("metric", "isoMDS"), plot.scatter = TRUE, k = 2, xproj = 1,
+  yproj = 2)
 
-qplot_scatterMDS(scores, by, ...)
+qplot_proximity(scores, by, xLabel = paste("Projection", xproj),
+  yLabel = paste("Projection", yproj), Title = "Proximity of Groups",
+  subTitle = NULL, palette = hyGet.palette(scores), stat = c("chull",
+  "ellipse", "none"), MDS = c("metric", "isoMDS"), plot.scatter = TRUE,
+  k = 2, xproj = 1, yproj = 2)
 }
 \arguments{
 \item{scores}{Components' amplitudes (scores) as either a matrix or a
@@ -28,6 +33,9 @@ qplot_scatterMDS(scores, by, ...)
 
 \item{Title}{The main title for the plot.}
 
+\item{subTitle}{The second line of title, which will be smaller and
+and in italics.}
+
 \item{palette}{A color palete to be used. Default is `ggplot2` default palette.}
 
 \item{type}{A type of data for scatterplot: either "prediction" (default)
@@ -41,6 +49,9 @@ or "reference".}
 
 \item{MDS}{A type of Multi-Dimensional Scaling.}
 
+\item{plot.scatter}{Logical. If \code{true} (default), scatterplot
+(`geom_point`)is plotted.}
+
 \item{k}{
   The desired dimension for the solution, passed to \code{cmdscale}.
 }
@@ -49,19 +60,41 @@ or "reference".}
 (respectively).}
 
 \item{by}{A grouping variable}
-
-\item{...}{(The same parameters as above).}
 }
 \value{
-A plot.\cr (An object of class \code{ggplot} and
-        \code{gg}. More details in package \pkg{ggplot2}).
+A plot: an object of class \code{\link[ggplot2]{ggplot}}.
+       More details in package \pkg{ggplot2}).
 }
 \description{
-/No description yet/ multidimensional scaling is used
+A scatterplot that represents multidimensionally scaled data.
 }
 \examples{
 
-# Example with a `hyperSpec` object:
+# Examples with a `hyperSpec` object:
+
+data(Scores)
+Scores$Prediction <- sample(Scores$gr)
+Scores <- hyAdd.color(sp = Scores, by = "gr", palette = c("tan3", "green4","skyblue"))
+
+qplot_prediction(Scores,Prediction = "Prediction", Reference = "gr")
+qplot_prediction(Scores,Prediction = "Prediction", Reference = "gr", type = "ref")
+
+qplot_prediction(Scores,"Prediction","gr", type.stat = "ref", MDS = "isoMDS")
+
+sc <- Scores[,,c(1,3),wl.index = TRUE]
+
+
+qplot_prediction(sc,"Prediction","gr", type = "reference")
+qplot_prediction(sc,"Prediction","gr", type = "prediction")
+qplot_prediction(sc,"Prediction","gr", type = "prediction", type.stat = "ref")
+qplot_prediction(sc,"Prediction","gr", type = "prediction", type.stat = "ref",stat ="ellipse")
+
+
+sc <- Scores[,,c(1,2),wl.index = TRUE]
+sc$ID <- rownames(sc)
+
+qplot_proximity(sc, "class")
+qplot_proximity(sc, "class",  plot.scatter = FALSE) + geom_text(aes(label = ID))
 
 }
 \author{

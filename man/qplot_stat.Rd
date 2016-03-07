@@ -46,8 +46,8 @@ is plotted as a black line is be used.}
 \item{legend.title}{A title for legend. Default is no title.}
 }
 \value{
-A plot.\cr (An object of class \code{ggplot} and
-        \code{gg}. More details in package \pkg{ggplot2}).
+A plot: an object of class \code{\link[ggplot2]{ggplot}}.
+       More details in package \pkg{ggplot2}).
 }
 \description{
 Plot a summary of spectroscopic data in hyperSpec object by group.

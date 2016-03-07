@@ -19,7 +19,7 @@
 #' @examples
 #'
 #' # Make a plot but do not print
-#' p <- plot_stat(Spectra, gr, mean, All.linetype = "solid") + facet_grid(.~gr)
+#' p <- qplot_stat(Spectra, gr, mean, All.linetype = "solid") + facet_grid(.~gr)
 #'
 #' #Print the plot
 #' p

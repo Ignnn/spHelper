@@ -8,6 +8,9 @@
 #' @export
 #'
 #' @examples
+#'
+#' \donttest{
+#' \dontrun{
 #' data(flu, package = "hyperSpec")
 #'
 #' qplotspc(flu)
@@ -27,8 +30,6 @@
 #' ggplotly(p2)
 #'
 #' #----------------------------------
-#' \donttest{
-#' \dontrun{
 #' qplotspc(aggregate(chondro, chondro$clusters, mean_pm_sd),
 #' mapping = aes(x = .wavelength,
 #'               y = spc,

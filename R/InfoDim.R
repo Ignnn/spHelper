@@ -33,7 +33,7 @@
 #'  my_result$dim
 #'
 #'  #Plot
-#'  my_plot <- plot_infoDim(my_result)
+#'  my_plot <- qplot_infoDim(my_result)
 #'  my_plot
 #'
 #' @family information dimension functions

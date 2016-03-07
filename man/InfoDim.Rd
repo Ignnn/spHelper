@@ -34,7 +34,7 @@ The function calculates a measure, called "information dimension".
  my_result$dim
 
  #Plot
- my_plot <- plot_infoDim(my_result)
+ my_plot <- qplot_infoDim(my_result)
  my_plot
 
 }

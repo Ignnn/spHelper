@@ -17,11 +17,11 @@
 #' @template labels
 #' @template subtitle
 #' @param by A name of grouping variable. If \code{NULL}, all data is ploted.
-#'      Default is \code{by = "gr"} for \code{plot_kAmp} and
-#'       \code{by = NULL} for \code{plot_scores}.
+#'      Default is \code{by = "gr"} for \code{qplot_kAmp} and
+#'       \code{by = NULL} for \code{qplot_scores}.
 #' @param add.violin Logical. If \code{TRUE} adds so called violin (i.e.,
 #'        symmetrical probarility density) plot.
-#'         Default is \code{TRUE} for \code{plot_kAmp}.
+#'         Default is \code{TRUE} for \code{qplot_kAmp}.
 #' @param add.jitter Logical. If \code{TRUE} adds jitter plot.
 #'          Default is \code{FALSE}.
 #' @param add.boxplot Logical. If \code{TRUE} adds boxplot.

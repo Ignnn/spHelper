@@ -3,18 +3,18 @@
 #'
 #' @description Plot spectroscopic curves in different colors.
 #'
-#'              Functions \code{plot_kSp}, \code{plot_kSpFacets} are designed
+#'              Functions \code{qplot_kSp}, \code{qplot_kSpFacets} are designed
 #'              to plot spectra of spectral components
 #'             (a.k.a. loadings), extracted in principal component analysis
 #'             (e.g., \code{\link[stats]{princomp}}), variaus matrix factorization
 #'              methods (e.g., \code{\link[NMF]{nmf}})) and some other dimension
 #'              reduction methods. \cr
-#'              The function \code{plot_sp} is convenient for all spectroscopic
+#'              The function \code{qplot_sp} is convenient for all spectroscopic
 #'              curves as uses no fill.
 #'
 #'
-#' @details \code{plot_kSp} plots spectra on one graph. \cr
-#'          \code{plot_kSpFacets} plots spectra on separate graphs (facets).\cr
+#' @details \code{qplot_kSp} plots spectra on one graph. \cr
+#'          \code{qplot_kSpFacets} plots spectra on separate graphs (facets).\cr
 #'
 #' @note    Before using as an argument \code{loadings},
 #'          a matrix of components/loadings (\code{loadings}) must be treated
@@ -64,7 +64,7 @@
 #'
 #' @examples
 #'
-#' plot_kSp(Loadings)
+#' qplot_kSp(Loadings)
 #'
 #' data(flu, package = "hyperSpec")
 #'

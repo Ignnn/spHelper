@@ -1,2 +1,2 @@
-#' @return A plot.\cr (An object of class \code{ggplot} and
-#'         \code{gg}. More details in package \pkg{ggplot2}).
+#' @return A plot: an object of class \code{\link[ggplot2]{ggplot}}.
+#'        More details in package \pkg{ggplot2}).

@@ -1,9 +1,6 @@
-
-# plot_multiDim -----------------------------------------------------------
-
-#' [!!!] Plot a multi-dimensiolally scaled (MDS) scatterplot
+#' [!!!] Proximity plot created using multi-dimensiolal scaling (MDS)
 #'
-#' /No description yet/ multidimensional scaling is used
+#' A scatterplot that represents multidimensionally scaled data.
 #'
 #' @template scores
 #' @param Reference  Reference grpups. Either a variable name or a vector.
@@ -18,6 +15,9 @@
 #'       (respectively).
 #' @param MDS A type of Multi-Dimensional Scaling.
 #' @param palette A color palete to be used. Default is `ggplot2` default palette.
+#' @param plot.scatter Logical. If \code{true} (default), scatterplot
+#'       (`geom_point`)is plotted.
+#' @template subtitle
 #' @template labels
 #' @inheritParams MASS::isoMDS
 #'
@@ -28,25 +28,32 @@
 #' @family \pkg{spHelper} plots
 #' @examples
 #'
-#' # Example with a `hyperSpec` object:
+#' # Examples with a `hyperSpec` object:
 #'
-# data(Scores)
-# Scores$Prediction <- sample(Scores$gr)
-# Scores <- hyAdd.color(sp = Scores, by = "gr", palette = c("tan3", "green4","skyblue"))
-#
-# qplot_prediction(Scores,Prediction = "Prediction", Reference = "gr")
-# qplot_prediction(Scores,Prediction = "Prediction", Reference = "gr", type = "ref")
-#
-# qplot_prediction(Scores,"Prediction","gr", type.stat = "ref", MDS = "isoMDS")
-#
-# sc <- Scores[,,c(1,3),wl.index = TRUE]
-# qplot_prediction(sc,"Prediction","gr", type = "reference")
-# qplot_prediction(sc,"Prediction","gr", type = "prediction")
-# qplot_prediction(sc,"Prediction","gr", type = "prediction", type.stat = "ref")
-# qplot_prediction(sc,"Prediction","gr", type = "prediction", type.stat = "ref",stat ="ellipse")
-#
-# qplot_scatterMDS(sc, "gr")
-
+#' data(Scores)
+#' Scores$Prediction <- sample(Scores$gr)
+#' Scores <- hyAdd.color(sp = Scores, by = "gr", palette = c("tan3", "green4","skyblue"))
+#'
+#' qplot_prediction(Scores,Prediction = "Prediction", Reference = "gr")
+#' qplot_prediction(Scores,Prediction = "Prediction", Reference = "gr", type = "ref")
+#'
+#' qplot_prediction(Scores,"Prediction","gr", type.stat = "ref", MDS = "isoMDS")
+#'
+#' sc <- Scores[,,c(1,3),wl.index = TRUE]
+#'
+#'
+#' qplot_prediction(sc,"Prediction","gr", type = "reference")
+#' qplot_prediction(sc,"Prediction","gr", type = "prediction")
+#' qplot_prediction(sc,"Prediction","gr", type = "prediction", type.stat = "ref")
+#' qplot_prediction(sc,"Prediction","gr", type = "prediction", type.stat = "ref",stat ="ellipse")
+#'
+#'
+#' sc <- Scores[,,c(1,2),wl.index = TRUE]
+#' sc$ID <- rownames(sc)
+#'
+#' qplot_proximity(sc, "class")
+#' qplot_proximity(sc, "class",  plot.scatter = FALSE) + geom_text(aes(label = ID))
+#'
 
 qplot_prediction   <- function(scores,
                        Prediction,
@@ -60,12 +67,15 @@ qplot_prediction   <- function(scores,
                        stat = c("chull","ellipse","none"),
                        type.stat = type,
                        MDS = c("metric","isoMDS"),
+                       plot.scatter = TRUE,
                        k = 2,
                        xproj = 1,
                        yproj = 2) {
 # Get input variables
     try(Prediction <- getVarValues(Prediction, scores), silent = TRUE)
     try(Reference  <- getVarValues(Reference,  scores), silent = TRUE)
+    if (length(palette) < max(nlevels(Prediction), nlevels(Reference)))
+        palette <- NULL
 
     scores <- if (class(scores) == "hyperSpec") hy2mat(scores) else as.matrix(scores)
 
@@ -107,12 +117,13 @@ qplot_prediction   <- function(scores,
     p <- ggplot(data = data, aes_string(x = "x", y = "y", color = type))
 
     p <- p +
-        geom_point(aes(shape = Classification)) +
         scale_shape_manual(values = c("Misclassified" = 4, "Correct" = 19)) +
         theme_bw() +
         labs(x = xLabel,
              y = yLabel,
              title = subt(Title, subTitle))
+
+    if (plot.scatter == TRUE) p <- p + geom_point(aes(shape = Classification))
 
     # subTitle <- paste("Predictors:", PredictorNames)
 
@@ -128,16 +139,36 @@ qplot_prediction   <- function(scores,
 
 #' @rdname qplot_prediction
 #' @param by A grouping variable
-#' @template  same
 #' @export
 
-qplot_scatterMDS   <- function(scores, by, ...) {
+qplot_proximity  <- function(scores, by,
+                             xLabel = paste("Projection", xproj),
+                             yLabel = paste("Projection", yproj),
+                             Title  = "Proximity of Groups",
+                             subTitle = NULL,
+                             palette = hyGet.palette(scores),
+                             stat = c("chull","ellipse","none"),
+                             MDS = c("metric","isoMDS"),
+                             plot.scatter = TRUE,
+                             k = 2,
+                             xproj = 1,
+                             yproj = 2) {
              by  <- getVarValues(by, scores)
 
     qplot_prediction(scores,
-                      Prediction = by,
-                      Reference  = by,
-                      ...) +
+                     Prediction = by,
+                     Reference  = by,
+                     xLabel = xLabel,
+                     yLabel = yLabel,
+                     Title  = Title,
+                     subTitle = subTitle,
+                     palette = palette,
+                     stat = stat,
+                     MDS = MDS,
+                     plot.scatter = plot.scatter,
+                     k = k,
+                     xproj = xproj,
+                     yproj = yproj) +
         guides(shape = FALSE,
                color = guide_legend("Groups"))
 }

@@ -126,10 +126,10 @@ simSpectra <- function(x = 300:800,
     Scores   <- getScores(sp = Spectra,loadings = Loadings, scores = A)
 
     if (plots) {
-        plot_kAmp(Scores, by = "gr")
-        plot_kAmp(Scores, by = "class")
-        plot_kSp(Loadings)
-        plot(Spectra,spc.nmax = 200, col = Spectra$class)
+        qplot_kAmp(Scores, by = "gr")
+        qplot_kAmp(Scores, by = "class")
+        qplot_kSp(Loadings)
+        qplot(Spectra,spc.nmax = 200, col = Spectra$class)
     }
 
     result <- list()

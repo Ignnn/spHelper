@@ -17,6 +17,9 @@ Convert expressions in \code{\link[ggplot2]{ggplot}} object labels to strings, t
 enable them to be plotted with \code{\link[plotly]{ggplotly}}.
 }
 \examples{
+
+\donttest{
+\dontrun{
 data(flu, package = "hyperSpec")
 
 qplotspc(flu)
@@ -36,8 +39,6 @@ ggplotly(p1)
 ggplotly(p2)
 
 #----------------------------------
-\donttest{
-\dontrun{
 qplotspc(aggregate(chondro, chondro$clusters, mean_pm_sd),
 mapping = aes(x = .wavelength,
               y = spc,

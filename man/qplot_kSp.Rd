@@ -65,24 +65,24 @@ and in italics.}
 \item{...}{(The same parameters as above).}
 }
 \value{
-A plot.\cr (An object of class \code{ggplot} and
-        \code{gg}. More details in package \pkg{ggplot2}).
+A plot: an object of class \code{\link[ggplot2]{ggplot}}.
+       More details in package \pkg{ggplot2}).
 }
 \description{
 Plot spectroscopic curves in different colors.
 
-             Functions \code{plot_kSp}, \code{plot_kSpFacets} are designed
+             Functions \code{qplot_kSp}, \code{qplot_kSpFacets} are designed
              to plot spectra of spectral components
             (a.k.a. loadings), extracted in principal component analysis
             (e.g., \code{\link[stats]{princomp}}), variaus matrix factorization
              methods (e.g., \code{\link[NMF]{nmf}})) and some other dimension
              reduction methods. \cr
-             The function \code{plot_sp} is convenient for all spectroscopic
+             The function \code{qplot_sp} is convenient for all spectroscopic
              curves as uses no fill.
 }
 \details{
-\code{plot_kSp} plots spectra on one graph. \cr
-         \code{plot_kSpFacets} plots spectra on separate graphs (facets).\cr
+\code{qplot_kSp} plots spectra on one graph. \cr
+         \code{qplot_kSpFacets} plots spectra on separate graphs (facets).\cr
 }
 \note{
 Before using as an argument \code{loadings},
@@ -92,7 +92,7 @@ Before using as an argument \code{loadings},
 }
 \examples{
 
-plot_kSp(Loadings)
+qplot_kSp(Loadings)
 
 data(flu, package = "hyperSpec")
 

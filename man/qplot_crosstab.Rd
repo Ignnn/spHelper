@@ -29,8 +29,8 @@ and in italics.}
 (i.e., precission is 0.01).}
 }
 \value{
-A plot.\cr (An object of class \code{ggplot} and
-        \code{gg}. More details in package \pkg{ggplot2}).
+A plot: an object of class \code{\link[ggplot2]{ggplot}}.
+       More details in package \pkg{ggplot2}).
 }
 \description{
 Plot a crosstabulation (classification table)
