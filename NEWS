@@ -8,17 +8,16 @@ spHelper v0.1.038 (2016-03-01)
 ==============================
 
 Renamed functions:
- (NEW name)       <- (old name)
+ (NEW name)         <- (old name)
 
- - unipeak        <- uniPeak
- - infoDim        <- InfoDim
- - qplot_infoDim  <- InfoDim_plot
- - qplot_stat     <- plotStat
- - qplot_stat     <- qplotStat
- - plot_spDiff    <- plot_SpDiff
- - hyDrop.NA      <- dropCol
- - list.functions <- listFunctions
-
+ - unipeak          <- uniPeak
+ - infoDim          <- InfoDim
+ - qplot_infoDim    <- InfoDim_plot
+ - qplot_spStat     <- plotStat
+ - qplot_spStat     <- qplotStat
+ -  plot_spDiff     <- plot_SpDiff
+ - hyDrop.NA        <- dropCol
+ - list.functions   <- listFunctions
 
 
 Other changes:

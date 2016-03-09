@@ -19,7 +19,9 @@
 #     # print(x)
 # }
 
-stop("This script can be harmful")
+
+# Function 1 --------------------------------------------------------------
+
 correct_contents2 <- function(FILE){
     # Read
     x <- readLines(con = FILE)
@@ -39,7 +41,7 @@ correct_contents2 <- function(FILE){
     # x <- gsub("foldsTets",      "foldTests", x, perl = TRUE)
     # x <- gsub("listFunctions",  "list.functions", x, perl = TRUE)
     # x <- gsub("makeFirstCapital",  "make.firstCapitals", x, perl = TRUE)
-    # x <- gsub("qplolt_stat",  "qplolt_spStat", x, perl = TRUE)
+    # x <- gsub("qplot_stat",  "qplolt_spStat", x, perl = TRUE)
 
 
     # Writte
@@ -48,15 +50,35 @@ correct_contents2 <- function(FILE){
     # print(x)
 }
 
+# Function 2 --------------------------------------------------------------
+
+apply_content_corrections <- function(x){
+    Start <-  Sys.time()
+    setwd(x)
+
+    AllFiles <- dir()
+    FILES <- as.list(AllFiles[grepl("(.*\\.R$)|(.*\\.Rmd$)|(.*\\.html$)",AllFiles)])
+
+    lapply(FILES, correct_contents2)
+
+    shell.exec(getwd())
+    printDuration(Start,returnString = TRUE)
+}
+
+# Function 3 --------------------------------------------------------------
+
 require(spHelper)
-Start <-  Sys.time()
-# setwd('D:\\Dokumentai\\R\\spHelper\\R\\')
-# setwd('D:\\Dokumentai\\R\\spHelper\\vignettes\\')
-# setwd('D:\\Dokumentai\\R\\Spektroskopija\\PAP_PD_2014\\')
-AllFiles <- dir()
-FILES <- as.list(AllFiles[grepl("(.*\\.R$)|(.*\\.Rmd$)|(.*\\.html$)",AllFiles)])
 
-lapply(FILES, correct_contents2)
+# List all directories of interest
+directories  <- as.list(
+    c(paste0('D:\\Dokumentai\\R\\spHelper\\',
+             c("R","vignettes","inst\\doc"),
+             "\\"),
+      'D:\\Dokumentai\\R\\Spektroskopija\\PAP_PD_2014\\')
+)
 
-shell.exec(getwd())
-printDuration(Start)
+# Apply corrections
+stop("This script can be harmful")
+lapply(directories, apply_content_corrections)
+
+

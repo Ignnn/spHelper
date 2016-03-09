@@ -26,7 +26,7 @@ Convenience function to control number of ticks in \code{ggplot2}
 \examples{
 
 # Make a plot but do not print
-p <- qplot_stat(Spectra, gr, mean, All.linetype = "solid") + facet_grid(.~gr)
+p <- qplolt_spStat(Spectra, gr, mean, All.linetype = "solid") + facet_grid(.~gr)
 
 #Print the plot
 p
@@ -43,11 +43,11 @@ Vilmantas Gegzna
 Pretty breakpoints: \code{\link[base]{pretty}}.
 
 Other \pkg{spHelper} plots: \code{\link{plot_spDiff}},
+  \code{\link{qplolt_spStat}},
   \code{\link{qplot_confusion}},
   \code{\link{qplot_crosstab}},
   \code{\link{qplot_infoDim}}, \code{\link{qplot_kAmp}},
   \code{\link{qplot_kSp}}, \code{\link{qplot_prediction}},
-  \code{\link{qplot_stat}}, \code{\link{rmExpr}},
-  \code{\link{stat_chull}}
+  \code{\link{rmExpr}}, \code{\link{stat_chull}}
 }
 

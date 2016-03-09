@@ -110,32 +110,32 @@ p
 
 p + theme_bw()
 
-## ----qplot_stat 1--------------------------------------------------------
-qplot_stat(chondro,clusters,mean)
-qplot_stat(chondro,clusters,mean,All = FALSE)
-qplot_stat(chondro,clusters,mean_sd,All = FALSE) +
+## ----qplolt_spStat 1--------------------------------------------------------
+qplolt_spStat(chondro,clusters,mean)
+qplolt_spStat(chondro,clusters,mean,All = FALSE)
+qplolt_spStat(chondro,clusters,mean_sd,All = FALSE) +
     facet_grid(.~clusters) +
     nTick_x()
 
-qplot_stat(chondro,clusters,median,All = FALSE, fixed.colors = FALSE)
-qplot_stat(chondro,clusters,median, "My Title")
+qplolt_spStat(chondro,clusters,median,All = FALSE, fixed.colors = FALSE)
+qplolt_spStat(chondro,clusters,median, "My Title")
 
-qplot_stat(chondro,clusters,mean_pm_sd) +
+qplolt_spStat(chondro,clusters,mean_pm_sd) +
     facet_grid(.~clusters) +
     nTick_x()
 
 
-## ----qplot_stat 2--------------------------------------------------------
-qplot_stat(Spectra,gr,mean)
-qplot_stat(Spectra,gr,mean,All = FALSE)
-qplot_stat(Spectra,gr,mean_sd,All = FALSE) +
+## ----qplolt_spStat 2--------------------------------------------------------
+qplolt_spStat(Spectra,gr,mean)
+qplolt_spStat(Spectra,gr,mean,All = FALSE)
+qplolt_spStat(Spectra,gr,mean_sd,All = FALSE) +
     facet_grid(.~gr) +
     nTick_x()
 
-qplot_stat(Spectra,gr,median,All = FALSE, fixed.colors = FALSE)
-qplot_stat(Spectra,gr,median, "My Title")
+qplolt_spStat(Spectra,gr,median,All = FALSE, fixed.colors = FALSE)
+qplolt_spStat(Spectra,gr,median, "My Title")
 
-qplot_stat(Spectra,gr,mean_pm_sd) +
+qplolt_spStat(Spectra,gr,mean_pm_sd) +
     facet_grid(.~gr) +
     nTick_x()
 

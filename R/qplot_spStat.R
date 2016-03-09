@@ -1,4 +1,4 @@
-#' @name qplot_stat
+#' @name qplolt_spStat
 #'
 #' @title [+] Plot a summary statistic of spectroscopic data by group
 #'
@@ -30,23 +30,23 @@
 #' @examples
 #'
 #'
-#' qplot_stat(chondro,clusters,mean)
-#' qplot_stat(chondro,clusters,mean,All=FALSE)
-#' qplot_stat(chondro,clusters,mean_sd,All=FALSE) + facet_grid(.~clusters)
+#' qplolt_spStat(chondro,clusters,mean)
+#' qplolt_spStat(chondro,clusters,mean,All=FALSE)
+#' qplolt_spStat(chondro,clusters,mean_sd,All=FALSE) + facet_grid(.~clusters)
 #'
-#' qplot_stat(chondro,clusters,median,All=FALSE, fixed.colors=FALSE)
-#' qplot_stat(chondro,clusters,median, "My Title")
+#' qplolt_spStat(chondro,clusters,median,All=FALSE, fixed.colors=FALSE)
+#' qplolt_spStat(chondro,clusters,median, "My Title")
 #'
 #'
 #' # Make facets:
 #'
-#' qplot_stat(chondro,clusters,mean_pm_sd) + facet_grid(.~clusters) + nTick_x(2)
+#' qplolt_spStat(chondro,clusters,mean_pm_sd) + facet_grid(.~clusters) + nTick_x(2)
 #'
 #' @seealso \code{\link{spStat}}
 #' @family \pkg{spHelper} plots
 #' @author Vilmantas Gegzna
 #'
-qplot_stat <- function(sp,
+qplolt_spStat <- function(sp,
                        by =  stop("Argument 'by' is missing."),
                        FUN = stop("Argument 'FUN' is missing."),
                        Title = fCap(as.character(match.call()$FUN)),

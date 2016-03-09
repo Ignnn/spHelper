@@ -38,7 +38,7 @@
 #' \code{\link{qplot_kSp}} \cr
 #' \code{\link{qplot_kSpFacets}} \cr
 #' \code{\link{qplot_confusion}}  \cr
-#' \code{\link{qplot_stat}}  \cr
+#' \code{\link{qplolt_spStat}}  \cr
 #' \code{\link{plot_spDiff}}    \cr
 #' 
 #'
