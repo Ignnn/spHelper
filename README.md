@@ -17,6 +17,10 @@ Meaning of symbols in function descriptions:
 
 ------------------------------------------------------------------------
 
-| Version of package | File updated on |
-|:------------------:|:---------------:|
-|       0.1.55       |    2016-03-09   |
+<p align="right">
+File updated on 2016-03-09
+</p>
+<p align="right">
+with version of package 0.1.55
+</p>
+
