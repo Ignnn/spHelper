@@ -22,9 +22,9 @@ sortMaxOnDiag <- function(M) {
     # Eliminate rows and columns by converting to `NA`
     RC.elim <- function(x) {x[mxRow,] <- NA; x[,mxCol] <- NA; return(x)}
 
-    n <- min(dim(M))
+    n    <- min(dim(M))
     iCol <- iRow <- rep(NA, n)
-    iM <- ind.matrix(M)
+    iM   <- ind.matrix(M)
 
     P <- prop.table(M, which.min(dim(M))) # table of proportions
 
@@ -34,18 +34,14 @@ sortMaxOnDiag <- function(M) {
 
     #In each cycle find best match and eliminate rows and columns of thar match
     for (i in 1:n) {
-        # if (all(is.na(y))) next # <- TMP *******************************************************
         ind <- iM[y == max(y, na.rm = T)]
         ind <- ind[!is.na(ind)]
 
-        if (length(ind) > 1) { #if there are several maxima, chose (first) one with greater row/column values
-            ind <- ind[which.max(P[ind])][1]
-        }
+        #if there are several maxima, chose (first) one with greater row/column values
+        if (length(ind) > 1) {ind <- ind[which.max(P[ind])][1]}
 
         mxRow <- Rows[ind]
         mxCol <- Cols[ind]
-
-
 
         iRow[i] = mxRow
         iCol[i] = mxCol
