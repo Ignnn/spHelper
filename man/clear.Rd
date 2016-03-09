@@ -3,44 +3,62 @@
 \name{clear}
 \alias{clear}
 \alias{clear.class}
+\alias{clear.except}
 \alias{clear.fun}
-\title{[.] Clear variables from workspace (global environment)}
+\title{[!] Clear variables from workspace (global environment)}
 \source{
 Ideas to create \code{clear} is taken from \code{\link[pracma]{clear}}
         in \pkg{pracma}.
 }
 \usage{
-clear(lst)
+clear(clr = ls(name = .GlobalEnv), except = NULL)
 
-clear.class(className)
+clear.class(clrClass = NULL, except = NULL)
 
 clear.fun()
+
+clear.except(..., list = NULL)
 }
 \arguments{
-\item{lst}{Character vector of names of variables in the global environment.
+\item{clr}{Names of variables (character vector) in the global environment
+that has \bold{to be cleared}. Default - clear all.}
 
-\code{clear} removes either all ol listed  variables from workspace
-              (global environment).\cr
-\code{clear.class} removes objects of indicated class(es).\cr
-\code{clear.fun} removes functions only.}
+\item{except}{Names of variables (character vector) in the global environment
+that has \bold{not} to be cleared . Default is \code{NULL}.}
 
-\item{className}{Name of class. Objects of this class will be removed
-from workspace (global environment).
-Remove all items from the workspace, i.e. the global environment,
-and freeing up system memory.}
+\item{clrClass}{Names of classes (character vector). Objects of indicated classes
+will be removed from workspace (global environment).}
+
+\item{...}{The objects to be removed, as names (unquoted) or character strings (quoted).}
+
+\item{list}{A character vector naming objects to be removed. If \code{list}
+is not \code{NULL}, \code{...} is ignored.}
 }
 \description{
-Clear variables from workspace (global environment).
+Remove items from the workspace, i.e. the global environment,
+and free up system memory.
+}
+\details{
+\cr
+\code{clear} removes either listed or all variables from workspace
+              (global environment).\cr
+\code{clear.except} clears all variables except listed ones.
+\code{clear.class} removes objects of indicated class(es).\cr
+\code{clear.fun} removes functions only. \cr
 }
 \examples{
 
 A <- 5
 B <- "s"
+D1 <- "string2"
+D2 <- "string3"
 L <- list(A,B)
 FUN <- function(x) x
 
 clear.class("numeric")
 clear.fun()
+clear(except = c("D1", "D2"))
+clear(except = c("B"))
 clear()
 
 }
@@ -49,7 +67,8 @@ Vilmantas Gegzna
 }
 \seealso{
 Other \pkg{spHelper} utilities: \code{\link{bru}},
-  \code{\link{expr2text}}, \code{\link{makeFirstCapital}},
+  \code{\link{expr2text}},
+  \code{\link{make.firstCapitals}},
   \code{\link{printDuration}}, \code{\link{regexp2df}},
   \code{\link{rmExpr}}, \code{\link{subt}},
   \code{\link{uncall}}

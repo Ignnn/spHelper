@@ -9,12 +9,12 @@
 #'
 #' @examples
 #'
-#' listFunctions()
-#' listFunctions(Package = "tidyr")
+#' list.functions()
+#' list.functions(Package = "tidyr")
 #'
 #' @author Vilmantas Gegzna
 #'
-listFunctions <- function(Package = "spHelper")   {
+list.functions <- function(Package = "spHelper")   {
     # Main function
     FunctionList <- unclass(lsf.str(envir = asNamespace(Package),
                                     all = TRUE))

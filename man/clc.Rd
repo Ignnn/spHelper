@@ -10,7 +10,7 @@ clc()
 Clears console. The same as \code{CTRL + L}in RStudio.
 }
 \seealso{
-Other family \pkg{spHelper} utilities: \code{\link{make.nameswin}},
+Other family \pkg{spHelper} utilities: \code{\link{make.filenames}},
   \code{\link{st01}}
 }
 

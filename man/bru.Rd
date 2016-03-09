@@ -95,7 +95,8 @@ Vilmantas Gegzna
 }
 \seealso{
 Other \pkg{spHelper} utilities: \code{\link{clear}},
-  \code{\link{expr2text}}, \code{\link{makeFirstCapital}},
+  \code{\link{expr2text}},
+  \code{\link{make.firstCapitals}},
   \code{\link{printDuration}}, \code{\link{regexp2df}},
   \code{\link{rmExpr}}, \code{\link{subt}},
   \code{\link{uncall}}

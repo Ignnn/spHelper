@@ -137,15 +137,3 @@ which.in.triupp <- function(x, diag = FALSE){
 }
 
 # ========================================================================
-# [Internal function]
-# ind.matrix()
-#
-# Genereta a matrix of the same size as `x`, where each element represents
-# its index.
-#
-ind.matrix <- function(x){
-    x      <- as.matrix(x)
-    dims   <- dim(x)
-    m      <- matrix(1:length(x),nrow = dims[1],ncol = dims[2])
-    return(m)
-}

@@ -1,10 +1,10 @@
-#' @name makeFirstCapital
-#' @aliases makeFirstCapital
+#' @name make.firstCapitals
+#' @aliases make.firstCapitals
 #' @aliases fCap
 #' @title [+] Convert first letters of all words to capitals
 #'
 #' @description  Convert first letters of all words in a string to capitals.
-#' @details \code{fCap} is a wrapper of \code{makeFirstCapital}.
+#' @details \code{fCap} is a wrapper of \code{make.firstCapitals}.
 #'
 #' @param x Either a string or a vector of strings.
 #'
@@ -12,7 +12,7 @@
 #'
 #' @examples
 #'
-#' makeFirstCapital('laa laa laa')
+#' make.firstCapitals('laa laa laa')
 #' ##[1] "Laa Laa Laa"
 #'
 #' fCap('laa laa laa')
@@ -20,9 +20,9 @@
 #'
 #' @export
 #' @family \pkg{spHelper} utilities
-#' @author Vilmantas Gegzna
 
-makeFirstCapital <- function(x) {
+
+make.firstCapitals <- function(x) {
     s <- strsplit(x, " ")[[1]]
     S <- paste(toupper(substring(s, 1, 1)),
             substring(s, 2),
@@ -31,6 +31,6 @@ makeFirstCapital <- function(x) {
 }
 
 
-#' @rdname makeFirstCapital
+#' @rdname make.firstCapitals
 #' @export
-fCap <- function(x){makeFirstCapital(x)}
+fCap <- function(x){make.firstCapitals(x)}

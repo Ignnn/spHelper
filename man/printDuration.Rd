@@ -58,8 +58,8 @@ Vilmantas Gegzna
 
 Other \pkg{spHelper} utilities: \code{\link{bru}},
   \code{\link{clear}}, \code{\link{expr2text}},
-  \code{\link{makeFirstCapital}}, \code{\link{regexp2df}},
-  \code{\link{rmExpr}}, \code{\link{subt}},
-  \code{\link{uncall}}
+  \code{\link{make.firstCapitals}},
+  \code{\link{regexp2df}}, \code{\link{rmExpr}},
+  \code{\link{subt}}, \code{\link{uncall}}
 }
 

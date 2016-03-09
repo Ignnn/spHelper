@@ -59,8 +59,8 @@
 #'
 #' \code{\link{bru}} \cr
 #' \code{\link{fCap}} \cr
-#' \code{\link{makeFirstCapital}} \cr
-#' \code{\link{listFunctions}} \cr
+#' \code{\link{make.firstCapitals}} \cr
+#' \code{\link{list.functions}} \cr
 #' \code{\link{hyDrop.NA}} \cr
 #'
 #'
@@ -75,7 +75,7 @@
 #'
 #' # List all functions in package:
 #'
-#' listFunctions()
+#' list.functions()
 #'
 #' # Plot structure of functions inside the package:
 #' require(sna)

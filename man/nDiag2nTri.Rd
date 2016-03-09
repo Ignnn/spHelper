@@ -32,6 +32,9 @@ Vilmantas Gegzna
 }
 \seealso{
 Other matrix operations: \code{\link{corr_vec2mat}},
-  \code{\link{nTri2nDiag}}, \code{\link{which.in}}
+  \code{\link{ind.matrix}}, \code{\link{nTri2nDiag}},
+  \code{\link{new.matrix}}, \code{\link{sortMaxOnDiag}},
+  \code{\link{which.in}}, \code{\link{which.max.all}},
+  \code{\link{which.max.perRow}}
 }
 

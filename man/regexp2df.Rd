@@ -117,7 +117,7 @@ Vilmantas Gegzna
 
 Other \pkg{spHelper} utilities: \code{\link{bru}},
   \code{\link{clear}}, \code{\link{expr2text}},
-  \code{\link{makeFirstCapital}},
+  \code{\link{make.firstCapitals}},
   \code{\link{printDuration}}, \code{\link{rmExpr}},
   \code{\link{subt}}, \code{\link{uncall}}
 }

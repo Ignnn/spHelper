@@ -142,46 +142,46 @@ qplot_confusion <- function(conf,
     ind.main <- base::setdiff(1:N, c(ind.SePV, N)) # indices of the main matrix elements
     ind.diag <- base::setdiff(which.in.diag(conf.a), N) # ind. of the diag. el. in main matrix
 
-    ColValue <- rep(NA, N)
+    FillValue <- rep(NA, N)
 
     accShades <- function(){
         #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Rescale Se and PV
-        ColValue[ind.SePV] <- scales::rescale(conf.a[ind.SePV],c(-1,1),c(1/n,1) )
+        FillValue[ind.SePV] <- scales::rescale(conf.a[ind.SePV],c(-1,1),c(1/n,1) )
         # Rescale Kappa  - - - - - - - - - - - - - - - - - - - - - - -
-        ColValue[N] <- scales::rescale(conf.a[N],c(-1,1),c(0,1))
+        FillValue[N] <- scales::rescale(conf.a[N],c(-1,1),c(0,1))
         # Correct too small and too high values- - - - - - - - - - - -
-        ColValue[ColValue < -1] <- -1
-        ColValue[ColValue >  1] <-  1
+        FillValue[FillValue < -1] <- -1
+        FillValue[FillValue >  1] <-  1
         #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        return(ColValue)
+        return(FillValue)
     }
 
     switch(shades[1],
            prop =  {# best for square matrix
-               ColValue[ind.main] <- -conf.m$value[ind.main] /
+               FillValue[ind.main] <- -conf.m$value[ind.main] /
                                       sum(conf) * n * (n - 1);
-               ColValue[ind.diag] <- -ColValue[ind.diag] / (n - 1)
-               ColValue <- accShades()
+               FillValue[ind.diag] <- -FillValue[ind.diag] / (n - 1)
+               FillValue <- accShades()
             },
 
            max = {
-               ColValue[ind.main] <- -conf.m$value[ind.main] / max(conf);
-               ColValue[ind.diag] <- -ColValue[ind.diag]
-               ColValue <- accShades()
+               FillValue[ind.main] <- -conf.m$value[ind.main] / max(conf);
+               FillValue[ind.diag] <- -FillValue[ind.diag]
+               FillValue <- accShades()
             },
 
            const = {
-               ColValue[ind.main]   <- -.60
-               ColValue[ind.diag]   <-  .70
-               # ColValue[N]          <- 0.10
+               FillValue[ind.main]   <- -.60
+               FillValue[ind.diag]   <-  .70
+               # FillValue[N]          <- 0.10
 
             },
         # Just constant grey color (no red nor green colors)
-           ColValue[] <- 0
+           FillValue[] <- 0
     )
 
-    conf.m$ColValue <- ColValue
+    conf.m$FillValue <- FillValue
     # *************************************************************
     # K <- substitute(kappa == K, list(K = conf.a[N]))
     # conf.m$value[N] <- K
@@ -193,12 +193,12 @@ qplot_confusion <- function(conf,
     nameY <- names(conf.m)[1]
 
     p <- ggplot(conf.m, aes_string(x = nameX, y = nameY)) +
-         geom_tile(aes(fill = ColValue), colour = "grey50") +
+         geom_tile(aes(fill = FillValue), colour = "grey50") +
          geom_text(aes(label = value), size = text.size) +
          geom_hline(size = 1.2, color = "grey30", yintercept = 1.5    ) +
          geom_vline(size = 1.2, color = "grey30", xintercept = nc + .5) +
 
-        scale_fill_gradient2(high  = "#209D20",   # "#008000",
+         scale_fill_gradient2(high = "#209D20",   # "#008000",
                               mid  = "#eeeeee", #mid = "#f2f6c3",
                               midpoint = 0,
                               low  = "#dd4040",#"tomato2",

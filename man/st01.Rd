@@ -2,27 +2,32 @@
 % Please edit documentation in R/st01.R
 \name{st01}
 \alias{st01}
-\title{[+] Standardize values to intervat from min to 1}
+\alias{stMinMax}
+\title{[+] Standardize values to intervat from 0 to 1}
 \usage{
-st01(x, m = min(x))
+st01(x, MIN = min(x), MAX = 1)
+
+stMinMax(x, MIN = min(x), MAX = max(x))
 }
 \arguments{
 \item{x}{A numeric vector vector}
 
-\item{m}{A value treated as a minimum.}
+\item{MIN}{A value treated as a minimum.}
+
+\item{MAX}{A value treated as a maximum.}
 }
 \description{
-Apply formula: \eqn{(x-m)/(1-m)}{(x-m)/(1-m)}
+Apply formula: \eqn{(x-MIN)/(MAX-MIN)}{(x-MIN)/(MAX-MIN)}
 }
 \examples{
 
 x <- seq(.3,1,.1)
 st01(x)
-st01(x, m = .2)
+st01(x, MIN = .2)
 
 }
 \seealso{
 Other family \pkg{spHelper} utilities: \code{\link{clc}},
-  \code{\link{make.nameswin}}
+  \code{\link{make.filenames}}
 }
 
