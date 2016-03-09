@@ -5,13 +5,16 @@
 \alias{qplot_crosstab0}
 \alias{qplot_crosstab0s}
 \alias{qplot_crosstab_sort}
-\title{[!!!] Plot a crosstabulation (classification table)}
+\title{[!] Plot a crosstabulation (classification table)}
 \usage{
 qplot_crosstab(tabl, Title = "Cross-tabulation", xLabel = NULL,
   yLabel = NULL, subTitle = NULL, text.size = 5, sort.maxOnDiag = FALSE,
   bg.color = "wheat2", max.color = "gold3", low.color = "grey80",
   decimals = 2, show.max = c("colMax", "rowMax", "max", FALSE),
   shades = TRUE, guide = c("legend", "colorbar", FALSE))
+
+qplot_crosstab_sort(tabl, sort.maxOnDiag = TRUE, show.max = TRUE,
+  shades = TRUE, ...)
 
 qplot_crosstab0(tabl, Title = "Cross-tabulation", xLabel = NULL,
   yLabel = NULL, subTitle = NULL, text.size = 5, sort.maxOnDiag = FALSE,
@@ -22,9 +25,6 @@ qplot_crosstab0s(tabl, Title = "Cross-tabulation", xLabel = NULL,
   yLabel = NULL, subTitle = NULL, text.size = 5, sort.maxOnDiag = TRUE,
   bg.color = "wheat2", decimals = 2, show.max = FALSE, shades = FALSE,
   guide = FALSE, ...)
-
-qplot_crosstab_sort(tabl, sort.maxOnDiag = TRUE, show.max = TRUE,
-  shades = TRUE, ...)
 }
 \arguments{
 \item{tabl}{A classification table, crosstabulation: either an object of
@@ -76,10 +76,6 @@ qplot_crosstab(tabl)
 qplot_crosstab_sort(tabl)   # different order of columns and rows
 qplot_crosstab0(tabl)    # no colors
 qplot_crosstab0s(tabl)   # no colors, different order of columns and rows
-
-
-
-qplot_confusion(sortMaxOnDiag(tabl))
 
 
 }

@@ -20,11 +20,22 @@ Developement version of package `spHelper`
 
 **Package is under construction.**
 
-
 Some functions may be changed significantly.
 
+About Documentation
+-------------------
+
+Meaning of symbols in function descriptions:
+
+- [+] Well documented function.
+- [!], [!!!] Documentation needs attention.
+- [.] function may be removed, renamed or changed.
+
+
 * * *
-Version of package: `r packageVersion("spHelper")`  
-File updated on: `r Sys.Date()`
+
+| Version of package                |      File updated on|
+|:---------------------------------:|:-------------------:|
+|`r packageVersion("spHelper")`     |      `r Sys.Date()` |
 
 

@@ -1,52 +1,11 @@
 ## ----options1, echo = FALSE, message = FALSE, warning = FALSE------------
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.align = 'center')
+knitr::opts_chunk$set(collapse = TRUE,
+                      comment = "#>",
+                      fig.align = 'center')
 optDEF <- knitr::opts_chunk$get()
 
 ## ----Load main package, message = FALSE, warning = FALSE-----------------
 library(spHelper)
-
-## ----subt, fig.height=3--------------------------------------------------
- subt("Cars")
- ## bold("Cars")
-
- subt("Cars","Distance vs. speed")
- ## atop(bold("Cars"), atop(italic("Distance vs. speed")))
-
- # ----------------------------------------------------------------
-
- plot(cars[,1:2], main = "Cars")
- plot(cars[,1:2], main = subt("Cars")) # the same as in previous line
- plot(cars[,1:2], main = subt("Cars","Distance vs. speed"))
- plot(cars[,1:2], main = subt(subTitle = "Distance vs. speed"))
-
- # ----------------------------------------------------------------
-
- library(ggplot2)
-
- g <- qplot(mpg, wt, data = mtcars)
- g + ggtitle("Cars") # non-bold title
- g + ggtitle(subt("Cars")) # bold title
- g + ggtitle(subt("Cars","Distance vs. speed"))
- g + ggtitle(subt(subTitle = "Distance vs. speed"))
-
-
- # ----------------------------------------------------------------
-
- library(lattice)
-
- xyplot(eruptions~waiting, data = faithful)
-
- xyplot(eruptions~waiting, data = faithful,
-  main = "Old Faithful Geyser Data")
-
- xyplot(eruptions~waiting, data = faithful,
-  main = subt("Old Faithful Geyser Data"))
-
- xyplot(eruptions~waiting, data = faithful,
-  main = subt("Old Faithful Geyser", "Data"))
-
- xyplot(eruptions~waiting, data = faithful,
-  main = subt(subTitle = "Old Faithful Geyser Data"))
 
 ## ----options2, echo = FALSE----------------------------------------------
 knitr::opts_chunk$set(fig.width = 6, fig.align = 'center')
@@ -110,7 +69,7 @@ p
 
 p + theme_bw()
 
-## ----qplolt_spStat 1--------------------------------------------------------
+## ----qplolt_spStat 1-----------------------------------------------------
 qplolt_spStat(chondro,clusters,mean)
 qplolt_spStat(chondro,clusters,mean,All = FALSE)
 qplolt_spStat(chondro,clusters,mean_sd,All = FALSE) +
@@ -125,7 +84,7 @@ qplolt_spStat(chondro,clusters,mean_pm_sd) +
     nTick_x()
 
 
-## ----qplolt_spStat 2--------------------------------------------------------
+## ----qplolt_spStat 2-----------------------------------------------------
 qplolt_spStat(Spectra,gr,mean)
 qplolt_spStat(Spectra,gr,mean,All = FALSE)
 qplolt_spStat(Spectra,gr,mean_sd,All = FALSE) +
@@ -139,7 +98,7 @@ qplolt_spStat(Spectra,gr,mean_pm_sd) +
     facet_grid(.~gr) +
     nTick_x()
 
-## ------------------------------------------------------------------------
+## ----qplot_prediction 1--------------------------------------------------
  data(Scores)
  Scores$Prediction <- sample(Scores$gr)
  Scores <- hyAdd.color(sp = Scores, by = "gr", palette = c("tan3", "green4","skyblue"))
@@ -149,6 +108,7 @@ qplolt_spStat(Spectra,gr,mean_pm_sd) +
 
  qplot_prediction(Scores,"Prediction","gr", type.stat = "ref", MDS = "isoMDS")
 
+## ----qplot_prediction 2--------------------------------------------------
  sc <- Scores[,,c(1,3),wl.index = TRUE]
 
  qplot_prediction(sc,"Prediction","gr", type = "reference")
@@ -159,21 +119,31 @@ qplolt_spStat(Spectra,gr,mean_pm_sd) +
  set.seed(1)
  sc <- sample(Scores[,,c(1,2),wl.index = TRUE],50)
  ID <- rownames(sc)
+
+## ----qplot_proximity 1---------------------------------------------------
  
  qplot_proximity(sc, "class")
  qplot_proximity(sc, "class",  plot.scatter = FALSE) + geom_text(aes(label = ID))
+
+
+## ----qplot_proximity 2---------------------------------------------------
+ Clusters <- as.factor(kmeans(sc,3)$cluster)
+ qplot_proximity(sc, "class", stat = FALSE) + stat_chull(aes(fill = Clusters), color = NA, alpha = .2)
 
 ## ----qplot_crosstab------------------------------------------------------
 # Generate data: Random guess  ============================
  N <- 1000 # number of observations
 
 Prediction <- sample(c("A","B","C","D"), N, replace = TRUE)
-Reference  <- sample(c("A", "B","C","D"),N, replace = TRUE)
+Reference  <- sample(c("A", "B","C","D","E"),N, replace = TRUE)
 
 tabl <- table(Prediction,Reference)
-qplot_crosstab(tabl)
 
-qplot_crosstab(prop.table(table(Prediction,Reference)))
+qplot_crosstab(tabl)
+qplot_crosstab_sort(tabl,subTitle = "Columns and rows sorted by the best match")   # different order of columns and rows
+qplot_crosstab0(tabl,subTitle = "Without highlighting")    # no colors
+qplot_crosstab0s(tabl,subTitle = "Sorted by the best match, no highlighting")   # no colors, different order of columns and rows
+
 
 ## ----options 3, echo=FALSE-----------------------------------------------
 # knitr::opts_chunk$set(optDEF)
@@ -217,6 +187,11 @@ Reference[ind3] <- Prediction[ind3]
 conf3 <- table(Prediction,Reference)
 
 qplot_confusion(conf3, subTitle = "Correct >80%")
+
+## ----qplot_confusion 2B--------------------------------------------------
+# Sort rows and columns by the best match ============
+conf3_sorted <- sortMaxOnDiag(conf2)
+qplot_confusion(conf3_sorted,subTitle = "Columns and rows sorted by the best match")
 
 ## ----qplot_confusion 3---------------------------------------------------
 # Proportions =========================================
@@ -341,4 +316,47 @@ matlines(x,yNEW, type = "l", lty = 1,lwd = 3);
 abline(h = 0)
 
 par(mfrow = c(1,1))
+
+## ----subt, fig.height=3--------------------------------------------------
+ subt("Cars")
+ ## bold("Cars")
+
+ subt("Cars","Distance vs. speed")
+ ## atop(bold("Cars"), atop(italic("Distance vs. speed")))
+
+ # ----------------------------------------------------------------
+
+ plot(cars[,1:2], main = "Cars")
+ plot(cars[,1:2], main = subt("Cars")) # the same as in previous line
+ plot(cars[,1:2], main = subt("Cars","Distance vs. speed"))
+ plot(cars[,1:2], main = subt(subTitle = "Distance vs. speed"))
+
+ # ----------------------------------------------------------------
+
+ library(ggplot2)
+
+ g <- qplot(mpg, wt, data = mtcars)
+ g + ggtitle("Cars") # non-bold title
+ g + ggtitle(subt("Cars")) # bold title
+ g + ggtitle(subt("Cars","Distance vs. speed"))
+ g + ggtitle(subt(subTitle = "Distance vs. speed"))
+
+
+ # ----------------------------------------------------------------
+
+ library(lattice)
+
+ xyplot(eruptions~waiting, data = faithful)
+
+ xyplot(eruptions~waiting, data = faithful,
+  main = "Old Faithful Geyser Data")
+
+ xyplot(eruptions~waiting, data = faithful,
+  main = subt("Old Faithful Geyser Data"))
+
+ xyplot(eruptions~waiting, data = faithful,
+  main = subt("Old Faithful Geyser", "Data"))
+
+ xyplot(eruptions~waiting, data = faithful,
+  main = subt(subTitle = "Old Faithful Geyser Data"))
 

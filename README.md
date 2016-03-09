@@ -6,7 +6,17 @@ Developement version of package `spHelper`
 
 Some functions may be changed significantly.
 
+About Documentation
+-------------------
+
+Meaning of symbols in function descriptions:
+
+-   \[+\] Well documented function.
+-   \[!\], \[!!!\] Documentation needs attention.
+-   \[.\] function may be removed, renamed or changed.
+
 ------------------------------------------------------------------------
 
-Version of package: 0.1.43
-File updated on: 2016-03-02
+| Version of package | File updated on |
+|:------------------:|:---------------:|
+|       0.1.55       |    2016-03-09   |

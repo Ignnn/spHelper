@@ -82,3 +82,4 @@ stop("This script can be harmful")
 lapply(directories, apply_content_corrections)
 
 
+# setwd('D:\\Dokumentai\\R\\spHelper\\')

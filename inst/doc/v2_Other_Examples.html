@@ -11,7 +11,7 @@
 
 <meta name="author" content="Vilmantas Gegzna" />
 
-<meta name="date" content="2016-03-08" />
+<meta name="date" content="2016-03-09" />
 
 <title>Other spHelper examples</title>
 
@@ -69,9 +69,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <h1 class="title">Other <code>spHelper</code> examples</h1>
-<h3 class="subtitle"><em>(spHelper v0.1.52)</em></h3>
+<h3 class="subtitle"><em>(spHelper v0.1.55)</em></h3>
 <h4 class="author"><em>Vilmantas Gegzna</em></h4>
-<h4 class="date"><em>2016-03-08</em></h4>
+<h4 class="date"><em>2016-03-09</em></h4>
 
 </div>
 
@@ -148,54 +148,35 @@ pattern3 &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span clas
 <span class="co">#&gt; 2           555 O20-5-984     S     52     8</span></code></pre></div>
 <p>List all .R files in your working directory:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">regexp2df</span>(<span class="kw">dir</span>(),<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)'</span>)
-<span class="co">#&gt;                         R_file</span>
-<span class="co">#&gt; 1       v1_spHelper_Plotting.R</span>
-<span class="co">#&gt; 2          v2_Other_Examples.R</span>
-<span class="co">#&gt; 3 v3_Plotting_Examples_gg_hy.R</span></code></pre></div>
+<span class="co">#&gt;                   R_file</span>
+<span class="co">#&gt; 1 v1_spHelper_Plotting.R</span>
+<span class="co">#&gt; 2    v2_Other_Examples.R</span></code></pre></div>
 <p>Do the same by using chaining operator <code>%&gt;%</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">library</span>(dplyr)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'dplyr'</span>
-<span class="co">#&gt; The following object is masked from 'package:hyperSpec':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     collapse</span>
-<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     filter, lag</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 
  <span class="kw">dir</span>() %&gt;%<span class="st"> </span><span class="kw">regexp2df</span>(<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)'</span>)
-<span class="co">#&gt;                         R_file</span>
-<span class="co">#&gt; 1       v1_spHelper_Plotting.R</span>
-<span class="co">#&gt; 2          v2_Other_Examples.R</span>
-<span class="co">#&gt; 3 v3_Plotting_Examples_gg_hy.R</span></code></pre></div>
+<span class="co">#&gt;                   R_file</span>
+<span class="co">#&gt; 1 v1_spHelper_Plotting.R</span>
+<span class="co">#&gt; 2    v2_Other_Examples.R</span></code></pre></div>
 <p>Capture several types of files:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> expr &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">'(?&lt;R_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]$)|'</span>,
                 <span class="st">'(?&lt;Rmd_file&gt;.*</span><span class="ch">\\</span><span class="st">.[rR]md$)|'</span>,
                 <span class="st">'(?&lt;HTML_file&gt;.*</span><span class="ch">\\</span><span class="st">.html$)'</span>)
  <span class="kw">dir</span>() %&gt;%<span class="st"> </span><span class="kw">regexp2df</span>(expr) 
-<span class="co">#&gt;                         R_file                       Rmd_file</span>
-<span class="co">#&gt; 1                                                            </span>
-<span class="co">#&gt; 2       v1_spHelper_Plotting.R                               </span>
-<span class="co">#&gt; 3                                    v1_spHelper_Plotting.Rmd</span>
-<span class="co">#&gt; 4                                                            </span>
-<span class="co">#&gt; 5          v2_Other_Examples.R                               </span>
-<span class="co">#&gt; 6                                       v2_Other_Examples.Rmd</span>
-<span class="co">#&gt; 7                                                            </span>
-<span class="co">#&gt; 8 v3_Plotting_Examples_gg_hy.R                               </span>
-<span class="co">#&gt; 9                              v3_Plotting_Examples_gg_hy.Rmd</span>
-<span class="co">#&gt;                         HTML_file</span>
-<span class="co">#&gt; 1       v1_spHelper_Plotting.html</span>
-<span class="co">#&gt; 2                                </span>
-<span class="co">#&gt; 3                                </span>
-<span class="co">#&gt; 4          v2_Other_Examples.html</span>
-<span class="co">#&gt; 5                                </span>
-<span class="co">#&gt; 6                                </span>
-<span class="co">#&gt; 7 v3_Plotting_Examples_gg_hy.html</span>
-<span class="co">#&gt; 8                                </span>
-<span class="co">#&gt; 9</span></code></pre></div>
+<span class="co">#&gt;                   R_file                       Rmd_file</span>
+<span class="co">#&gt; 1                                                      </span>
+<span class="co">#&gt; 2 v1_spHelper_Plotting.R                               </span>
+<span class="co">#&gt; 3                              v1_spHelper_Plotting.Rmd</span>
+<span class="co">#&gt; 4    v2_Other_Examples.R                               </span>
+<span class="co">#&gt; 5                                 v2_Other_Examples.Rmd</span>
+<span class="co">#&gt; 6                        v3_Plotting_Examples_gg_hy.Rmd</span>
+<span class="co">#&gt;                   HTML_file</span>
+<span class="co">#&gt; 1 v1_spHelper_Plotting.html</span>
+<span class="co">#&gt; 2                          </span>
+<span class="co">#&gt; 3                          </span>
+<span class="co">#&gt; 4                          </span>
+<span class="co">#&gt; 5                          </span>
+<span class="co">#&gt; 6</span></code></pre></div>
 </div>
 <div id="stratifiedfolds-createfolds2-and-foldtests" class="section level1">
 <h1><span class="header-section-number">2</span> <code>stratifiedFolds</code>, <code>createFolds2</code> and <code>foldTests</code></h1>
@@ -438,16 +419,13 @@ f1 &lt;-<span class="st"> </span>function(data, v1) { <span class="kw">getVarVal
 <span class="co"># Returns values of `df$cyl`:</span>
 <span class="kw">f1</span>(df, cyl)
 <span class="co">#&gt;  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</span>
-<span class="co">#&gt; Levels: 4 &lt; 6 &lt; 8</span>
 
 <span class="kw">f1</span>(df, <span class="st">&quot;cyl&quot;</span>)
 <span class="co">#&gt;  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</span>
-<span class="co">#&gt; Levels: 4 &lt; 6 &lt; 8</span>
 
 cyl &lt;-<span class="st"> &quot;gear&quot;</span>        <span class="co"># !!! Still values of `df$cyl`, not `df$gear`:</span>
 <span class="kw">f1</span>(df, cyl)
 <span class="co">#&gt;  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</span>
-<span class="co">#&gt; Levels: 4 &lt; 6 &lt; 8</span>
 
 <span class="co"># Returns values of `df$gear`:</span>
 <span class="kw">f1</span>(df, gear)

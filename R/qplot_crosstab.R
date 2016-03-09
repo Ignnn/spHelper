@@ -1,4 +1,4 @@
-#' @title [!!!] Plot a crosstabulation (classification table)
+#' @title [!] Plot a crosstabulation (classification table)
 #'
 #' @description Plot a crosstabulation (classification table)
 #'
@@ -30,10 +30,6 @@
 #' qplot_crosstab_sort(tabl)   # different order of columns and rows
 #' qplot_crosstab0(tabl)    # no colors
 #' qplot_crosstab0s(tabl)   # no colors, different order of columns and rows
-#'
-#'
-#'
-#' qplot_confusion(sortMaxOnDiag(tabl))
 #'
 #'
 #' @export
@@ -161,6 +157,24 @@ qplot_crosstab <- function(tabl,
     return(p)
 }
 
+#  ------------------------------------------------------------------------
+#' @rdname qplot_crosstab
+#' @export
+qplot_crosstab_sort <- function(tabl,
+                                sort.maxOnDiag = TRUE,
+                                show.max = TRUE,
+                                shades   = TRUE,
+                                ...) {
+    qplot_crosstab(tabl,
+                   sort.maxOnDiag = sort.maxOnDiag,
+                   show.max = show.max,
+                   shades   = shades,
+                   ...)
+}
+
+
+#  ------------------------------------------------------------------------
+
 
 #' @rdname qplot_crosstab
 #' @template same
@@ -195,6 +209,9 @@ qplot_crosstab0 <- function(tabl,
      ...)
 }
 
+#  ------------------------------------------------------------------------
+
+
 #' @rdname qplot_crosstab
 #' @export
 qplot_crosstab0s <- function(tabl,
@@ -225,16 +242,4 @@ qplot_crosstab0s <- function(tabl,
                    ...)
 }
 
-#' @rdname qplot_crosstab
-#' @export
-qplot_crosstab_sort <- function(tabl,
-                             sort.maxOnDiag = TRUE,
-                             show.max = TRUE,
-                             shades   = TRUE,
-                             ...) {
-qplot_crosstab(tabl,
-                   sort.maxOnDiag = sort.maxOnDiag,
-                   show.max = show.max,
-                   shades   = shades,
-                   ...)
-}
+
