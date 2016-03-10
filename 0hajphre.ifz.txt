@@ -1,0 +1,17 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   DESCRIPTION
+#	modified:   NAMESPACE
+#	new file:   R/read.OceanView.ts.R
+#	modified:   README.Rmd
+#	modified:   README.md
+#	modified:   man/hyGet.palette.Rd
+#	new file:   man/read.OceanView.ts.Rd
+#	modified:   man/spStat.Rd
+#
+

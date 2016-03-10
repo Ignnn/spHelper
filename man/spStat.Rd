@@ -44,6 +44,7 @@ Vilmantas Gegzna
 \seealso{
 \code{\link[hyperSpec]{aggregate}}
 
-Other functions for \pkg{hyperSpec}: \code{\link{hyGet.palette}}
+Other functions for \pkg{hyperSpec}: \code{\link{hyGet.palette}},
+  \code{\link{read.OceanView.ts}}
 }
 

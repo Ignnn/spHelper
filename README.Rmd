@@ -34,8 +34,9 @@ Meaning of symbols in function descriptions:
 
 * * *
 
-| Version of package                |      File updated on|
-|:---------------------------------:|:-------------------:|
-|`r packageVersion("spHelper")`     |      `r Sys.Date()` |
+
+ <p align="right"> 
+ File updated on <b>`r Sys.Date()`</b> with version of package  <b>`r packageVersion("spHelper")`</b>
+ </p>    
 
 

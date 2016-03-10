@@ -60,6 +60,7 @@ labels(Spectra2,".color")
 Vilmantas Gegzna
 }
 \seealso{
-Other functions for \pkg{hyperSpec}: \code{\link{spStat}}
+Other functions for \pkg{hyperSpec}: \code{\link{read.OceanView.ts}},
+  \code{\link{spStat}}
 }
 
