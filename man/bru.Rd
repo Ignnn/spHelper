@@ -94,11 +94,12 @@ bru('*', 10, before = 5) # 5 empty rows are added
 Vilmantas Gegzna
 }
 \seealso{
-Other \pkg{spHelper} utilities: \code{\link{clear}},
-  \code{\link{expr2text}},
+Other \pkg{spHelper} utilities: \code{\link{clc}},
+  \code{\link{clear}}, \code{\link{expr2text}},
+  \code{\link{listAddRm}}, \code{\link{make.filenames}},
   \code{\link{make.firstCapitals}},
   \code{\link{printDuration}}, \code{\link{regexp2df}},
-  \code{\link{rmExpr}}, \code{\link{subt}},
-  \code{\link{uncall}}
+  \code{\link{rmExpr}}, \code{\link{st01}},
+  \code{\link{subt}}, \code{\link{uncall}}
 }
 

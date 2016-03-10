@@ -5,7 +5,7 @@
 #'
 #' @export
 #'
-#' @family family \pkg{spHelper} utilities
+#' @family \pkg{spHelper} utilities
 
 
 clc <- function() { cat("\014") }

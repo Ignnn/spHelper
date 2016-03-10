@@ -6,11 +6,9 @@
 #'  "spectra") stored in 3 CSV files to hyperSpec object. These fileas are
 #'  usually exported from Matlab.
 #'
-#' \bold{NOTE:} Data columns, that have unique values are removed.
-#'
 #' @param FileName_base A base of file name (a string). See section "Details".
 #'
-#' @return Object of class \code{\link[=hyperSpec-class]{hyperSpec}}
+#' @return Object of class \code{\link[=hyperSpec-class]{hyperSpec}}.
 #'
 #' @details
 #' If base name is "TD_2009", then CSV file names must be:\cr
@@ -26,7 +24,7 @@
 #' \href{https://github.com/GegznaV/spHelper/tree/master/inst/doc/Save_DS_for_R.m}{Save_DS_for_R.m}
 #'
 #' @export
-#' @family \pkg{spHelper} functions for \code{hyperSpec}
+#' @family \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}
 #' @author Vilmantas Gegzna
 
 read3csv2hy <- function(FileName_base){
@@ -48,17 +46,7 @@ read3csv2hy <- function(FileName_base){
                                   na.strings = c("<netirta>","<undefined>","?")
     )
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    findNonSingles <- function(x)(length(unique(x))  > 1)
-    findSingles    <- function(x)(length(unique(x)) == 1)
 
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    uniqueInfo <- unique(Filter(findSingles, data))
-    message("Variables with constanant values are eliminated:")
-    row.names(uniqueInfo) <- c("Value_of_eliminated_variable")
-    message(pander::pander(t(uniqueInfo)))
-
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    data      <- Filter(findNonSingles, data)
     if ("ID" %in% data)   data$ID   <- as.factor(data$ID)
 
     #  Create hyperSpec object ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

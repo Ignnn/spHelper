@@ -12,7 +12,7 @@
 #' @return A number of elements in a lower/upper triangle of a matrix
 #'         (excluding the diagonal).
 #' @export
-#' @family matrix operations
+#' @family matrix operations in \pkg{spHelper}
 #' @examples
 #'
 #' nDiag2nTri(5)

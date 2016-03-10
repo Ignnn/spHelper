@@ -5,14 +5,23 @@
 \alias{read.OceanView.ts2}
 \title{[!v0.1] Read OceanView timeseries spectra}
 \usage{
-read.OceanView.ts(file, dec = ".")
+read.OceanView.ts(file, dec = ".", n = 17,
+  indicator = ">>>>>Begin Spectral Data<<<<<")
 
-read.OceanView.ts2(file, dec = ",")
+read.OceanView.ts2(file, dec = ",", n = 17,
+  indicator = ">>>>>Begin Spectral Data<<<<<")
 }
 \arguments{
 \item{file}{The name of the file which the data are to be read from.}
 
 \item{dec}{The character used in the file for decimal points.}
+
+\item{n}{The number of file lines to scan to search for indicator of
+spectral data beginning.}
+
+\item{indicator}{The text, that indicates the last line of the header
+lines and the beggining of spectroscopic information.
+ Default is \code{">>>>>Begin Spectral Data<<<<<"}.}
 }
 \value{
 A \code{\link[=hyperSpec-class]{hyperSpec}} object with technical and
@@ -23,6 +32,10 @@ Read contents of spectroscopic timeseries data file to
 \code{\link[=hyperSpec-class]{hyperSpec}} object. File is created by
  software `OceanView 1.5`.
 }
+\details{
+In \code{read.OceanView.ts} the default decimal symbol is dot (\code{.}).\cr
+         In \code{read.OceanView.ts2} - \emph{comma} (\code{,}).
+}
 \examples{
 
 \donttest{
@@ -32,12 +45,12 @@ read.OceanView.ts("Spectra.txt")
 read.OceanView.ts("Spectra.txt", dec = ",")
 read.OceanView.ts2("Spectra.txt")
 
+# Read several files to one `hyperspec` object:
 
-# Read several files to one hyperspec object:
+Files   <- dir()[1:4]                         # 4 files are sellected
+sp_list <- lapply(Files, read.OceanView.ts2)  # Makes a list of objects
+sp      <- collapse(sp_list)                  # Makes one object
 
-Files   <- dir()[1:4]
-sp_list <- lapply(Files, read.OceanView.ts2) # A list of objects
-sp     <- collapse(sp_list)
 plotmat(sp)
 }}
 
@@ -46,7 +59,14 @@ plotmat(sp)
 Vilmantas Gegzna
 }
 \seealso{
-Other functions for \pkg{hyperSpec}: \code{\link{hyGet.palette}},
-  \code{\link{spStat}}
+Other \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}: \code{\link{hy2mat}},
+  \code{\link{hyAdd.Label.wl}},
+  \code{\link{hyAdd.Labels_PAP_PD2014}},
+  \code{\link{hyAdd.Labels_TD2009}},
+  \code{\link{hyAdd.Labels_TD2015}},
+  \code{\link{hyAdd.color}}, \code{\link{hyAdd}},
+  \code{\link{hyDrop.NA}}, \code{\link{hyGet.palette}},
+  \code{\link{read.OceanView.header}},
+  \code{\link{read3csv2hy}}, \code{\link{spStat}}
 }
 

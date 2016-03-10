@@ -34,7 +34,7 @@ just with new values.
 Vilmantas Gegzna
 }
 \seealso{
-Other matrix operations: \code{\link{corr_vec2mat}},
+Other matrix operations in \pkg{spHelper}: \code{\link{corr_vec2mat}},
   \code{\link{ind.matrix}}, \code{\link{nDiag2nTri}},
   \code{\link{nTri2nDiag}}, \code{\link{sortMaxOnDiag}},
   \code{\link{which.in}}, \code{\link{which.max.all}},

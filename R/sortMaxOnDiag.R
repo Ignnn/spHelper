@@ -16,7 +16,7 @@
 #' qplot_confusion(sortMaxOnDiag(M))
 #'
 #' @author Vilmantas Gegzna
-#' @family matrix operations
+#' @family matrix operations in \pkg{spHelper}
 #'
 sortMaxOnDiag <- function(M) {
     # Eliminate rows and columns by converting to `NA`

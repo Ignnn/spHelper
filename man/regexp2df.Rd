@@ -116,9 +116,12 @@ Vilmantas Gegzna
          \code{\link[dplyr]{\%>\%}}
 
 Other \pkg{spHelper} utilities: \code{\link{bru}},
-  \code{\link{clear}}, \code{\link{expr2text}},
+  \code{\link{clc}}, \code{\link{clear}},
+  \code{\link{expr2text}}, \code{\link{listAddRm}},
+  \code{\link{make.filenames}},
   \code{\link{make.firstCapitals}},
   \code{\link{printDuration}}, \code{\link{rmExpr}},
-  \code{\link{subt}}, \code{\link{uncall}}
+  \code{\link{st01}}, \code{\link{subt}},
+  \code{\link{uncall}}
 }
 

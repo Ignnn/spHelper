@@ -14,8 +14,8 @@
 #' @return A constructed correlation matrix.
 #' @export
 #'
-#' @family matrix operations
-#' @family simmulation functions
+#' @family matrix operations in \pkg{spHelper}
+#' @family simmulation functions in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 #'
 #' @examples

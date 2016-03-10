@@ -21,7 +21,7 @@
 #' whichOutlier(Scores)
 #' whichOutlier(Scores,3)
 #'
-#' @family component analysis / factorisation related functions
+#' @family component analysis / factorisation related functions in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 whichOutlier <- function(scores, zLimit = 2) {
     SS <- scale(scores);

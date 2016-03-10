@@ -15,7 +15,7 @@
 #' @export
 #'
 #'
-#' @family \pkg{spHelper} functions for \code{hyperSpec}
+#' @family \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}
 #' @author Vilmantas Gegzna
 #'
 hyAdd <- function(sp, var.name, by, unique.values) {

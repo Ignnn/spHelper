@@ -39,7 +39,7 @@
 #' plot_spDiff(Loadings, Scores[1:10,,], Spectra[1:10,,], stacked = TRUE)
 #'
 #' @family \pkg{spHelper} plots
-#' @family component analysis / factorisation related functions
+#' @family component analysis / factorisation related functions in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 
 plot_spDiff <- function(loadings, scores, sp,

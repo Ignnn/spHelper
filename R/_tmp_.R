@@ -1,3 +1,18 @@
+# # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# # Drop columns with only one unique value
+# findNonSingles <- function(x)(length(unique(x))  > 1)
+# findSingles    <- function(x)(length(unique(x)) == 1)
+#
+# uniqueInfo <- unique(Filter(findSingles, data))
+# message("Variables with constanant values are eliminated:")
+# row.names(uniqueInfo) <- c("Value_of_eliminated_variable")
+# message(pander::pander(t(uniqueInfo)))
+#
+# data      <- Filter(findNonSingles, data)
+# # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
 # gg <- ggplot(msleep, aes(bodywt, brainwt)) +
 #     geom_point(na.rm = TRUE) +
 #     scale_x_log10() +

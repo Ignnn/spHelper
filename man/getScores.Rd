@@ -65,7 +65,7 @@ Vilmantas Gegzna
 \seealso{
 \code{\link{qplot_scores}}
 
-Other component analysis / factorisation related functions: \code{\link{infoDim}},
+Other component analysis / factorisation related functions in \pkg{spHelper}: \code{\link{infoDim}},
   \code{\link{plot_spDiff}}, \code{\link{qplot_infoDim}},
   \code{\link{qplot_kAmp}}, \code{\link{qplot_kSp}},
   \code{\link{reconstructSp}}, \code{\link{sortLoadings}},

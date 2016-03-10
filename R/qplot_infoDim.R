@@ -52,7 +52,7 @@
 #' @note http://www.originlab.com/doc%5Cen/Tutorial/images/Principal_Component_Analysis/Pca_scree_plot.png
 #'
 #' @family \pkg{spHelper} plots
-#' @family component analysis / factorisation related functions
+#' @family component analysis / factorisation related functions in \pkg{spHelper}
 #' @family information dimension functions
 
 qplot_infoDim <- function(obj, n.comp.SHOW = 20,

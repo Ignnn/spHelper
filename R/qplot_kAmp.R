@@ -48,7 +48,7 @@
 #'
 #' @export
 #' @family \pkg{spHelper} plots
-#' @family component analysis / factorisation related functions
+#' @family component analysis / factorisation related functions in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 
 qplot_kAmp <- function(scores,

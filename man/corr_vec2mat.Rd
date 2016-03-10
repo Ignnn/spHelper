@@ -70,13 +70,13 @@ corr_vec2mat(vector)
 Vilmantas Gegzna
 }
 \seealso{
-Other matrix operations: \code{\link{ind.matrix}},
+Other matrix operations in \pkg{spHelper}: \code{\link{ind.matrix}},
   \code{\link{nDiag2nTri}}, \code{\link{nTri2nDiag}},
   \code{\link{new.matrix}}, \code{\link{sortMaxOnDiag}},
   \code{\link{which.in}}, \code{\link{which.max.all}},
   \code{\link{which.max.perRow}}
 
-Other simmulation functions: \code{\link{simCorrVars}},
+Other simmulation functions in \pkg{spHelper}: \code{\link{simCorrVars}},
   \code{\link{simSpectra}}
 }
 

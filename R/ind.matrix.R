@@ -11,7 +11,7 @@
 #'  ind.matrix(matrix(NA, 2, 5))
 #'  ind.matrix(matrix(NA, 5, 2))
 #'
-#' @family matrix operations
+#' @family matrix operations in \pkg{spHelper}
 #' @seealso \link[base]{row},\link[base]{col}
 #' @author Vilmantas Gegzna
 #'

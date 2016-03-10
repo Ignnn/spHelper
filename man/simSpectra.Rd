@@ -68,7 +68,7 @@ simSpectra()$Spectra
 Vilmantas Gegzna
 }
 \seealso{
-Other simmulation functions: \code{\link{corr_vec2mat}},
+Other simmulation functions in \pkg{spHelper}: \code{\link{corr_vec2mat}},
   \code{\link{simCorrVars}}
 }
 

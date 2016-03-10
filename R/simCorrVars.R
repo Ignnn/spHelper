@@ -38,7 +38,7 @@
 #' simCorrVars(c(.1,.5,.8), N = 10)
 #'
 #' # ------------------------------------------------------------
-#' @family simmulation functions
+#' @family simmulation functions in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 #'
 simCorrVars <- function(corrMat, N = 100){

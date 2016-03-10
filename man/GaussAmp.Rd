@@ -57,6 +57,6 @@ plot(Obj, col = 1:nrow(Obj)); grid()
 Vilmantas Gegzna
 }
 \seealso{
-Other curves: \code{\link{unipeak}}
+Other curves in\pkg{spHelper}: \code{\link{unipeak}}
 }
 

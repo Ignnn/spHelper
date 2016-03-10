@@ -1,4 +1,4 @@
-# addLabels_TD2009 --------------------------------------------------------
+# hyAdd.Labels_TD2009 --------------------------------------------------------
 #
 #' [+] Add labels to "TD_2009" dataset
 #'
@@ -14,10 +14,10 @@
 #' @return A labeled object with reduced number of data columns.
 #'
 #' @export
-#' @family \pkg{spHelper} functions for \code{hyperSpec}
+#' @family \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}
 #' @author Vilmantas Gegzna
 #'
-addLabels_TD2009 <- function(sp,language = "EN")  {
+hyAdd.Labels_TD2009 <- function(sp,language = "EN")  {
     ColsInitial <- colnames(sp) # save initial column names
 
     data         = sp$..
@@ -73,7 +73,7 @@ addLabels_TD2009 <- function(sp,language = "EN")  {
                                         NULL)
 
     # Labels, specific to Fluorescence spectra
-    labels(Object, ".wavelength") <- expression(paste(lambda, ", nm"))
+    labels(Object, ".wavelength") <- expression(list(lambda, nm))
 
     # ----------------------------------------------------------------------
 
@@ -91,18 +91,15 @@ addLabels_TD2009 <- function(sp,language = "EN")  {
     # Labels is vector with color names
     labels(Object, ".color") <- UsedColors
     # ---------------------------------------------------------------------
+    # CHECK if any columns were added or deleted
     ColsFinal   <- colnames(Object)
-    ColsREMOVED <- ColsInitial[!(ColsInitial %in% ColsFinal)]
-    if (length(ColsREMOVED) > 0 ) {
-        message("These columns were removed from the `hyperSpec` object:")
-        cat(ColsREMOVED,sep = '\n')
-    }
+    print(listAddRm(ColsInitial, ColsFinal))
     # ---------------------------------------------------------------------
 
     return(Object)
 }
 # @examples
-# # addLabels_TD2009(sp)
+# # hyAdd.Labels_TD2009(sp)
 #
 # ## hyperSpec object
 # ## 1020 spectra

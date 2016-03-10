@@ -10,7 +10,12 @@ clc()
 Clears console. The same as \code{CTRL + L}in RStudio.
 }
 \seealso{
-Other family \pkg{spHelper} utilities: \code{\link{make.filenames}},
-  \code{\link{st01}}
+Other \pkg{spHelper} utilities: \code{\link{bru}},
+  \code{\link{clear}}, \code{\link{expr2text}},
+  \code{\link{listAddRm}}, \code{\link{make.filenames}},
+  \code{\link{make.firstCapitals}},
+  \code{\link{printDuration}}, \code{\link{regexp2df}},
+  \code{\link{rmExpr}}, \code{\link{st01}},
+  \code{\link{subt}}, \code{\link{uncall}}
 }
 

@@ -2,7 +2,7 @@
 #' @import ggplot2
 #' @import hyperSpec
 
-#' @family functions for \pkg{hyperSpec}
+#' @family \pkg{spHelper} functions for \pkg{hyperSpec}
 #' @family matrix operations
 #' @family simmulation functions
 #' @family curves
@@ -27,3 +27,8 @@
 --------------------------------------------
 https://gist.github.com/hadley/5576263
 paprašyt, kad debugintų per "stack overflow"
+
+
+
+
+expression(list(lambda, nm))

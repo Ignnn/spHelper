@@ -67,10 +67,11 @@ Vilmantas Gegzna
 }
 \seealso{
 Other \pkg{spHelper} utilities: \code{\link{bru}},
-  \code{\link{expr2text}},
+  \code{\link{clc}}, \code{\link{expr2text}},
+  \code{\link{listAddRm}}, \code{\link{make.filenames}},
   \code{\link{make.firstCapitals}},
   \code{\link{printDuration}}, \code{\link{regexp2df}},
-  \code{\link{rmExpr}}, \code{\link{subt}},
-  \code{\link{uncall}}
+  \code{\link{rmExpr}}, \code{\link{st01}},
+  \code{\link{subt}}, \code{\link{uncall}}
 }
 

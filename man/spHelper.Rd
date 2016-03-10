@@ -35,7 +35,7 @@ Functions in spHelper by topic
 \code{\link{hy2mat}} \cr
 \code{\link{read3csv2hy}} \cr
 
-\code{\link{addLabels_TD2009}} \cr
+\code{\link{hyAdd.Labels_TD2009}} \cr
 }
 
 \section{Plotting}{

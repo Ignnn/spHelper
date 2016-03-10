@@ -1,4 +1,4 @@
-# addLabels_... --------------------------------------------------------
+# hyAdd.Labels_... --------------------------------------------------------
 #
 #' [+] Add labels to "PAP_PD_2014" and transform the dataset
 #'
@@ -19,10 +19,10 @@
 #'
 #' @export
 #'
-#' @family \pkg{spHelper} functions for \code{hyperSpec}
+#' @family \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}
 #' @author Vilmantas Gegzna
 #'
-addLabels_PAP_PD2014 <- function(sp, language = "EN")  {
+hyAdd.Labels_PAP_PD2014 <- function(sp, language = "EN")  {
     ColsInitial <- colnames(sp) # save initial column names
 
     data         = sp$..
@@ -52,11 +52,17 @@ addLabels_PAP_PD2014 <- function(sp, language = "EN")  {
     # Only necessary columns are selected:
     data <- data %>%
         dplyr::mutate(fileName = file_name_with_path,
-                      Integration_time = Integration_time/1e3) %>%
+                      Integration_time = Integration_time/1e3,
+					  point      = taskas,
+					  sp_type    = tyrimas,
+                      exp_code   = tyrimo_kodas,
+                      ) %>%
         dplyr::select(ID,
                       ID2,
                       spID,
-                      taskas,
+                      point,
+					  sp_type,
+					  exp_code,
                       fileName,
 
                       Date,
@@ -74,11 +80,15 @@ addLabels_PAP_PD2014 <- function(sp, language = "EN")  {
 
     # add Labels ------------------------------------------------------------
     Var.Names <- colnames(Object)
-    Var.LabelsLT <- c("Meginio ID",
+
+    Var.Labels <- switch(language,
+           LT =   c("Meginio ID",
                       "Meginio ID2",
                       "Spektro ID",
                       "Tasko numeris meginy",
-                      "Bylos pavadinimas",
+					  "Eksperimento kodas",
+                      "Spektroskopijos tipas",
+					  "Bylos pavadinimas",
                       "Data (Spektometre)",
                       "Registravimo laikas",
                       "Integracijos laikas",
@@ -87,14 +97,14 @@ addLabels_PAP_PD2014 <- function(sp, language = "EN")  {
                       "Histologines grupes",
                       "Hibridines grupes",
                       "Boxcar width",
-                      "I, sant.vnt."
+                      "I, sant.vnt."),
 
-                     )
-
-    Var.LabelsEN <- c("Specimen ID",
+           EN =   c( "Specimen ID",
                       "Specimen ID2",
                       "Spectrum ID" ,
                       "Point number in a specimen",
+                      "Code of Experiment",
+                      "Type of Spectroscopy",
                       "File name",
                       "Date (Spectometer)",
                       "Time of registration",
@@ -104,30 +114,38 @@ addLabels_PAP_PD2014 <- function(sp, language = "EN")  {
                       "Histological groups",
                       "Hybrid groups",
                       "Boxcar width",
-                      "I, units"
-                    )
+                      "I, units"),
 
-    labels(Object)[Var.Names] <- switch(language,
-                                        LT = Var.LabelsLT,
-                                        EN = Var.LabelsEN,
-                                        NULL)
+		   stop("The value of `language` is not supported."))
 
-    # Labels, specific to Fluorescence spectra
-    labels(Object, ".wavelength") <- expression(paste(lambda, ", ", nm))
+    labels(Object)[Var.Names] <- Var.Labels
+
+    # x axis labels
+    Object <- hyAdd.Label.wl(Object, "wavelength")
+
+    # ---------------------------------------------------------------------
+	# Reorder levels correctly
+    Object$CitoGr <- factor(Spectra$CitoGr,
+    	               levels = c("IPPN", "ASCH", "ASCUS", "LSIL", "HSIL"),
+    	               labels = c("IPPN", "ASCH", "ASCUS", "LSIL", "HSIL"))
+
+    Object$HistGr <- factor(Spectra$HistGr,
+                             levels = c("Cervicitas", "CIN1", "CIN2", "CIN3+"),
+                             labels = c("Cervicitas", "CIN1", "CIN2", "CIN3/CIS"))
+
+    Object$HibridGr <- factor(Spectra$HibridGr,
+                               levels = c("IPPN", "Cervicitas", "CIN1", "CIN2", "CIN3+"),
+                               labels = c("IPPN", "Cervicitas", "CIN1", "CIN2", "CIN3/CIS"))
 
     # ----------------------------------------------------------------------
     # Add `.color`: variable with colors
-
     Object <- hyAdd.color(Object, "HibridGr")
-
-    # ---------------------------------------------------------------------
+	# ---------------------------------------------------------------------
+    # CHECK if any columns were added or deleted
     ColsFinal   <- colnames(Object)
-    ColsREMOVED <- ColsInitial[!(ColsInitial %in% ColsFinal)]
-    if (length(ColsREMOVED) > 0 ) {
-        message("These columns were removed from the `hyperSpec` object:")
-        cat(ColsREMOVED, sep = '\n')
-    }
+    print(listAddRm(ColsInitial, ColsFinal))
     # ---------------------------------------------------------------------
+
 
     return(Object)
 }

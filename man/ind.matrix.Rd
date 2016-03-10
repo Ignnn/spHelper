@@ -25,7 +25,7 @@ Vilmantas Gegzna
 \seealso{
 \link[base]{row},\link[base]{col}
 
-Other matrix operations: \code{\link{corr_vec2mat}},
+Other matrix operations in \pkg{spHelper}: \code{\link{corr_vec2mat}},
   \code{\link{nDiag2nTri}}, \code{\link{nTri2nDiag}},
   \code{\link{new.matrix}}, \code{\link{sortMaxOnDiag}},
   \code{\link{which.in}}, \code{\link{which.max.all}},

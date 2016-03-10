@@ -22,7 +22,7 @@
 #'
 #' @export
 #'
-#' @family \pkg{spHelper} functions for \code{hyperSpec}
+#' @family \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}
 #' @author Vilmantas Gegzna
 #'
 hy2mat <- function(sp)

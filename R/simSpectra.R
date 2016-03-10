@@ -48,7 +48,7 @@
 #'
 #' simSpectra()$Spectra
 #'
-#' @family simmulation functions
+#' @family simmulation functions in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 simSpectra <- function(x = 300:800,
                        nGr = 2,
@@ -114,7 +114,7 @@ simSpectra <- function(x = 300:800,
                    spc = y,
                    data = data.frame(gr = group, class = class),
                    label = list(        spc = "I / a.u.",
-                                        .wavelength = expression(lambda / nm))
+                                        .wavelength = expression(list(lambda, nm)))
     )
 
     #     plot(Spectra,spc.nmax = 200, col = Spectra$class)

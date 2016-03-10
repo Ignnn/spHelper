@@ -64,12 +64,12 @@ abline(h = 0)
 Vilmantas Gegzna
 }
 \seealso{
-Other component analysis / factorisation related functions: \code{\link{getScores}},
+Other component analysis / factorisation related functions in \pkg{spHelper}: \code{\link{getScores}},
   \code{\link{infoDim}}, \code{\link{plot_spDiff}},
   \code{\link{qplot_infoDim}}, \code{\link{qplot_kAmp}},
   \code{\link{qplot_kSp}}, \code{\link{reconstructSp}},
   \code{\link{sortLoadings}}, \code{\link{whichOutlier}}
 
-Other curves: \code{\link{GaussAmp}}
+Other curves in\pkg{spHelper}: \code{\link{GaussAmp}}
 }
 

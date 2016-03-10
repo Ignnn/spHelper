@@ -50,7 +50,7 @@
 #' labels(Spectra2,".color")
 #'     #>  ".color"
 #'
-#' @family \pkg{spHelper} functions for \code{hyperSpec}
+#' @family \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}
 #' @author Vilmantas Gegzna
 
 hyAdd.color <- function(sp = NULL, by,

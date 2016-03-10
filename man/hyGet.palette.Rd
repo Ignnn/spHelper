@@ -60,7 +60,15 @@ labels(Spectra2,".color")
 Vilmantas Gegzna
 }
 \seealso{
-Other functions for \pkg{hyperSpec}: \code{\link{read.OceanView.ts}},
-  \code{\link{spStat}}
+Other \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}: \code{\link{hy2mat}},
+  \code{\link{hyAdd.Label.wl}},
+  \code{\link{hyAdd.Labels_PAP_PD2014}},
+  \code{\link{hyAdd.Labels_TD2009}},
+  \code{\link{hyAdd.Labels_TD2015}},
+  \code{\link{hyAdd.color}}, \code{\link{hyAdd}},
+  \code{\link{hyDrop.NA}},
+  \code{\link{read.OceanView.header}},
+  \code{\link{read.OceanView.ts}},
+  \code{\link{read3csv2hy}}, \code{\link{spStat}}
 }
 

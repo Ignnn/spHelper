@@ -20,7 +20,7 @@
 #' @return y - values of dependent variable of Gaussian curve.
 #'
 #' @export
-#' @family curves
+#' @family curves in\pkg{spHelper}
 #' @author Vilmantas Gegzna
 #'
 #' @examples

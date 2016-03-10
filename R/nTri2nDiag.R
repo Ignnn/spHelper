@@ -8,7 +8,7 @@
 #'
 #' @return A number of rows/columns in a symmetric matrix. May be a fractional number.
 #' @export
-#' @family matrix operations
+#' @family matrix operations in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 #' @examples
 #' nTri2nDiag(10)

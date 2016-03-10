@@ -4,7 +4,7 @@
 #'
 #' @export
 #' @author Vilmantas Gegzna
-#' @family matrix operations
+#' @family matrix operations in \pkg{spHelper}
 
 which.max.perRow <- function(x) {
     M <- ind.matrix(x)

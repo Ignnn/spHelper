@@ -35,9 +35,14 @@ hy2mat(matrix(NA,5,10))
 Vilmantas Gegzna
 }
 \seealso{
-Other \pkg{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},
-  \code{\link{addLabels_TD2009}},
+Other \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}: \code{\link{hyAdd.Label.wl}},
+  \code{\link{hyAdd.Labels_PAP_PD2014}},
+  \code{\link{hyAdd.Labels_TD2009}},
+  \code{\link{hyAdd.Labels_TD2015}},
   \code{\link{hyAdd.color}}, \code{\link{hyAdd}},
-  \code{\link{hyDrop.NA}}, \code{\link{read3csv2hy}}
+  \code{\link{hyDrop.NA}}, \code{\link{hyGet.palette}},
+  \code{\link{read.OceanView.header}},
+  \code{\link{read.OceanView.ts}},
+  \code{\link{read3csv2hy}}, \code{\link{spStat}}
 }
 

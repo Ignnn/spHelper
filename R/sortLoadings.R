@@ -58,7 +58,7 @@
 #' ## [1] "hyperSpec"
 #' # ======================================================================
 #' @seealso \code{\link[hyperSpec]{decomposition}}
-#' @family component analysis / factorisation related functions
+#' @family component analysis / factorisation related functions in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 
 sortLoadings <- function(loadings, sp = NULL, PCA = FALSE, sort = TRUE) {

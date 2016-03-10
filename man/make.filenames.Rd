@@ -36,7 +36,12 @@ Function replaces special symbols \emph{\ / : * ? " < > |} in a string \code{s}
 
 }
 \seealso{
-Other family \pkg{spHelper} utilities: \code{\link{clc}},
-  \code{\link{st01}}
+Other \pkg{spHelper} utilities: \code{\link{bru}},
+  \code{\link{clc}}, \code{\link{clear}},
+  \code{\link{expr2text}}, \code{\link{listAddRm}},
+  \code{\link{make.firstCapitals}},
+  \code{\link{printDuration}}, \code{\link{regexp2df}},
+  \code{\link{rmExpr}}, \code{\link{st01}},
+  \code{\link{subt}}, \code{\link{uncall}}
 }
 

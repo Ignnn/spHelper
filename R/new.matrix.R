@@ -12,7 +12,7 @@
 #'  x <- matrix(NA, 2, 5)
 #'  new.matrix(x, 1)
 #'
-#' @family matrix operations
+#' @family matrix operations in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 #'
 new.matrix <- function(x, values = NA, byrow = FALSE,

@@ -43,7 +43,7 @@
 #' @import hyperSpec
 #'
 #' @seealso \code{\link{qplot_scores}}
-#' @family component analysis / factorisation related functions
+#' @family component analysis / factorisation related functions in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 #'
 #' @examples

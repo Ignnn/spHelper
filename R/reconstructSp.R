@@ -31,7 +31,7 @@
 #' function(Loadings, Scores, Spectra)
 #'
 #' @import hyperSpec
-#' @family component analysis / factorisation related functions
+#' @family component analysis / factorisation related functions in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 #'
 reconstructSp  <-  function(loadings, scores, sp = NULL)     {

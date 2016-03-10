@@ -92,7 +92,7 @@ Other \pkg{spHelper} plots: \code{\link{nTick}},
   \code{\link{qplot_prediction}}, \code{\link{rmExpr}},
   \code{\link{stat_chull}}
 
-Other component analysis / factorisation related functions: \code{\link{getScores}},
+Other component analysis / factorisation related functions in \pkg{spHelper}: \code{\link{getScores}},
   \code{\link{infoDim}}, \code{\link{plot_spDiff}},
   \code{\link{qplot_infoDim}}, \code{\link{qplot_kSp}},
   \code{\link{reconstructSp}}, \code{\link{sortLoadings}},

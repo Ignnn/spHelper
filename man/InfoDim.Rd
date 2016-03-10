@@ -47,7 +47,7 @@ Vilmantas Gegzna
       Biol Direct, 2, 2 (2007), \url{http://dx.doi.org/10.1186/1745-6150-2-2}
 }
 \seealso{
-Other component analysis / factorisation related functions: \code{\link{getScores}},
+Other component analysis / factorisation related functions in \pkg{spHelper}: \code{\link{getScores}},
   \code{\link{plot_spDiff}}, \code{\link{qplot_infoDim}},
   \code{\link{qplot_kAmp}}, \code{\link{qplot_kSp}},
   \code{\link{reconstructSp}}, \code{\link{sortLoadings}},

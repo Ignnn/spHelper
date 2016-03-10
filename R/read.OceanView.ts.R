@@ -4,8 +4,17 @@
 #' \code{\link[=hyperSpec-class]{hyperSpec}} object. File is created by
 #'  software `OceanView 1.5`.
 #'
+#' @details In \code{read.OceanView.ts} the default decimal symbol is dot (\code{.}).\cr
+#'          In \code{read.OceanView.ts2} - \emph{comma} (\code{,}).
+#'
+#'
 #' @param file The name of the file which the data are to be read from.
 #' @param dec The character used in the file for decimal points.
+#' @param n The number of file lines to scan to search for indicator of
+#'         spectral data beginning.
+#' @param indicator The text, that indicates the last line of the header
+#'        lines and the beggining of spectroscopic information.
+#'         Default is \code{">>>>>Begin Spectral Data<<<<<"}.
 #'
 #' @return A \code{\link[=hyperSpec-class]{hyperSpec}} object with technical and
 #'         spectroscopic information from file \code{file}.
@@ -20,83 +29,43 @@
 #' read.OceanView.ts("Spectra.txt", dec = ",")
 #' read.OceanView.ts2("Spectra.txt")
 #'
+#' # Read several files to one `hyperspec` object:
 #'
-#' # Read several files to one hyperspec object:
+#' Files   <- dir()[1:4]                         # 4 files are sellected
+#' sp_list <- lapply(Files, read.OceanView.ts2)  # Makes a list of objects
+#' sp      <- collapse(sp_list)                  # Makes one object
 #'
-#' Files   <- dir()[1:4]
-#' sp_list <- lapply(Files, read.OceanView.ts2) # A list of objects
-#' sp     <- collapse(sp_list)
 #' plotmat(sp)
 #' }}
 #'
-#' @family functions for \pkg{hyperSpec}
+#' @family \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}
 #' @author Vilmantas Gegzna
 #'
-read.OceanView.ts <- function(file, dec = '.') {
-    # Read file line by line --------------------------------------------------
-    text     <- readLines(file, n = 20)
-    # Extract information hrom Header -----------------------------------------
-    head_end <- which(text == ">>>>>Begin Spectral Data<<<<<")
-    header   <- paste(text[1:head_end], collapse = "")
-    if (dec == ",") {header <- gsub(dec, '.', header)}
+read.OceanView.ts <- function(file, dec = '.', n = 17,
+                              indicator = ">>>>>Begin Spectral Data<<<<<") {
 
-    header <- gsub('true',  'TRUE',  header)
-    header <- gsub('false', 'FALSE', header)
 
-    # Parse header ------------------------------------------------------------
-    pattern = paste0(
-        'Data from (?<Data_from>.*) Node.*',
-        'Date: (?<Beggin_at>.*)',
-        'User: (?<User>.*)',
-        'Spectrometer: (?<Spectrometer>.*)',
-        'Autoset integration time: (?<Autoset_integration_time>.*)',
-        'Trigger mode: (?<Trigger_mode>.*)',
-        'Integration Time \\((?<Integration_time_Units>.*)\\): ',
-        '(?<Integration_time>.*)',
-        'Scans to average: (?<Scans_averaged>.*)',
-        'Electric dark correction enabled: (?<Electric_dark_correction>.*)',
-        'Nonlinearity correction enabled: (?<Nonlinearity_correction>.*)',
-        'Boxcar width: (?<Boxcar_width>.*)',
-        'XAxis mode: (?<XAxis_mode>.*)',
-        'Stop averaging: (?<Stop_averaging>.*)',
-        'Number of Pixels in Spectrum: (?<N_Pixels_in_Spectrum>.*)',
-        '>>>>>Begin Spectral Data<<<<<'
-    )
-    header_data <- regexp2df(header, pattern)[,c(3,4,1,2,5:7,8,10,9,11:15)]
+    header <-  read.OceanView.header(file, dec = dec, n = n, indicator = indicator)
 
-    # Change class or variables -----------------------------------------------
-    NumVar <- c("Trigger_mode",
-                "Integration_time",
-                "Scans_averaged",
-                "Boxcar_width",
-                "N_Pixels_in_Spectrum")
-
-    LogVar <- c("Autoset_integration_time",
-                "Electric_dark_correction",
-                "Nonlinearity_correction",
-                "Stop_averaging")
-
-    header_data[,NumVar] <- mapply(as.numeric, header_data[,NumVar])
-    header_data[,LogVar] <- mapply(as.logical, header_data[,LogVar])
-
+    # Select correct label for  wavelength ------------------------------------
+    # Here may be a bug if `wl_mode == NULL`
+    wl_mode <- as.character(header$data$XAxis_mode[1])
+    wl_label <- switch(wl_mode,
+                       Wavelengths = expression(list(lambda, nm)),
+                       wl_mode)  # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Incomplete: other x-axis modes are needed
     # Read wavelengths ---------------------------------------------------------
     wl_x <- read.table(file,
                        header = F,
-                       skip = head_end,
+                       skip = header$last_line,
                        nrows = 1,
                        dec = ",") %>%
         as.numeric()
-    # Select correct label for  wavelength ------------------------------------
-    wl_mode <- as.character(header_data$XAxis_mode[1])
-    wl_label <- switch(wl_mode,
-                       Wavelengths = expression(lambda, ", nm"),
-                       wl_mode)  # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  Incomplete: other modes are needed
 
     # Read spectra  ---------------------------------------------------------
-    y      <- read.table(file, header = F,
-                         skip = head_end + 1,
+    y      <- read.table(file, header = FALSE,
+                         skip = header$last_line + 1,
                          dec = dec,
-                         stringsAsFactors = F)
+                         stringsAsFactors = FALSE)
     sp_y   <- as.matrix(y[,-(1:2)])
 
     #  Extract Time and Date --------------------------------------------------
@@ -110,7 +79,7 @@ read.OceanView.ts <- function(file, dec = '.') {
 
     # Construct a data frame for non-spectroscopic information -----------------
     data <- data.frame(FileName = file, datetime = datetime, t = t)
-    data <- merge(header_data,data)
+    data <- merge(header$data,data)
 
     # Create a spectra object --------------------------------------------------
     sp <- new('hyperSpec', spc = sp_y, wavelength = wl_x, data = data,
@@ -127,4 +96,6 @@ read.OceanView.ts <- function(file, dec = '.') {
 
 #' @rdname read.OceanView.ts
 #' @export
-read.OceanView.ts2 <- function(file, dec = ',') {read.OceanView.ts(file, dec)}
+read.OceanView.ts2 <- function(file, dec = ',', n = 17,
+                               indicator = ">>>>>Begin Spectral Data<<<<<")
+    {read.OceanView.ts(file, dec, n, indicator)}

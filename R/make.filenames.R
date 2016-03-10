@@ -27,7 +27,7 @@
 #'  #> "Hello_"
 #'
 #'
-#' @family family \pkg{spHelper} utilities
+#' @family \pkg{spHelper} utilities
 make.filenames <- function(s, allow.space = TRUE){
     s <- gsub('[\\\\/\\:\\*\\?\\"\\<\\>\\|]','_',s)
     if (allow.space == FALSE)

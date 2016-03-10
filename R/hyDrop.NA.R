@@ -10,7 +10,7 @@
 #' @return Object without columns with all \code{NA} values.
 #' @export
 #'
-#' @family \pkg{spHelper} functions for \code{hyperSpec}
+#' @family \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}
 #' @author Vilmantas Gegzna
 #'
 hyDrop.NA <- function(sp){

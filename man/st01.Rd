@@ -27,7 +27,13 @@ st01(x, MIN = .2)
 
 }
 \seealso{
-Other family \pkg{spHelper} utilities: \code{\link{clc}},
-  \code{\link{make.filenames}}
+Other \pkg{spHelper} utilities: \code{\link{bru}},
+  \code{\link{clc}}, \code{\link{clear}},
+  \code{\link{expr2text}}, \code{\link{listAddRm}},
+  \code{\link{make.filenames}},
+  \code{\link{make.firstCapitals}},
+  \code{\link{printDuration}}, \code{\link{regexp2df}},
+  \code{\link{rmExpr}}, \code{\link{subt}},
+  \code{\link{uncall}}
 }
 

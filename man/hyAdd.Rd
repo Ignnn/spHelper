@@ -30,9 +30,15 @@ that correspond to levels of factor variable \code{by}.
 Vilmantas Gegzna
 }
 \seealso{
-Other \pkg{spHelper} functions for \code{hyperSpec}: \code{\link{addLabels_PAP_PD2014}},
-  \code{\link{addLabels_TD2009}}, \code{\link{hy2mat}},
+Other \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}: \code{\link{hy2mat}},
+  \code{\link{hyAdd.Label.wl}},
+  \code{\link{hyAdd.Labels_PAP_PD2014}},
+  \code{\link{hyAdd.Labels_TD2009}},
+  \code{\link{hyAdd.Labels_TD2015}},
   \code{\link{hyAdd.color}}, \code{\link{hyDrop.NA}},
-  \code{\link{read3csv2hy}}
+  \code{\link{hyGet.palette}},
+  \code{\link{read.OceanView.header}},
+  \code{\link{read.OceanView.ts}},
+  \code{\link{read3csv2hy}}, \code{\link{spStat}}
 }
 

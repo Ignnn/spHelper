@@ -37,7 +37,7 @@
 #'  my_plot
 #'
 #' @family information dimension functions
-#' @family component analysis / factorisation related functions
+#' @family component analysis / factorisation related functions in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 #'
 infoDim <- function(Matrix){

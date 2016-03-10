@@ -52,8 +52,8 @@
 #' matlines(x,yNEW, type = "l", lty = 1,lwd = 3);
 #' abline(h = 0)
 #'
-#' @family curves
-#' @family component analysis / factorisation related functions
+#' @family curves in\pkg{spHelper}
+#' @family component analysis / factorisation related functions in \pkg{spHelper}
 #' @author Vilmantas Gegzna
 unipeak <- function(y)  {
 

@@ -16,7 +16,7 @@
 #' #>  1 3 7
 #'
 #' @author Vilmantas Gegzna
-#' @family matrix operations
+#' @family matrix operations in \pkg{spHelper}
 
 which.max.all <- function(x) {which(x == max(x))}
 

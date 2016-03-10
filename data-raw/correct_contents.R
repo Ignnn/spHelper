@@ -1,23 +1,52 @@
 # [tags] Rename, Correct contents
 #
 #
-# correct_contents <- function(FILE){
-#     # Read
-#     x <- readLines(con = FILE)
-#     # Correct
-#     x <- gsub("(family functions for \pkg{hyperSpec})|(family functions for \pkg{hyperSpec})",
-#               "family functions for \\\\pkg{hyperSpec}", x, perl = TRUE)
+correct_contents <- function(FILE){
+    # Read
+    x <- readLines(con = FILE)
+    # Correct
+    # x <- gsub("(family functions for \pkg{hyperSpec})|(family functions for \pkg{hyperSpec})",
+    #           "family functions for \\\\pkg{hyperSpec}", x, perl = TRUE)
+
+    # x <- gsub("family \\\\pkg\\{spHelper\\} functions for \\\\code\\{hyperSpec\\}",
+    #           "family \\\\pkg{spHelper} functions for \\\\pkg{hyperSpec}",
+    #           x, perl = TRUE)
+    #
+    # x <- gsub("family functions for \\\\pkg\\{hyperSpec\\}",
+    #           "family \\\\pkg{spHelper} functions for \\\\pkg{hyperSpec}",
+    #           x, perl = TRUE)
 #
-#     x <- gsub("family (spHelper)|(family \pkg{spHelper})|(\\\\code\\{spHelper\\})",
-#               "family \\\\pkg{spHelper}", x, perl = TRUE)
-#
-#     # x <- gsub("family family",
-#     #           "family", x, perl = TRUE)
-#     # Writte
-#     writeLines(x, con = FILE)
-#
-#     # print(x)
-# }
+#     x <- gsub("family \\\\pkg\\{spHelper\\} functions for \\\\pkg\\{hyperSpec\\}",
+#               "family \\\\pkg{spHelper} functions for spectroscopy and \\\\pkg{hyperSpec}",
+#               x, perl = TRUE)
+
+
+
+        x <- gsub("family component analysis / factorisation related functions",
+                  "family component analysis / factorisation related functions in \\\\pkg{spHelper}",
+                  x, perl = TRUE)
+
+        x <- gsub("family matrix operations",
+                  "family matrix operations in \\\\pkg{spHelper}",
+                  x, perl = TRUE)
+
+        x <- gsub("family simmulation functions",
+                  "family simmulation functions in \\\\pkg{spHelper}",
+                  x, perl = TRUE)
+
+        x <- gsub("family curves",
+                  "family curves in\\\\pkg{spHelper}",
+                  x, perl = TRUE)
+
+    # x <- gsub("(family functions for \pkg{hyperSpec})|(family functions for \pkg{hyperSpec})",
+    #           "family functions for \\\\pkg{hyperSpec}", x, perl = TRUE)
+    x <- gsub("family family",
+              "family", x, perl = TRUE)
+    # Writte
+    writeLines(x, con = FILE)
+
+    # print(x)
+}
 
 
 # Function 1 --------------------------------------------------------------
@@ -43,6 +72,7 @@ correct_contents2 <- function(FILE){
     # x <- gsub("makeFirstCapital",  "make.firstCapitals", x, perl = TRUE)
     # x <- gsub("qplot_stat",  "qplolt_spStat", x, perl = TRUE)
 
+    # x <- gsub("addLabels_",  "hyAdd.Labels_", x, perl = TRUE)
 
     # Writte
     writeLines(x, con = FILE)
@@ -59,6 +89,7 @@ apply_content_corrections <- function(x){
     AllFiles <- dir()
     FILES <- as.list(AllFiles[grepl("(.*\\.R$)|(.*\\.Rmd$)|(.*\\.html$)",AllFiles)])
 
+    # lapply(FILES, correct_contents)
     lapply(FILES, correct_contents2)
 
     shell.exec(getwd())
@@ -74,7 +105,13 @@ directories  <- as.list(
     c(paste0('D:\\Dokumentai\\R\\spHelper\\',
              c("R","vignettes","inst\\doc"),
              "\\"),
-      'D:\\Dokumentai\\R\\Spektroskopija\\PAP_PD_2014\\')
+      'D:\\Dokumentai\\R\\Spektroskopija\\PAP_PD_2014\\',
+      'D:\\Dokumentai\\R\\Spektroskopija\\PAP_PD_2014 preprocess2\\'
+
+      # 'D:\\Dokumentai\\R\\Spektroskopija\\__ TO DELETE __\\',
+      # 'D:\\Dokumentai\\R\\Spektroskopija\\TD_2009\\',
+      # 'D:\\Dokumentai\\R\\Spektroskopija\\'
+      )
 )
 
 # Apply corrections
