@@ -2,7 +2,7 @@
 % Please edit documentation in R/listAddRm.R
 \name{listAddRm}
 \alias{listAddRm}
-\title{[!] Find and display added an removed names}
+\title{[.] Find and display added an removed names}
 \usage{
 listAddRm(initial, final)
 }
@@ -15,7 +15,7 @@ listAddRm(initial, final)
 A list with added and removed names
 }
 \description{
-[!] Find and display added an removed names
+[.] Find and display added an removed names
 }
 \author{
 Vilmantas Gegzna

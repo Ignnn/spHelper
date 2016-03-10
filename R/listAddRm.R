@@ -1,4 +1,4 @@
-#' [!] Find and display added an removed names
+#' [.] Find and display added an removed names
 #'
 #' @param initial A charecter vector with initial names.
 #' @param final A charecter vector with final names.
@@ -10,18 +10,20 @@
 #' @author Vilmantas Gegzna
 #'
 listAddRm <- function(initial, final) {
-    Cols <- list()
-    Cols$REMOVED <- initial[!(initial %in% final)]
-    Cols$ADDED   <-   final[!(final   %in% initial)]
+    Names <- list()
+    Names$REMOVED <- initial[!(initial %in% final)]
+    Names$ADDED   <-   final[!(final   %in% initial)]
 
-    # if (length(Cols$ADDED) > 0 ) {
+    f1 <- function(x) if (length(x) == 0) NULL else x
+    Names <- lapply(Names,f1)
+    # if (length(Names$ADDED) > 0 ) {
     #     message("These columns were ADDED to the `hyperSpec` object:")
-    #     cat(Cols$ADDED,sep = '\n')
+    #     cat(Names$ADDED,sep = '\n')
     # }
     #
-    # if (length(Cols$REMOVED) > 0 ) {
+    # if (length(Names$REMOVED) > 0 ) {
     #     message("These columns were REMOVED from the `hyperSpec` object:")
-    #     cat(Cols$REMOVED,sep = '\n')
+    #     cat(Names$REMOVED,sep = '\n')
     # }
-    return(Cols)
+    return(Names)
 }

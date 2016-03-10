@@ -100,6 +100,7 @@ hyAdd.Labels_TD2015 <- function(sp, modeX, language = "EN")  {
     # ---------------------------------------------------------------------
     # CHECK if any columns were added or deleted
     ColsFinal   <- colnames(Object)
+    message("These columns were:")
     print(listAddRm(ColsInitial, ColsFinal))
     # ---------------------------------------------------------------------
 
