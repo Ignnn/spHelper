@@ -52,7 +52,7 @@
 #' sc$ID <- rownames(sc)
 #'
 #' qplot_proximity(sc, "class")
-#' qplot_proximity(sc, "class",  plot.scatter = FALSE) + geom_text(aes(label = ID))
+#' qplot_proximity(sc, "class",  plot.scatter = FALSE) + geom_text(aes(label = sc$ID))
 #'
 
 qplot_prediction   <- function(scores,

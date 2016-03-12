@@ -54,6 +54,16 @@ were on diagonal, if possible).}
 \item{decimals}{The number of decimal positions in rounding. Default is 2
 (i.e., precission is 0.01).}
 
+\item{show.max}{The kind of top values to be highlighted. Possible entries:
+"colMax" (maxima of every column), "rowMax" (maxima of every row),
+ "max" (maximum of whole matrix) or  \code{FALSE} (maxima are not highlighted).}
+
+\item{shades}{Logical. If \code{TRUE}, color of a cell varies depending
+on its value (except the cells with top values if \code{show.max} is not
+ \code{FALSE}).}
+
+\item{guide}{Either "legend", "colorbar" or \code{FALSE}, if no guide is needed).}
+
 \item{...}{(The same parameters as above).}
 }
 \value{

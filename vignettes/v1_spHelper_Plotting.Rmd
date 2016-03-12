@@ -88,11 +88,11 @@ qplot(carat, price, data = dsamp, colour = clarity) %>% ggplotly()
 
 ```
 
-```{r, fig.align='center',fig.width= 5, fig.cap = c("**Fig1.** Spectra of Components (_hyperSpec_ package)", "**Fig2.** Spectra of Components (_spHelper_ package)","**Fig3.** Spectra of Components (_spHelper_ and _plotly_ packages)", "**Fig4.** Amplitudes by groups (_spHelper_ package)")}
+```{r, fig.align='center',fig.width= 5}
 data("Loadings")
 
 qplot_kSpFacets(Loadings)
-qplot_kSpFacets(Loadings) %>% ggplotly()
+# ggplotly()
 ```
 
 `qplot_kAmp` and `qplot_scores`
@@ -341,14 +341,14 @@ p2
 # Numbes of selected components can be indicated
 p3 <- qplot_infoDim(Spectra, selected = 4)
 p3
-ggplotly(p3)
+# ggplotly(p3)
 ```
 ```{r InfoDim 5}
 # Numbes of selected components can be indicated
 p4 <- qplot_infoDim(Spectra, y.log = FALSE)
 
 p4
-ggplotly(p4)
+# ggplotly(p4)
 ```
 
 `unipeak` - Transform Spectra of Components
@@ -446,3 +446,7 @@ par(mfrow = c(1,1))
  xyplot(eruptions~waiting, data = faithful,
   main = subt(subTitle = "Old Faithful Geyser Data"))
 ```
+
+<!-- # ```{r session info} -->
+<!-- # devtools::session_info() -->
+<!-- # ``` -->

@@ -37,7 +37,8 @@ Vilmantas Gegzna
 \seealso{
 Other \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}: \code{\link{hy2mat}},
   \code{\link{hyAdd.Label.wl}},
-  \code{\link{hyAdd.Labels_PAP_PD2014}},
+  \code{\link{hyAdd.Labels_PAP_PD_2014}},
+  \code{\link{hyAdd.Labels_PAP_RK_2014}},
   \code{\link{hyAdd.Labels_TD2009}},
   \code{\link{hyAdd.Labels_TD2015}},
   \code{\link{hyAdd.color}}, \code{\link{hyAdd}},

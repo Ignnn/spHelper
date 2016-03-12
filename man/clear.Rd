@@ -4,6 +4,7 @@
 \alias{clear}
 \alias{clear.class}
 \alias{clear.except}
+\alias{clear.except.class}
 \alias{clear.fun}
 \title{[!] Clear variables from workspace (global environment)}
 \source{
@@ -15,24 +16,29 @@ clear(clr = ls(name = .GlobalEnv), except = NULL)
 
 clear.class(clrClass = NULL, except = NULL)
 
+clear.except.class(exceptClass = NULL)
+
 clear.fun()
 
 clear.except(..., list = NULL)
 }
 \arguments{
-\item{clr}{Names of variables (character vector) in the global environment
-that has \bold{to be cleared}. Default - clear all.}
+\item{clr}{Names of variables (as a character vector) in the global environment
+that has \bold{to be cleared}. Default is to clear all.}
 
-\item{except}{Names of variables (character vector) in the global environment
-that has \bold{not} to be cleared . Default is \code{NULL}.}
+\item{except}{Names of \bold{variables} (as a character vector) in the global
+environment \bold{to be kept} (to be cleared). Default is \code{NULL}.}
 
-\item{clrClass}{Names of classes (character vector). Objects of indicated classes
+\item{clrClass}{Names of classes (as a character vector). Objects of indicated classes
 will be removed from workspace (global environment).}
 
-\item{...}{The objects to be removed, as names (unquoted) or character strings (quoted).}
+\item{exceptClass}{Names of classes (as a character vector) in the global environment
+that has \bold{not} to be cleared. Default is \code{NULL}.}
+
+\item{...}{The objects as names (unquoted) or character strings (quoted).}
 
 \item{list}{A character vector naming objects to be removed. If \code{list}
-is not \code{NULL}, \code{...} is ignored.}
+is not \code{NULL}, `\code{...}` is ignored.}
 }
 \description{
 Remove items from the workspace, i.e. the global environment,
@@ -40,13 +46,18 @@ and free up system memory.
 }
 \details{
 \cr
-\code{clear} removes either listed or all variables from workspace
-              (global environment).\cr
+\code{clear} removes either listed or all variables (if none is listed) from
+ workspace (global environment).\cr
 \code{clear.except} clears all variables except listed ones.
-\code{clear.class} removes objects of indicated class(es).\cr
+\code{clear.class} removes objects of indicated class(es), except those that
+are listed as argument\ code{except}.\cr
+\code{clear.except.class} keeps objects of indicated class(es), others are
+ cleared.\cr
 \code{clear.fun} removes functions only. \cr
 }
 \examples{
+
+clear()
 
 A <- 5
 B <- "s"
@@ -54,12 +65,36 @@ D1 <- "string2"
 D2 <- "string3"
 L <- list(A,B)
 FUN <- function(x) x
+ls()
 
 clear.class("numeric")
+ls()
+
 clear.fun()
+ls()
+
 clear(except = c("D1", "D2"))
+ls()
+
 clear(except = c("B"))
+ls()
+
 clear()
+ls()
+
+A1 <- 5
+A2 <- 5
+A3 <- 5
+B <- list("a","A")
+c <- "ABC"
+ls()
+
+clear.except.class(c("numeric", "list"))
+ls()
+
+clear.class("numeric", except = "A1")
+ls()
+
 
 }
 \author{

@@ -94,7 +94,7 @@ sc <- Scores[,,c(1,2),wl.index = TRUE]
 sc$ID <- rownames(sc)
 
 qplot_proximity(sc, "class")
-qplot_proximity(sc, "class",  plot.scatter = FALSE) + geom_text(aes(label = ID))
+qplot_proximity(sc, "class",  plot.scatter = FALSE) + geom_text(aes(label = sc$ID))
 
 }
 \author{

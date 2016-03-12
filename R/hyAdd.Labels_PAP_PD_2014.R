@@ -22,52 +22,42 @@
 #' @family \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}
 #' @author Vilmantas Gegzna
 #'
-hyAdd.Labels_PAP_PD2014 <- function(sp, language = "EN")  {
+hyAdd.Labels_PAP_PD_2014 <- function(sp, language = "EN")  {
     ColsInitial <- colnames(sp) # save initial column names
 
     data         = sp$..
 
-    # colnames(sp)
-    # [1] "ID"
-    # [2] "Dziov"
-    # [3] "taskas"
-    # [4] "spID"
-    # [5] "file_names"
-    # [6] "file_name_with_path"
-    # [7] "Date"
-    # [8] "Time"
-    # [9] "Integration_time"
-    # [10] "Boxcar_width"
-    # [11] "Temperature"
-    # [12] "ID2"
-    # [13] "CitoGr"
-    # [14] "HistGr"
-    # [15] "HibridGr"
-    # [16] "spc"
-
-
-    data$Time <- strptime(paste(data$Date, data$Time), "%m-%d-%Y %H:%M:%S")
-    data$Date <- as.Date(data$Date,format = "%m-%d-%Y")
+    # data$Time <- strptime(paste(data$Date, data$Time), "%m-%d-%Y %H:%M:%S")
+    # data$Date <- as.Date(data$Date,format = "%m-%d-%Y")
 
     # Only necessary columns are selected:
     data <- data %>%
         dplyr::mutate(fileName = file_name_with_path,
-                      Integration_time = Integration_time/1e3,
-					  point      = taskas,
-					  sp_type    = tyrimas,
-                      exp_code   = tyrimo_kodas,
-                      ) %>%
+					  point       = taskas,
+					  sp_type     = tyrimas,
+                      exp_code    = tyrimo_kodas,
+					  excitation  = Zadinimas,
+					  Time        = strptime(paste(Date, Time), "%m-%d-%Y %H:%M:%S"),
+					  Date        = as.Date(Date,format = "%m-%d-%Y"),
+					  t.int       = Integration_time/1000,
+					  t.int.units = as.factor(paste0("1000*", Integration_time_Units))
+        ) %>%
+
         dplyr::select(ID,
                       ID2,
                       spID,
                       point,
+                      exp_code,
 					  sp_type,
-					  exp_code,
                       fileName,
 
                       Date,
                       Time,
-                      Integration_time,
+					  Electric_dark_correction,
+					  t.int,
+					  t.int.units,
+					  excitation,
+
 
                       Dziov,
                       CitoGr,
@@ -90,9 +80,12 @@ hyAdd.Labels_PAP_PD2014 <- function(sp, language = "EN")  {
                       "Spektroskopijos tipas",
 					  "Bylos pavadinimas",
                       "Data (Spektometre)",
-                      "Registravimo laikas",
-                      "Integracijos laikas",
-                      "Slapias/Isdziuves",
+                      "Registravimo pradzios laikas",
+					  "Electric dark correction",
+                      "Signalo integracijos laikas, s",
+					  "Integracijos laiko vienetai",
+					  "Zadinanti spinduliuote, nm",
+                      "Sausumas",
                       "Ciltologines grupes",
                       "Histologines grupes",
                       "Hibridines grupes",
@@ -107,8 +100,11 @@ hyAdd.Labels_PAP_PD2014 <- function(sp, language = "EN")  {
                       "Type of Spectroscopy",
                       "File name",
                       "Date (Spectometer)",
-                      "Time of registration",
-                      "Integration time",
+                      "Time of Registration Beginning",
+                      "Electric dark correction",
+                      "Integration time, s",
+                      "Excitation wavelength, nm",
+                      "Units of Integration time",
                       "Liquid/Dry",
                       "Cytological groups",
                       "Histological groups",
@@ -125,15 +121,15 @@ hyAdd.Labels_PAP_PD2014 <- function(sp, language = "EN")  {
 
     # ---------------------------------------------------------------------
 	# Reorder levels correctly
-    Object$CitoGr <- factor(Spectra$CitoGr,
+    Object$CitoGr <- factor(Object$CitoGr,
     	               levels = c("IPPN", "ASCH", "ASCUS", "LSIL", "HSIL"),
     	               labels = c("IPPN", "ASCH", "ASCUS", "LSIL", "HSIL"))
 
-    Object$HistGr <- factor(Spectra$HistGr,
+    Object$HistGr <- factor(Object$HistGr,
                              levels = c("Cervicitas", "CIN1", "CIN2", "CIN3+"),
                              labels = c("Cervicitas", "CIN1", "CIN2", "CIN3/CIS"))
 
-    Object$HibridGr <- factor(Spectra$HibridGr,
+    Object$HibridGr <- factor(Object$HibridGr,
                                levels = c("IPPN", "Cervicitas", "CIN1", "CIN2", "CIN3+"),
                                labels = c("IPPN", "Cervicitas", "CIN1", "CIN2", "CIN3/CIS"))
 
@@ -146,7 +142,6 @@ hyAdd.Labels_PAP_PD2014 <- function(sp, language = "EN")  {
     message("These columns were:")
     print(listAddRm(ColsInitial, ColsFinal))
     # ---------------------------------------------------------------------
-
 
     return(Object)
 }

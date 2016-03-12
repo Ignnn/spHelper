@@ -6,7 +6,7 @@
 #'
 #' @examples
 #'
-#' M <- matrix(c(2,10,10,10,8,9,4:6,4,1,8),byrow=T,nc=3)
+#' M <- matrix(c(2,10,10,10,8,9,4:6,4,1,8),byrow=TRUE,nc=3)
 #' M <- pkgmaker::addnames(M)
 #'
 #' M1 <- sortMaxOnDiag(M)

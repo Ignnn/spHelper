@@ -24,10 +24,16 @@ hyAdd.Labels_TD2009 <- function(sp,language = "EN")  {
 
     # Only required columns are sellected:
     data <- data %>%
-        dplyr::mutate(fileName = file_name_with_path) %>%
+        dplyr::mutate(fileName = file_name_with_path,
+                      point      = taskas,
+                      sp_type    = tyrimas,
+                      exp_code   = tyrimo_kodas
+        ) %>%
         dplyr::select(ID,
                       spID,
-                      taskas,
+                      point,
+                      exp_code,
+                      sp_type,
                       fileName,
                       gr,
                       Boos,
@@ -41,55 +47,52 @@ hyAdd.Labels_TD2009 <- function(sp,language = "EN")  {
 
     # add Labels ------------------------------------------------------------
     Var.Names <- colnames(Object)
-    Var.LabelsLT <- c("Meginio ID",
+
+    Var.Labels <- switch(language,
+             LT =    c("Meginio ID",
                       "Spektro ID",
                       "Tasko numeris meginy",
+                      "Eksperimento kodas",
+                      "Spektroskopijos tipas",
                       "Bylos pavadinimas",
-                      "Grupavimas (S, P, D)",
+                      "Mėginio lokalizacija (S, P, D)",
                       "Boos indeksas",
                       "Safranin0 indeksas",
                       "Kolageno 1 kiekis, %",
                       "Kolageno 2 kiekis, % ",
                       "Kitu kolagenu kiekis, %",
-                      "I, sant.vnt."
-    )
+                      "I, sant.vnt."    ),
 
-    Var.LabelsEN <- c("Specimen ID",
+             EN =   c("Specimen ID",
                       "Spectrum ID" ,
                       "Point number in a specimen",
+                      "Code of Experiment",
+                      "Type of Spectroscopy",
                       "File name",
-                      "Groups (S, P, D)",
+                      "Localization of Specimen",
                       "Boos index",
                       "Safranin index",
                       "Collagen 1, %",
                       "collagen 2, % ",
                       "Other collagens, %",
-                      "I, units"
-    )
+                      "I, units"),
 
-    labels(Object)[Var.Names] <- switch(language,
-                                        LT = Var.LabelsLT,
-                                        EN = Var.LabelsEN,
-                                        NULL)
+             stop("The value of `language` is not supported."))
 
-    # Labels, specific to Fluorescence spectra
-    labels(Object, ".wavelength") <- expression(list(lambda, nm))
+
+    labels(Object)[Var.Names] <- Var.Labels
+
+
+    # x axis labels
+    Object <- hyAdd.Label.wl(Object, "wavelength")
 
     # ----------------------------------------------------------------------
 
 
     # Define colors ------------------------------------------------------
-    UsedColors <- c("#377EB8","#4DAF4A","#984EA3")# RColorBrewer::brewer.pal(8,"Dark2")
-    # trellis.par.get("superpose.symbol")$col
+    # Add `.color`: variable with colors
+    Object <- hyAdd.color(Object, "gr", palette = c("#377EB8","#4DAF4A","#984EA3"))
 
-    ColorNumbers <- unclass(Object$gr); # ColorNumbers[is.na(ColorNumbers)] <- nlevels(Object$gr) + 1;
-
-    colorList  <- UsedColors[ColorNumbers]
-    # Add column for colors
-    Object$.color  <- colorList
-
-    # Labels is vector with color names
-    labels(Object, ".color") <- UsedColors
     # ---------------------------------------------------------------------
     # CHECK if any columns were added or deleted
     ColsFinal   <- colnames(Object)
