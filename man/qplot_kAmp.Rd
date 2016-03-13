@@ -85,7 +85,9 @@ Vilmantas Gegzna
 }
 \seealso{
 Other \pkg{spHelper} plots: \code{\link{nTick}},
-  \code{\link{plot_spDiff}}, \code{\link{qplolt_spStat}},
+  \code{\link{plot_colors}}, \code{\link{plot_hy.palette}},
+  \code{\link{plot_spDiff}}, \code{\link{plot_spFilt}},
+  \code{\link{qplolt_spStat}},
   \code{\link{qplot_confusion}},
   \code{\link{qplot_crosstab}},
   \code{\link{qplot_infoDim}}, \code{\link{qplot_kSp}},

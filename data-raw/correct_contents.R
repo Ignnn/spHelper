@@ -44,11 +44,10 @@ correct_contents <- function(FILE){
     x <- gsub("family family",
               "family", x, perl = TRUE)
     # Writte
-    # Writte
-    x2  <- x
-    if (any(x0 != x2))    {
+
+    if (any(x0 != x))    {
         cat(FILE,sep = "\n")
-        writeLines(x2, con = FILE)
+        writeLines(x, con = FILE)
     }
 
     # print(x)
@@ -88,11 +87,7 @@ correct_contents2 <- function(FILE){
 
 
     # Writte
-    x2  <- x
-    if (any(x0 != x2))    {
-        cat(FILE,sep = "\n")
-        writeLines(x2, con = FILE)
-    }
+    if (any(x0 != x))    { cat(FILE,sep = "\n"); writeLines(x, con = FILE) }
     # print(x2)
 }
 

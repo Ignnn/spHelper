@@ -67,7 +67,7 @@ Other \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}: \code{\link
   \code{\link{hyAdd.Labels_TD2009}},
   \code{\link{hyAdd.Labels_TD2015}},
   \code{\link{hyAdd.color}}, \code{\link{hyAdd}},
-  \code{\link{hyDrop.NA}},
+  \code{\link{hyDrop.NA}}, \code{\link{plot_hy.palette}},
   \code{\link{read.OceanView.header}},
   \code{\link{read.OceanView.ts}},
   \code{\link{read3csv2hy}}, \code{\link{spStat}}
