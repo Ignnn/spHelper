@@ -3,7 +3,8 @@
 #
 correct_contents <- function(FILE){
     # Read
-    x <- readLines(con = FILE)
+    x0 <- readLines(con = FILE)
+    x  <- x0
     # Correct
     # x <- gsub("(family functions for \pkg{hyperSpec})|(family functions for \pkg{hyperSpec})",
     #           "family functions for \\\\pkg{hyperSpec}", x, perl = TRUE)
@@ -22,28 +23,33 @@ correct_contents <- function(FILE){
 
 
 
-        x <- gsub("family component analysis / factorisation related functions",
-                  "family component analysis / factorisation related functions in \\\\pkg{spHelper}",
-                  x, perl = TRUE)
-
-        x <- gsub("family matrix operations",
-                  "family matrix operations in \\\\pkg{spHelper}",
-                  x, perl = TRUE)
-
-        x <- gsub("family simmulation functions",
-                  "family simmulation functions in \\\\pkg{spHelper}",
-                  x, perl = TRUE)
-
-        x <- gsub("family curves",
-                  "family curves in\\\\pkg{spHelper}",
-                  x, perl = TRUE)
+        # x <- gsub("family component analysis / factorisation related functions",
+        #           "family component analysis / factorisation related functions in \\\\pkg{spHelper}",
+        #           x, perl = TRUE)
+        #
+        # x <- gsub("family matrix operations",
+        #           "family matrix operations in \\\\pkg{spHelper}",
+        #           x, perl = TRUE)
+        #
+        # x <- gsub("family simmulation functions",
+        #           "family simmulation functions in \\\\pkg{spHelper}",
+        #           x, perl = TRUE)
+        #
+        # x <- gsub("family curves",
+        #           "family curves in\\\\pkg{spHelper}",
+        #           x, perl = TRUE)
 
     # x <- gsub("(family functions for \pkg{hyperSpec})|(family functions for \pkg{hyperSpec})",
     #           "family functions for \\\\pkg{hyperSpec}", x, perl = TRUE)
     x <- gsub("family family",
               "family", x, perl = TRUE)
     # Writte
-    writeLines(x, con = FILE)
+    # Writte
+    x2  <- x
+    if (any(x0 != x2))    {
+        cat(FILE,sep = "\n")
+        writeLines(x2, con = FILE)
+    }
 
     # print(x)
 }
@@ -53,7 +59,9 @@ correct_contents <- function(FILE){
 
 correct_contents2 <- function(FILE){
     # Read
-    x <- readLines(con = FILE)
+    x0 <- readLines(con = FILE)
+    x <- x0
+
     # Correct
     # x <- gsub("plot_stat",      "qplot_stat", x, perl = TRUE)
     # x <- gsub("plot_confusion", "qplot_confusion", x, perl = TRUE)
@@ -74,10 +82,18 @@ correct_contents2 <- function(FILE){
 
     # x <- gsub("addLabels_",  "hyAdd.Labels_", x, perl = TRUE)
 
-    # Writte
-    writeLines(x, con = FILE)
+    # x <- gsub("sortMaxOnDiag",  "sortDescOnDiag", x, perl = TRUE)
 
-    # print(x)
+    sortMaxOnDiag
+
+
+    # Writte
+    x2  <- x
+    if (any(x0 != x2))    {
+        cat(FILE,sep = "\n")
+        writeLines(x2, con = FILE)
+    }
+    # print(x2)
 }
 
 # Function 2 --------------------------------------------------------------
@@ -105,8 +121,8 @@ directories  <- as.list(
     c(paste0('D:\\Dokumentai\\R\\spHelper\\',
              c("R","vignettes","inst\\doc"),
              "\\"),
-      'D:\\Dokumentai\\R\\Spektroskopija\\PAP_PD_2014\\',
-      'D:\\Dokumentai\\R\\Spektroskopija\\PAP_PD_2014 preprocess2\\'
+      "D:\\Dokumentai\\R\\spHelper\\",
+      'D:\\Dokumentai\\R\\Spektroskopija\\PAP_PD_2014\\'
 
       # 'D:\\Dokumentai\\R\\Spektroskopija\\__ TO DELETE __\\',
       # 'D:\\Dokumentai\\R\\Spektroskopija\\TD_2009\\',

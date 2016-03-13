@@ -122,16 +122,16 @@ hyAdd.Labels_PAP_PD_2014 <- function(sp, language = "EN")  {
     # ---------------------------------------------------------------------
 	# Reorder levels correctly
     Object$CitoGr <- factor(Object$CitoGr,
-    	               levels = c("IPPN", "ASCH", "ASCUS", "LSIL", "HSIL"),
-    	               labels = c("IPPN", "ASCH", "ASCUS", "LSIL", "HSIL"))
+	                  levels = c("IPPN", "ASCH", "ASCUS", "LSIL", "HSIL"),
+	                  labels = c("IPPN", "ASCH", "ASCUS", "LSIL", "HSIL"))
 
     Object$HistGr <- factor(Object$HistGr,
-                             levels = c("Cervicitas", "CIN1", "CIN2", "CIN3+"),
-                             labels = c("Cervicitas", "CIN1", "CIN2", "CIN3/CIS"))
+                      levels = c("Cervicitas", "CIN1", "CIN2", "CIN3+"),
+                      labels = c("Cervicitas", "CIN1", "CIN2", "CIN3/CIS"))
 
     Object$HibridGr <- factor(Object$HibridGr,
-                               levels = c("IPPN", "Cervicitas", "CIN1", "CIN2", "CIN3+"),
-                               labels = c("IPPN", "Cervicitas", "CIN1", "CIN2", "CIN3/CIS"))
+                      levels = c("IPPN", "Cervicitas", "CIN1", "CIN2", "CIN3+"),
+                      labels = c("IPPN", "Cervicitas", "CIN1", "CIN2", "CIN3/CIS"))
 
     # ----------------------------------------------------------------------
     # Add `.color`: variable with colors

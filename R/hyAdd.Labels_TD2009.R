@@ -55,7 +55,7 @@ hyAdd.Labels_TD2009 <- function(sp,language = "EN")  {
                       "Eksperimento kodas",
                       "Spektroskopijos tipas",
                       "Bylos pavadinimas",
-                      "Mėginio lokalizacija (S, P, D)",
+                      "Meginio lokalizacija (S, P, D)",
                       "Boos indeksas",
                       "Safranin0 indeksas",
                       "Kolageno 1 kiekis, %",

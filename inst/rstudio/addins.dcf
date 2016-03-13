@@ -1,0 +1,16 @@
+
+Name: Insert %>%
+Description: Inserts `%>%` at the cursor position.
+Binding: insertPipeline_Addin
+Interactive: false
+
+Name: Insert %*%
+Description: Inserts `%*%` at the cursor position.
+Binding: insertMatMuliplication_Addin
+Interactive: false
+
+Name: Insert %in%
+Description: Inserts `%in%` at the cursor position.
+Binding: insertIn_Addin
+Interactive: false
+

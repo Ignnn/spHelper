@@ -41,9 +41,9 @@ and in italics.}
 
 \item{text.size}{The size of text inside cells.}
 
-\item{sort.maxOnDiag}{Logical. If \code{TRUE}, function \code{sortMaxOnDiag} is
-applied (rows and columns are sorted in so that maximum values
-were on diagonal, if possible).}
+\item{sort.maxOnDiag}{Logical. If \code{TRUE}, function
+\code{\link{sortDescOnDiag}} is applied (rows and columns are sorted
+in so that maximum values were on diagonal, if possible).}
 
 \item{bg.color}{The main background color (used for high values too).}
 
@@ -55,14 +55,15 @@ were on diagonal, if possible).}
 (i.e., precission is 0.01).}
 
 \item{show.max}{The kind of top values to be highlighted. Possible entries:
-"colMax" (maxima of every column), "rowMax" (maxima of every row),
- "max" (maximum of whole matrix) or  \code{FALSE} (maxima are not highlighted).}
+\code{"colMax"} (maxima of every column), \code{"rowMax"} (maxima of every row),
+ \code{"max"} (maximum of whole matrix) or  \code{FALSE} (maxima are not highlighted).}
 
 \item{shades}{Logical. If \code{TRUE}, color of a cell varies depending
-on its value (except the cells with top values if \code{show.max} is not
- \code{FALSE}).}
+not on its value (except the cells with top values if \code{show.max} is
+  \code{FALSE}).}
 
-\item{guide}{Either "legend", "colorbar" or \code{FALSE}, if no guide is needed).}
+\item{guide}{A type of guide to display: either \code{"legend"},
+\code{"colorbar"} or \code{FALSE} (if no guide is needed).}
 
 \item{...}{(The same parameters as above).}
 }
@@ -84,8 +85,8 @@ Reference  <- sample(c("A", "B","C","D","E"),N, replace = TRUE)
 tabl <- table(Prediction,Reference)
 qplot_crosstab(tabl)
 qplot_crosstab_sort(tabl)   # different order of columns and rows
-qplot_crosstab0(tabl)    # no colors
-qplot_crosstab0s(tabl)   # no colors, different order of columns and rows
+qplot_crosstab0(tabl)       # no colors
+qplot_crosstab0s(tabl)      # no colors, different order of columns and rows
 
 
 }

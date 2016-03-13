@@ -2,14 +2,19 @@
 #' @import ggplot2
 #' @import hyperSpec
 
-#' @family \pkg{spHelper} functions for \pkg{hyperSpec}
-#' @family matrix operations
-#' @family simmulation functions
-#' @family curves
-#' @family component analysis / factorisation related functions
-#' @family family \pkg{spHelper} fold creation functions
-#' @family family \pkg{spHelper} utilities
+#' @family \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}
+#' @family \pkg{spHelper} \code{clear} family functions
+#' @family \pkg{spHelper} fold creation functions
+#' @family \pkg{spHelper} utilities
 #' @family \pkg{spHelper} plots
+#' @family \pkg{spHelper} addins
+
+#' @family component analysis / factorisation related functions in \pkg{spHelper} 
+#' @family matrix operations in \pkg{spHelper} 
+#' @family simmulation functions in \pkg{spHelper} 
+#' @family curves in \pkg{spHelper} 
+
+
 
 
 #' \donttest{

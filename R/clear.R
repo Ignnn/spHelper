@@ -2,38 +2,42 @@
 #' [!] Clear variables from workspace (global environment)
 #'
 #' Remove items from the workspace, i.e. the global environment,
-#' and free up system memory.
+#' and free up system memory. Explanation in section \bold{"Details"}.
 #'
-#'  \cr
+#' @details
 #' \code{clear} removes either listed or all variables (if none is listed) from
-#'  workspace (global environment).\cr
-#' \code{clear.except} clears all variables except listed ones.
-#' \code{clear.class} removes objects of indicated class(es), except those that
-#' are listed as argument\ code{except}.\cr
+#'  workspace (global environment). Default is to clear all objects.\cr\cr
+#' \code{clear.except} clears all variables except listed ones.\cr\cr
+#' \code{clear.class} removes objects of indicated class(es), except those which
+#' names provided as argument \code{except}.\cr\cr
 #' \code{clear.except.class} keeps objects of indicated class(es), others are
-#'  cleared.\cr
-#' \code{clear.fun} removes functions only. \cr
+#'  cleared.\cr\cr
+#' \code{clear.fun} removes \emph{all} functions only. \cr\cr
 #'
+#' @param ... The objects in the global environment as names (unquoted) or
+#'            character strings (quoted).
 #'
-#' @param clr Names of variables (as a character vector) in the global environment
-#'        that has \bold{to be cleared}. Default is to clear all.
+#' @param list A character vector naming objects used instead of `\code{...}`.
+#'        If \code{list} is not \code{NULL}, `\code{...}` is ignored.
+#'
 #' @param except Names of \bold{variables} (as a character vector) in the global
 #'        environment \bold{to be kept} (to be cleared). Default is \code{NULL}.
 #' @param clrClass Names of classes (as a character vector). Objects of indicated classes
 #'        will be removed from workspace (global environment).
 #' @param exceptClass Names of classes (as a character vector) in the global environment
 #'        that has \bold{not} to be cleared. Default is \code{NULL}.
+#'
 #' @export
 #'
 #' @examples
 #'
 #' clear()
 #'
-#' A <- 5
-#' B <- "s"
-#' D1 <- "string2"
-#' D2 <- "string3"
-#' L <- list(A,B)
+#'   A <- 5
+#'   B <- "s"
+#'  D1 <- "string2"
+#'  D2 <- "string3"
+#'   L <- list(A,B)
 #' FUN <- function(x) x
 #' ls()
 #'
@@ -67,26 +71,50 @@
 #'
 #'
 #' @family \pkg{spHelper} utilities
+#' @family \pkg{spHelper} \code{clear} family functions
+#'
+#' @seealso \code{\link[base]{rm}}
 #' @source Ideas to create \code{clear} is taken from \code{\link[pracma]{clear}}
 #'         in \pkg{pracma}.
 #' @author Vilmantas Gegzna
-#'
-clear <- function(clr = ls(name = .GlobalEnv), except = NULL) {
-    # if (is.null(clr)) {
-    #     clr <- match.call(expand.dots = FALSE)$`...`
-    #     clr <- unlist(lapply(clr, as.character))
-    # }
+#
+# @param pos The environment as a position in the search list.
 
-    clr <- setdiff(clr, except)
+clear <- function(... , list = NULL, except = NULL) {
+    if (is.null(list)) {
+        list <- match.call(expand.dots = FALSE)$`...`
+        list <- unlist(lapply(list, as.character))
+    }
 
-    if (!is.character(clr))
+    if (is.null(list)) {list <- ls(name = .GlobalEnv)}
+    list <- setdiff(list, except)
+
+    if (!is.character(list))
         stop("Argument must be empty or a character vector.")
 
-    rm(list = clr, envir = globalenv())
+    rm(list = list, envir = .GlobalEnv)
     gc()
     invisible("Cleared")
-}
 
+
+    # @param clr Names of variables (as a character vector)
+    #        that has \bold{to be cleared}. Default is to clear all.
+}
+#  ------------------------------------------------------------------------
+#' @rdname clear
+#' @export
+#'
+clear.except <- function(..., list = NULL)  {
+    if (is.null(list)) {
+        list <- match.call(expand.dots = FALSE)$`...`
+        list <- unlist(lapply(list, as.character))
+    }
+    if (!is.null(list)) {
+        clear(except = list)
+    } else {
+        warning("The workspace is not cleared as no variables that must be kept are listed.")
+    }
+}
 #  ------------------------------------------------------------------------
 #' @rdname clear
 #' @export
@@ -125,7 +153,7 @@ clear.except.class <- function(exceptClass = NULL) {
             invisible("Cleared")
         }
     } else {
-        warning("The workspace is not cleared as no classes is listed.")
+        warning("The workspace is not cleared as no classes that must be kept are listed.")
     }
 }
 #  ------------------------------------------------------------------------
@@ -133,23 +161,6 @@ clear.except.class <- function(exceptClass = NULL) {
 #' @export
 clear.fun <- function() { clear.class("function") }
 
-#  ------------------------------------------------------------------------
-#' @rdname clear
-#' @export
-#' @param ... The objects as names (unquoted) or character strings (quoted).
-#' @param list A character vector naming objects to be removed. If \code{list}
-#' is not \code{NULL}, `\code{...}` is ignored.
-#'
-clear.except <- function(..., list = NULL)  {
-    if (is.null(list)) {
-        list <- match.call(expand.dots = FALSE)$`...`
-        list <- unlist(lapply(list, as.character))
-    }
-    if (!is.null(list)) {
-        clear(except = list)
-    } else {
-        warning("The workspace is not cleared as no variables are listed.")
-    }
-}
+
 
 

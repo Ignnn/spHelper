@@ -260,7 +260,7 @@ qplot_confusion(conf3, subTitle = "Correct >80%")
 
 ```{r qplot_confusion 2B}
 # Sort rows and columns by the best match ============
-conf3_sorted <- sortMaxOnDiag(conf2)
+conf3_sorted <- sortDescOnDiag(conf2)
 qplot_confusion(conf3_sorted,subTitle = "Columns and rows sorted by the best match")
 ```
 

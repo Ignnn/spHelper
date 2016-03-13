@@ -6,9 +6,9 @@
 #'             a class "table" or a square matrix.
 #' @template labels
 #' @template subtitle
-#' @param sort.maxOnDiag Logical. If \code{TRUE}, function \code{sortMaxOnDiag} is
-#'        applied (rows and columns are sorted in so that maximum values
-#'        were on diagonal, if possible).
+#' @param sort.maxOnDiag Logical. If \code{TRUE}, function
+#'        \code{\link{sortDescOnDiag}} is applied (rows and columns are sorted
+#'        in so that maximum values were on diagonal, if possible).
 #' @param bg.color The main background color (used for high values too).
 #' @param low.color A background for low values.
 #' @param max.color A background for maximum values.
@@ -16,12 +16,13 @@
 #' @param decimals The number of decimal positions in rounding. Default is 2
 #'        (i.e., precission is 0.01).
 #' @param show.max The kind of top values to be highlighted. Possible entries:
-#'  "colMax" (maxima of every column), "rowMax" (maxima of every row),
-#'   "max" (maximum of whole matrix) or  \code{FALSE} (maxima are not highlighted).
+#'  \code{"colMax"} (maxima of every column), \code{"rowMax"} (maxima of every row),
+#'   \code{"max"} (maximum of whole matrix) or  \code{FALSE} (maxima are not highlighted).
 #' @param shades Logical. If \code{TRUE}, color of a cell varies depending
-#'        on its value (except the cells with top values if \code{show.max} is not
+#'       not on its value (except the cells with top values if \code{show.max} is
 #'         \code{FALSE}).
-#' @param guide Either "legend", "colorbar" or \code{FALSE}, if no guide is needed).
+#' @param guide A type of guide to display: either \code{"legend"},
+#'        \code{"colorbar"} or \code{FALSE} (if no guide is needed).
 #' @template ggplot
 #' @examples
 #'
@@ -34,8 +35,8 @@
 #' tabl <- table(Prediction,Reference)
 #' qplot_crosstab(tabl)
 #' qplot_crosstab_sort(tabl)   # different order of columns and rows
-#' qplot_crosstab0(tabl)    # no colors
-#' qplot_crosstab0s(tabl)   # no colors, different order of columns and rows
+#' qplot_crosstab0(tabl)       # no colors
+#' qplot_crosstab0s(tabl)      # no colors, different order of columns and rows
 #'
 #'
 #' @export
@@ -66,7 +67,7 @@ qplot_crosstab <- function(tabl,
     # names(dimnames(tabl.a)) <- names(dimnames(tabl))
 
     # Sort: put maxima on diagonal, if possible *****************************
-    if (sort.maxOnDiag == TRUE) {tabl.a <- sortMaxOnDiag(tabl.a)}
+    if (sort.maxOnDiag == TRUE) {tabl.a <- sortDescOnDiag(tabl.a)}
 
     # Make a long format data frame *****************************************
     tabl.m <- reshape2::melt(tabl.a)

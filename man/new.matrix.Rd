@@ -36,7 +36,7 @@ Vilmantas Gegzna
 \seealso{
 Other matrix operations in \pkg{spHelper}: \code{\link{corr_vec2mat}},
   \code{\link{ind.matrix}}, \code{\link{nDiag2nTri}},
-  \code{\link{nTri2nDiag}}, \code{\link{sortMaxOnDiag}},
+  \code{\link{nTri2nDiag}}, \code{\link{sortDescOnDiag}},
   \code{\link{which.in}}, \code{\link{which.max.all}},
   \code{\link{which.max.perRow}}
 }

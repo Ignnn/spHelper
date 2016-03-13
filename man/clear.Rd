@@ -12,19 +12,22 @@ Ideas to create \code{clear} is taken from \code{\link[pracma]{clear}}
         in \pkg{pracma}.
 }
 \usage{
-clear(clr = ls(name = .GlobalEnv), except = NULL)
+clear(..., list = NULL, except = NULL)
+
+clear.except(..., list = NULL)
 
 clear.class(clrClass = NULL, except = NULL)
 
 clear.except.class(exceptClass = NULL)
 
 clear.fun()
-
-clear.except(..., list = NULL)
 }
 \arguments{
-\item{clr}{Names of variables (as a character vector) in the global environment
-that has \bold{to be cleared}. Default is to clear all.}
+\item{...}{The objects in the global environment as names (unquoted) or
+character strings (quoted).}
+
+\item{list}{A character vector naming objects used instead of `\code{...}`.
+If \code{list} is not \code{NULL}, `\code{...}` is ignored.}
 
 \item{except}{Names of \bold{variables} (as a character vector) in the global
 environment \bold{to be kept} (to be cleared). Default is \code{NULL}.}
@@ -34,36 +37,30 @@ will be removed from workspace (global environment).}
 
 \item{exceptClass}{Names of classes (as a character vector) in the global environment
 that has \bold{not} to be cleared. Default is \code{NULL}.}
-
-\item{...}{The objects as names (unquoted) or character strings (quoted).}
-
-\item{list}{A character vector naming objects to be removed. If \code{list}
-is not \code{NULL}, `\code{...}` is ignored.}
 }
 \description{
 Remove items from the workspace, i.e. the global environment,
-and free up system memory.
+and free up system memory. Explanation in section \bold{"Details"}.
 }
 \details{
-\cr
 \code{clear} removes either listed or all variables (if none is listed) from
- workspace (global environment).\cr
-\code{clear.except} clears all variables except listed ones.
-\code{clear.class} removes objects of indicated class(es), except those that
-are listed as argument\ code{except}.\cr
+ workspace (global environment). Default is to clear all objects.\cr\cr
+\code{clear.except} clears all variables except listed ones.\cr\cr
+\code{clear.class} removes objects of indicated class(es), except those which
+names provided as argument \code{except}.\cr\cr
 \code{clear.except.class} keeps objects of indicated class(es), others are
- cleared.\cr
-\code{clear.fun} removes functions only. \cr
+ cleared.\cr\cr
+\code{clear.fun} removes \emph{all} functions only. \cr\cr
 }
 \examples{
 
 clear()
 
-A <- 5
-B <- "s"
-D1 <- "string2"
-D2 <- "string3"
-L <- list(A,B)
+  A <- 5
+  B <- "s"
+ D1 <- "string2"
+ D2 <- "string3"
+  L <- list(A,B)
 FUN <- function(x) x
 ls()
 
@@ -101,6 +98,8 @@ ls()
 Vilmantas Gegzna
 }
 \seealso{
+\code{\link[base]{rm}}
+
 Other \pkg{spHelper} utilities: \code{\link{bru}},
   \code{\link{clc}}, \code{\link{expr2text}},
   \code{\link{listAddRm}}, \code{\link{make.filenames}},

@@ -9,16 +9,16 @@
 #' M <- matrix(c(2,10,10,10,8,9,4:6,4,1,8),byrow=TRUE,nc=3)
 #' M <- pkgmaker::addnames(M)
 #'
-#' M1 <- sortMaxOnDiag(M)
+#' M1 <- sortDescOnDiag(M)
 #' qplot_crosstab0(M1)
 #'
 #'
-#' qplot_confusion(sortMaxOnDiag(M))
+#' qplot_confusion(sortDescOnDiag(M))
 #'
 #' @author Vilmantas Gegzna
 #' @family matrix operations in \pkg{spHelper}
 #'
-sortMaxOnDiag <- function(M) {
+sortDescOnDiag <- function(M) {
     # Eliminate rows and columns by converting to `NA`
     RC.elim <- function(x) {x[mxRow,] <- NA; x[,mxCol] <- NA; return(x)}
 

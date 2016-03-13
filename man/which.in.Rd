@@ -94,7 +94,8 @@ Vilmantas Gegzna
 Other matrix operations in \pkg{spHelper}: \code{\link{corr_vec2mat}},
   \code{\link{ind.matrix}}, \code{\link{nDiag2nTri}},
   \code{\link{nTri2nDiag}}, \code{\link{new.matrix}},
-  \code{\link{sortMaxOnDiag}}, \code{\link{which.max.all}},
+  \code{\link{sortDescOnDiag}},
+  \code{\link{which.max.all}},
   \code{\link{which.max.perRow}}
 }
 
