@@ -27,7 +27,8 @@ hyAdd.Labels_TD2009 <- function(sp,language = "EN")  {
         dplyr::mutate(fileName = file_name_with_path,
                       point      = taskas,
                       sp_type    = tyrimas,
-                      exp_code   = tyrimo_kodas
+                      exp_code   = tyrimo_kodas,
+                      spID       = as.factor(gsub('_{1,3}','|', spID))
         ) %>%
         dplyr::select(ID,
                       spID,

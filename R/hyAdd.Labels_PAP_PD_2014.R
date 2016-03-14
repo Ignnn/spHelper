@@ -27,18 +27,20 @@ hyAdd.Labels_PAP_PD_2014 <- function(sp, language = "EN")  {
 
     data         = sp$..
 
-    # data$Time <- strptime(paste(data$Date, data$Time), "%m-%d-%Y %H:%M:%S")
-    # data$Date <- as.Date(data$Date,format = "%m-%d-%Y")
+    # `mutate` does not support `POSIXlt` results, thus do it separately
+    data$Time <- strptime(paste(data$Date, data$Time), "%m-%d-%Y %H:%M:%S")
+    data$Date <- as.Date(data$Date,format = "%m-%d-%Y")
 
     # Only necessary columns are selected:
     data <- data %>%
         dplyr::mutate(fileName = file_name_with_path,
 					  point       = taskas,
+					  spID        = as.factor(gsub('_{1,3}','|', spID)),
 					  sp_type     = tyrimas,
                       exp_code    = tyrimo_kodas,
 					  excitation  = Zadinimas,
-					  Time        = strptime(paste(Date, Time), "%m-%d-%Y %H:%M:%S"),
-					  Date        = as.Date(Date,format = "%m-%d-%Y"),
+					  # Time        = strptime(paste(Date, Time), "%m-%d-%Y %H:%M:%S"),
+					  # Date        = as.Date(Date,format = "%m-%d-%Y"),
 					  t.int       = Integration_time/1000,
 					  t.int.units = as.factor(paste0("1000*", Integration_time_Units))
         ) %>%

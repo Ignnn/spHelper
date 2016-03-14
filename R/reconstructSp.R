@@ -22,13 +22,13 @@
 #'      \code{reconstructed <- scores \%*\% loadings}
 #' @export
 #'
-#' @seealso  \code{\link[ChemometricsWithR]{reconstruct}} in \pkg{ChemometricsWithR}, \cr
+#' @seealso \code{\link[ChemometricsWithR]{reconstruct}} in \pkg{ChemometricsWithR}, \cr
 #'          \code{\link[ChemometricsWithR]{project}} in \pkg{ChemometricsWithR},\cr
 #'          \code{\link[Rssa]{reconstruct}} in \pkg{Rssa}
 #'
 #' @examples
-#' function(Loadings, Scores)
-#' function(Loadings, Scores, Spectra)
+#' reconstructSp(Loadings, Scores)
+#' reconstructSp(Loadings, Scores, Spectra)
 #'
 #' @import hyperSpec
 #' @family component analysis / factorisation related functions in \pkg{spHelper}
@@ -37,17 +37,10 @@
 reconstructSp  <-  function(loadings, scores, sp = NULL)     {
     reconstructed <- (hy2mat(scores)) %*% (hy2mat(loadings))
     if (class(sp) == "hyperSpec")   {
-        sp$spc <- reconstructed
+        sp[[]] <- reconstructed
         return(sp)            # hyperSpec object
     } else  {
         return(reconstructed) # matrix
     }
 }
 
-#===========================================================================
-#' @template same
-#' @rdname reconstructSp
-#' @export
-getReconstructed  <-  function(...,sp) {
-    stop('Use function "reconstructSp" in stead of "getReconstructed".')
-    }

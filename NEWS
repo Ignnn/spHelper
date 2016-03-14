@@ -2,6 +2,13 @@ spHelper v0.1.060 (2016-03-12)
 ==============================
 RStudio addins added.
 
+Renamed functions:
+ (NEW name)         <- (old name)
+
+ - reconstructSp    <- getReconstructed
+
+
+
 spHelper v0.1.045 (2016-03-02)
 ==============================
 Renamed functions:

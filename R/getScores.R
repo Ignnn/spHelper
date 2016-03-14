@@ -84,7 +84,7 @@ getScores <- function(sp, loadings = NULL,
         scores <- decomposition(sp, scores,
                                 label.wavelength = xLabel,
                                 label.spc        = yLabel)
-        colnames(scores$spc) <- kNames
+        colnames(scores[[]]) <- kNames
     } else {# if scores is a matrix:
         colnames(scores) <- kNames
     }

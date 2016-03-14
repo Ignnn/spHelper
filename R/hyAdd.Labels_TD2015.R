@@ -35,7 +35,8 @@ hyAdd.Labels_TD2015 <- function(sp, modeX, language = "EN")  {
                       sp_type    = tyrimas,
                       exp_code   = tyrimo_kodas,
                       Date       = Data,
-                      point      = taskas
+                      point      = taskas,
+                      spID       = as.factor(gsub('_{1,3}','|', spID))
         ) %>%
 
         dplyr::select(ID,
