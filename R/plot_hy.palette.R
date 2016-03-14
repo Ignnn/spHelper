@@ -1,17 +1,20 @@
 
-#' [!] Plot a color palette used in a hyperSpec object
+#' [!] Plot the color palette used in a hyperSpec object
 #'
 #' Plot color palette in a \code{\link[=hyperSpec-class]{hyperSpec}} object,
-#'  added with function \code{link{hyAdd.color}}.
+#'  added with function \code{\link{hyAdd.color}}.
 #'
 #' @template  sp-hy
+#' @inheritParams base::legend
 #' @param by \bold{Either} a name of factor variale in \code{sp} which levels
 #'           correspond to colors in \code{palette} \bold{or}, if \code{sp} is
 #'           not present, a charter vector of names to be ploted as a text.
 #' @param palette A list of color names or color codes.
-#' @param Title
-#' @inheritParams hyAdd.color
-#' @inheritParams base::legend
+#' @param Title The title.
+#' @param xpd A logical value or \code{NA}. If \code{FALSE}, all plotting is
+#'          clipped to the plot region, if \code{TRUE}, all plotting is
+#'          clipped to the figure region, and if \code{NA}, all plotting is
+#'          clipped to the device region.  See also \code{\link[graphics]{clip}}.
 #'
 #' @return A plot made with R \code{base} graphics system.
 #' @export
@@ -32,7 +35,8 @@
 plot_hy.palette <- function(sp = NULL, by = ".color",
                             palette = hyGet.palette(sp),
                             cex = 1.2,
-                            Title = if (!is.null(sp)) "Colors of The Groups" else "Colors"){
+                            Title = if (!is.null(sp)) "Colors of the groups" else "Colors",
+                            xpd = NA){
     if (!is.null(sp)) {
         chk.hy(sp)
         TEXT <- levels(sp$..[[by]])
@@ -50,7 +54,7 @@ plot_hy.palette <- function(sp = NULL, by = ".color",
     # If number of colors and strings do NOT match ----------------------------
     nText   <- length(TEXT)
     nColors <- length(palette)
-    if ( nText != nColors){
+    if ( nText != nColors) {
         warning(sprintf(
             "Number of colors (n=%d) does not match number of text lines (n=%d).",
             nColors, nText))
@@ -65,7 +69,8 @@ plot_hy.palette <- function(sp = NULL, by = ".color",
     plot.new()
     # title(main )
     legend("center", legend = TEXT, fill = palette, cex = cex,
-           title = Title, bty = "n")
+           title = Title, bty = "n",
+           xpd = xpd)
 }
 
 

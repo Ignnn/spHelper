@@ -2,10 +2,11 @@
 % Please edit documentation in R/plot_hy.palette.R
 \name{plot_hy.palette}
 \alias{plot_hy.palette}
-\title{[!] Plot a color palette used in a hyperSpec object}
+\title{[!] Plot the color palette used in a hyperSpec object}
 \usage{
 plot_hy.palette(sp = NULL, by = ".color", palette = hyGet.palette(sp),
-  cex = 1.2, Title = if (!is.null(sp)) "Colors of The Groups" else "Colors")
+  cex = 1.2, Title = if (!is.null(sp)) "Colors of the groups" else "Colors",
+  xpd = NA)
 }
 \arguments{
 \item{sp}{Spectroscopic data as a \code{\link[=hyperSpec-class]{hyperSpec}}
@@ -16,13 +17,20 @@ correspond to colors in \code{palette} \bold{or}, if \code{sp} is
 not present, a charter vector of names to be ploted as a text.}
 
 \item{palette}{A list of color names or color codes.}
+
+\item{Title}{The title.}
+
+\item{xpd}{A logical value or \code{NA}. If \code{FALSE}, all plotting is
+clipped to the plot region, if \code{TRUE}, all plotting is
+clipped to the figure region, and if \code{NA}, all plotting is
+clipped to the device region.  See also \code{\link[graphics]{clip}}.}
 }
 \value{
 A plot made with R \code{base} graphics system.
 }
 \description{
 Plot color palette in a \code{\link[=hyperSpec-class]{hyperSpec}} object,
- added with function \code{link{hyAdd.color}}.
+ added with function \code{\link{hyAdd.color}}.
 }
 \examples{
 

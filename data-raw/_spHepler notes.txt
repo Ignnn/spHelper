@@ -37,3 +37,10 @@ paprašyt, kad debugintų per "stack overflow"
 
 
 expression(list(lambda, nm))
+
+
+
+interval_cut -> interval_analysed
+medFilt_k
+
+lowest_intensity -> low_intensity_limit

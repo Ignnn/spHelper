@@ -3,12 +3,13 @@
 \name{qplot_kAmp}
 \alias{qplot_kAmp}
 \alias{qplot_scores}
-\title{[+] Plot amplitudes (a.k.a scores) of spectroscopic components}
+\title{[!+] Plot amplitudes (a.k.a scores) of spectroscopic components}
 \usage{
 qplot_kAmp(scores, Title = "Component amplitudes", subTitle = NULL,
   xLabel = labels(scores, ".wavelength"), yLabel = labels(scores, "spc"),
-  by = "gr", add.violin = TRUE, add.jitter = FALSE, add.boxplot = TRUE,
-  violin.alpha = 0.25, jitter.alpha = 0.3, jitter.size = 1)
+  by = "gr", palette = hyGet.palette(scores), add.violin = TRUE,
+  add.jitter = FALSE, add.boxplot = TRUE, violin.alpha = 0.25,
+  jitter.alpha = 0.3, jitter.size = 1)
 
 qplot_scores(..., by = NULL, add.violin = FALSE)
 }
@@ -28,6 +29,8 @@ and in italics.}
 \item{by}{A name of grouping variable. If \code{NULL}, all data is ploted.
 Default is \code{by = "gr"} for \code{qplot_kAmp} and
  \code{by = NULL} for \code{qplot_scores}.}
+
+\item{palette}{A color palette to be used in plotting. (...)}
 
 \item{add.violin}{Logical. If \code{TRUE} adds so called violin (i.e.,
 symmetrical probarility density) plot.
@@ -73,6 +76,9 @@ qplot_scores(Scores)
 
 data(Scores3)
 qplot_kAmp(Scores3, by = "class")
+#'
+sp3 <- hyAdd.color(Scores3, "class")
+qplot_kAmp(sp3, by = "class")
 
 p <- qplot_scores(Scores, add.jitter = TRUE)
 p

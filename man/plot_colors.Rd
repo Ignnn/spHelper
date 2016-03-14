@@ -10,6 +10,8 @@ plot_colors(col, text = as.character(col), Title = "Colors", cex = 1.2)
 \item{col}{A list of color nameo of color codes.}
 
 \item{text}{Strings, that describe each color.}
+
+\item{Title}{The title.}
 }
 \value{
 A plot made with R \code{base} graphics system.

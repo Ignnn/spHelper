@@ -16,8 +16,6 @@
 #' @inheritParams graphics::legend
 #' @export
 #'
-#'
-#' @author Vilmantas Gegzna
 #' @examples
 #'
 #' # Construct and apply running medians filter
@@ -27,6 +25,7 @@
 #' plot_spFilt(Spectra, sp_filt, ind = 2)
 #'
 #' @family \pkg{spHelper} plots
+#' @author Vilmantas Gegzna
 plot_spFilt <- function(sp, sp_filt, ind = 1,
                         colors = c('green4','blue1', 'red'),
                         show.legend  = TRUE,
@@ -47,7 +46,9 @@ plot_spFilt <- function(sp, sp_filt, ind = 1,
 
 
     obj <- hyperSpec::collapse(obj)
-    obj$.type   <- factor(c(2,2,1), c(1,2), c(legend.title, legend.text[3]))
+    # obj$.type   <- factor(c(2,2,1), c(1,2), c(legend.title, legend.text[3]))
+    obj$.type   <- factor(c(2,2,1), c(1,2), c(' ', '  '))
+
     obj$.colors <- colors
     obj$lwd     <- lwd
 
