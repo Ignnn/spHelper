@@ -52,7 +52,7 @@ Functions in spHelper by topic
 
 \code{\link{subt}}          \cr
 \code{\link{qplot_infoDim}} \cr
-\code{\link{getReconstructed}} \cr
+\code{\link{reconstructSp}} \cr
 }
 
 \section{Regular expressions}{

@@ -5,7 +5,7 @@
 \title{[!] Plot the color palette used in a hyperSpec object}
 \usage{
 plot_hy.palette(sp = NULL, by = ".color", palette = hyGet.palette(sp),
-  cex = 1.2, Title = if (!is.null(sp)) "Colors of the groups" else "Colors",
+  cex = 1.2, Title = if (!is.null(sp)) "Group Colors" else "Colors",
   xpd = NA)
 }
 \arguments{

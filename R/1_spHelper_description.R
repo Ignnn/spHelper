@@ -40,12 +40,12 @@
 #' \code{\link{qplot_confusion}}  \cr
 #' \code{\link{qplolt_spStat}}  \cr
 #' \code{\link{plot_spDiff}}    \cr
-#' 
+#'
 #'
 #'
 #' \code{\link{subt}}          \cr
 #' \code{\link{qplot_infoDim}} \cr
-#' \code{\link{getReconstructed}} \cr
+#' \code{\link{reconstructSp}} \cr
 #'
 #'
 #' @section Regular expressions:

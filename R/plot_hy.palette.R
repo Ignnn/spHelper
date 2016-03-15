@@ -35,7 +35,7 @@
 plot_hy.palette <- function(sp = NULL, by = ".color",
                             palette = hyGet.palette(sp),
                             cex = 1.2,
-                            Title = if (!is.null(sp)) "Colors of the groups" else "Colors",
+                            Title = if (!is.null(sp)) "Group Colors" else "Colors",
                             xpd = NA){
     if (!is.null(sp)) {
         chk.hy(sp)

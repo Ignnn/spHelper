@@ -80,6 +80,7 @@ hyAdd.Labels_PAP_RK_2014 <- function(sp, language = "EN")  {
                       ZPV_16,
                       ZPV_18,
                       ZPV_ar,
+                      p16_Ki67,
                       Boxcar_width
         )
 
@@ -170,6 +171,11 @@ hyAdd.Labels_PAP_RK_2014 <- function(sp, language = "EN")  {
                             levels = c("Norma", "Cervicitas", "CIN 1", "CIN 2", "CIN 3",      "CIN 3/CIS", "Karcinoma", "Karcinoma G3"),
                             labels = c("Normal","Cervicitis", "CIN1",  "CIN2",  "CIN3/CIS",   "CIN3/CIS",     "Cancer", "Cancer"   ))
     Object$HistGr <- droplevels(Object$HistGr)
+
+    Object$ZPV_16 <- factor(Object$HistGr,levels = c("+", "-"),labels = c("+", "-" ))
+    Object$ZPV_18 <- factor(Object$HistGr,levels = c("+", "-"),labels = c("+", "-" ))
+    Object$ZPV_ar <- factor(Object$HistGr,levels = c("+", "-"),labels = c("+", "-" ))
+
 
     # ----------------------------------------------------------------------
     # Add `.color`: variable with colors
