@@ -1,4 +1,4 @@
-# hyAdd.Labels_... --------------------------------------------------------
+# hyAdd.Labels_PAP_PD_2014 ----------------------------------------------------
 #
 #' [+] Add labels to "PAP_PD_2014" and transform the dataset
 #'
@@ -136,8 +136,8 @@ hyAdd.Labels_PAP_PD_2014 <- function(sp, language = "EN")  {
                       labels = c("IPPN", "Cervicitas", "CIN1", "CIN2", "CIN3/CIS"))
 
     # ----------------------------------------------------------------------
-    # Add `.color`: variable with colors
-    Object <- hyAdd.color(Object, "HibridGr")
+    # # Add `.color`: variable with colors
+    # Object <- hyAdd.color(Object, "HibridGr")
 	# ---------------------------------------------------------------------
     # CHECK if any columns were added or deleted
     ColsFinal   <- colnames(Object)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/4_Addins.R
 \name{insertIn_Addin}
 \alias{insertIn_Addin}
-\title{Insert \%in\%.}
+\title{Insert \%in\%}
 \usage{
 insertIn_Addin()
 }

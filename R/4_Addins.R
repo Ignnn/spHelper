@@ -1,5 +1,5 @@
 
-#' Insert \%>\%.
+#' Insert \%>\%
 #'
 #' Call this function as an addin to insert \code{ \%>\% } at the cursor position.
 #'
@@ -9,7 +9,7 @@ insertPipeline_Addin <- function() {
     rstudioapi::insertText(text = " %>% ")
 }
 
-#' Insert \%*\%.
+#' Insert \%*\%
 #'
 #' Call this function as an addin to insert \code{ \%*\% } at the cursor position.
 #'
@@ -20,7 +20,7 @@ insertMatMuliplication_Addin <- function() {
 }
 
 
-#' Insert \%in\%.
+#' Insert \%in\%
 #'
 #' Call this function as an addin to insert \code{ \%in\% } at the cursor position.
 #'

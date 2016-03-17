@@ -2,7 +2,7 @@
 % Please edit documentation in R/4_Addins.R
 \name{insertPipeline_Addin}
 \alias{insertPipeline_Addin}
-\title{Insert \%>\%.}
+\title{Insert \%>\%}
 \usage{
 insertPipeline_Addin()
 }

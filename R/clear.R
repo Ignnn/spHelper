@@ -129,7 +129,7 @@ clear.class <- function(clrClass = NULL, except = NULL) {
             itemObj   <- eval(parse(text = item), globalenv())
             itemClass <- class(itemObj)
             if (any(item %in% except)) next
-            if (any(itemClass %in% clrClass)) clear(item)
+            if (any(itemClass %in% clrClass)) clear(list = item)
         }
 
         invisible("Cleared")
@@ -147,7 +147,7 @@ clear.except.class <- function(exceptClass = NULL) {
             for (item in clrList) {
                 itemObj   <- eval(parse(text = item), globalenv())
                 itemClass <- class(itemObj)
-                if (any(itemClass %in% exceptClass)) next else clear(item)
+                if (any(itemClass %in% exceptClass)) next else clear(list = item)
             }
 
             invisible("Cleared")

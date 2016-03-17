@@ -2,7 +2,7 @@
 % Please edit documentation in R/4_Addins.R
 \name{insertMatMuliplication_Addin}
 \alias{insertMatMuliplication_Addin}
-\title{Insert \%*\%.}
+\title{Insert \%*\%}
 \usage{
 insertMatMuliplication_Addin()
 }
