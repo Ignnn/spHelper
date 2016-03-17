@@ -5,8 +5,9 @@
 \title{[!] Compare 2 spectroscopic signals}
 \usage{
 plot_spCompare(sp1, sp2, row = 1, colors = c("green4", "blue3", "red"),
-  show.legend = TRUE, legend.title = "Signals",
-  legend.text = c("Original", "Filtered", "Noise"), lwd = 1)
+  show.legend = TRUE, legend.title = "Spectra",
+  legend.text = c(match.call()$sp1, match.call()$sp2, "Difference"),
+  x = "topright", lwd = 1, ...)
 }
 \arguments{
 \item{sp1, sp2}{hyperSpec objects of the same size}
@@ -23,21 +24,30 @@ respectively.}
 \item{legend.text}{Character vertor of length = 3. The entries for the legend
 for for original, filtered and noise signals respectively.}
 
+\item{x, y}{the x and y co-ordinates to be used to position the legend.
+They can be specified by keyword or in any way which is accepted
+by \link[grDevices]{xy.coords}: See 'Details' in \code{\link[graphics]{legend}}.}
+
 \item{lwd}{A line width. More details in \link[graphics]{par}.}
+
+\item{...}{Other arguments to be passed to \code{\link[graphics]{legend}}
+(except \code{legend}, \code{title}, \code{col} and \code{lty}).}
 }
 \value{
-A plot made with R \code{base} graphics system.
+A plot made with R package \pkg{graphics}.
 }
 \description{
 Compare 2 spectroscopic signals: plot 2 signals and their difference.
 }
 \examples{
 
-# Construct and apply running medians filter
-Original <- Spectra
-Filtered <- apply(Original, 1, function(x) {runmed(x, 15)})
+# Apply running medians filter:
+sp_filt <- apply(Spectra, 1, function(x) {runmed(x, 15)})
 
-plot_spCompare(Original, Filtered, row = 2)
+plot_spCompare(Spectra, sp_filt, row = 2)
+
+# Modify the legend:
+plot_spCompare(Spectra, sp_filt, row = 2,legend.text  = c("Original","Filtered","Noise"))
 
 }
 \author{
