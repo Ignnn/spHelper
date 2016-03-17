@@ -76,7 +76,7 @@ qplot_infoDim(my_matrix)
 \seealso{
 Other \pkg{spHelper} plots: \code{\link{nTick}},
   \code{\link{plot_colors}}, \code{\link{plot_hy.palette}},
-  \code{\link{plot_spDiff}}, \code{\link{plot_spFilt}},
+  \code{\link{plot_spCompare}}, \code{\link{plot_spDiff}},
   \code{\link{qplolt_spStat}},
   \code{\link{qplot_confusion}},
   \code{\link{qplot_crosstab}}, \code{\link{qplot_kAmp}},

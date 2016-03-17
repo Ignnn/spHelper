@@ -4,7 +4,7 @@
 #' Plot a color palette in a \code{\link[=hyperSpec-class]{hyperSpec}} object,
 #'  which was added with function \code{\link{hyAdd.color}}.
 #'
-#' @template  sp-hy
+#' @template sp-hy
 #' @param by \bold{Either} a name of factor variale in \code{sp} which levels
 #'           correspond to colors in \code{palette} \bold{or}, if \code{sp} is
 #'           not present, a charter vector of names to be ploted as a text.
@@ -24,13 +24,13 @@
 #'
 #' @param x,y the x and y co-ordinates to be used to position the legend.
 #'        They can be specified by keyword or in any way which is accepted
-#'        by \link[grDevices]{xy.coords}: See ‘Details’ in \code{\link[graphics]{legend}}.
+#'        by \link[grDevices]{xy.coords}: See 'Details' in \code{\link[graphics]{legend}}.
 #' @param ... Other arguments to be passed to \code{\link[graphics]{legend}}.
 #'            (except \code{legend}, \code{title} and \code{fill})
 #'
 #' @inheritParams graphics::legend
 #'
-#' @return A plot made with R package \pkg{graphics}.
+#' @template plot-base
 #' @export
 #'
 #' @examples
@@ -45,13 +45,11 @@
 #'
 #' #-----------------------------------------------------
 #' # Example 3
-#' # Use data from example 1
+#' # Use data 'sp' from example 1
 #' # The legend does not make sense in this context. It's just an example.
 #'
-#' plot(mtcars[,3])
+#' plot(flu)
 #' plot_hy.palette(sp, "gr", as.legend = TRUE, cex = 1)
-#'
-#'
 #'
 #'
 #' @author Vilmantas Gegzna
@@ -63,7 +61,7 @@
 plot_hy.palette <- function(sp = NULL, by = ".color",
                             palette = hyGet.palette(sp),
                             cex = if (as.legend == FALSE) 1.2 else 1,
-                            Title = if (!is.null(sp)) "Group Colors" else "Colors",
+                            Title = if (!is.null(sp)) "Group colors" else "Colors",
                             as.legend = FALSE,
                             xpd = NA,
                             x = "topright",

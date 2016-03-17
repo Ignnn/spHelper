@@ -6,7 +6,7 @@
 \usage{
 plot_hy.palette(sp = NULL, by = ".color", palette = hyGet.palette(sp),
   cex = if (as.legend == FALSE) 1.2 else 1, Title = if (!is.null(sp))
-  "Group Colors" else "Colors", as.legend = FALSE, xpd = NA,
+  "Group colors" else "Colors", as.legend = FALSE, xpd = NA,
   x = "topright", y = NULL, bty = "n", ...)
 }
 \arguments{
@@ -36,7 +36,7 @@ clipped to the device region.  See also \code{\link[graphics]{clip}}.}
 
 \item{x, y}{the x and y co-ordinates to be used to position the legend.
 They can be specified by keyword or in any way which is accepted
-by \link[grDevices]{xy.coords}: See ‘Details’ in \code{\link[graphics]{legend}}.}
+by \link[grDevices]{xy.coords}: See 'Details' in \code{\link[graphics]{legend}}.}
 
 \item{bty}{The type of box to be drawn around the legend. The allowed values
 are "o" and "n" (the default).}
@@ -63,13 +63,11 @@ plot_hy.palette(by = "RED color", palette = "#ee0000")
 
 #-----------------------------------------------------
 # Example 3
-# Use data from example 1
+# Use data 'sp' from example 1
 # The legend does not make sense in this context. It's just an example.
 
-plot(mtcars[,3])
+plot(flu)
 plot_hy.palette(sp, "gr", as.legend = TRUE, cex = 1)
-
-
 
 
 }
@@ -92,8 +90,8 @@ Other \pkg{spHelper} functions for spectroscopy and \pkg{hyperSpec}: \code{\link
   \code{\link{read3csv2hy}}, \code{\link{spStat}}
 
 Other \pkg{spHelper} plots: \code{\link{nTick}},
-  \code{\link{plot_colors}}, \code{\link{plot_spDiff}},
-  \code{\link{plot_spFilt}}, \code{\link{qplolt_spStat}},
+  \code{\link{plot_colors}}, \code{\link{plot_spCompare}},
+  \code{\link{plot_spDiff}}, \code{\link{qplolt_spStat}},
   \code{\link{qplot_confusion}},
   \code{\link{qplot_crosstab}},
   \code{\link{qplot_infoDim}}, \code{\link{qplot_kAmp}},

@@ -1,16 +1,17 @@
 
-#' [!] Plot original, filtered signals and the noise
+#' [!] Compare 2 spectroscopic signals
 #'
-#' Plot 2 signals and their difference (the noise).
+#' Compare 2 spectroscopic signals: plot 2 signals and their difference.
 #'
-#' @param sp,sp_filt hyperSpec objects of the same size
-#' @param ind An integer, that indicates which row must be plotted.
+#' @param sp1,sp2 hyperSpec objects of the same size
+#' @param row An integer, that indicates which row must be plotted.
 #' @param show.legend Logical
 #' @param colors Vector of 3 colors for original, filtered and noise signals
 #'              respectively.
 #' @param legend.title The title of the legend.
 #' @param legend.text Character vertor of length = 3. The entries for the legend
 #'        for for original, filtered and noise signals respectively.
+#' @param lwd A line width. More details in \link[graphics]{par}.
 #'
 #' @return A plot made with R \code{base} graphics system.
 #' @inheritParams graphics::legend
@@ -19,29 +20,29 @@
 #' @examples
 #'
 #' # Construct and apply running medians filter
-#' medianFilt <- function(x) {runmed(x, 15)}
-#'    sp_filt <- apply(Spectra, 1, medianFilt)
+#' Original <- Spectra
+#' Filtered <- apply(Original, 1, function(x) {runmed(x, 15)})
 #'
-#' plot_spFilt(Spectra, sp_filt, ind = 2)
+#' plot_spCompare(Original, Filtered, row = 2)
 #'
 #' @family \pkg{spHelper} plots
 #' @author Vilmantas Gegzna
-plot_spFilt <- function(sp, sp_filt, ind = 1,
-                        colors = c('green4','blue1', 'red'),
+plot_spCompare <- function(sp1, sp2, row = 1,
+                        colors = c('green4','blue3', 'red'),
                         show.legend  = TRUE,
                         legend.title = "Signals",
                         legend.text  = c("Original","Filtered","Noise"),
                         lwd = 1){
-    chk.hy(sp)
-    chk.hy(sp_filt)
-    if (length(ind) != 1)         stop("length(ind) != 1")
+    chk.hy(sp1)
+    chk.hy(sp2)
+    if (length(row) != 1)         stop("length(row) != 1")
     if (length(colors) != 3)      stop("length(colors) != 3")
     if (length(legend.text) != 3) stop("length(legend.text) != 3")
 
 
     obj <- list()
-    obj$Original <- sp[ind[1],"spc",]
-    obj$Filtered <- sp_filt[ind[1],"spc",]
+    obj$Original <- sp1[row[1],"spc",]
+    obj$Filtered <- sp2[row[1],"spc",]
     obj$Noise    <- obj$Original  - obj$Filtered
 
 

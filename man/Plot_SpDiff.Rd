@@ -40,8 +40,8 @@ accidentally plotting of large numbers of spectra).}
 \code{\link[hyperSpec]{plotspc}}.}
 }
 \value{
-Plot of calculated difference between expected (original)
-and reconstructed spectra.
+A plot of calculated difference between expected (original)
+and reconstructed spectra. (Drawn with R package \pkg{graphics}).
 }
 \description{
 Plot difference between original (e.g., experimental) and
@@ -62,7 +62,8 @@ Vilmantas Gegzna
 \seealso{
 Other \pkg{spHelper} plots: \code{\link{nTick}},
   \code{\link{plot_colors}}, \code{\link{plot_hy.palette}},
-  \code{\link{plot_spFilt}}, \code{\link{qplolt_spStat}},
+  \code{\link{plot_spCompare}},
+  \code{\link{qplolt_spStat}},
   \code{\link{qplot_confusion}},
   \code{\link{qplot_crosstab}},
   \code{\link{qplot_infoDim}}, \code{\link{qplot_kAmp}},

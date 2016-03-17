@@ -7,14 +7,16 @@
 plot_colors(col, text = as.character(col), Title = "Colors", cex = 1.2)
 }
 \arguments{
-\item{col}{A list of color nameo of color codes.}
+\item{col}{A list of either color names or color codes.}
 
-\item{text}{Strings, that describe each color.}
+\item{text}{Strings that describe each color.}
 
-\item{Title}{The title.}
+\item{cex}{character expansion factor \bold{relative} to current
+    \code{par("cex")}.  Used for text, and provides the default for
+    \code{pt.cex} and \code{title.cex}.}
 }
 \value{
-A plot made with R \code{base} graphics system.
+A plot made with R package \pkg{graphics}.
 }
 \description{
 A convenience function to Vizualize colors by either color name or
@@ -32,8 +34,9 @@ Vilmantas Gegzna
 }
 \seealso{
 Other \pkg{spHelper} plots: \code{\link{nTick}},
-  \code{\link{plot_hy.palette}}, \code{\link{plot_spDiff}},
-  \code{\link{plot_spFilt}}, \code{\link{qplolt_spStat}},
+  \code{\link{plot_hy.palette}},
+  \code{\link{plot_spCompare}}, \code{\link{plot_spDiff}},
+  \code{\link{qplolt_spStat}},
   \code{\link{qplot_confusion}},
   \code{\link{qplot_crosstab}},
   \code{\link{qplot_infoDim}}, \code{\link{qplot_kAmp}},

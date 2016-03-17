@@ -82,8 +82,10 @@ correct_contents2 <- function(FILE){
     # x <- gsub("addLabels_",  "hyAdd.Labels_", x, perl = TRUE)
 
     # x <- gsub("sortMaxOnDiag",  "sortDescOnDiag", x, perl = TRUE)
+    #
+    x <- gsub("plot_spFilt",  "plot_spCompare", x, perl = TRUE)
 
-    sortMaxOnDiag
+
 
 
     # Writte
@@ -117,7 +119,11 @@ directories  <- as.list(
              c("R","vignettes","inst\\doc"),
              "\\"),
       "D:\\Dokumentai\\R\\spHelper\\",
-      'D:\\Dokumentai\\R\\Spektroskopija\\PAP_PD_2014\\'
+      paste0("D:\\Dokumentai\\R\\Spektroskopija\\",
+             c("PAP_PD_2014\\",
+               "PAP_RK_2014\\",
+               "TD_2009\\"))
+
 
       # 'D:\\Dokumentai\\R\\Spektroskopija\\__ TO DELETE __\\',
       # 'D:\\Dokumentai\\R\\Spektroskopija\\TD_2009\\',
@@ -126,7 +132,7 @@ directories  <- as.list(
 )
 
 # Apply corrections
-stop("This script can be harmful")
+stop("This script can be harmful!!!")
 lapply(directories, apply_content_corrections)
 
 

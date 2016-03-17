@@ -31,8 +31,8 @@
 #'          \code{\link[hyperSpec]{plotspc}}.
 #' @inheritParams hyperSpec::plotspc
 #'
-#' @return Plot of calculated difference between expected (original)
-#' and reconstructed spectra.
+#' @return A plot of calculated difference between expected (original)
+#' and reconstructed spectra. (Drawn with R package \pkg{graphics}).
 #'
 #' @export
 #' @examples

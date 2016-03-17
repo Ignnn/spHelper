@@ -3,11 +3,11 @@
 #' A convenience function to Vizualize colors by either color name or
 #' color code.
 #'
-#' @param col A list of color nameo of color codes.
-#' @param text Strings, that describe each color.
-#' @inheritParams plot_hy.palette
+#' @param col A list of either color names or color codes.
+#' @param text Strings that describe each color.
+#' @inheritParams graphics::legend
 #'
-#' @return A plot made with R \code{base} graphics system.
+#' @template plot-base
 #' @export
 #'
 #' @examples
