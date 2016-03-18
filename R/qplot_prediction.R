@@ -39,6 +39,7 @@
 #'
 #' qplot_prediction(Scores,"Prediction","gr", type.stat = "ref", MDS = "isoMDS")
 #'
+#'
 #' sc <- Scores[,,c(1,3),wl.index = TRUE]
 #'
 #'
@@ -49,6 +50,7 @@
 #'
 #'
 #' sc <- Scores[,,c(1,2),wl.index = TRUE]
+#' sc <- hyAdd.color(sp = sc , by = "class", palette = c("tan3", "green4","skyblue","violet"))
 #' sc$ID <- rownames(sc)
 #'
 #' qplot_proximity(sc, "class")
@@ -74,8 +76,19 @@ qplot_prediction   <- function(scores,
 # Get input variables
     try(Prediction <- getVarValues(Prediction, scores), silent = TRUE)
     try(Reference  <- getVarValues(Reference,  scores), silent = TRUE)
-    if (length(palette) < max(nlevels(Prediction), nlevels(Reference)))
+    # Check palette - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    nPal <- length(palette)
+    nColNeeded <-  max(nlevels(Prediction), nlevels(Reference))
+    if (nPal < nColNeeded) {
+        if (nPal > 0){
+            warning(sprintf(paste("There are %d colors in provided palette",
+                                  "and %d are needed, thus the DEFAULT colors",
+                                  "will be used."),nPal,nColNeeded))
+        }
         palette <- NULL
+
+    }
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     scores <- if (class(scores) == "hyperSpec") hy2mat(scores) else as.matrix(scores)
 
@@ -84,7 +97,7 @@ qplot_prediction   <- function(scores,
 
 # Prepare data:
     scores <- scale(scores)
-    PredictorNames <- paste(colnames(scores), collapse = ", ")
+    # PredictorNames <- paste(colnames(scores), collapse = ", ")
 
     is_misclassified <- factor(Reference !=  Prediction,
                                c("TRUE","FALSE"),c("Misclassified","Correct"))
@@ -135,40 +148,4 @@ qplot_prediction   <- function(scores,
     if (!is.null(palette)) p <- p + scale_color_manual(values = palette)
 
     return(p)
-}
-
-#' @rdname qplot_prediction
-#' @param by A grouping variable
-#' @export
-
-qplot_proximity  <- function(scores, by,
-                             xLabel = paste("Projection", xproj),
-                             yLabel = paste("Projection", yproj),
-                             Title  = "Proximity of Groups",
-                             subTitle = NULL,
-                             palette = hyGet.palette(scores),
-                             stat = c("chull","ellipse","none"),
-                             MDS = c("metric","isoMDS"),
-                             plot.scatter = TRUE,
-                             k = 2,
-                             xproj = 1,
-                             yproj = 2) {
-             by  <- getVarValues(by, scores)
-
-    qplot_prediction(scores,
-                     Prediction = by,
-                     Reference  = by,
-                     xLabel = xLabel,
-                     yLabel = yLabel,
-                     Title  = Title,
-                     subTitle = subTitle,
-                     palette = palette,
-                     stat = stat,
-                     MDS = MDS,
-                     plot.scatter = plot.scatter,
-                     k = k,
-                     xproj = xproj,
-                     yproj = yproj) +
-        guides(shape = FALSE,
-               color = guide_legend("Groups"))
 }
