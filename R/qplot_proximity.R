@@ -18,7 +18,7 @@ qplot_proximity  <- function(scores, by,
 
     # Check palette - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     nPal <- length(palette)
-    nColNeeded <-  max(nlevels(Prediction), nlevels(Reference))
+    nColNeeded <-  nlevels(by)
     if (nPal < nColNeeded) {
         if (nPal > 0){
             warning(sprintf(paste("There are %d colors in provided palette",

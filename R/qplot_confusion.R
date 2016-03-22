@@ -2,7 +2,7 @@
 #
 #' @name qplot_confusion
 #'
-#' @title [+] Plot a confusion matrix (a.k.a. classification table)
+#' @title [!+] Plot a confusion matrix (a.k.a. classification table)
 #'
 #' @description Plot a confusion matrix (classification table) with
 #'              additional statistics (sensitivity (Se) a.k.a. true positive
@@ -20,7 +20,8 @@
 #'             \bold{Exception:} when \code{shades="const"} and \code{shades="none"},
 #'          color intensities are constant.
 #'
-#' @param conf A confusion matrix (classification table): either an object of
+#' @param ... Appropriate parameters (described below).
+#' @param conf,mat A confusion matrix (classification table): either an object of
 #'             a class "table" or a square matrix.
 #' @param Prediction A factor variable with \bold{predicted} groups.
 #' @param Reference A factor variable  with \bold{reference} groups.
@@ -43,6 +44,7 @@
 #' @param text.size The size of a text inside cells.
 #' @param decimals The number of decimal positions in rounding. Default is 2
 #'        (i.e., precission is 0.01).
+#'
 #' @return A plot of confusion matrix and additional statistics (`ggplot` object).
 #' @examples
 #'
@@ -53,7 +55,7 @@
 #' Reference  <- sample(c("A", "B","C","D"),N, replace = TRUE)
 #'
 #' # This function:
-#' qplot_confusion2(Prediction,Reference)
+#' qplot_confusion(Prediction,Reference)
 #'
 #' # does the same as:
 #' conf <- table(Prediction,Reference)
@@ -97,25 +99,59 @@
 #' @export
 #' @family \pkg{spHelper} plots
 #' @author Vilmantas Gegzna
-qplot_confusion <- function(conf,
-                          Title  = "Classification table",
-                          xLabel = NULL,
-                          yLabel = NULL,
-                          subTitle = NULL,
-                          shades = c("prop","max","const","none"),
-                          guide = FALSE,
-                          text.size = 5,
-                          decimals = 2) {
-    if (!is.table(conf)) {       conf <- as.table(conf)    }
+qplot_confusion <- function(...) {UseMethod("qplot_confusion") }
+
+#  ------------------------------------------------------------------------
+#' @rdname qplot_confusion
+#' @method qplot_confusion default
+qplot_confusion.default <- function(Prediction, Reference,
+                                    Title  = "Classification table",
+                                    xLabel = NULL,
+                                    yLabel = NULL,
+                                    subTitle = NULL,
+                                    shades = c("prop","max","const","none"),
+                                    guide = FALSE,
+                                    text.size = 5,
+                                    decimals = 2) {
+
+    if (length(Prediction) != length(Reference)) {
+        stop("Lengths of vectors `Prediction` and `Reference` must be equal.")
+    }
+    conf <- table(Prediction,Reference)
+    qplot_confusion(conf,
+                    Title, xLabel, yLabel, subTitle, shades, guide, text.size,
+                    decimals)
+}
+#  ------------------------------------------------------------------------
+#' @rdname qplot_confusion
+#' @method qplot_confusion matrix
+qplot_confusion.matrix <- function(mat,...){
+    dims <- dim(mat)
+    if (dims[1] != dims[2]) stop("Matrix 'mat' must be square.")
+    conf <- as.table(mat)
+    qplot_confusion(conf,...)
+}
+#  ------------------------------------------------------------------------
+#' @rdname qplot_confusion
+#' @method qplot_confusion table
+qplot_confusion.table <- function(conf,
+                                  Title  = "Classification table",
+                                  xLabel = NULL,
+                                  yLabel = NULL,
+                                  subTitle = NULL,
+                                  shades = c("prop","max","const","none"),
+                                  guide = FALSE,
+                                  text.size = 5,
+                                  decimals = 2) {
 
     # Calculate accuracy measures
     `<Sensitivity>` <- diag(prop.table(conf,2)) # Sensitivity
-           PV       <- diag(prop.table(conf,1)) # "Positive Predictive Value"
-           K        <- psych::cohen.kappa(conf)[["kappa"]]
+    PV       <- diag(prop.table(conf,1)) # "Positive Predictive Value"
+    K        <- psych::cohen.kappa(conf)[["kappa"]]
 
     # Add accuracy measures to the main matrix/table
     `<PPV>` <- c(PV, K)
-    conf.a <- rbind(conf,  `<Sensitivity>`)  %>% cbind( ., `<PPV>`)
+    conf.a <- rbind(conf,  `<Sensitivity>`) %>% cbind( ., `<PPV>`)
 
 
     conf.a   <- round(conf.a,decimals)
@@ -160,24 +196,24 @@ qplot_confusion <- function(conf,
     switch(shades[1],
            prop =  {# best for square matrix
                FillValue[ind.main] <- -conf.m$value[ind.main] /
-                                      sum(conf) * n * (n - 1);
+                   sum(conf) * n * (n - 1);
                FillValue[ind.diag] <- -FillValue[ind.diag] / (n - 1)
                FillValue <- accShades()
-            },
+           },
 
            max = {
                FillValue[ind.main] <- -conf.m$value[ind.main] / max(conf);
                FillValue[ind.diag] <- -FillValue[ind.diag]
                FillValue <- accShades()
-            },
+           },
 
            const = {
                FillValue[ind.main]   <- -.60
                FillValue[ind.diag]   <-  .70
                # FillValue[N]          <- 0.10
 
-            },
-        # Just constant grey color (no red nor green colors)
+           },
+           # Just constant grey color (no red nor green colors)
            FillValue[] <- 0
     )
 
@@ -193,33 +229,32 @@ qplot_confusion <- function(conf,
     nameY <- names(conf.m)[1]
 
     p <- ggplot(conf.m, aes_string(x = nameX, y = nameY)) +
-         geom_tile(aes(fill = FillValue), colour = "grey50") +
-         geom_text(aes(label = value), size = text.size) +
-         geom_hline(size = 1.2, color = "grey30", yintercept = 1.5    ) +
-         geom_vline(size = 1.2, color = "grey30", xintercept = nc + .5) +
+        geom_tile(aes(fill = FillValue), colour = "grey50") +
+        geom_text(aes(label = value), size = text.size) +
+        geom_hline(size = 1.2, color = "grey30", yintercept = 1.5    ) +
+        geom_vline(size = 1.2, color = "grey30", xintercept = nc + .5) +
 
-         scale_fill_gradient2(high = "#209D20",   # "#008000",
-                              mid  = "#eeeeee", #mid = "#f2f6c3",
-                              midpoint = 0,
-                              low  = "#dd4040",#"tomato2",
-                              na.value = "grey60",
+        scale_fill_gradient2(high = "#209D20",   # "#008000",
+                             mid  = "#eeeeee", #mid = "#f2f6c3",
+                             midpoint = 0,
+                             low  = "#dd4040",#"tomato2",
+                             na.value = "grey60",
 
-                              guide = {if (guide) "colourbar" else FALSE} ,
-                              name = "Accuracy",
-                              limits = c(-1,1),
-                              breaks = c(1,-1),
-                              labels = c("High",
-                                         "Low")
-         ) +
+                             guide = {if (guide) "colourbar" else FALSE} ,
+                             name = "Accuracy",
+                             limits = c(-1,1),
+                             breaks = c(1,-1),
+                             labels = c("High",
+                                        "Low")
+        ) +
 
-         labs(title = subt(Title, subTitle) ,
-              x = {if (is.null(xLabel)) nameX else xLabel},
-              y = {if (is.null(yLabel)) nameY else yLabel}
-         )
+        labs(title = subt(Title, subTitle) ,
+             x = {if (is.null(xLabel)) nameX else xLabel},
+             y = {if (is.null(yLabel)) nameY else yLabel}
+        )
 
     p <- cowplot::ggdraw(cowplot::switch_axis_position(p, axis = 'x'))
 
     return(p)
 }
-
 

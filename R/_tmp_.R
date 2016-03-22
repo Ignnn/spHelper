@@ -31,3 +31,22 @@
 #     layout(xaxis = list(title = "$\\sqrt{(n_\\text{c}(t|{T_\\text{early}}))}$"),
 #            yaxis = list(title = "$d, r \\text{ (solar radius)}$"))
 
+#  ------------------------------------------------------------------------
+
+# gg <- ls(asNamespace("ggplot2"))
+# geoms <- gg[grepl("^Geom", gg)]
+# # plotly geoms
+# to_basic <- plotly:::to_basic
+# x <- sub("to_basic\\.", "", as.character(methods(to_basic)))
+# geom2trace <- plotly:::geom2trace
+# y <- sub("geom2trace\\.", "", as.character(methods(geom2trace)))
+# # histograms are implemented, but don't have toBasic/geom2trace converters
+# pgeoms <- c(x, y, "histogram")
+# setdiff(geoms, pgeoms)
+#
+#
+#
+# #  ------------------------------------------------------------------------
+#
+# ?groupGeneric
+

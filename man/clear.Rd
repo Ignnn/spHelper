@@ -92,6 +92,8 @@ ls()
 clear.class("numeric", except = "A1")
 ls()
 
+--------------------------------------------
+# BUG: clear.fun() gives error if special function (e.g. `\%>\%`) is present.
 
 }
 \author{

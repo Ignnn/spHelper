@@ -69,6 +69,8 @@
 #' clear.class("numeric", except = "A1")
 #' ls()
 #'
+#' --------------------------------------------
+#' # BUG: clear.fun() gives error if special function (e.g. `%>%`) is present.
 #'
 #' @family \pkg{spHelper} utilities
 #' @family \pkg{spHelper} \code{clear} family functions

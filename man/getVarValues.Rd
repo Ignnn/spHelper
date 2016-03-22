@@ -26,6 +26,11 @@ Parse dataframe \code{DATA}, variable \code{VAR} and a call
 Otherwise return \code{VAR}.
 }
 \examples{
+# --------------------------------------------------------------------
+# [NOT IMPLEMENTED YET] if length(VAR) == 1, it must be interpreted as a string.
+
+
+
 # EXAMPLE 1 *****************************************************************
 
 # Data
