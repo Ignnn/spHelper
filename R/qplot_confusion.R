@@ -104,6 +104,7 @@ qplot_confusion <- function(...) {UseMethod("qplot_confusion") }
 #  ------------------------------------------------------------------------
 #' @rdname qplot_confusion
 #' @method qplot_confusion default
+#' @export
 qplot_confusion.default <- function(Prediction, Reference,
                                     Title  = "Classification table",
                                     xLabel = NULL,
@@ -125,6 +126,7 @@ qplot_confusion.default <- function(Prediction, Reference,
 #  ------------------------------------------------------------------------
 #' @rdname qplot_confusion
 #' @method qplot_confusion matrix
+#' @export
 qplot_confusion.matrix <- function(mat,...){
     dims <- dim(mat)
     if (dims[1] != dims[2]) stop("Matrix 'mat' must be square.")
@@ -134,6 +136,7 @@ qplot_confusion.matrix <- function(mat,...){
 #  ------------------------------------------------------------------------
 #' @rdname qplot_confusion
 #' @method qplot_confusion table
+#' @export
 qplot_confusion.table <- function(conf,
                                   Title  = "Classification table",
                                   xLabel = NULL,
